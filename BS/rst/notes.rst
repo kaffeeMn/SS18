@@ -71,7 +71,8 @@ Anwendungsprogramm nach dem anderen ausfuehrt.
 I/O Flaschenhals
 ----------------
 
-
+Geerell ist die CPU schneller, als Kartenleser und Drucker, dadurch wird 
+Rechenzeit verschwendet.
 
 Mehrprogrambetrieb/ Threads
 ----------------------------
