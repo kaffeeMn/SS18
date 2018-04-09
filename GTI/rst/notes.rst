@@ -121,3 +121,18 @@ alpha gibt mit L = L(alpha)
 
 Beispiele, Erweiterungen und Aequivalenzen
 ------------------------------------------
+
+die Bindung der Operation ist von stark nach schwach wie folgt geordnet
+
+1. ()
+2. *
+3. konkatenation
+4. +
+
+Abkuerzungen fuer r.e. findet man auf Folie 00-20
+
+Aequivalenzen
+^^^^^^^^^^^^^
+
+r.e. alpha und beta sind dann aeuivalent, wenn L(alpha) und L(beta) aequivalent
+sind.
