@@ -1,3 +1,6 @@
+.. todo::
+    bis Folie: 
+
 ################
 SWT Mitschriften
 ################
@@ -71,6 +74,15 @@ Classes, Interfaces etc. bereitstellt.
 UML Klassen- und Paketdiagramme
 ===============================
 
+* Sammlung graphischer Notationen.
+* Jede Notation ist ein Diagramm/ Modell
+* Die Notation soll Kommuniaktion unter Entwicklern erleichtern
+
+Zu den Pfeilen:
+
+* gestirchelt: braucht Klasse/ Paket/ Objekt auf das es zeigt
+* durchgestrichen mit weissem Kopf: erbt von dem Objekt/ Klasse auf das es zeigt
+
 Paketdiagramme
 --------------
 
@@ -83,7 +95,13 @@ Ein Paketdiagramm enthaelt:
 * (zuordnung von Klassen zu den Paketen)
 * (Abhaengigkeit zwischen Klassen)
 
-gestrichelte Pfeile simbolisieren importe
+* gestrichelte Pfeile simbolisieren die nutzung von pakages, classes
+  moegliche Stereotypen sind
+    + '<<import>>'
+    + '<<use>>'
+    + '<<bind>>'
+        - oft mit implementierungen von generischen KLassen
+* durchgezogene Pfeile simbolisieren direkten Zugriff
 
 Klassendiagramme
 ----------------
@@ -104,14 +122,14 @@ Ein Klassendiagramm ermoeglicht es:
 Typparameter generischer Klassen werden in einer gestrichelten Box oben rechts
 dargestellt.
 
-=========== ============
+=========== ===============================
 Character   Simbolisiert
-=========== ============
+=========== ===============================
 '+'         public
 '-'         privte
 '#'         protected
-'~'         package
-=========== ============
+'~'         package(gar kein Zugriffsrecht)
+=========== ===============================
 
 Generalisierung/ Spezialisierung
 --------------------------------
@@ -123,8 +141,13 @@ Zwischen Klasssen:
 * In Unterklassen werden nur zusaetzliche Attribute und Methoden Aufgefuehrt
 * Eine Klasse die von einer anderen abhaengig ist (Parameter/ Methode) zeigt
   auf diese mit eienm gestrichelten Pfeil
+* falls abstract mit dem Stereotyp '<<abstract>>' versehen
+* Arrays werden mit zusaetzlichen Klammern '[1..n]' versehen fuer die maximale
+  Laenge des Arrays
 
 Interfaces:
 
+* ein Interface wird in der bex mit einem zusaetzlichem Stereotyp
+  '<<interface>>' versehen
 * Eine Klasse, die ein Interface implementiert zeigt mit einem gestrichelten
   Pfeil mit holem Kopf auf dieses.
