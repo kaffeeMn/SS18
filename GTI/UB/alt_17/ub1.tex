@@ -1,0 +1,118 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\usepackage[ampersand]{easylist}
+
+% needs to be updated
+\author{Max Springenberg, 177792}
+\title{\
+}
+\setcounter{section}{1}
+\date{}
+
+% custom commands
+% \Theta \Omega \omega
+\newcommand{\tab}{\null\ \qquad}
+\newcommand{\gap}{\null\ \\}
+\newcommand{\lA}{$\leftarrow$}
+\newcommand{\rA}{$\rightarrow$}
+\newcommand{\ue}{$\infty$}
+\newcommand{\eps}{$\epsilon$}
+\newcommand{\task}[1]{\textbf{#1} \\ \gap}
+
+% content
+\begin{document}
+% title page
+\maketitle
+\newpage
+
+% actual paper
+\subsection\
+\subsubsection{\
+    Welche Sprache wird durch den erweiterten regulären Ausdruck ${({ab}^+)}^+$
+    über dem Alphabet $\Sigma = \{a,b\}$beschrieben? Wie lautet ein äquivalenter 
+    regulärer Ausdruck ohne die in der Vorlesung einge- führte erweiterte 
+    Syntax?
+    }
+der ausdruck ${(ab^+)}^+$ beschreibt die Sprache $L({(ab^+)}^+)$\\
+Die durch den Regulaeren Ausdruck beschriebenen Regeln fuer L sind:\\
+\begin{easylist}
+    & jedes Wort faengt mit einem a an
+    & auf jedes a folgt mindestens ein b
+    & es muss mindestens ein a und ein b aufeinander folgend vorkommen
+\end{easylist}
+\ \\
+ein aequivalenter Ausdruck fuer ${(ab^+)}^+$ ohne die in der Vorlesung
+vorgestellte erweiterte Syntax waere $abb^*{(abb)}^*$, da:\\
+$
+    (abb^* \equiv ab^+) \land (v^+ \equiv vv^* \text{, mit v = } abb^*)\\
+$
+\gap\
+\subsubsection\
+
+\task{\
+    {(a)} Konstruieren Sie einen regulären Ausdruck für die Menge L aller 
+    Wörter aus $\{0,1\}$, die ihr erstes Zeichen genau zwei weitere Male, also 
+    insgesamt dreimal, enthalten.\\
+    Beispiel: $000 \in L, 0010 \in L, 0111010 \in L, 0010011 \in L, \eps \in L$.
+    }
+Offensichtlich sind moegliche erste Zeichen 0 und 1 oder garkein Zeichen.\\
+damit entspricht der Regulaere Ausdruck a, der die Sprache entscheidet, der Form 
+$a = (1v + 0u)*$, mit:\\
+$v \in \{0,1\}$ als bliebiges Wort, dass mindestens zwei Einsen 
+und $u \in \{0, 1\}$ als beliebiges Wort, dass mindestens zwei Nullen enthaelt.\\
+Nun bleibt die Form der regulaeren Ausdruecke v und u zu klaeren.\\
+Dem Beschriebenem kann entnommen werden, dass eine Analogie im Aufbau der
+regulaeren Ausdruecke, die u und v beschreiben existiert.\\
+v kann mit 0 und 1 anfangen und vor der ersten 1 darf beliebig oft 0 vorkommen.
+Daraus folgt $v = 0^*1v'$, wobei v' wie auch v mit 0 und 1 anfangen kann und vor 
+der ersten 1 darf beliebig oft 0 vorkommen. Ferner kann v mit einer beliebigen
+Folge aus $\{0, 1\}$ enden.
+Daraus folgt $v' = 0^*1{(0^*1*)}^*$ und $v = 0^*1v' = 0^*10^*1{(0^*1^*)}^*$.\\
+Da v und u Analog aufgebaut sind kann u mit $u = 1^*0u' = 1^*01^*0{(1^*0^*)}^*$
+gebildet werden.\\
+Der regulaere Ausdruck a hat damit also die Form:
+\[
+a = {(1v + 0u)}^*\\
+= {(10^*10^*1{(0^*1^*)}^* + 01^*01^*0{(1^*0^*)}^*)}^*
+\]
+und es gilt $L = L(a)$\\
+\subsubsection\
+
+\task{\
+    (b) Passwort p ueber $\Sigma = \{a,\ldots,z,A,\ldots,Z,1,\ldots,9\}$ 
+    mit Bedingungen:\\
+    (i) Auf keinen Kleinbuchstaben folgt direkt ein Großbuchstabe.\\
+    (ii) Auf keinen Großbuchstaben folgt direkt ein Kleinbuchstabe.\\
+    (iii) Es ist mindestens eine Ziffer enthalten.\\
+    (iv) Das erste Zeichen ist keine Ziffer.
+    }
+Konvention: Zeichen aus $\Sigma$ seien in drei Gruppen eingeteilt, sodass:\\
+\\
+$\Sigma \equiv KL \cup GR \cup NUM$\\
+, mit $
+KL = \{a,\ldots,z\}
+, GR = \{A,\ldots,Z\}
+, NUM = \{1,\ldots,9\}
+$\\
+\\
+1. Sprache aller richtigen Passwoerter:\\
+Aus {(i)} und {(ii)} folgt der Ausdruck $a = {(k^+n^+g^+ + g^+k^+n^+ + n^*)}^*$, 
+    mit $ k \in KL, g \in GR, n \in NUM$\\
+\\
+Aus {(iii)} und {(iv)} folgt der Ausdruck $b = {(g^+ + k^+)}nw$,
+    mit $ k \in KL, g \in GR, n \in NUM$ und w als regulären Ausdruck,
+    der {(i)} und {(ii)} erfuellt\\
+\\
+Somit kann ein legitimes Passwort p durch den regulaeren Ausdruck:\\
+\[
+    p = ba = {(g^+ + k^+)}n {(k^+n^+g^+ + g^+k^+n^+ + n^*)}^*
+\]
+formuliert werden.\\
+\ \\
+2. Sprache aller falschen Passwoerter:\\
+\gap\
+\subsection\
+\end{document}
