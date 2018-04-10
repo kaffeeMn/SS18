@@ -62,3 +62,69 @@ objektorientierte Prinzipien:
 
 Objektorientierte Konzepte in Java
 -----------------------------------
+
+Java Bietet sich fuer Objektorientierte Softwareentwicklung an, da es bereits
+Classes, Interfaces etc. bereitstellt.
+
+|
+
+UML Klassen- und Paketdiagramme
+===============================
+
+Paketdiagramme
+--------------
+
+Ein Paketdiagramm schafft eine Darstellung auf einer Abstraktionsebene, die es
+in JAVA nicht gibt. 
+
+Ein Paketdiagramm enthaelt:
+* die Pakete eines Projekts
+* die Abhaengigkeit zwischen den Paketen
+* (zuordnung von Klassen zu den Paketen)
+* (Abhaengigkeit zwischen Klassen)
+
+gestrichelte Pfeile simbolisieren importe
+
+Klassendiagramme
+----------------
+
+Ein Klassendiagramm zeigt:
+* Klassen eines Pakets
+* Deie Beziehung der Klassen zueinander
+* (Bestandteile einzelner Klassen)
+
+Ein Klassendiagramm ermoeglicht es:
+* implementierungen zu visualisieren
+* Vorgaben fuer
+    + Umsetzung in eine Implementierung zu liefern
+    + Planung der Implementierung zu liefern
+* Daren Operationen und Abhaengigkeiten in objektorientierter Form zu
+    visualisieren
+
+Typparameter generischer Klassen werden in einer gestrichelten Box oben rechts
+dargestellt.
+
+=========== ============
+Character   Simbolisiert
+=========== ============
+'+'         public
+'-'         privte
+'#'         protected
+'~'         package
+=========== ============
+
+Generalisierung/ Spezialisierung
+--------------------------------
+
+Zwischen Klasssen:
+
+* Unterklassen zeigen mit einem durchgezogenem Pfeil mit holem Kopf auf ihre 
+  Oberklassen
+* In Unterklassen werden nur zusaetzliche Attribute und Methoden Aufgefuehrt
+* Eine Klasse die von einer anderen abhaengig ist (Parameter/ Methode) zeigt
+  auf diese mit eienm gestrichelten Pfeil
+
+Interfaces:
+
+* Eine Klasse, die ein Interface implementiert zeigt mit einem gestrichelten
+  Pfeil mit holem Kopf auf dieses.
