@@ -207,3 +207,12 @@ Schleifen (*)
 
 Schleifen werden durch transitionen, die wieder zum Anfang der Schleife fuehren
 umgesetzt.
+
+Besonderheiten des NFA
+----------------------
+
+Der NFA  kann fuer die selbe Eingabe verschiedene Transitionen haben.
+
+Fortan wird die Transitionsrelation mit dreistelligen Tupeln angegeben.
+(start,sigma,end)
+
