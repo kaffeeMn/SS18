@@ -12,10 +12,16 @@ Table Of Contents
 PINGO-Fragen
 ############
 
-00 F13
+01-F13
 ======
 
 a,b,c,d
+
+02-F10
+======
+
+b
+
 
 Skript
 ######
@@ -169,3 +175,35 @@ A wird denotiert  in der Form:
 .. math::
 
     A = (Q,\Sigma,\delta,s,F)\\
+
+Nicht deterministische endliche Automaten
+=========================================
+
+Ziel
+----
+
+Wir suchen ein Methode um re in einen Automaten umzuwandeln
+
+Zeichen
+^^^^^^^
+
+das Zeichen sigma wird in eine simple Transition uebersetzt
+
+Konkatenationen
+^^^^^^^^^^^^^^^
+
+Konkatenationen von Zeichen werden durch aufeinander folgende transitionen 
+umgesetzt.
+
+Auswahl (+)
+^^^^^^^^^^^
+
+Verundungen werden durch abzweigende Transition, die wieder zum gleichen Zustand
+fuehren umgesetzt.
+
+
+Schleifen (*)
+^^^^^^^^^^^^^
+
+Schleifen werden durch transitionen, die wieder zum Anfang der Schleife fuehren
+umgesetzt.
