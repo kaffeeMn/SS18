@@ -6,7 +6,8 @@ Table Of Contents
 #################
 
 * pingo_
-* reg_expr_
+* r_e_
+* endliche_automaten_
 
 PINGO-Fragen
 ############
@@ -19,7 +20,7 @@ a,b,c,d
 Skript
 ######
 
-.. _reg_expr:
+.. _r_e:
 
 Regulaere Ausdruecke
 ====================
@@ -136,3 +137,35 @@ Aequivalenzen
 
 r.e. alpha und beta sind dann aeuivalent, wenn L(alpha) und L(beta) aequivalent
 sind.
+
+.. _endliche_automaten:
+
+Endliche Automaten
+==================
+
+Vorab wird sich mit Testalgorithmen fuer regulaere Sprachen beschaeftigt.
+
+Es wird getestet, ob ein Eingabewort w in L ist.
+
+Jede Moegliche Kombination von Variablen wird als Zustand bezeichnet.
+Ein System aus endlich vielen Zustaenden und Zustandsuebergaengen heisst
+**endliches Transitionssystem**, bzw. **endlicher Automat**.
+
+Ein Automat, der Nur Woerter einer Sprache annimmt entscheidet diese Sprache.
+
+Definition und Parameter
+------------------------
+
+Ein Automat A besteht aus:
+
+* *Menge von Zustaenden* Q
+* *Eingabealphabet* Sigma
+* *Transitionsfunktion* delta : Q x Sigma -> Q
+* *Startzustand* s in Q
+* *Menge von akzeptierenden Zustaenden* F
+
+A wird denotiert  in der Form:
+
+.. math::
+
+    A = (Q,\Sigma,\delta,s,F)\\
