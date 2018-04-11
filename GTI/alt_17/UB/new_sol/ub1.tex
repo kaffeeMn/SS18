@@ -113,6 +113,28 @@ Somit kann ein legitimes Passwort p durch den regulaeren Ausdruck:\\
 formuliert werden.\\
 \ \\
 2. Sprache aller falschen Passwoerter:\\
+Fuer die Sprache aller falschen Passwoerter muessen wir alle Aussagen negieren
+und verodern, da bereits eine Regelverletzung zu einem unsicherem Passwort
+fuehrt.\\
+(i) es existiert ein Kleinbuchstaben, auf den direkt ein Großbuchstabe folgt.\\
+(ii) es existiert ein Großbuchstabe, auf den direkt ein Kleinbuchstabe folgt.\\
+(iii) Es ist keine Ziffer enthalten.\\
+(iv) Das erste Zeichen ist eine Ziffer.
+\\
+Aus {(i)} folgt der Ausdruck $a_f = \Sigma^*g^+k^+\Sigma^*$,
+    mit $ k \in KL, g \in GR, n \in NUM$\\
+Aus {(ii)} folgt der Ausdruck $b_f = \Sigma^*k^+g^+\Sigma^*$,
+    mit $ k \in KL, g \in GR, n \in NUM$\\
+Aus {(iii)} folgt der Ausdruck $c_f = {(g^*k^*)}^*$,
+    mit $ k \in KL, g \in GR$\\
+Aus {(iv)} folgt der Ausdruck $d_f = n\Sigma^*$,
+    mit $n \in NUM$\\
+\\
+daraus folgt der Ausdruck:\\
+\[
+p_f = a_f + b_f + c_f + d_f\\
+    = \Sigma^*g^+k^+\Sigma^* + \Sigma^*k^+g^+\Sigma^* + {(g^*k^*)}^* + n\Sigma^*
+\]\\
 \gap\
 \subsection\
 \end{document}
