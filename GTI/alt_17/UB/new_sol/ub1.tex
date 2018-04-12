@@ -267,4 +267,49 @@ enthalten.\\
             edge [->, loop right] node {0, 1} (qend)
         ;
 \end{tikzpicture}
+\subsection\
+\subsubsection{\
+    Ist ein DFA, dessen Transitionsfunktion $\delta$ erweitert wird, sodass
+    $\delta : Q \times {(\Sigma \cup \{\eps\})} \times Q$ gilt. Wenn alle
+    transitionen eindeutig sind, ist dann der Automat noch deterministisch.
+    }
+Ja, da keine Transitionen veraendert oder hinzugefuegt wurden, es wurde nur das
+Eingabealphabet fuer transitionen um $\eps$ erweitert.\\
+\subsubsection{\
+    Konstruieren Sie einen $\eps$-NFA für die Sprache 
+    $\{ w \in {a}^* 
+        | |w| \#_3 1 \lor |w| \#_5 1 \lor |w| \#_7 1 \}$
+    }
+\begin{tikzpicture}
+    % in Q
+    \node[state](q1) at (2,0) {$q_1$};
+    \node[state](q2) at (4,0) {$q_2$};
+    \node[state](q4) at (8,0) {$q_4$};
+    \node[state](q6) at (12,0) {$q_6$};
+    % in F
+    \node[state, accepting](q3) at (6,0) {$q_s$};
+    \node[state, accepting](q5) at (10,0) {$q_s$};
+    \node[state, accepting](q7) at (14,0) {$q_s$};
+    % s 
+    \node[initial, state, accepting](q0) at (0,0) {$q_s$};
+    % Transitions
+    \path
+        (q0)
+            edge [->] node {a} (q1)
+        (q1)
+            edge [->] node {a} (q2)
+        (q2)
+            edge [->] node {a} (q3)
+        (q3)
+            edge [->] node {a} (q4)
+        (q4)
+            edge [->] node {a} (q5)
+        (q5)
+            edge [->] node {a} (q6)
+        (q6)
+            edge [->] node {a} (q7)
+        (q7)
+            edge [->, bend left] node {\eps} (qo)
+        ;
+\end{tikzpicture}
 \end{document}
