@@ -213,6 +213,13 @@ Besonderheiten des NFA
 
 Der NFA  kann fuer die selbe Eingabe verschiedene Transitionen haben.
 
-Fortan wird die Transitionsrelation mit dreistelligen Tupeln angegeben.
-(start,sigma,end)
+Fortan wird die Menge Transitionsrelation mit dreistelligen Tupeln
+(start,sigma,end), bei denen mehrere Tupel das selbe start und end mit
+verschiedenen sigma haben koennen, angegeben.
+
+Das e-NFA
+---------
+
+.. math::
+    \delta \subseteq Q x (\Sigma \cup \{\epsilon\}) x Q
 
