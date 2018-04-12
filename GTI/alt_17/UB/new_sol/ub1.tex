@@ -227,4 +227,44 @@ enthalten.\\
             edge [->] node {0} (qw0)
         ;
 \end{tikzpicture}
+\\ \gap\
+\task{
+    (c) Konstruieren sie einen DFA fuer die Sprache \[
+        L = \{ w \in \{0,1\}&*
+            | \text{Fuer jedes Praefix p von w gilt: }
+                |\#_0(p) - \#_1(p)| \leq 2
+            \}
+    \]
+    }
+\begin{tikzpicture}
+    % in Q
+    \node[state](qend) at (5,2) {$q_{>2}$};
+    % in F
+    \node[state, accepting](q01) at (2,4) {$q_{01}$};
+    \node[state, accepting](q02) at (4,4) {$q_{02}$};
+    \node[state, accepting](q11) at (2,0) {$q_{11}$};
+    \node[state, accepting](q12) at (4,0) {$q_{12}$};
+    % s 
+    \node[initial, state, accepting](q0) at (0,2) {$q_0$};
+    % Transitions
+    \path
+        (q0)
+            edge [->, bend right] node {0} (q01)
+            edge [->, bend right] node {1} (q11)
+        (q01)
+            edge [->, bend right] node {0} (q02)
+            edge [->, bend right] node {1} (q0)
+        (q11)
+            edge [->, bend right] node {0} (q0)
+            edge [->, bend right] node {1} (q12)
+        (q02)
+            edge [->] node {0} (qend)
+            edge [->, bend right] node {1} (q01)
+        (q12)
+            edge [->, bend right] node {0} (q11)
+            edge [->] node {1} (qend)
+        (qend)
+            edge [->, loop right] node {0, 1} (qend)
+        ;
+\end{tikzpicture}
 \end{document}
