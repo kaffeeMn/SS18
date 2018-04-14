@@ -1,0 +1,7 @@
+TODO-STACK:
+    - EIDV Folien
+    - GTI neue Folien
+    - EA Graphalgorithmen wiederholen
+    - SWT Folien zusammenfassen
+    - IS Folien zusammenfassen
+    - BS Folien zusammenfassen
