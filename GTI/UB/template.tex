@@ -3,6 +3,9 @@
 \usepackage{amssymb}
 \usepackage{stmaryrd}
 \usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{automata, arrows}
+\usepackage[ampersand]{easylist}
 
 % needs to be updated
 \author{Max Springenberg, 177792}
@@ -13,16 +16,40 @@
 
 % custom commands
 % \Theta \Omega \omega
-\newcommand{\tab}{\null\  \qquad}
+\newcommand{\tab}{\null\ \qquad}
+\newcommand{\gap}{\null\ \\ \\}
 \newcommand{\lA}{$\leftarrow$}
 \newcommand{\rA}{$\rightarrow$}
 \newcommand{\ue}{$\infty$}
+\newcommand{\eps}{$\epsilon$}
+\newcommand{\task}[1]{\textbf{#1} \\ \gap}
 
 % content
 \begin{document}
 % title page
 \maketitle
 \newpage
-
 % actual paper
+
+\subsection\
+\subsubsection{\
+    Seien $\beta = (ab)^* $ und $ \alpha_1, ... , \alpha_8 $ die folgenden 
+    erweiterten regulären Ausdrücke. Beurteilen Sie für alle
+    $i \in\{3, ... , 8\}$, ob $L(\alpha_i) \subseteq L(\beta)$ gilt. 
+    Vervollständigen Sie dazu die folgende Tabelle analog zu den 
+    Beispiel-Ausdrücken $\alpha_1, \alpha_2$: 
+    Falls $L(\alpha_i \not \subseteq L(\beta)$ gilt, geben Sie ein Wort 
+    $w_i \in L(\apha_i) - L(\beta)$ an.
+    }
+\begin{tabular}{l|l|l}
+    RE              &$L(\alpha_i) \subseteq L(\beta)$   &Gegenbeispiel\\
+    \hline \\
+
+\end{tabular}
+\subsection\
+\subsubsection{}
+\subsection\
+\subsubsection{}
+\subsection\
+\subsubsection{}
 \end{document}
