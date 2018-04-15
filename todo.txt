@@ -1,7 +1,9 @@
 TODO-STACK:
-    - EIDV Folien
     - GTI neue Folien
-    - EA Graphalgorithmen wiederholen
+    - GTI alte Folien
+    - GTI alte UBs
+    - EDV Folien
     - SWT Folien zusammenfassen
     - IS Folien zusammenfassen
     - BS Folien zusammenfassen
+    - EA Graphalgorithmen wiederholen
