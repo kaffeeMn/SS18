@@ -35,6 +35,7 @@ Einleitung und Beispiele
 ------------------------
 
 Regulaere Ausdruecke, sind zeichenketten, die Syntaktische Bedingungen erfuellen.
+Wichtig dabei ist, dass sie syntaktische Bedingungen unzweideutig beschreiben.
 
 Wir betrachten im folgeneden Methoden, die erkennen ob ein Ausdruck diese Bedin-
 gungen erfuellt.
@@ -60,8 +61,12 @@ Zeichenketten Sprache.
 
     \text{Alphabet } \Sigma \text{ mit Sigma endlich und nicht leer}\\
     \text{Wort } w = \sigma_i ... sigma_{|w|}\\
-    \text{das leere Wort: } \epsilon\\
+    \text{das leere Zeichen: } \epsilon\\
+    \text{das leere Wort: } \emptyset\\
     \Sigma \text{ mit } \Sigma = \{ \sigma_1, ..., \sigma_n \}
+
+Ein Alphabet ist per Definition *nicht* leer.
+Elemente eines Alphabets werden auch Zeichen oder Symbole genannt.
 
 Eine Sprache ueber einem Alphabet ist eine endeliche oder unendliche Menge von 
 Woertern ueber dem Alphabet.
@@ -70,6 +75,34 @@ Der Konkatenationsoperator .. math::
     \dot
 
 verbindet Woerter.
+
+Operationen auf Elementen
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Wie besagt koennen Elemente zu Zeichenketten zusammen gefasst werden.
+Dabei gibt es Operationen, die Zusammensetzungen von Zeichen ermoeglichen.
+
+Solche Operationen sind:
+
+Elementar:
+* verodewrung "+"
+* Konkatiniertung "o", oder einfaches aneinander reihen von Zeichen
+
+Erweitert:
+* a^* entspricht: eps oder a beliebig oft
+* a^+ entspricht: mindestens einmal a, danach a^*
+* a^x entspricht: a x-mal
+* a^{m,n} entspricht: a m-mal und maximal n mal mit a^m(a?)^{n-m}
+* a? entspricht: (eps + a)
+* a-z entspricht: (a + ... + z)
+
+Operationen auf Woerter koennen
+
+.. math::
+
+   \text{Betrag/ Laenge des Wortes }| w | \\
+   \text{anzahl des Zeichen a in w } \#_{a}(w)\\
+   \text{modulo zur basis x von w ist y} w \equiv_{x} y\\
 
 Syntax und Semantik
 -------------------
@@ -126,8 +159,8 @@ L(a) ist wie folgt definiert
 Des weiterne heisst eine Sprache L regulaer, wenn es einen regulaeren Ausdruck
 alpha gibt mit L = L(alpha)
 
-Beispiele, Erweiterungen und Aequivalenzen
-------------------------------------------
+Beispiele, Erweiterungen, Aequivalenzen und Regeln
+--------------------------------------------------
 
 die Bindung der Operation ist von stark nach schwach wie folgt geordnet
 
@@ -136,7 +169,20 @@ die Bindung der Operation ist von stark nach schwach wie folgt geordnet
 3. konkatenation
 4. +
 
-Abkuerzungen fuer r.e. findet man auf Folie 00-20
+Folgende regeln gelten fuer die Operationen:
+* Assoziativitaet fuer "+","o"
+* Kommutativitaet fuer "+"
+* Distributivitaet fuer "+"
+* Idempotenz fuer "*"
+* Neutrale Elemnte fuer "+", "o"
+    + empty + a === a === a + empty
+    + eps a === a === a eps
+* Nullelemente bezueglich "o" und *
+    + empta a === empty === a empty
+    + empty^* === eps
+* eps^* = eps
+
+generell gilt a === b, wenn L(a) = L(b)
 
 Aequivalenzen
 ^^^^^^^^^^^^^
