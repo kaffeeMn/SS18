@@ -61,8 +61,7 @@ Zeichenketten Sprache.
 
     \text{Alphabet } \Sigma \text{ mit Sigma endlich und nicht leer}\\
     \text{Wort } w = \sigma_i ... sigma_{|w|}\\
-    \text{das leere Zeichen: } \epsilon\\
-    \text{das leere Wort: } \emptyset\\
+    \text{das leere Wort: } \epsilon\\
     \Sigma \text{ mit } \Sigma = \{ \sigma_1, ..., \sigma_n \}
 
 Ein Alphabet ist per Definition *nicht* leer.
@@ -221,6 +220,23 @@ A wird denotiert  in der Form:
 .. math::
 
     A = (Q,\Sigma,\delta,s,F)\\
+
+Erweiterte Transitionsfunktion
+------------------------------
+
+Die erweiterte Transitionsfunktion 
+
+.. math::
+    delta^*\\
+
+ist induktiv definiert mit
+
+.. math::
+    \delta^*(a, \epsilion) = a\\
+    \delta^*(a, w\sigma) = \delta(\delta^*(a,w))\\
+
+ueber die erweiterte Transitionsfunktion kann beschrieben werden ob ein Automat
+wort akzeptiert oder nicht
 
 Nicht deterministische endliche Automaten
 =========================================

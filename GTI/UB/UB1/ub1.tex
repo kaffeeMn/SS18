@@ -59,10 +59,10 @@
     \hline \\
     $\alpha_1 = (ab)^*(ab)^*$                   & \cmark    &\\
     $\alpha_2 = (ba)^*$                         & \xmark    & ba\\
-    $\alpha_3 = (a*b*)$                         & \xmark    & aa\\
+    $\alpha_3 = (a^*b^*)$                       & \xmark    & aa\\
     $\alpha_4 = (b?a?)^*$                       & \xmark    & aa\\
-    $\alpha_5 = (a + \eps)(b + \eps)(a*b*)^*$   & \xmark    & aa\\
-    $\alpha_6 = (ab*ab*)^*$                     & \cmark    &\\
+    $\alpha_5 = (a + \eps)(b + \eps)(ab)^*$     & \xmark    & aab\\
+    $\alpha_6 = (ab^*ab^*)^*$                   & \xmark    & aab\\
     $\alpha_7 = (abab)^*$                       & \cmark    &\\
     $\alpha_8 = a(ba)^+ b$                      & \cmark    &\\
 \end{tabular}
@@ -120,18 +120,21 @@ Eigenschaften:\\
     }
 Positive Temperaturangaben beginnen mit $\oplus$ oder keinem Vorzeichen,
     negative Temperaturangaben mit $\ominus$.\\
+\\
 Der ganzzahlige Bereich darf keine fuehrenden Nullen aufweisen, wenn dieser
     nicht genau 0 ist. Ausserdem darf der Ganzzahlige Bereich nicht leer sein.\\
 Der regulaere Ausdruck\[
         u = 0 + (1-9)^+(0-9)^*
     \]
     erfuellt genau diese Kriterien.\\
+\\
 Nachkommastellen koennen beliebige Ziffern sein, aber es muessen genau zwei
     vorkommen. Nachkommstellen erfolgen unmittelbar nach dem Zeichen `.'.\\
 Der regulare Ausdruck\[
         v = .(0-9)^2
     \]
 erfuellt genau diese Kriterien.\\
+\\
 Waehrend Temperaturangaben unendlich gross werden duerfen wird eine untere
     Grenze $-273.15 \degr C$ angegeben. Das bedeutet, dass im negativen Bereich
     sicher gestellt werden muss, dass keine Zahl kleiner ist.\\
@@ -147,6 +150,7 @@ Waehrend Temperaturangaben unendlich gross werden duerfen wird eine untere
         \] 
     erfuellt die Kriterien fuer den numerischen Anteil von Temperaturangaben im 
     negativen Bereich.\\
+\\
 Der Suffix der Temperaturangabe muss genau $\degr C$ sein.\\
 Der regulaere Ausdruck\[
         c = \degr C
@@ -165,8 +169,8 @@ Aus dieser Regel und den oben angegebenen Teilausdruecken ergibt sich
         $L_1 = L(\alpha_1), L_2 = L(\alpha_2), L = L_1 \cap L_2$ an.
     }
 \task{$L_1$}
-In $L_1$ enthaltene Woerter besizten mindest zwei beliebigen Zeichen aus 
-    $\Sigma$ beginnen und koennen mit darauf folgend mit beliebig vielen
+In $L_1$ enthaltene Woerter muessen mit mindest zwei beliebigen Zeichen aus 
+    $\Sigma$ beginnen und koennen darauf folgend mit beliebig vielen
     Zeichen aus $\Sigma$ konkatiniert werden.\\
 Der entsprechende regulaere Ausdruck lautet:\[
     \alpha_1 = (a+b)^2 (a+b)^*
@@ -175,7 +179,7 @@ Der entsprechende regulaere Ausdruck lautet:\[
 In $L_2$ enthaltene Woerter fangen mit einem beliebigem Zeichen aus $\Sigma$ an
     und enden mit einem beliebigem Zeichen aus $\Sigma$. Zwischen diesen Zeichen
     koennen beliebige Zeichen aus Sigma vorkommen.\\
-Der entsprechende regulaere Ausdruck lautet:\[
+Der entsprechende erweiterte regulaere Ausdruck lautet:\[
     \alpha_2 = (a+b)(a+b)^*(a+b)
     \]
 \task{$L$}
@@ -189,6 +193,7 @@ Im folgendem wird die Aeuquivalenz zwischen $\alpha_1$ und $\alpha_2$ und ferner
             (a+b)(a+b)^*(a+b)
         \equiv \alpha_2
     \]
+\gap
 Fuer den regulaeren Ausdruck $\alpha$ muss gelten, dass er nur Woerter
     beschreibt, die auch $\alpha_1,\alpha_2$ beschreiben. Durch die Aequivalenz
     von $\alpha_1,\alpha_2$ muss damit dann auch gelten\[
@@ -196,11 +201,10 @@ Fuer den regulaeren Ausdruck $\alpha$ muss gelten, dass er nur Woerter
     \]
 Dies ist etwa mit $\alpha = \alpha_1$ gegeben.\\
 Damit gilt \[
-    L(\alpha) = L(\alpha_1);
-    L(\alpha_1) \equiv L(\alpha_2);
+    L(\alpha) = L(\alpha_1) = L(\alpha_2);
     L(\alpha )= L(\alpha) \cap L(\alpha)
         = L(\alpha_1) \cap L(\alpha_1)
-        \equiv L(\alpha_1) \cap L(\alpha_2) 
+        = L(\alpha_1) \cap L(\alpha_2) 
     \]
 \subsubsection{\
     Nach dem Standard ISO 8601 wird ein Datum in der Form JJJJ-MM-TT notiert.
@@ -226,7 +230,7 @@ erfuellt genau diese Regel.\\
 \\
 $m_{31} = (01+04+06+08+10+12), m_{30} = (03+05+07+09+11), m_{28} = 02$ seien die
     regulaeren Ausdruecke fuer Monate mit 31, 30 oder 28 Tagen.\\
-Darueber ergibt sich fuer die Tage und Monate der regulaere Ausdruck\\
+Daraus ergibt sich fuer die Tage und Monate der regulaere Ausdruck\\
 \\
 $\gamma = m_{31} \ominus (0(1-9)+(1+2)(0-9)+3(0+1))\\
     \tab + m_{30} \ominus (0(1-9)+(1+2)(0-9)+30))\\
