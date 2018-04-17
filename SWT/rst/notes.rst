@@ -1,6 +1,5 @@
 .. todo::
-    bis Folie: 
-
+    ...
 ################
 SWT Mitschriften
 ################
