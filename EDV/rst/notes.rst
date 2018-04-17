@@ -42,6 +42,7 @@ Pipilines
 Die Daten durchlaufen einer Pipeline. Diese ist fuer 2D und 3D Modelle
 unterschiedlich.
 
+.. _2d_pipe:
 2D
 ^^
 
@@ -49,6 +50,7 @@ unterschiedlich.
 2. Clipping
 3. Verrasterung
 
+.. _3d_pipe:
 3D
 ^^
 
@@ -96,5 +98,38 @@ Subtraktives Modell von Cyan, Magenta, Yellow
 
 |
 
-Zwweidimensionale Bilderzeugung
--------------------------------
+2D Bilderzeugung
+----------------
+
+Wir durchlaufen wie bereits bekannt die 2d_pipe_.
+
+Koordinatensysteme
+^^^^^^^^^^^^^^^^^^
+
+Wir deferenzieren zwischen lokalen und globalen Koordinatensystemen.
+
+Jedes Objekt selbst hat ein lokales koordinatenssystem, jedes Objekt befindet
+sich in einem Raum, dem globalen Koordinatensystem
+
+Transformationen
+^^^^^^^^^^^^^^^^
+
+Wir koennen einen punkt anhand einer affinen Abbildung transformieren.
+
+p^- = A * p + t
+
+Dabei ist A eine Matrix fuer Skalierung und Rotation, t ein vektor fuer die
+Translation.
+
+|
+
+Spezialfaelle fuer die affine Abbildung sind:
+
+Translation: E*p + t
+Skalierung: ((a,0),(0,b)) * p
+Rotation: M_rot * p 
+Spielgelung: E_{negative 1 je nach Spiegelung} * p
+Scheerung: ( E + ((0,s_1),(s_2,0)) ) * p
+
+.. todo::
+    homogene abbildung und erweiterung

@@ -33,3 +33,26 @@ G = (V,E) mit V Knoten, E Kanten(endlich)
 * Kante (v,v) jeisst schleife
 
 gerichtet G=(V,A) vs ungerichtet G(V,E)
+
+Matching
+========
+
+Eine Kantenmenge heisst Matching wenn der Schnitt aller Kanten immer leer ist.
+
+Bipartite Graphen
+=================
+
+Ein Graph ist Bipartit, wenn Die Knoten in G so aufgeteilt werden koennen, dass
+alle Kanten zwischen zwei Knotenmengen verlaufen.
+
+Als Resultat sind alle Kreise von gerader Laenge.
+
+Greedy Heuristik
+================
+
+Findet Loesungen, aber keine optimalen.
+
+Matchings sind mindestens halb so gross, wie das Optimale Matching
+
+.. todo::
+    38
