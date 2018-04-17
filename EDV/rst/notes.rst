@@ -11,6 +11,11 @@ Besonders Pruefungsrelevant
 * Clipping algorithmus mit bitmasken
 
 
+Orga
+####
+
+R-intro:    Di 24.04. 9-10, 10-11 OH16 R115
+UBs:        ab Di 8.5. 9-12 OH16 R115
 
 Skript
 ######
@@ -133,3 +138,65 @@ Scheerung: ( E + ((0,s_1),(s_2,0)) ) * p
 
 .. todo::
     homogene abbildung und erweiterung
+
+Block C
+#######
+
+Dimensionsreduktion
+===================
+
+
+Generell wird das Problem der Datenerfassung und Reduktion dieser Daten auf das
+Wesentliche betrachtet. Dabei sollen Unterschiede der Daten immernoch 
+ersichtlich bleiben.
+
+|
+
+Ueber die Dimensionsreduktion wird versucht die Richtungen in einem 
+hochdimensionalen Raum zu bestimmen, in denne die wesentlichen Strukturen in den
+Daten deutlich werden.
+
+Lagrange-Multiplikation
+-----------------------
+
+Wir betrachten das Minimierungsproblem von
+
+.. math::
+    f(x,y) - \lambda * g(x,y) = \text{min}\\
+    g(x,y) = 0\\
+    \text{mit den partiellen Ableitungen:}\\
+    f_x - \lambda g_x = 0\\
+    f_y - \lambda g_y = 0
+
+Dabei gilt f(x,y) = min unter Nebenbedingung g(x,y) = 0
+
+Ausgleichsebenen
+----------------
+
+Wir suchen eine Hyperebene e* x = d (e:Koeffizienten Vektor, x:Punkt)
+
+Dabei soll die Summe der quadratischen Abstaende der Punkte zur Hyperebene 
+minimal sein.
+
+Optmierungsproblem
+------------------
+
+f ist die Summe ueber alle Punmkte mal den Koeffizienten Vektor minus dem 
+Schwerpunkt.
+
+g ist der quadratische Betrag des Koeffizienten Vektor.
+
+Hauptachsen
+-----------
+
+Projektion
+----------
+
+Dimensionsreduktion
+-------------------
+
+Singularwertzerlegung
+---------------------
+
+Beispiel
+========
