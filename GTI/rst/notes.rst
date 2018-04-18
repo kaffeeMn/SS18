@@ -285,3 +285,81 @@ Das e-NFA
 .. math::
     \delta \subseteq Q x (\Sigma \cup \{\epsilon\}) x Q
 
+Myhill und Nerode
+=================
+
+Definition Und Beispiel
+-----------------------
+
+Wir definierern L als eine Sprache ueber Sigma.
+
+Die Nerode-Relation ~_L auf Sigma^* sei definiert durch:
+
+fuer beliebige Woerter z aus Sigma^* gilt:
+
+x ~_L y
+genau dann, wenn
+xz in L <=> yz in L
+
+Somit sind Die Sprachen ab dem Praefixen x, y fuer bel. Suffixe  gleich 
+akzeptierend.
+
+Aequivalenzrelationen
+---------------------
+
+Wir definieren A als Menge.
+
+A^n sei die Menge der n-Tupel mit Eintraegen aus A
+
+.. math::
+    R \subseteq A^n \text{ heisst n-stellige Relation ueber A}
+
+Ferner definieren wir die modulo Relation
+
+.. math::
+    A = \N\\
+    (x,y) \in R \Rightleftarrow 
+        \text{ x und y haben bei division durch k den selben Rest.}
+
+|
+
+damit eine Relation auch eine Aequivalenzrelation ist, musss sie:
+* reflexiv
+* symmetrisch
+* transitiv
+sein.
+
+Die Nerode Relation ist damit eine Aequivalenzrelation.
+
+Fortan Notieren wir Aequivalenzrelationen als ~ und nichtmehr (x,y) in ~,
+sondern x ~ y.
+
+Aequivalenzklassen
+^^^^^^^^^^^^^^^^^^
+
+Aequivalenzklassen sind ueber eine Aquivalenzrelation ~ definiert.
+Eine Aequivalenzklasse K ist dann eine solche, wenn:
+
+.. math::
+    \forall x,y \in K : x ~ y\\
+    | K | = \text{ max}
+
+Ferner definieren wir die Aequivalenzklassen einzelner Elemente als [x], also
+der Menge aller y mit x ~ y.
+
+Es gilt:
+
+.. math::
+
+    y \in [x] \Rightleftarrow [y] = [x]
+
+Der Satz von Myhill und Nerode
+------------------------------
+
+Der Satz besagt:
+
+Eine Sprache L ist genau dann regulaer, wenn ~_L endlich viele
+Aequivalenzklassen hat.
+
+Minimierung fuer DFA
+--------------------

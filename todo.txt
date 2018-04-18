@@ -1,6 +1,4 @@
 TODO-STACK:
-    - GTI UB abgeben
-    - GTI neue Folien
     - GTI alte Folien
     - EA Folien zusammenfassen
     - ?EA UB?
@@ -11,5 +9,5 @@ TODO-STACK:
     - GTI alte UBs
     - BS Folien zusammenfassen
     - ?BS UB?
-    - EDV Folien
+    - EDV Folien ()
     - ?PTech kickoff?
