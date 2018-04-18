@@ -1,0 +1,481 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>GTI Mitschriften &#8212; GTI - documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="gti-mitschriften">
+<span id="notes-rst"></span><h1>GTI Mitschriften<a class="headerlink" href="#gti-mitschriften" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="table-of-contents">
+<h2>Table Of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a href="#id2"><span class="problematic" id="id3">pingo_</span></a></li>
+<li><a class="reference internal" href="#r-e">r_e</a></li>
+<li><a class="reference internal" href="#endliche-automaten">endliche_automaten</a></li>
+</ul>
+</div>
+<div class="section" id="pingo-fragen">
+<h2>PINGO-Fragen<a class="headerlink" href="#pingo-fragen" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="f13">
+<h3>01-F13<a class="headerlink" href="#f13" title="Permalink to this headline">¶</a></h3>
+<p>a,b,c,d</p>
+</div>
+<div class="section" id="f10">
+<h3>02-F10<a class="headerlink" href="#f10" title="Permalink to this headline">¶</a></h3>
+<p>b</p>
+</div>
+</div>
+<div class="section" id="skript">
+<h2>Skript<a class="headerlink" href="#skript" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="regulaere-ausdruecke">
+<span id="r-e"></span><h3>Regulaere Ausdruecke<a class="headerlink" href="#regulaere-ausdruecke" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="einleitung-und-beispiele">
+<h4>Einleitung und Beispiele<a class="headerlink" href="#einleitung-und-beispiele" title="Permalink to this headline">¶</a></h4>
+<p>Regulaere Ausdruecke, sind zeichenketten, die Syntaktische Bedingungen erfuellen.
+Wichtig dabei ist, dass sie syntaktische Bedingungen unzweideutig beschreiben.</p>
+<p>Wir betrachten im folgeneden Methoden, die erkennen ob ein Ausdruck diese Bedin-
+gungen erfuellt.</p>
+<div class="section" id="email">
+<h5>eMail<a class="headerlink" href="#email" title="Permalink to this headline">¶</a></h5>
+<p>Eine eMail-Adresse besteht aus einem lokealen Namen, einerm &#64; und einem Domain
+Namen.</p>
+<p><a class="reference external" href="mailto:lokalName&#37;&#52;&#48;domanName">lokalName<span>&#64;</span>domanName</a></p>
+</div>
+</div>
+<div class="section" id="alphabete-woerter-sprachen">
+<h4>Alphabete, Woerter, Sprachen<a class="headerlink" href="#alphabete-woerter-sprachen" title="Permalink to this headline">¶</a></h4>
+<p>Eine Zeichenkette, bzw. ein String sei als eine endliche folge von Zeichen
+definiert.</p>
+<p>Die Menge der elaubten Zeichenketten nennen wir Alphabet, die Menge von
+Zeichenketten Sprache.</p>
+<div class="math notranslate">
+\[\begin{split}\text{Alphabet } \Sigma \text{ mit Sigma endlich und nicht leer}\\
+\text{Wort } w = \sigma_i ... sigma_{|w|}\\
+\text{das leere Wort: } \epsilon\\
+\Sigma \text{ mit } \Sigma = \{ \sigma_1, ..., \sigma_n \}\end{split}\]</div>
+<p>Ein Alphabet ist per Definition <em>nicht</em> leer.
+Elemente eines Alphabets werden auch Zeichen oder Symbole genannt.</p>
+<p>Eine Sprache ueber einem Alphabet ist eine endeliche oder unendliche Menge von
+Woertern ueber dem Alphabet.</p>
+<dl class="docutils">
+<dt>Der Konkatenationsoperator .. math::</dt>
+<dd>dot</dd>
+</dl>
+<p>verbindet Woerter.</p>
+<div class="section" id="operationen-auf-elementen">
+<h5>Operationen auf Elementen<a class="headerlink" href="#operationen-auf-elementen" title="Permalink to this headline">¶</a></h5>
+<p>Wie besagt koennen Elemente zu Zeichenketten zusammen gefasst werden.
+Dabei gibt es Operationen, die Zusammensetzungen von Zeichen ermoeglichen.</p>
+<p>Solche Operationen sind:</p>
+<p>Elementar:
+* verodewrung “+”
+* Konkatiniertung “o”, oder einfaches aneinander reihen von Zeichen</p>
+<p>Erweitert:
+* a^* entspricht: eps oder a beliebig oft
+* a^+ entspricht: mindestens einmal a, danach a^*
+* a^x entspricht: a x-mal
+* a^{m,n} entspricht: a m-mal und maximal n mal mit a^m(a?)^{n-m}
+* a? entspricht: (eps + a)
+* a-z entspricht: (a + … + z)</p>
+<p>Operationen auf Woerter koennen</p>
+<div class="math notranslate">
+\[\begin{split}\text{Betrag/ Laenge des Wortes }| w | \\
+\text{anzahl des Zeichen a in w } \#_{a}(w)\\
+\text{modulo zur basis x von w ist y} w \equiv_{x} y\\\end{split}\]</div>
+</div>
+</div>
+<div class="section" id="syntax-und-semantik">
+<h4>Syntax und Semantik<a class="headerlink" href="#syntax-und-semantik" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="beschreibungsformalismus">
+<h5>Beschreibungsformalismus<a class="headerlink" href="#beschreibungsformalismus" title="Permalink to this headline">¶</a></h5>
+<p>Zunaechst wir nach einem Beschreibungsformalismus fuer Mail-Adressen gesucht.
+Dieser soll:</p>
+<ul class="simple">
+<li>moeglichst einfach</li>
+<li>aber genuegend ausdrucksstark sein</li>
+</ul>
+<p>Es sollen Label:</p>
+<ul class="simple">
+<li>A-Z</li>
+<li>a-z</li>
+<li>0-9</li>
+</ul>
+<p>verwendbar sein</p>
+<p>Der lokale Name besteht aus mindestens einem Label</p>
+</div>
+<div class="section" id="syntax">
+<h5>Syntax<a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h5>
+<p>Fuer die Menge an regulaeren Ausdruecken uber Sigma gilt:</p>
+<ol class="arabic simple">
+<li><dl class="first docutils">
+<dt>Zeichen sind Regulaere Ausdruecke</dt>
+<dd><ul class="first last">
+<li>die leere Menge ist ein Regulaerer Ausdruck</li>
+<li>epsilon ist ein regulaerer Ausdruck</li>
+<li>fuer jedes sigma in Sigma ist sigma ein regulaerer Ausdruck</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>sind alpha und beta regulaere Ausdruecke, so auch</dt>
+<dd><ul class="first last">
+<li>(alpha beta)</li>
+<li>(alpha + beta)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>Ist alpha ein regulaerer Ausdruck, so auch (alpha*)</li>
+</ol>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="semantik">
+<h5>Semantik<a class="headerlink" href="#semantik" title="Permalink to this headline">¶</a></h5>
+<p>ist a ein regulaerer Ausdruck, so ist L(a) die Sprache ueber diesen Ausdruck</p>
+<p>L(a) ist wie folgt definiert
+* L(empty) = empty
+* L(epsilon) = {epsilon}
+* l(sigma) = {sigma} fuer jedes sigma in Sigma
+* mit alpha und beta als regulaere Ausdruecke</p>
+<blockquote>
+<div><ul class="simple">
+<li>l((alphabeta)) = L(alpha) o L(beta)</li>
+<li>L((alpha + beta)) = L(a) u L(beta)</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li>ist alpha ein reg. Ausdruck, so ist L((alpha*)) = L(alpha)*</li>
+</ul>
+<p>Des weiterne heisst eine Sprache L regulaer, wenn es einen regulaeren Ausdruck
+alpha gibt mit L = L(alpha)</p>
+</div>
+</div>
+<div class="section" id="beispiele-erweiterungen-aequivalenzen-und-regeln">
+<h4>Beispiele, Erweiterungen, Aequivalenzen und Regeln<a class="headerlink" href="#beispiele-erweiterungen-aequivalenzen-und-regeln" title="Permalink to this headline">¶</a></h4>
+<p>die Bindung der Operation ist von stark nach schwach wie folgt geordnet</p>
+<ol class="arabic simple">
+<li>()</li>
+<li><ul class="first">
+<li></li>
+</ul>
+</li>
+<li>konkatenation</li>
+<li><ul class="first">
+<li></li>
+</ul>
+</li>
+</ol>
+<p>Folgende regeln gelten fuer die Operationen:
+* Assoziativitaet fuer “+”,”o”
+* Kommutativitaet fuer “+”
+* Distributivitaet fuer “+”
+* Idempotenz fuer “*”
+* Neutrale Elemnte fuer “+”, “o”</p>
+<blockquote>
+<div><ul class="simple">
+<li>empty + a === a === a + empty</li>
+<li>eps a === a === a eps</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Nullelemente bezueglich “o” und *</dt>
+<dd><ul class="first last">
+<li>empta a === empty === a empty</li>
+<li>empty^* === eps</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>eps^* = eps</li>
+</ul>
+<p>generell gilt a === b, wenn L(a) = L(b)</p>
+<div class="section" id="aequivalenzen">
+<h5>Aequivalenzen<a class="headerlink" href="#aequivalenzen" title="Permalink to this headline">¶</a></h5>
+<p>r.e. alpha und beta sind dann aeuivalent, wenn L(alpha) und L(beta) aequivalent
+sind.</p>
+</div>
+</div>
+</div>
+<div class="section" id="endliche-automaten">
+<span id="id1"></span><h3>Endliche Automaten<a class="headerlink" href="#endliche-automaten" title="Permalink to this headline">¶</a></h3>
+<p>Vorab wird sich mit Testalgorithmen fuer regulaere Sprachen beschaeftigt.</p>
+<p>Es wird getestet, ob ein Eingabewort w in L ist.</p>
+<p>Jede Moegliche Kombination von Variablen wird als Zustand bezeichnet.
+Ein System aus endlich vielen Zustaenden und Zustandsuebergaengen heisst
+<strong>endliches Transitionssystem</strong>, bzw. <strong>endlicher Automat</strong>.</p>
+<p>Ein Automat, der Nur Woerter einer Sprache annimmt entscheidet diese Sprache.</p>
+<div class="section" id="definition-und-parameter">
+<h4>Definition und Parameter<a class="headerlink" href="#definition-und-parameter" title="Permalink to this headline">¶</a></h4>
+<p>Ein Automat A besteht aus:</p>
+<ul class="simple">
+<li><em>Menge von Zustaenden</em> Q</li>
+<li><em>Eingabealphabet</em> Sigma</li>
+<li><em>Transitionsfunktion</em> delta : Q x Sigma -&gt; Q</li>
+<li><em>Startzustand</em> s in Q</li>
+<li><em>Menge von akzeptierenden Zustaenden</em> F</li>
+</ul>
+<p>A wird denotiert  in der Form:</p>
+<div class="math notranslate">
+\[\begin{split}A = (Q,\Sigma,\delta,s,F)\\\end{split}\]</div>
+</div>
+<div class="section" id="erweiterte-transitionsfunktion">
+<h4>Erweiterte Transitionsfunktion<a class="headerlink" href="#erweiterte-transitionsfunktion" title="Permalink to this headline">¶</a></h4>
+<p>Die erweiterte Transitionsfunktion</p>
+<div class="math notranslate">
+\[\begin{split}delta^*\\\end{split}\]</div>
+<p>ist induktiv definiert mit</p>
+<div class="math notranslate">
+\[\begin{split}\delta^*(a, \epsilion) = a\\
+\delta^*(a, w\sigma) = \delta(\delta^*(a,w))\\\end{split}\]</div>
+<p>ueber die erweiterte Transitionsfunktion kann beschrieben werden ob ein Automat
+wort akzeptiert oder nicht</p>
+</div>
+</div>
+<div class="section" id="nicht-deterministische-endliche-automaten">
+<h3>Nicht deterministische endliche Automaten<a class="headerlink" href="#nicht-deterministische-endliche-automaten" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="ziel">
+<h4>Ziel<a class="headerlink" href="#ziel" title="Permalink to this headline">¶</a></h4>
+<p>Wir suchen ein Methode um re in einen Automaten umzuwandeln</p>
+<div class="section" id="zeichen">
+<h5>Zeichen<a class="headerlink" href="#zeichen" title="Permalink to this headline">¶</a></h5>
+<p>das Zeichen sigma wird in eine simple Transition uebersetzt</p>
+</div>
+<div class="section" id="konkatenationen">
+<h5>Konkatenationen<a class="headerlink" href="#konkatenationen" title="Permalink to this headline">¶</a></h5>
+<p>Konkatenationen von Zeichen werden durch aufeinander folgende transitionen
+umgesetzt.</p>
+</div>
+<div class="section" id="auswahl">
+<h5>Auswahl (+)<a class="headerlink" href="#auswahl" title="Permalink to this headline">¶</a></h5>
+<p>Verundungen werden durch abzweigende Transition, die wieder zum gleichen Zustand
+fuehren umgesetzt.</p>
+</div>
+<div class="section" id="schleifen">
+<h5>Schleifen (*)<a class="headerlink" href="#schleifen" title="Permalink to this headline">¶</a></h5>
+<p>Schleifen werden durch transitionen, die wieder zum Anfang der Schleife fuehren
+umgesetzt.</p>
+</div>
+</div>
+<div class="section" id="besonderheiten-des-nfa">
+<h4>Besonderheiten des NFA<a class="headerlink" href="#besonderheiten-des-nfa" title="Permalink to this headline">¶</a></h4>
+<p>Der NFA  kann fuer die selbe Eingabe verschiedene Transitionen haben.</p>
+<p>Fortan wird die Menge Transitionsrelation mit dreistelligen Tupeln
+(start,sigma,end), bei denen mehrere Tupel das selbe start und end mit
+verschiedenen sigma haben koennen, angegeben.</p>
+</div>
+<div class="section" id="das-e-nfa">
+<h4>Das e-NFA<a class="headerlink" href="#das-e-nfa" title="Permalink to this headline">¶</a></h4>
+<div class="math notranslate">
+\[\delta \subseteq Q x (\Sigma \cup \{\epsilon\}) x Q\]</div>
+</div>
+</div>
+<div class="section" id="myhill-und-nerode">
+<h3>Myhill und Nerode<a class="headerlink" href="#myhill-und-nerode" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="definition-und-beispiel">
+<h4>Definition Und Beispiel<a class="headerlink" href="#definition-und-beispiel" title="Permalink to this headline">¶</a></h4>
+<p>Wir definierern L als eine Sprache ueber Sigma.</p>
+<p>Die Nerode-Relation ~_L auf Sigma^* sei definiert durch:</p>
+<p>fuer beliebige Woerter z aus Sigma^* gilt:</p>
+<p>x ~_L y
+genau dann, wenn
+xz in L &lt;=&gt; yz in L</p>
+<p>Somit sind Die Sprachen ab dem Praefixen x, y fuer bel. Suffixe  gleich
+akzeptierend.</p>
+</div>
+<div class="section" id="aequivalenzrelationen">
+<h4>Aequivalenzrelationen<a class="headerlink" href="#aequivalenzrelationen" title="Permalink to this headline">¶</a></h4>
+<p>Wir definieren A als Menge.</p>
+<p>A^n sei die Menge der n-Tupel mit Eintraegen aus A</p>
+<div class="math notranslate">
+\[R \subseteq A^n \text{ heisst n-stellige Relation ueber A}\]</div>
+<p>Ferner definieren wir die modulo Relation</p>
+<div class="math notranslate">
+\[\begin{split}A = \N\\
+(x,y) \in R \Rightleftarrow
+    \text{ x und y haben bei division durch k den selben Rest.}\end{split}\]</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>damit eine Relation auch eine Aequivalenzrelation ist, musss sie:
+* reflexiv
+* symmetrisch
+* transitiv
+sein.</p>
+<p>Die Nerode Relation ist damit eine Aequivalenzrelation.</p>
+<p>Fortan Notieren wir Aequivalenzrelationen als ~ und nichtmehr (x,y) in ~,
+sondern x ~ y.</p>
+<div class="section" id="aequivalenzklassen">
+<h5>Aequivalenzklassen<a class="headerlink" href="#aequivalenzklassen" title="Permalink to this headline">¶</a></h5>
+<p>Aequivalenzklassen sind ueber eine Aquivalenzrelation ~ definiert.
+Eine Aequivalenzklasse K ist dann eine solche, wenn:</p>
+<div class="math notranslate">
+\[\begin{split}\forall x,y \in K : x ~ y\\
+| K | = \text{ max}\end{split}\]</div>
+<p>Ferner definieren wir die Aequivalenzklassen einzelner Elemente als [x], also
+der Menge aller y mit x ~ y.</p>
+<p>Es gilt:</p>
+<div class="math notranslate">
+\[y \in [x] \Rightleftarrow [y] = [x]\]</div>
+</div>
+</div>
+<div class="section" id="der-satz-von-myhill-und-nerode">
+<h4>Der Satz von Myhill und Nerode<a class="headerlink" href="#der-satz-von-myhill-und-nerode" title="Permalink to this headline">¶</a></h4>
+<p>Der Satz besagt:</p>
+<p>Eine Sprache L ist genau dann regulaer, wenn ~_L endlich viele
+Aequivalenzklassen hat.</p>
+</div>
+<div class="section" id="minimierung-fuer-dfa">
+<h4>Minimierung fuer DFA<a class="headerlink" href="#minimierung-fuer-dfa" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">GTI Mitschriften</a><ul>
+<li><a class="reference internal" href="#table-of-contents">Table Of Contents</a></li>
+<li><a class="reference internal" href="#pingo-fragen">PINGO-Fragen</a><ul>
+<li><a class="reference internal" href="#f13">01-F13</a></li>
+<li><a class="reference internal" href="#f10">02-F10</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#skript">Skript</a><ul>
+<li><a class="reference internal" href="#regulaere-ausdruecke">Regulaere Ausdruecke</a><ul>
+<li><a class="reference internal" href="#einleitung-und-beispiele">Einleitung und Beispiele</a><ul>
+<li><a class="reference internal" href="#email">eMail</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#alphabete-woerter-sprachen">Alphabete, Woerter, Sprachen</a><ul>
+<li><a class="reference internal" href="#operationen-auf-elementen">Operationen auf Elementen</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#syntax-und-semantik">Syntax und Semantik</a><ul>
+<li><a class="reference internal" href="#beschreibungsformalismus">Beschreibungsformalismus</a></li>
+<li><a class="reference internal" href="#syntax">Syntax</a></li>
+<li><a class="reference internal" href="#semantik">Semantik</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#beispiele-erweiterungen-aequivalenzen-und-regeln">Beispiele, Erweiterungen, Aequivalenzen und Regeln</a><ul>
+<li><a class="reference internal" href="#aequivalenzen">Aequivalenzen</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#endliche-automaten">Endliche Automaten</a><ul>
+<li><a class="reference internal" href="#definition-und-parameter">Definition und Parameter</a></li>
+<li><a class="reference internal" href="#erweiterte-transitionsfunktion">Erweiterte Transitionsfunktion</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nicht-deterministische-endliche-automaten">Nicht deterministische endliche Automaten</a><ul>
+<li><a class="reference internal" href="#ziel">Ziel</a><ul>
+<li><a class="reference internal" href="#zeichen">Zeichen</a></li>
+<li><a class="reference internal" href="#konkatenationen">Konkatenationen</a></li>
+<li><a class="reference internal" href="#auswahl">Auswahl (+)</a></li>
+<li><a class="reference internal" href="#schleifen">Schleifen (*)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#besonderheiten-des-nfa">Besonderheiten des NFA</a></li>
+<li><a class="reference internal" href="#das-e-nfa">Das e-NFA</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#myhill-und-nerode">Myhill und Nerode</a><ul>
+<li><a class="reference internal" href="#definition-und-beispiel">Definition Und Beispiel</a></li>
+<li><a class="reference internal" href="#aequivalenzrelationen">Aequivalenzrelationen</a><ul>
+<li><a class="reference internal" href="#aequivalenzklassen">Aequivalenzklassen</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#der-satz-von-myhill-und-nerode">Der Satz von Myhill und Nerode</a></li>
+<li><a class="reference internal" href="#minimierung-fuer-dfa">Minimierung fuer DFA</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/notes.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Max Springenberg.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/notes.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
