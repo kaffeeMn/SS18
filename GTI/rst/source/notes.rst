@@ -1,5 +1,3 @@
-.. _notes.rst:
-
 ################
 GTI Mitschriften
 ################
@@ -7,9 +5,9 @@ GTI Mitschriften
 Table Of Contents
 #################
 
-* pingo_
-* r_e_
-* endliche_automaten_
+* :ref:`pingo`
+* :ref:`r_e`
+* :ref:`endliche_automaten`
 
 PINGO-Fragen
 ############
