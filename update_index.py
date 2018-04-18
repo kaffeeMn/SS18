@@ -11,9 +11,9 @@ def gen_page(li):
         />
 </header>
 <body>
-    <div class="mx-3 my-3">
-        <H1>MODULES</H1>
-        <ul>{}</ul>
+    <div class="jumbotron mx-3 my-3">
+        <H1 class="display-3">MODULES</H1>
+        <div class="list-group">{}</div>
     </div>
 </body>
 </html>
@@ -32,7 +32,17 @@ if __name__ == '__main__':
     for i, m in enumerate(modules):
         if index_html[i]:
             li_str.append(
-                '<li><a href="{}/rst/build/html/index.html">{}</a></li>'.format(
+                '''
+                <a 
+                class="list-group-item  
+                    list-group-item-action 
+                    list-group-item-light
+                    " 
+                href="{}/rst/build/html/index.html"
+                >
+                    {}
+                    </a>
+                '''.format(
                     m, m.split('/')[0]
                     )
                 )
