@@ -1,9 +1,9 @@
 TODO-STACK:
-    - GTI alte Folien
     - EA Folien zusammenfassen
     - ?EA UB?
     - IS Folien zusammenfassen
     - ?IS UB?
+    - GTI UB korrektur lesen
     - SWT Folien zusammenfassen
     - ?SWT UB?
     - GTI alte UBs
