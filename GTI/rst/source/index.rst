@@ -13,7 +13,8 @@ Welcome to GTI's documentation!
 Table Of Contents
 =================
 
-* :ref:`notes.rst`
+* :doc:`notes`
+* :doc:`p_ub00`
 
 
 Indices and tables
