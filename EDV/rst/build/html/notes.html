@@ -1,0 +1,344 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Mitschriften EDV &#8212; noname  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="mitschriften-edv">
+<h1>Mitschriften EDV<a class="headerlink" href="#mitschriften-edv" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="besonders-pruefungsrelevant">
+<h2>Besonders Pruefungsrelevant<a class="headerlink" href="#besonders-pruefungsrelevant" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Clipping algorithmus mit bitmasken</li>
+</ul>
+</div>
+<div class="section" id="orga">
+<h2>Orga<a class="headerlink" href="#orga" title="Permalink to this headline">¶</a></h2>
+<p>R-intro:    Di 24.04. 9-10, 10-11 OH16 R115
+UBs:        ab Di 8.5. 9-12 OH16 R115</p>
+</div>
+<div class="section" id="skript">
+<h2>Skript<a class="headerlink" href="#skript" title="Permalink to this headline">¶</a></h2>
+<p>wichtig:
+pipeline
+(…)
+farbmodelle
+phong modell
+shading
+projektionsmodelle</p>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">bis Folie 82</p>
+</div>
+<div class="section" id="block-b">
+<h3>Block B<a class="headerlink" href="#block-b" title="Permalink to this headline">¶</a></h3>
+<p>Der Block B beschaeftigt sich mit der Ueberfuehrung einer Szenenbschreibung in
+eine bildliche Darstellung.</p>
+<p>Daten koennen durch Berechnungen oder Messungen von der Datenquelle erfasst
+werden.</p>
+<div class="section" id="pipilines">
+<h4>Pipilines<a class="headerlink" href="#pipilines" title="Permalink to this headline">¶</a></h4>
+<p>Die Daten durchlaufen einer Pipeline. Diese ist fuer 2D und 3D Modelle
+unterschiedlich.</p>
+<div class="section" id="d">
+<h5>2D<a class="headerlink" href="#d" title="Permalink to this headline">¶</a></h5>
+<ol class="arabic simple">
+<li>Transformation</li>
+<li>Clipping</li>
+<li>Verrasterung</li>
+</ol>
+</div>
+<div class="section" id="id2">
+<h5>3D<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h5>
+<ol class="arabic simple">
+<li><dl class="first docutils">
+<dt>Transformation</dt>
+<dd><ul class="first last">
+<li>Anwendung einer affinen Abbildung auf die Szene (Szene aus Dreiecken)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Beleuchtung</dt>
+<dd><ul class="first last">
+<li>Anwendung einer bidirektionelen Shading-Funktion</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Clipping und Projektion</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>(Clipping) Festlegung einer Sehpyramide, deren Inneres den Teil der Szene</dt>
+<dd>definiert</dd>
+</dl>
+</li>
+<li>Projektion der dreidimensionalen Szene auf eine zweidimensionale Bildebene</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Sichtbarkeitstrennung</dt>
+<dd><ul class="first last">
+<li>Entfernen nicht sichtbarer Teile der Szene</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Verrasterung</dt>
+<dd><ul class="first last">
+<li>Umwandeln der geometrischen Repraesentation in eine Rasterdarstellung</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="farben">
+<h4>Farben<a class="headerlink" href="#farben" title="Permalink to this headline">¶</a></h4>
+<p>Ein Farbsystem besteht aus drei Grundtoenen, um alle vom Menschen wahrnehmbaren
+Farben darzustellen.</p>
+<div class="section" id="cie">
+<h5>CIE<a class="headerlink" href="#cie" title="Permalink to this headline">¶</a></h5>
+<p>Commission Internationale de l’Eclairage nutzt drei abstrakte primaerfarben
+X,Y,Z. Y entspricht der Lichtstaerke.</p>
+</div>
+<div class="section" id="rgb">
+<h5>RGB<a class="headerlink" href="#rgb" title="Permalink to this headline">¶</a></h5>
+<p>Additive darstellung von Farben. Gewichtete Summe von Rot, Gruen, Blau.
+p</p>
+</div>
+<div class="section" id="hsv">
+<h5>HSV<a class="headerlink" href="#hsv" title="Permalink to this headline">¶</a></h5>
+<p>Hue Saturation Value
+Hue in [0,360]
+Saturation, Value in [0,1]</p>
+</div>
+<div class="section" id="cmy">
+<h5>CMY<a class="headerlink" href="#cmy" title="Permalink to this headline">¶</a></h5>
+<p>Subtraktives Modell von Cyan, Magenta, Yellow</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+</div>
+<div class="section" id="d-bilderzeugung">
+<h4>2D Bilderzeugung<a class="headerlink" href="#d-bilderzeugung" title="Permalink to this headline">¶</a></h4>
+<p>Wir durchlaufen wie bereits bekannt die <a class="reference internal" href="#d-pipe">2d_pipe</a>.</p>
+<div class="section" id="koordinatensysteme">
+<h5>Koordinatensysteme<a class="headerlink" href="#koordinatensysteme" title="Permalink to this headline">¶</a></h5>
+<p>Wir deferenzieren zwischen lokalen und globalen Koordinatensystemen.</p>
+<p>Jedes Objekt selbst hat ein lokales koordinatenssystem, jedes Objekt befindet
+sich in einem Raum, dem globalen Koordinatensystem</p>
+</div>
+<div class="section" id="transformationen">
+<h5>Transformationen<a class="headerlink" href="#transformationen" title="Permalink to this headline">¶</a></h5>
+<p>Wir koennen einen punkt anhand einer affinen Abbildung transformieren.</p>
+<p>p^- = A * p + t</p>
+<p>Dabei ist A eine Matrix fuer Skalierung und Rotation, t ein vektor fuer die
+Translation.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Spezialfaelle fuer die affine Abbildung sind:</p>
+<p>Translation: E*p + t
+Skalierung: ((a,0),(0,b)) * p
+Rotation: M_rot * p
+Spielgelung: E_{negative 1 je nach Spiegelung} * p
+Scheerung: ( E + ((0,s_1),(s_2,0)) ) * p</p>
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Todo</p>
+<p class="last">homogene abbildung und erweiterung</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="block-c">
+<h2>Block C<a class="headerlink" href="#block-c" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dimensionsreduktion">
+<h3>Dimensionsreduktion<a class="headerlink" href="#dimensionsreduktion" title="Permalink to this headline">¶</a></h3>
+<p>Generell wird das Problem der Datenerfassung und Reduktion dieser Daten auf das
+Wesentliche betrachtet. Dabei sollen Unterschiede der Daten immernoch
+ersichtlich bleiben.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Ueber die Dimensionsreduktion wird versucht die Richtungen in einem
+hochdimensionalen Raum zu bestimmen, in denne die wesentlichen Strukturen in den
+Daten deutlich werden.</p>
+<div class="section" id="lagrange-multiplikation">
+<h4>Lagrange-Multiplikation<a class="headerlink" href="#lagrange-multiplikation" title="Permalink to this headline">¶</a></h4>
+<p>Wir betrachten das Minimierungsproblem von</p>
+<div class="math notranslate">
+\[\begin{split}f(x,y) - \lambda * g(x,y) = \text{min}\\
+g(x,y) = 0\\
+\text{mit den partiellen Ableitungen:}\\
+f_x - \lambda g_x = 0\\
+f_y - \lambda g_y = 0\end{split}\]</div>
+<p>Dabei gilt f(x,y) = min unter Nebenbedingung g(x,y) = 0</p>
+</div>
+<div class="section" id="ausgleichsebenen">
+<h4>Ausgleichsebenen<a class="headerlink" href="#ausgleichsebenen" title="Permalink to this headline">¶</a></h4>
+<p>Wir suchen eine Hyperebene e* x = d (e:Koeffizienten Vektor, x:Punkt)</p>
+<p>Dabei soll die Summe der quadratischen Abstaende der Punkte zur Hyperebene
+minimal sein.</p>
+</div>
+<div class="section" id="optmierungsproblem">
+<h4>Optmierungsproblem<a class="headerlink" href="#optmierungsproblem" title="Permalink to this headline">¶</a></h4>
+<p>f ist die Summe ueber alle Punmkte mal den Koeffizienten Vektor minus dem
+Schwerpunkt.</p>
+<p>g ist der quadratische Betrag des Koeffizienten Vektor.</p>
+</div>
+<div class="section" id="hauptachsen">
+<h4>Hauptachsen<a class="headerlink" href="#hauptachsen" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="projektion">
+<h4>Projektion<a class="headerlink" href="#projektion" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id3">
+<h4>Dimensionsreduktion<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="singularwertzerlegung">
+<h4>Singularwertzerlegung<a class="headerlink" href="#singularwertzerlegung" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="beispiel">
+<h3>Beispiel<a class="headerlink" href="#beispiel" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Mitschriften EDV</a><ul>
+<li><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
+<li><a class="reference internal" href="#besonders-pruefungsrelevant">Besonders Pruefungsrelevant</a></li>
+<li><a class="reference internal" href="#orga">Orga</a></li>
+<li><a class="reference internal" href="#skript">Skript</a><ul>
+<li><a class="reference internal" href="#block-b">Block B</a><ul>
+<li><a class="reference internal" href="#pipilines">Pipilines</a><ul>
+<li><a class="reference internal" href="#d">2D</a></li>
+<li><a class="reference internal" href="#id2">3D</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#farben">Farben</a><ul>
+<li><a class="reference internal" href="#cie">CIE</a></li>
+<li><a class="reference internal" href="#rgb">RGB</a></li>
+<li><a class="reference internal" href="#hsv">HSV</a></li>
+<li><a class="reference internal" href="#cmy">CMY</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#d-bilderzeugung">2D Bilderzeugung</a><ul>
+<li><a class="reference internal" href="#koordinatensysteme">Koordinatensysteme</a></li>
+<li><a class="reference internal" href="#transformationen">Transformationen</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#block-c">Block C</a><ul>
+<li><a class="reference internal" href="#dimensionsreduktion">Dimensionsreduktion</a><ul>
+<li><a class="reference internal" href="#lagrange-multiplikation">Lagrange-Multiplikation</a></li>
+<li><a class="reference internal" href="#ausgleichsebenen">Ausgleichsebenen</a></li>
+<li><a class="reference internal" href="#optmierungsproblem">Optmierungsproblem</a></li>
+<li><a class="reference internal" href="#hauptachsen">Hauptachsen</a></li>
+<li><a class="reference internal" href="#projektion">Projektion</a></li>
+<li><a class="reference internal" href="#id3">Dimensionsreduktion</a></li>
+<li><a class="reference internal" href="#singularwertzerlegung">Singularwertzerlegung</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#beispiel">Beispiel</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/notes.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Max Springenberg.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/notes.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
