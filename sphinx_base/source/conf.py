@@ -19,14 +19,14 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'noname'
+project = '-'
 copyright = '2018, Max Springenberg'
 author = 'Max Springenberg'
 
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
-release = ''
+release = '-'
 
 
 # -- General configuration ---------------------------------------------------
@@ -39,14 +39,14 @@ release = ''
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.autodoc',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
     'sphinx.ext.mathjax',
+    'sphinx.ext.githubpages',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ['GPtemplates']
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
@@ -89,7 +89,7 @@ html_theme = 'alabaster'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = ['GPstatic']
 
 # Custom sidebar templates, must be a dictionary that maps document names
 # to template names.
@@ -105,7 +105,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'nonamedoc'
+htmlhelp_basename = '-doc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -132,7 +132,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'noname.tex', 'noname Documentation',
+    (master_doc, '-.tex', '- Documentation',
      'Max Springenberg', 'manual'),
 ]
 
@@ -142,7 +142,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'noname', 'noname Documentation',
+    (master_doc, '-', '- Documentation',
      [author], 1)
 ]
 
@@ -153,8 +153,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'noname', 'noname Documentation',
-     author, 'noname', 'One line description of project.',
+    (master_doc, '-', '- Documentation',
+     author, '-', 'One line description of project.',
      'Miscellaneous'),
 ]
 
