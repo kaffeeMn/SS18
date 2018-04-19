@@ -1,0 +1,72 @@
+\documentclass{article}
+\textwidth=6in
+\hoffset=0in
+\voffset=0in
+
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{automata, arrows}
+\usepackage{pifont}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{ngerman}
+\usepackage[ampersand]{easylist}
+
+% needs to be updated
+\author{Max Springenberg, 177792}
+\title{\
+    EA Uebungsblatt 1
+    }
+\setcounter{section}{1}
+\date{}
+
+% custom commands
+% \Theta \Omega \omega
+\newcommand{\tab}{\null\ \qquad}
+\newcommand{\gap}{\null\ \\ \\}
+\newcommand{\lA}{\leftarrow}
+\newcommand{\rA}{\rightarrow}
+\newcommand{\ue}{\infty}
+\newcommand{\eps}{\epsilon}
+\newcommand{\task}[1]{\textbf{#1} \\ \gap}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\newcommand{\degr}{\degree}
+
+% content
+\begin{document}
+% title page
+\maketitle
+\newpage
+% actual paper
+\subsection{Wiederholung}
+\task{Was ist ein matching und wie ist es definiert?}
+Ein Matching is die Teilmenge $E_M$ von einerm Graphen $G(E,V)$, die nur Kanten
+    enth"alt, sodass jeder Knoten nur jeweils eiener Kante zugeordnet ist.\[
+        E_M \subseteq E \land \forall e, e' \in E_M : e \cap e' = \emptyset
+    \]
+\task{\
+    Was ist ein M-Verbessernder Pfad? Wie viele M-Verbessernde Pf"ade koennen
+        fuer ein optimales Matching $M_{opt}$ gefunden werden?
+    }
+Ein M-Verbsessernder Pfad ist ein Pfad im Graphen, der zwischen Matching- und 
+    nicht Matching-Kanten altaniert und dabei mit einer nicht Matching-Kante 
+    anf"angt und aufh"ort.\\
+Werden bei einem M-Verbesserndem Pfad Matching und ncht Matching-Kanten
+    hinsichtlich ihrer zugeh"origkeit zu M geswapt steigt $|M|$ um 1.\\
+Ist ein Matching M optimal, so kann es nichtmehr verbessert werden.
+    Dementsprechend ist die Anzahl von M-Verbessernden Pfaden in $M_{opt}$
+    gleich Null.\\
+\task{\
+    Warum ist Matching auf bipartiten Graphen einfacher? Welche Teile des
+        Algorithmus von Hopcroft und Karp sind nicht direkt auf allgemeine
+        Graphen "ubertragbar?
+    }
+Bipartite Graphen sind dadurch definiert, dass ein bipartiter Graph $G(V,E)$
+    in Teilmengen $V_1, V_2$ unterteilt werden kann, sodass alle Kanten nur
+    zwischen Knoten aus $V_1, V_2$ verlaufen.\\
+\end{document}

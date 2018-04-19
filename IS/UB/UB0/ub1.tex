@@ -43,16 +43,58 @@
 \newpage
 % actual paper
 \subsection\
-Aufgaben sind\\
+Aufgaben von Datenbanken sind\\
 \begin{easylist}
-    & Veraendern von Daten ohne Korruption
-    & Effiziente Filterung von Daten
+    & strukturierte Daten und Anfragen (effiziente Filterung von Daten)
+    & Verl"asslichkeit / Fehlertoleranz
+    & viele Benutzer / verschiedenartige Benutzer (Rechte)
+    & Effizienz
+    & gro"se Datenmengen
+\end{easylist}\ \\
+5 Abstraktionen:\\
+\begin{easylist}
+    & DatenModell (relationale Modell)
+        && Semantische Modell:
+            &&& Header mit Bezeichnungen(Schema)
+            &&& Eintr"age sind Zeilen/ Tupel
+            &&& Spalten mit Attribute
+            &&& Gesamtheit der Tabelle wird als Relation bezeichnet
+        && Physikalische Modell
+            &&& Columnstore ((Key, Value)-Paare)
+    & Anfragesprache
+        && meist SQL
+    & Zugangskontrolle und Datenintegrit"at
+    & multi-user-support
+        && Atomarit"atsprinzip
+        && Isolation von Transaktionen
+    & Fehlertoleranz
+        && Commits unabh"angig von Systemabsturz
+        && Backup- und Recovery-Mechanismen
 \end{easylist}
-\subsection\
-\begin{tabular}{c}
-    nein\\
-    ja\\
-    nein?\\
-    ja\\
+Benutzer interagieren mit dem Datenbankmanagementsystem, genauer mit dem 
+    Semantischem Modell. Dieses interagiert mit dem Physikalischem Modell.\\
+\subsection\ 
+\begin{easylist}
+    & nein
+        && kleinere Verwaltungsaufgaben erfordert keinen Datenbankserver
+    & ja
+        && Effizienz
+        && Mehrbenutzerverwaltung
+        && Struktur und Filterung
+    & ja
+        && Es geht nicht zwingend um die Datenmengen aber die Struktur ist 
+            wichtig
+    & ja
+        && Konsistenz
+        && Effizienz
+        && Mehrbenutzerverwaltung
+        && Struktur und Filterung
+        && etc
+\end{easylist}
+\gap \ 
+\begin{tabular}{l|l}
+    Vorteile                        &Nachteile\\
+    \hline\\
+    Struktur                        &Aufwand\\
 \end{tabular}
 \end{document}
