@@ -13,12 +13,16 @@
 \usepackage{pifont}
 \usepackage{amssymb}
 \usepackage{gensymb}
+\usepackage{ngerman}
 \usepackage[ampersand]{easylist}
 
 % needs to be updated
 \author{Max Springenberg, 177792}
 \title{\
-    GTI Uebungsblatt 1
+    GTI "Ubungsblatt 1\\
+    Tutor: Marko Schmellenkamp\\
+    ID: MS1\\
+    "Ubung: Mi 16-18
     }
 \setcounter{section}{1}
 \date{}
@@ -34,7 +38,7 @@
 \newcommand{\task}[1]{\textbf{#1} \\ \gap}
 \newcommand{\cmark}{\ding{51}}
 \newcommand{\xmark}{\ding{55}}
-\newcommand {\degr}{\degree}
+\newcommand{\degr}{\degree}
 
 % content
 \begin{document}
@@ -47,10 +51,10 @@
 \subsection\
 \subsubsection{\
     Seien $\beta = (ab)^* $ und $ \alpha_1, ... , \alpha_8 $ die folgenden 
-        erweiterten regulären Ausdrücke. Beurteilen Sie für alle
+        erweiterten regul"aren Ausdr"ucke. Beurteilen Sie f"ur alle
         $i \in\{3, ... , 8\}$, ob $L(\alpha_i) \subseteq L(\beta)$ gilt. 
-        Vervollständigen Sie dazu die folgende Tabelle analog zu den 
-        Beispiel-Ausdrücken $\alpha_1, \alpha_2$: 
+        Vervollst"andigen Sie dazu die folgende Tabelle analog zu den 
+        Beispiel-Ausdr"ucken $\alpha_1, \alpha_2$: 
         Falls $L(\alpha_i \not \subseteq L(\beta)$ gilt, geben Sie ein Wort 
         $w_i \in L(\alpha_i) - L(\beta)$ an.
     }
@@ -68,26 +72,26 @@
 \end{tabular}
 \subsubsection{\
     Das Verhalten eines Netzwerk-Controllers soll anhand protokollierter 
-        Ausgaben analysiert wer- den. Der Controller schreibt, abhängig von der 
-        Eingabe, beliebig lange Bitfolgen. Eine Bitfolge wird als Wort über dem 
-        Alphabet $\{0, 1\}$ repräsentiert. Die Menge der gültigen Ausgaben wird
+        Ausgaben analysiert wer- den. Der Controller schreibt, abh"angig von der 
+        Eingabe, beliebig lange Bitfolgen. Eine Bitfolge wird als Wort "uber dem 
+        Alphabet $\{0, 1\}$ repr"asentiert. Die Menge der gültigen Ausgaben wird
         im  Handbuch des Controllers formal als Sprache 
-        $L = \{0,1\}^* - L(\gamma)$ für den erweiterten regulären Ausdruck\[
+        $L = \{0,1\}^* - L(\gamma)$ f"ur den erweiterten regul"aren Ausdruck\[
             \gamma = (0+1)^* (000 + 111)(0+1)^* + (10)*1? + (01)^*0
             \]
-        spezifiziert. Beschreiben Sie L natürlichsprachlich kurz in einem Satz.
+        spezifiziert. Beschreiben Sie L nat"urlichsprachlich kurz in einem Satz.
     }
-In $\gamma$ enthaltene Woerter haben mindestens eine der folgenden
+In $\gamma$ enthaltene W"orter haben mindestens eine der folgenden
 Eigenschaften:\\
 \begin{itemize}
-    \item Das Wort enthaelt drei aufeinanderfolgenede Nullen oder Einsen
+    \item Das Wort enth"alt drei aufeinanderfolgenede Nullen oder Einsen
     \item Das Wort beginnt mit 10 gefolgt von einer 1 oder $\eps$ und endet
     \item Das Wort beginnt mit 01 gefolgt von einer 0 oder $\eps$ und endet
 \end{itemize}
-, L enthaelt nur Woerter ueber $\{0, 1\}$, fuer die das nicht der Fall ist,
-    also Woerter die alle der folgenden Eigenschaften gelten:\\
+, L enthaelt nur W"orter "uber $\{0, 1\}$, fuer die das nicht der Fall ist,
+    also W"orter, f"ur die alle der folgenden Eigenschaften gelten:\\
 \begin{itemize}
-    \item Das Wort enthaelt keine drei aufeinanderfolgenede Nullen oder Einsen
+    \item Das Wort enth"alt keine drei aufeinanderfolgenede Nullen oder Einsen
     \item Das Wort beginnt nicht mit 10 gefolgt von einer 1 oder $\eps$ und 
             endet
     \item Das Wort beginnt nicht mit 01 gefolgt von einer 0 oder $\eps$ und 
@@ -97,22 +101,22 @@ Eigenschaften:\\
 \gap
 % begin A2
 \subsection{
-    Geben Sie im Folgenden reguläre Ausdrücke bzw. erweiterte reguläre Ausdrücke
-        an. Beschreiben Sie für jede Konstruktion kurz, warum Ihr Ausdruck die 
-        Sprache beschreibt (warum er alle Wörter der Sprache erzeugt und warum
-        er kein Wort außerhalb der Sprache erzeugt).
+    Geben Sie im Folgenden regul"are Ausdr"ucke bzw. erweiterte regul"are 
+        Ausdr"ucke an. Beschreiben Sie f"ur jede Konstruktion kurz, warum Ihr 
+        Ausdruck die Sprache beschreibt (warum er alle W"orter der Sprache 
+        erzeugt und warum er kein Wort außerhalb der Sprache erzeugt).
     }
 \subsubsection{\
     Sei $\Sigma = \{0,\ldots,9,\oplus,\ominus,.,\circ,C\}$ .\\
-    Konstruieren Sie einen erweiterten regulaeren Ausdruck $\alpha$ ueber 
-        $\Sigma$, der genau die gueltigen Temparaturangaben mit zwei 
+    Konstruieren Sie einen erweiterten regul"aren Ausdruck $\alpha$ "uber 
+        $\Sigma$, der genau die g"ultigen Temparaturangaben mit zwei 
         nachkommastellen in Grad Celsius beschreibt.\\
     }
 \task{
-    Eine Solche Temperaturangabe ist gueltig, wenn sie :\\
+    Eine Solche Temperaturangabe ist g"ultig, wenn sie :\\
     \begin{itemize}
         \item genau zwei Nachkommastellen besitzt
-        \item keine ueberfluessigen fuehrenden Nullen im ganzzahligen Anteil
+        \item keine "uberfluessigen f"uhrenden Nullen im ganzzahligen Anteil
                 ausfweisst
         \item den Minimalwert von $-273.15 \degr C$ nicht unterschreitet
         \item mit dem Zusatz $\degr C$ endet
@@ -121,24 +125,24 @@ Eigenschaften:\\
 Positive Temperaturangaben beginnen mit $\oplus$ oder keinem Vorzeichen,
     negative Temperaturangaben mit $\ominus$.\\
 \\
-Der ganzzahlige Bereich darf keine fuehrenden Nullen aufweisen, wenn dieser
-    nicht genau 0 ist. Ausserdem darf der Ganzzahlige Bereich nicht leer sein.\\
-Der regulaere Ausdruck\[
-        u = 0 + (1-9)^+(0-9)^*
+Der ganzzahlige Bereich darf keine f"uhrenden Nullen aufweisen, wenn dieser
+    nicht genau 0 ist. Au"serdem darf der Ganzzahlige Bereich nicht leer sein.\\
+Der regul"are Ausdruck\[
+        u = 0 + (1-9)(0-9)^*
     \]
-    erfuellt genau diese Kriterien.\\
+    erf"ullt genau diese Kriterien.\\
 \\
-Nachkommastellen koennen beliebige Ziffern sein, aber es muessen genau zwei
+Nachkommastellen k"onnen beliebige Ziffern sein, aber es muessen genau zwei
     vorkommen. Nachkommstellen erfolgen unmittelbar nach dem Zeichen `.'.\\
-Der regulare Ausdruck\[
+Der regul"are Ausdruck\[
         v = .(0-9)^2
     \]
-erfuellt genau diese Kriterien.\\
+erf"ullt genau diese Kriterien.\\
 \\
-Waehrend Temperaturangaben unendlich gross werden duerfen wird eine untere
+W"ahrend Temperaturangaben unendlich gross werden d"urfen, wird eine untere
     Grenze $-273.15 \degr C$ angegeben. Das bedeutet, dass im negativen Bereich
     sicher gestellt werden muss, dass keine Zahl kleiner ist.\\
-    Der regulaere Ausdruck\[
+    Der regul"are Ausdruck\[
         n = \ominus(
             0v
             + (1-9)((1-9)?)v    % up to  99.99
@@ -148,43 +152,43 @@ Waehrend Temperaturangaben unendlich gross werden duerfen wird eine untere
             + 273.(0+1)(0-5)    % up to 273.15
             )
         \] 
-    erfuellt die Kriterien fuer den numerischen Anteil von Temperaturangaben im 
+    erf"ullt die Kriterien f"ur den numerischen Anteil von Temperaturangaben im 
     negativen Bereich.\\
 \\
 Der Suffix der Temperaturangabe muss genau $\degr C$ sein.\\
-Der regulaere Ausdruck\[
+Der regul"are Ausdruck\[
         c = \degr C
         \]
-    erfuellt genau dieses Kriterium.\\
+    erf"ullt genau dieses Kriterium.\\
 \\
-Aus dieser Regel und den oben angegebenen Teilausdruecken ergibt sich 
+Aus diesen Regel und den oben angegebenen Teilausdr"ucken ergibt sich 
     $\alpha$ mit\[
-        \alpha = (\oplus ? uv + \ominus n)c
+        \alpha = (\oplus ? uv + n)c
         \]
 \subsubsection{\
     Seien $\Sigma = \{a,b\} 
-        , L_1 = \{\sigma\sigma u | \sigma \in \Sigma u \in \Sigma^*\}
-        , L_2 = \{\tau w \tau | \tau \in \Sigma w \in \Sigma^*\}$\\
-    Geben Sie regulaere Ausdruecke $\alpha_1,\alpha_2,\alpha$ an, mit
+        , L_1 = \{\sigma\sigma u | \sigma \in \Sigma, u \in \Sigma^*\}
+        , L_2 = \{\tau w \tau | \tau \in \Sigma, w \in \Sigma^*\}$\\
+    Geben Sie regul"are Ausdr"ucke $\alpha_1,\alpha_2,\alpha$ an, mit
         $L_1 = L(\alpha_1), L_2 = L(\alpha_2), L = L_1 \cap L_2$ an.
     }
 \task{$L_1$}
-In $L_1$ enthaltene Woerter muessen mit mindest zwei beliebigen Zeichen aus 
-    $\Sigma$ beginnen und koennen darauf folgend mit beliebig vielen
+In $L_1$ enthaltene W"orter m"ussen mit mindest zwei beliebigen Zeichen aus 
+    $\Sigma$ beginnen und k"onnen darauf folgend mit beliebig vielen
     Zeichen aus $\Sigma$ konkatiniert werden.\\
-Der entsprechende regulaere Ausdruck lautet:\[
+Der entsprechende regul"are Ausdruck lautet:\[
     \alpha_1 = (a+b)^2 (a+b)^*
     \]
 \task{$L_2$}
-In $L_2$ enthaltene Woerter fangen mit einem beliebigem Zeichen aus $\Sigma$ an
+In $L_2$ enthaltene W"orter fangen mit einem beliebigem Zeichen aus $\Sigma$ an
     und enden mit einem beliebigem Zeichen aus $\Sigma$. Zwischen diesen Zeichen
-    koennen beliebige Zeichen aus Sigma vorkommen.\\
-Der entsprechende erweiterte regulaere Ausdruck lautet:\[
+    k"onnen beliebige Zeichen aus Sigma vorkommen.\\
+Der entsprechende erweiterte regul"are Ausdruck lautet:\[
     \alpha_2 = (a+b)(a+b)^*(a+b)
     \]
 \task{$L$}
-Im folgendem wird die Aeuquivalenz zwischen $\alpha_1$ und $\alpha_2$ und ferner
-    die Aequivalenz von $L_1$ und $L_2$, sowie dann auch $L$ bewiesen.\\
+Im folgendem wird die "Auquivalenz zwischen $\alpha_1$ und $\alpha_2$ und ferner
+    die Gleichheit von $L_1$ und $L_2$, sowie dann auch $L$ gezeigt.\\
 \gap
 \[
     \alpha_1 = (a+b)^2(a+b)^*
@@ -194,9 +198,10 @@ Im folgendem wird die Aeuquivalenz zwischen $\alpha_1$ und $\alpha_2$ und ferner
         \equiv \alpha_2
     \]
 \gap
-Fuer den regulaeren Ausdruck $\alpha$ muss gelten, dass er nur Woerter
-    beschreibt, die auch $\alpha_1,\alpha_2$ beschreiben. Durch die Aequivalenz
-    von $\alpha_1,\alpha_2$ muss damit dann auch gelten\[
+Da $\alpha_1,\alpha_2$ "aquivalent und damit der Schnitt der durch sie erzeugten
+    Sprachen gleich den Sprachen selbst ist, muss
+    fuer den regul"aren Ausdruck $\alpha$ gelten, dass er nur W"orter
+    beschreibt, die auch $\alpha_1,\alpha_2$ beschreiben.\[
     \alpha \equiv \alpha_1 \equiv \alpha_2
     \]
 Dies ist etwa mit $\alpha = \alpha_1$ gegeben.\\
@@ -209,35 +214,35 @@ Damit gilt \[
 \subsubsection{\
     Nach dem Standard ISO 8601 wird ein Datum in der Form JJJJ-MM-TT notiert.
         Beispielsweise wird der Geburtstag Alan Turings, der 23. Juni 1912, 
-        durch 1912-06-23 repräsentiert. Konstruieren Sie einen erweiterten 
-        regulären Ausdruck über dem Alphabet $\Sigma = \{0,1,...,9, \ominus\}$,
-        der alle gültigen Daten des Jahres 2018 beschreibt.
+        durch 1912-06-23 repr"asentiert. Konstruieren Sie einen erweiterten 
+        regul"aren Ausdruck "uber dem Alphabet $\Sigma = \{0,1,...,9, \ominus\}$,
+        der alle g"ultigen Daten des Jahres 2018 beschreibt.
     }
-Es sind folgende regeln zu beachten:\\
+Es sind folgende Regeln zu beachten:\\
 (i) Das Jahr ist 2018 und wird von einem $\ominus$ gefolgt\\
 \\
-Der regulaere Ausdruck\[
+Der regul"are Ausdruck\[
     \beta = 2018 \ominus
     \]
 erfuellt genau diese Regel.\\
 \gap
 (ii) Ein Monat besteht aus genau zwei Ziffern und darf nicht kleiner als 01 oder
-    groesser als 12 sein. Der Februar hat nur 28 Tage
+    groe"ser als 12 sein. Der Februar hat nur 28 Tage
     , die Monate $\{01,04,06,08,10,12\}$ koennen bis zu 31 
     und die Monate $\{03,05,07,09,11\}$ koennen bis zu 30 Tage haben.
     Monate und Tage sind mit einem $\ominus$ konkatiniert.
-    Tage bestehen aus zwei zwei Ziffern und koennen nicht kleiner als 01 sein.\\
+    Tage bestehen aus zwei Ziffern und k"onnen nicht kleiner als 01 sein.\\
 \\
 $m_{31} = (01+04+06+08+10+12), m_{30} = (03+05+07+09+11), m_{28} = 02$ seien die
-    regulaeren Ausdruecke fuer Monate mit 31, 30 oder 28 Tagen.\\
-Daraus ergibt sich fuer die Tage und Monate der regulaere Ausdruck\\
+    regul"aren Ausdruecke fuer Monate mit 31, 30 oder 28 Tagen.\\
+Daraus ergibt sich fuer die Tage und Monate der regul"are Ausdruck\\
 \\
 $\gamma = m_{31} \ominus (0(1-9)+(1+2)(0-9)+3(0+1))\\
     \tab + m_{30} \ominus (0(1-9)+(1+2)(0-9)+30))\\
     \tab + m_{28} \ominus (0(1-9)+1(0-9)+2(0-8))
     $\\
 \gap
-Der aus den Regeln resultierende regulaere Ausdruck ist\[
+Der aus den Regeln resultierende regul"are Ausdruck ist\[
     \alpha = \beta (\gamma)
     \]
 \end{document}
