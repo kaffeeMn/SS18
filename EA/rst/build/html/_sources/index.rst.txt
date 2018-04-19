@@ -13,7 +13,7 @@ Welcome to noname's documentation!
 Table Of Contents
 =================
 
-* :ref:`notes.rst`
+* :doc:`notes`
 
 
 
