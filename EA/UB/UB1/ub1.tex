@@ -27,7 +27,7 @@
 % custom commands
 % \Theta \Omega \omega
 \newcommand{\tab}{\null\ \qquad}
-\newcommand{\gap}{\null\ \\ \\}
+\newcommand{\gap}{\null\ \\ \ \\}
 \newcommand{\lA}{\leftarrow}
 \newcommand{\rA}{\rightarrow}
 \newcommand{\ue}{\infty}
@@ -49,6 +49,7 @@ Ein Matching is die Teilmenge $E_M$ von einerm Graphen $G(E,V)$, die nur Kanten
     enth"alt, sodass jeder Knoten nur jeweils eiener Kante zugeordnet ist.\[
         E_M \subseteq E \land \forall e, e' \in E_M : e \cap e' = \emptyset
     \]
+\gap
 \task{\
     Was ist ein M-Verbessernder Pfad? Wie viele M-Verbessernde Pf"ade koennen
         fuer ein optimales Matching $M_{opt}$ gefunden werden?
@@ -61,6 +62,7 @@ Werden bei einem M-Verbesserndem Pfad Matching und ncht Matching-Kanten
 Ist ein Matching M optimal, so kann es nichtmehr verbessert werden.
     Dementsprechend ist die Anzahl von M-Verbessernden Pfaden in $M_{opt}$
     gleich Null.\\
+\gap
 \task{\
     Warum ist Matching auf bipartiten Graphen einfacher? Welche Teile des
         Algorithmus von Hopcroft und Karp sind nicht direkt auf allgemeine

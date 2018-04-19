@@ -21,8 +21,8 @@ Klausur
 27.7.
 25.9.
 
-Skript
-######
+Einfuehrung
+###########
 
 Graphen (Kurzeinfuehrung)
 =========================
@@ -56,3 +56,27 @@ Matchings sind mindestens halb so gross, wie das Optimale Matching
 
 .. todo::
     38
+
+| 
+
+Matching
+########
+
+Maximale Matchings in Graphen
+=============================
+
+Sei G=(V,E) ein ungerihterter Graph. Eine Kantenmenge M aus E heisst Matching,
+wenn:
+
+.. math::
+    e, e' \in M \land e = (u,v), e'=(u',v') \in M
+        : \{u,v\} \cap \{u',v'\} = \emptyset
+
+Mit anderen Worten: Jeder Knoten darf hoechstens einer Kante aus M inzident
+sein.
+
+Matchings in bipartiten Graphen
+===============================
+
+Matchings im allgemeinen Graphen
+================================
