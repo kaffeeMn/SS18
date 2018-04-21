@@ -1,0 +1,155 @@
+\documentclass{article}
+\textwidth=6in
+\hoffset=0in
+\voffset=0in
+
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{automata, arrows}
+\usepackage{pifont}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{ngerman}
+\usepackage[ampersand]{easylist}
+
+% needs to be updated
+\author{Max Springenberg, 177792}
+\title{\
+    GTI "Ubungsblatt 2\\
+    Tutor: Marko Schmellenkamp\\
+    ID: MS1\\
+    "Ubung: Mi 16-18
+    }
+\setcounter{section}{2}
+\date{}
+
+% custom commands
+% \Theta \Omega \omega
+\newcommand{\tab}{\null\ \qquad}
+\newcommand{\gap}{\null\ \\ \\}
+\newcommand{\lA}{\leftarrow}
+\newcommand{\rA}{\rightarrow}
+\newcommand{\ue}{\infty}
+\newcommand{\eps}{\epsilon}
+\newcommand{\task}[1]{\textbf{#1} \\ \gap}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\newcommand{\degr}{\degree}
+
+% content
+\begin{document}
+% title page
+\maketitle
+\newpage
+% actual paper
+
+\subsection\
+\subsubsection{\
+    Hannah arbeitet seit einiger Zeit an einem Webportal. Dieses soll nun so 
+        erweitert werden, dass Lehrmaterialien in Form komprimierter oder 
+        unkomprimierter Archivdateien hochgeladen werden k"onnen. Erlaubt sind
+        TAR-Archive, eventuell mit GZIP komprimiert. G"ultig sind demnach die 
+        Dateiendungen .tar, .tar.gz, .tgz. Der Einfachheit halber sei 
+        vorausgesetzt, dass alle Dateinamen ausschlie"slich Kleinbuchstaben und
+        Punkte beinhalten.\\
+    Konstruieren Sie einen $\eps-NFA$ "uber dem Alphabet 
+        $\Sigma= \{a, \ldots,z\}$ mit möglichst wenigen Zust"anden, der genau 
+        die Dateinamen mit g"ultigen Dateiendungen akzeptiert.
+    }
+(i) F"ur alle W"orter der durch den Automaten entschiedenen Sprache $L$ gilt,
+    dass sie vor der Dateiendung nicht das Zeichen `.' enthalten, aber beliebige 
+    Teilw"orter aus $\{a, \ldots, z\}^* - \{\eps\}$.\\
+Es wurde nichts zu einer Datei gesagt, die als einziges Teilwort vor der 
+    Dateiendung das leere Wort enth"alt, aber auf Unix-System sind versteckte
+    Dateien durch das Zeichen `.' am Anfang gekennzeichnet. So k"onnte `.tar'
+    auch eine versteckte Datei mit Namen `tar' ohne Dateiendung sein.\\
+(ii) Ferner muss auf mindestens eine Dateiendung aus der Menge 
+    $\{.tar, .tar.gz, .tgz\}$ geendet werden. Es d"urfen keine anderen 
+    Dateiendungen (wie z.B. .zip) als Teilstrings vorkommen, aber wir nehmen an,
+    dass gueltige Dateiendungen aufeinander folgen d"urfen, da mehrfaches 
+    vepacken m"oglich w"are.\\
+\\
+Konvention:\\
+Hinsichtlich der "Ubersichtlichkeit werden Transitionen, die in den senkenden
+    Zustand f"uhren weggelassen. Falls von einem Zustand aus also die Eingabe
+    eines Zeichens nicht ber"ucksichtigt wird, ist das gleichbedeutend mit einer
+    Transition in den senkenden Zustand.\\
+\begin{tikzpicture}
+    \node[initial, state](s)                    at (0,-4) {};
+    \node[state](char)                          at (0,-2) {};
+    \node[state](v_)                            at (0,0) {};
+    \node[state](v_t)                           at (2,0) {};
+    \node[state](v_ta)                          at (4,0) {};
+    \node[accepting, state](v_tar)              at (6,0) {};
+    \node[state](v_tar_)                        at (8,0) {};
+    \node[state](v_tar_g)                       at (10,0) {};
+    \node[accepting, state](v_tar_gz)           at (12,0) {};
+    %\node[state](decl)                          at (6,-4) {};
+    \path
+        % verwerfen, bei leerem Wort
+        (s)
+            edge [->, left] node {a, ..., z} (char)
+            %edge [->, above] node {.} (decl)
+        (char)
+            edge [->, loop left] node {a, ..., z} (char)
+            edge [->, left] node {.} (v_)
+        (v_)
+            edge [->, above] node {t} (v_t)
+            %edge [->, left] node {$\eps$} (decl)
+        (v_t)
+            edge [->, above] node {a} (v_ta)
+            edge [->, bend right, above] node {$\eps$} (v_tar_)
+        (v_ta)
+            edge [->, above] node {r} (v_tar)
+            %edge [->, left] node {$\eps$} (decl)
+        (v_tar)
+            edge [->, above] node {.} (v_tar_)
+            edge [->, bend right, above] node {.} (v_)
+        (v_tar_)
+            edge [->, above] node {g} (v_tar_g)
+            %edge [->, left] node {$\eps$} (decl)
+        (v_tar_g)
+            edge [->, above] node {z} (v_tar_gz)
+            %edge [->, left] node {$\eps$} (decl)
+        (v_tar_gz)
+            edge [->, bend right, above] node {.} (v_)
+        %(decl)
+        %    edge [->, loop below] node {$\sigma \in \Sigma$} (decl)
+        ;
+\end{tikzpicture}\\
+\subsubsection\
+\begin{tikzpicture}
+    \node[initial, accepting, state](s) at (0,0)  {$q_s$};
+    \node[accepting, state](a)          at (2,1)  {$q_a$};
+    \node[state](aa)                    at (5,2)  {$q_aa$};
+    \node[accepting, state](b)          at (2,-1) {$q_b$};
+    \node[state](bb)                    at (5,-2) {$q_bb$};
+    \path
+        (s)
+            edge [->, left] node {a} (a)
+            edge [->, left] node {b} (b)
+        (a)
+            edge [->, left, above] node {a} (aa)
+            edge [->, bend right, left] node {b} (b)
+        (aa)
+            edge [->, loop right, right] node {a} (aa)
+            edge [->, left] node {b} (b)
+        (b)
+            edge [->, bend right, left] node {a} (a)
+            edge [->, below] node {b} (bb)
+        (bb)
+            edge [->, left] node {a} (a)
+            edge [->, loop right, right] node {b} (bb)
+        ;
+\end{tikzpicture}\\
+\
+\subsection\
+\subsection\
+$W_0 = \{w \in \Sigma^* | \#_c(w) = 0 \land |w| \text{ gerade}\},\\
+W_1 = \{w \in \Sigma^* | \#_c(w) = 0 \land |w| \text{ ungerade}\}\\
+W_1 = \{w \in \Sigma^* | \#_c(w) > 0\}$\\
+\end{document}
