@@ -302,6 +302,13 @@ durchgefuehrt werden und der Pfad das Matching Verbessern.</p>
 Inkrementierungen, als 1 vornehmen. Dies ist etwa dann moeglich, wenn k&gt;1
 knotendiskunkte M-Verbessernde Pfade existieren und gleichzeitig “Addiert”
 werden.</p>
+<div class="math notranslate">
+\[\begin{enumerate}
+    \item $M := \emptyset$
+    \item Berechne kuerzeste Knotendisjunkte Pfade $P_{1-k}$
+    \item $k \geq 1$ dann $M = \forall p \in P: M \oplus p$
+        und weiter bei 2, sonst return M
+\end{enumerate}\]</div>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -315,14 +322,16 @@ M, N mit:</p>
 </div>
 <p>Wir differenzieren nun zwischen M-verbessernden Pfaden und kuerzesten
 M-verbessernden Pfaden. Sei P ein kuerzester M-verbessernder Pfad und P’ ein
-M-verbessernder Pfad, mit .. math:</p>
+M-verbessernder Pfad, mit
+.. math:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">P</span><span class="s1">&#39; \in M \oplus P</span>
 </pre></div>
 </div>
-<dl class="docutils">
-<dt>Dann gilt .. math::</dt>
-<dd><a href="#id2"><span class="problematic" id="id3">|P'|</span></a> geq <a href="#id4"><span class="problematic" id="id5">|P|</span></a> + <a href="#id6"><span class="problematic" id="id7">|P \cap P'|</span></a></dd>
-</dl>
+<p>Dann gilt
+.. math:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|</span><span class="n">P</span><span class="s1">&#39;| \geq |P| + |P \cap P&#39;</span><span class="o">|</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>

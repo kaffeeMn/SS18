@@ -207,6 +207,14 @@ Inkrementierungen, als 1 vornehmen. Dies ist etwa dann moeglich, wenn k>1
 knotendiskunkte M-Verbessernde Pfade existieren und gleichzeitig "Addiert"
 werden.
 
+.. math::
+    \begin{enumerate}
+        \item $M := \emptyset$
+        \item Berechne kuerzeste Knotendisjunkte Pfade $P_{1-k}$
+        \item $k \geq 1$ dann $M = \forall p \in P: M \oplus p$
+            und weiter bei 2, sonst return M
+    \end{enumerate}
+
 |
 
 Die Mindestanzahl von Knotendisjunkten Matchings ist gegeben durch die Matchings
@@ -220,10 +228,12 @@ M, N mit:
 
 Wir differenzieren nun zwischen M-verbessernden Pfaden und kuerzesten 
 M-verbessernden Pfaden. Sei P ein kuerzester M-verbessernder Pfad und P' ein 
-M-verbessernder Pfad, mit .. math::
+M-verbessernder Pfad, mit 
+.. math::
     P' \in M \oplus P
 
-Dann gilt .. math::
+Dann gilt 
+.. math::
     |P'| \geq |P| + |P \cap P'|
 
 
