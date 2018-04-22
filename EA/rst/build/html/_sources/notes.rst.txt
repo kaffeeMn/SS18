@@ -73,6 +73,9 @@ wenn:
     e, e' \in M \land e = (u,v), e'=(u',v') \in M
         : \{u,v\} \cap \{u',v'\} = \emptyset
 
+
+|
+
 Mit anderen Worten: Jeder Knoten darf hoechstens einer Kante aus M inzident
 sein.
 
