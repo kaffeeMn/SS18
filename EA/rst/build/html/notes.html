@@ -69,6 +69,9 @@
 <li><a class="reference internal" href="#matchings-in-bipartiten-graphen">Matchings in bipartiten Graphen</a><ul>
 <li><a class="reference internal" href="#algorithmen">Algorithmen</a><ul>
 <li><a class="reference internal" href="#greedy">Greedy</a></li>
+<li><a class="reference internal" href="#einfacher-matchingalgorithmus">Einfacher Matchingalgorithmus</a></li>
+<li><a class="reference internal" href="#m-alternierende-pfade-berechnen-finden">M-alternierende Pfade berechnen/ finden</a></li>
+<li><a class="reference internal" href="#algorithmus-von-hopfield-und-karp">Algorithmus von Hopfield und Karp</a></li>
 </ul>
 </li>
 </ul>
@@ -178,16 +181,16 @@ alle Kanten zwischen zwei Knotenmengen verlaufen.</p>
 <p>Sei G=(V,E) ein ungerihterter Graph. Eine Kantenmenge M aus E heisst Matching,
 wenn:</p>
 <div class="math notranslate">
-\[\begin{align}
-e, e' \in M \land e = (u,v), e'=(u',v') \in M
-    : \{u,v\} \cap \{u',v'\} = \emptyset
-\end{align}\]</div>
+\[e, e' \in M \land e = (u,v), e'=(u',v') \in M
+    : \{u,v\} \cap \{u',v'\} = \emptyset\]</div>
 <p>Mit anderen Worten: Jeder Knoten darf hoechstens einer Kante aus M inzident
 sein.</p>
 <div class="section" id="begrifflichkeiten">
 <h4>Begrifflichkeiten<a class="headerlink" href="#begrifflichkeiten" title="Permalink to this headline">¶</a></h4>
 <ul>
-<li></li>
+<li><div class="first math notranslate">
+\[e \in M \{heisst Matching-Kante\}\]</div>
+</li>
 <li><div class="first math notranslate">
 \[e \not \in M \{heisst freie Kante\}\]</div>
 </li>
@@ -239,6 +242,84 @@ solches.\end{aligned}\end{align} \]</div>
 <p>Aus der Disjunkheit der Matchingkanten folgt dann</p>
 <div class="math notranslate">
 \[|M_{opt}| \leq |V_{greedy}| = 2 |M_{greedy}|\]</div>
+</div>
+<div class="section" id="einfacher-matchingalgorithmus">
+<h5>Einfacher Matchingalgorithmus<a class="headerlink" href="#einfacher-matchingalgorithmus" title="Permalink to this headline">¶</a></h5>
+<p>Der einfache Matching Algorithmus in bipartiten Graphen bedient sich dem Lemma,
+dass beweisst, dass fuer einen Graph, der zu einem Matching einen
+M-Verbessernden Pfad enthaelt, das Matching hinsichtlich seiner Maechtigkeit
+je iteration um 1 verbessert werden kann.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Der M-verbessernde Pfad sei definiert, als ein alternierender Pfad (Matching,
+nicht-Matching Kanten abwechselnd) ohne Kreise und mit einer nicht-Matching
+Kante zu Beginn und Ende.</p>
+<p>Bildet man nun den Symetrischen Schnitt zwischen Matching Kanten und dem Pfad,
+so erhaelt man ein neues Matching, dass im Betrag um 1 maechtiger ist, als
+das alte. Damit erhaelt man dann auch zu nach einer endlichen Anzahl von
+Iterationen ein optimales Matching.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple">
+<li>initialisiere M leer</li>
+<li>Berechne den naechsten M-verbessernden Pfad P</li>
+<li>If (P nicht gefunden) Then return M</li>
+<li><dl class="first docutils">
+<dt>Else .. math::</dt>
+<dd>M = M oplus P\</dd>
+</dl>
+</li>
+<li>weiter bei 2</li>
+</ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Die (worst case) Laufzeit dieses Algorithmus laesst sich wie Folgt berechnen</p>
+<div class="math notranslate">
+\[\begin{split}e = |E|, n = |U \cupplus W|\\
+O(e*n) = O(n*n * n) = O(n^3)\end{split}\]</div>
+</div>
+<div class="section" id="m-alternierende-pfade-berechnen-finden">
+<h5>M-alternierende Pfade berechnen/ finden<a class="headerlink" href="#m-alternierende-pfade-berechnen-finden" title="Permalink to this headline">¶</a></h5>
+<p>Offensichtlich liegt die Schwierigkeit im finden im berechnen/ finden des
+M-alternierenden Pfades.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Eine Moeglichkeit dafuer ist es (virtuelle) Quell- und Senkenknoten anzufuegen
+und den Graphen so zu richten, dass alle Pfade von der Quelle zur Senke fuehren.</p>
+<p>Nun kann eine Breitensuche (nach dem kuerzesten, M-verbessernden Pfad)
+durchgefuehrt werden und der Pfad das Matching Verbessern.</p>
+</div>
+<div class="section" id="algorithmus-von-hopfield-und-karp">
+<h5>Algorithmus von Hopfield und Karp<a class="headerlink" href="#algorithmus-von-hopfield-und-karp" title="Permalink to this headline">¶</a></h5>
+<p>Die Graphtraversierung geht nur in O(e). Wir moechten nun aber goressere
+Inkrementierungen, als 1 vornehmen. Dies ist etwa dann moeglich, wenn k&gt;1
+knotendiskunkte M-Verbessernde Pfade existieren und gleichzeitig “Addiert”
+werden.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Die Mindestanzahl von Knotendisjunkten Matchings ist gegeben durch die Matchings
+M, N mit:</p>
+<div class="math notranslate">
+\[\begin{split}(|N| &gt; |M|) \Rightarrow |N| - |M| \text{ knotendisjunkte M-verbessernde
+    Pfade existieren mindestens}\\\end{split}\]</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Wir differenzieren nun zwischen M-verbessernden Pfaden und kuerzesten
+M-verbessernden Pfaden. Sei P ein kuerzester M-verbessernder Pfad und P’ ein
+M-verbessernder Pfad, mit .. math:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">P</span><span class="s1">&#39; \in M \oplus P</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>Dann gilt .. math::</dt>
+<dd><a href="#id2"><span class="problematic" id="id3">|P'|</span></a> geq <a href="#id4"><span class="problematic" id="id5">|P|</span></a> + <a href="#id6"><span class="problematic" id="id7">|P \cap P'|</span></a></dd>
+</dl>
 </div>
 </div>
 </div>

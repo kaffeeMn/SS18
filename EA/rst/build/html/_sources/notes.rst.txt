@@ -69,10 +69,8 @@ Sei G=(V,E) ein ungerihterter Graph. Eine Kantenmenge M aus E heisst Matching,
 wenn:
 
 .. math::
-    \begin{align}
     e, e' \in M \land e = (u,v), e'=(u',v') \in M
         : \{u,v\} \cap \{u',v'\} = \emptyset
-    \end{align}
 
 Mit anderen Worten: Jeder Knoten darf hoechstens einer Kante aus M inzident
 sein.
@@ -81,7 +79,6 @@ Begrifflichkeiten
 -----------------
 
 * .. math::
-    :align: left
     e \in M \{heisst Matching-Kante\}
 * .. math::
     e \not \in M \{heisst freie Kante\}
@@ -142,6 +139,85 @@ Aus der Disjunkheit der Matchingkanten folgt dann
 
 .. math::
     |M_{opt}| \leq |V_{greedy}| = 2 |M_{greedy}|
+
+Einfacher Matchingalgorithmus
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Der einfache Matching Algorithmus in bipartiten Graphen bedient sich dem Lemma,
+dass beweisst, dass fuer einen Graph, der zu einem Matching einen 
+M-Verbessernden Pfad enthaelt, das Matching hinsichtlich seiner Maechtigkeit
+je iteration um 1 verbessert werden kann.
+
+|
+
+Der M-verbessernde Pfad sei definiert, als ein alternierender Pfad (Matching,
+nicht-Matching Kanten abwechselnd) ohne Kreise und mit einer nicht-Matching
+Kante zu Beginn und Ende.
+
+Bildet man nun den Symetrischen Schnitt zwischen Matching Kanten und dem Pfad,
+so erhaelt man ein neues Matching, dass im Betrag um 1 maechtiger ist, als
+das alte. Damit erhaelt man dann auch zu nach einer endlichen Anzahl von 
+Iterationen ein optimales Matching.
+
+|
+
+1. initialisiere M leer
+2. Berechne den naechsten M-verbessernden Pfad P
+3. If (P nicht gefunden) Then return M
+4. Else .. math::
+    M = M \oplus P\\
+5. weiter bei 2
+
+|
+
+Die (worst case) Laufzeit dieses Algorithmus laesst sich wie Folgt berechnen
+
+.. math::
+
+    e = |E|, n = |U \cupplus W|\\
+    O(e*n) = O(n*n * n) = O(n^3)
+
+M-alternierende Pfade berechnen/ finden
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Offensichtlich liegt die Schwierigkeit im finden im berechnen/ finden des 
+M-alternierenden Pfades.
+
+|
+
+Eine Moeglichkeit dafuer ist es (virtuelle) Quell- und Senkenknoten anzufuegen
+und den Graphen so zu richten, dass alle Pfade von der Quelle zur Senke fuehren.
+
+Nun kann eine Breitensuche (nach dem kuerzesten, M-verbessernden Pfad) 
+durchgefuehrt werden und der Pfad das Matching Verbessern.
+
+Algorithmus von Hopfield und Karp
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Die Graphtraversierung geht nur in O(e). Wir moechten nun aber goressere
+Inkrementierungen, als 1 vornehmen. Dies ist etwa dann moeglich, wenn k>1
+knotendiskunkte M-Verbessernde Pfade existieren und gleichzeitig "Addiert"
+werden.
+
+|
+
+Die Mindestanzahl von Knotendisjunkten Matchings ist gegeben durch die Matchings
+M, N mit:
+
+.. math::
+    (|N| > |M|) \Rightarrow |N| - |M| \text{ knotendisjunkte M-verbessernde
+        Pfade existieren mindestens}\\
+
+|
+
+Wir differenzieren nun zwischen M-verbessernden Pfaden und kuerzesten 
+M-verbessernden Pfaden. Sei P ein kuerzester M-verbessernder Pfad und P' ein 
+M-verbessernder Pfad, mit .. math::
+    P' \in M \oplus P
+
+Dann gilt .. math::
+    |P'| \geq |P| + |P \cap P'|
+
 
 Matchings im allgemeinen Graphen
 ================================
