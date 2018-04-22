@@ -69,7 +69,6 @@ Sei G=(V,E) ein ungerihterter Graph. Eine Kantenmenge M aus E heisst Matching,
 wenn:
 
 .. math::
-
     e, e' \in M \land e = (u,v), e'=(u',v') \in M
         : \{u,v\} \cap \{u',v'\} = \emptyset
 
