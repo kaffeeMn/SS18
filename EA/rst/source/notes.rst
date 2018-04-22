@@ -78,13 +78,17 @@ sein.
 Begrifflichkeiten
 -----------------
 
-* .. math::
+* 
+  .. math::
     e \in M \{heisst Matching-Kante\}
-* .. math::
+* 
+  .. math::
     e \not \in M \{heisst freie Kante\}
-* .. math::
+* 
+  .. math::
     v \in V: \{v inzident zu Matching-Kante. heisst Matching Kante\}
-* .. math::
+* 
+  .. math::
     v \in V: \{v heisst inzident zu Matching-Kante. heisst freie Kante\}
 
 Anwendungen von Matching
