@@ -168,6 +168,15 @@ Iterationen ein optimales Matching.
     M = M \oplus P\\
 5. weiter bei 2
 
+|
+
+Die (worst case) Laufzeit dieses Algorithmus laesst sich wie Folgt berechnen
+
+.. math::
+
+    e = |E|, n = |U \cupplus W|\\
+    O(e*n) = O(n*n * n) = O(n^3)
+
 M-alternierende Pfade berechnen/ finden
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -181,6 +190,34 @@ und den Graphen so zu richten, dass alle Pfade von der Quelle zur Senke fuehren.
 
 Nun kann eine Breitensuche (nach dem kuerzesten, M-verbessernden Pfad) 
 durchgefuehrt werden und der Pfad das Matching Verbessern.
+
+Algorithmus von Hopfield und Karp
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Die Graphtraversierung geht nur in O(e). Wir moechten nun aber goressere
+Inkrementierungen, als 1 vornehmen. Dies ist etwa dann moeglich, wenn k>1
+knotendiskunkte M-Verbessernde Pfade existieren und gleichzeitig "Addiert"
+werden.
+
+|
+
+Die Mindestanzahl von Knotendisjunkten Matchings ist gegeben durch die Matchings
+M, N mit:
+
+.. math::
+    (|N| > |M|) \Rightarrow |N| - |M| \text{ knotendisjunkte M-verbessernde
+        Pfade existieren mindestens}\\
+
+|
+
+Wir differenzieren nun zwischen M-verbessernden Pfaden und kuerzesten 
+M-verbessernden Pfaden. Sei P ein kuerzester M-verbessernder Pfad und P' ein 
+M-verbessernder Pfad, mit .. math::
+    P' \in M \oplus P
+
+Dann gilt .. math::
+    |P'| \geq |P| + |P \cap P'|
+
 
 Matchings im allgemeinen Graphen
 ================================
