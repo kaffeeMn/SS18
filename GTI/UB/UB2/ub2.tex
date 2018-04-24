@@ -125,9 +125,9 @@ Hinsichtlich der "Ubersichtlichkeit werden Transitionen, die in den senkenden
 \begin{tikzpicture}
     \node[initial, accepting, state](s) at (0,0)  {$q_s$};
     \node[accepting, state](a)          at (2,1)  {$q_a$};
-    \node[state](aa)                    at (5,2)  {$q_aa$};
+    \node[state](aa)                    at (5,2)  {$q_{aa}$};
     \node[accepting, state](b)          at (2,-1) {$q_b$};
-    \node[state](bb)                    at (5,-2) {$q_bb$};
+    \node[state](bb)                    at (5,-2) {$q_{bb}$};
     \path
         (s)
             edge [->, left] node {a} (a)
@@ -148,8 +148,72 @@ Hinsichtlich der "Ubersichtlichkeit werden Transitionen, die in den senkenden
 \end{tikzpicture}\\
 \
 \subsection\
+\subsubsection\
+\subsubsection\
+\subsubsection\
+Uns interessiert nur die Ausdr"ucke $\alpha_{2,2}^{2}, \alpha_{1,2}^{2}$, da 2
+    der einzige Akzeptierende Zustand ist.\\
+wir alhalten $\alpha_{acc} = \alpha_{2,2}^{2} + \alpha_{1,2}^{2}$ mit:\\$
+    \alpha_{1,1}^{0} = a + c\\
+    \alpha_{2,2}^{0} = a + b\\
+    \alpha_{1,2}^{0} = b\\
+    \alpha_{2,1}^{0} = c\\
+    \gap
+    \alpha_{1,1}^{1} 
+        = \alpha_{1,1}^{0}
+            + \alpha_{1,1}^{0}(\alpha_{1,1}^{0})^* \alpha_{1,1}^{0}
+        \equiv (a+c) + (a+c)(a+c)^*(a+c) 
+        \equiv (a+c)(a+c)^*\\
+    \alpha_{2,2}^{1}
+        = \alpha_{2,2}^{0} 
+            + \alpha_{2,1}^{0}(\alpha_{1,1}^{0})^* \alpha_{1,2}^{0}
+        \equiv (a+b) + c(a+c)^*b\\
+    \alpha_{1,2}^{1}
+        = \alpha_{1,2}^{0} 
+            + \alpha_{1,1}^{0}(\alpha_{1,1}^{0})^* \alpha_{1,2}^{0}
+        \equiv b + (a+c) (a+c)^* b
+        \equiv (a+c)^* b\\
+    \alpha_{2,1}^{1}
+        = \alpha_{2,1}^{0} 
+            + \alpha_{2,1}^{0}(\alpha_{1,1}^{0})^* \alpha_{1,1}^{0}
+        \equiv c + c (a+c)^* (a+c)
+        \equiv c (a+c)^*\\
+    \gap
+    \alpha_{1,2}^{2}
+        = \alpha_{1,2}^{1}
+            + \alpha_{1,2}^{1}(\alpha_{2,2}^{1})^* \alpha_{2,2}^{1}
+        \equiv ((a+c)^*b) 
+            + ((a+c)^*b) ((a+b) + c(a+c)^*b)^* ((a+b) + c(a+c)^*b)
+        \equiv (a+c)^*b ((a+b) + c(a+c)^*b)^*\\
+    \\
+    \alpha_{2,2}^{2}
+        = \alpha_{2,2}^{1}
+            + \alpha_{2,2}^{1}(\alpha_{2,2}^{1})^* \alpha_{2,2}^{1}
+        \equiv (a+b) + c(a+c)^*b 
+            + ((a+b) + c(a+c)^*b) ((a+b) + c(a+c)^*b)^* ((a+b) + c(a+c)^*b)
+        \equiv (a+b) + c(a+c)^*b ((a+b) + c(a+c)^*b)^*\\
+    $\\
+zu: $
+    \alpha_{acc} 
+        = (a+c)^*b ((a+b) + c(a+c)^*b)^*
+            + (a+b) + c(a+c)^*b ((a+b) + c(a+c)^*b)^*
+        \equiv (a+b) + c^* (a+c)^*b ((a+b) + c(a+c)^*b)^*
+    $
 \subsection\
-$W_0 = \{w \in \Sigma^* | \#_c(w) = 0 \land |w| \text{ gerade}\},\\
-W_1 = \{w \in \Sigma^* | \#_c(w) = 0 \land |w| \text{ ungerade}\}\\
-W_1 = \{w \in \Sigma^* | \#_c(w) > 0\}$\\
+Die Sprachen:\\
+$
+    W_0 = \{w \in \{a,b\}^* | |w| \text{ gerade}\}\\
+    W_1 = \{w \in \{a,b\}^* | |w| \text{ ungerade}\}\\
+    W_2 = \{w \in \Sigma^* | \#_c(w) > 0\}\\
+    $
+Sind korrekt, da:\\
+\gap
+Ferner gilt $L = (W_0 \setminus W_1) \setminus W_2$\\
+Offensichtlich gilt $(W_0 \setminus W_1) = W_0$. $W_0 \setminus W_2$ ergibt sich zu:\\
+\[
+    \{w \in \{a,b\}^* | |w| \text{ gerade}\}
+    \setminus \{w \in \Sigma^* | \#_c(w) > 0\}
+    = \{w \in \{a,b\}^* | |w| \text{ gerade} \land \#_c(w) = 0\}
+    = L\\
+    \]
 \end{document}
