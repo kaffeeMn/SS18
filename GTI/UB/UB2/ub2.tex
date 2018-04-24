@@ -149,7 +149,48 @@ Hinsichtlich der "Ubersichtlichkeit werden Transitionen, die in den senkenden
 \
 \subsection\
 \subsubsection\
-\subsubsection\
+\begin{tikzpicture}
+    \node[initial, state]   (1)  at (0,0) {};
+    \node[state]            (2)  at (2,0) {};
+    \node[state]            (3)  at (4,1) {};
+    \node[state]            (4)  at (6,1) {};
+    \node[state]            (5)  at (4,-1) {};
+    \node[state]            (6)  at (6,-1) {};
+    \node[state]            (7)  at (8,0) {};
+    \node[state]            (8)  at (8,-3) {};
+    \node[state]            (9)  at (6,-3) {};
+    \node[state]            (10) at (4,-3) {};
+    \node[state]            (11) at (2,-3) {};
+    \node[accepting, state] (12) at (0,-3) {};
+    \path
+        (1) 
+            edge [->, above] node {$\epsilon$} (2)
+            edge [->, above, right] node {$\epsilon$} (12)
+        (2) 
+            edge [->, above] node {$\epsilon$} (3)
+            edge [->, above] node {$\epsilon$} (5)
+        (3) 
+            edge [->, above] node {a} (4)
+        (4) 
+            edge [->, above] node {$\epsilon$} (7)
+        (5) 
+            edge [->, above] node {$\epsilon$} (6)
+        (6) 
+            edge [->, above] node {$\epsilon$} (7)
+        (7) 
+            edge [->, above, right] node {$\epsilon$} (8)
+        (8) 
+            edge [->, above] node {b} (9)
+        (9) 
+            edge [->, above] node {$\epsilon$} (10)
+        (10)
+            edge [->, above] node {b} (11)
+        (11)
+            edge [->, above] node {$\epsilon$} (12)
+            edge [->, above, right] node {$\epsilon$} (2)
+        ;
+\end{tikzpicture}\\
+\
 \subsubsection\
 \begin{tikzpicture}
     \node[initial, state](1)    at (0,0)  {$\{1\}$};
@@ -167,13 +208,13 @@ Hinsichtlich der "Ubersichtlichkeit werden Transitionen, die in den senkenden
             edge [->, bend left, above] node {b} (empty)
         (4)
             edge [->, above] node {a} (empty)
-            edge [->, above] node {b} (23)
+            edge [->, bend right, left] node {b} (23)
         (23)
             edge [->, above] node {a} (24)
             edge [->, bend right, below] node {b} (empty)
         (24)
             edge [->, left] node {a} (4)
-            edge [->, left] node {b} (2)
+            edge [->, bend right, left] node {b} (23)
         (empty)
             edge [->, loop right] node {a,b} (empty)
         ;
