@@ -151,6 +151,35 @@ Hinsichtlich der "Ubersichtlichkeit werden Transitionen, die in den senkenden
 \subsubsection\
 \subsubsection\
 \subsubsection\
+\begin{tikzpicture}
+    \node[initial, state](1)    at (0,0)  {$\{1\}$};
+    \node[accepting, state](2)  at (2,2)  {$\{2\}$};
+    \node[accepting, state](4)  at (4,1)  {$\{4\}$};
+    \node[accepting, state](23) at (2,-2) {$\{2,3\}$};
+    \node[accepting, state](24) at (4,-1) {$\{2,4\}$};
+    \node[state](empty)         at (6,0) {$\emptyset$};
+    \path
+        (1)
+            edge [->, above] node {a} (2)
+            edge [->, left] node {b} (23)
+        (2)
+            edge [->, above] node {a} (4)
+            edge [->, bend left, above] node {b} (empty)
+        (4)
+            edge [->, above] node {a} (empty)
+            edge [->, above] node {b} (23)
+        (23)
+            edge [->, above] node {a} (24)
+            edge [->, bend right, below] node {b} (empty)
+        (24)
+            edge [->, left] node {a} (4)
+            edge [->, left] node {b} (2)
+        (empty)
+            edge [->, loop right] node {a,b} (empty)
+        ;
+\end{tikzpicture}\\
+\
+\subsubsection\
 Uns interessiert nur die Ausdr"ucke $\alpha_{2,2}^{2}, \alpha_{1,2}^{2}$, da 2
     der einzige Akzeptierende Zustand ist.\\
 wir alhalten $\alpha_{acc} = \alpha_{2,2}^{2} + \alpha_{1,2}^{2}$ mit:\\$
@@ -213,7 +242,7 @@ Offensichtlich gilt $(W_0 \setminus W_1) = W_0$. $W_0 \setminus W_2$ ergibt sich
 \[
     \{w \in \{a,b\}^* | |w| \text{ gerade}\}
     \setminus \{w \in \Sigma^* | \#_c(w) > 0\}
-    = \{w \in \{a,b\}^* | |w| \text{ gerade} \land \#_c(w) = 0\}
+    = \{w \in \Sigma^* | |w| \text{ gerade} \land \#_c(w) = 0\}
     = L\\
     \]
 \end{document}
