@@ -1,13 +1,5 @@
 TODO-STACK:
-    - EA Folien zusammenfassen
-    - ?EA UB?
-    - IS Folien zusammenfassen
-    - ?IS UB?
-    - GTI UB korrektur lesen
+    - GTI UB2
     - SWT Folien zusammenfassen
-    - ?SWT UB?
+    - BS UB
     - GTI alte UBs
-    - BS Folien zusammenfassen
-    - ?BS UB?
-    - EDV Folien ()
-    - ?PTech kickoff?
