@@ -127,7 +127,7 @@ Die Aufgabe ist es einen DFA zu konstruieren, der W"orter, die nicht auf aa oder
     bb enden akzeptiert. Teilw"orter d"urfen jedoch auf aa, bb enden, wenn sie 
     nicht das letzte Teilwort sind.\\
 Zudem soll der Automat nicht mehr als sieben Zust"ande besitzen.\\
-Der Automat:\\
+Der Automat $A$ mit:\\
 \begin{tikzpicture}
     \node[initial, accepting, state](s) at (0,0)  {$q_s$};
     \node[accepting, state](a)          at (2,1)  {$q_a$};
@@ -153,8 +153,15 @@ Der Automat:\\
         ;
 \end{tikzpicture}\\
 ist eine M"ogliche L"osung, da er nur f"unf Zust"ande besitzt und es gilt:\\
-%TODO
 \\
+Beim einlesens eines Zeichens $\sigma \in \Sigma$ nach einem zu $\sigma$
+    unterschiedlichem Zeichen wird in den akzeptierenden Zustand $q_{\sigma}$ 
+    gewechselt. Wird ein Zeichen direkt wieder eingelesen, so wird
+    in den nicht akzeptierenden Zustand $q_{\sigma \sigma}$ gewechselt.\\
+Ferner wird im Startzustand akzeptiert, da dass leere Wort in der Sprache
+    enthalten ist.\\
+In Konsequenz wird nur dann nicht akzeptiert, wenn ein Wort auf mindestens
+    zweimal dem gleichem Zeichen endet.\\
 \subsection\
 \subsubsection\
 \gap
@@ -201,8 +208,8 @@ ist eine M"ogliche L"osung, da er nur f"unf Zust"ande besitzt und es gilt:\\
 \end{tikzpicture}\\
 \gap
 Die Markierten Bereiche entsprechen den jeweiligen Teilw"ortern und entsprechen
-    dem Baukastenprinzip aus der Vorlesung, damit ist der Automat entsprechend
-    dem Baukastenprinzip der Vorlesung aufgebaut.\\
+    dem Baukastenprinzip aus der Vorlesung, damit ist dann auch der Automat 
+    entsprechend dem Baukastenprinzip der Vorlesung aufgebaut.\\
 \subsubsection\
 Die $\eps$-closures aller Knoten erbegen sich zu:\\$
     \eps\text{-clousre}(1) = \{3,2\} 
@@ -255,7 +262,8 @@ Ferner gilt, dass dabei auch alle Zust"ande in der jeweiligen Menge eines
 \subsubsection\
 Uns interessieren nur die Ausdr"ucke $\alpha_{2,2}^{2}, \alpha_{1,2}^{2}$, da 2
     der einzige Akzeptierende Zustand ist.\\
-wir alhalten $\alpha_{acc} = \alpha_{2,2}^{2} + \alpha_{1,2}^{2}$ mit:\\$
+wir alhalten $\alpha_{acc} = \alpha_{2,2}^{2} + \alpha_{1,2}^{2}$ mit:\\
+\\$
     \alpha_{1,1}^{0} = a + c\\
     \alpha_{2,2}^{0} = a + b\\
     \alpha_{1,2}^{0} = b\\
@@ -291,7 +299,7 @@ wir alhalten $\alpha_{acc} = \alpha_{2,2}^{2} + \alpha_{1,2}^{2}$ mit:\\$
     \alpha_{2,2}^{2}
         = \alpha_{2,2}^{1}
             + \alpha_{2,2}^{1}(\alpha_{2,2}^{1})^* \alpha_{2,2}^{1}\\
-    \equiv (a+b) + c(a+c)^*b 
+    \equiv ((a+b) + c(a+c)^*b)
         + ((a+b) + c(a+c)^*b) ((a+b) + c(a+c)^*b)^* ((a+b) + c(a+c)^*b)\\
     \equiv (a+b) + c(a+c)^*b ((a+b) + c(a+c)^*b)^*\\
     $\\
@@ -305,18 +313,26 @@ $
 \subsection\
 Die Sprachen:\\
 $
-    W_0 = \{w \in \{a,b\}^* | |w| \text{ gerade}\}\\
-    W_1 = \{w \in \{a,b\}^* | |w| \text{ ungerade}\}\\
+    W_0 = \{w \in \{a,b\}^* |\ |w| \text{ gerade}\}\\
+    W_1 = \{w \in \{a,b\}^* |\ |w| \text{ ungerade}\}\\
     W_2 = \{w \in \Sigma^* | \#_c(w) > 0\}\\
-    $
+    $\\
 Sind korrekt, da:\\
+Eingaben aus $\{a,b\}^*$ die Zust"ande 0 und 1 abwechselnd durchlaufen. Dabei 
+    wird im Zustand 0 gestartet und die erste Transition nach Eingabe $\sigma
+    \in \{a,b\}$ f"uhrt in 1. In Konsequenz sind W"orter aus 0 und 1 "uber 
+    $\{a,b\}$ und alle W"orter in 1 ungerade und in 0 gerade.\\
+Nach einlesem des erstem c wird in den Zustand 2 gewchselt und dort f"ur alle
+    Eingaben geblieben. Damit enthalten alle W"orter in 2 mindestens ein c, sind
+    sonst aber beliebig\\
 \gap
-Ferner gilt $L = (W_0 - W_1) - W_2$\\
-Offensichtlich gilt $(W_0 - W_1) = W_0$. $W_0 - W_2$ ergibt sich zu:\\
+Ferner gilt $L(A) = (W_0 - W_1) - W_2$\\
+Offensichtlich gilt $(W_0 - W_1) = W_0$ und damit $L(A) = W_0 - W_2$.
+    $L(A) = W_0 - W_2$ ergibt sich zu:\\
 \[
-    \{w \in \{a,b\}^* | |w| \text{ gerade}\}
+    L(A) = \{w \in \{a,b\}^* |\ |w| \text{ gerade}\}
         - \{w \in \Sigma^* | \#_c(w) > 0\}
-    = \{w \in \Sigma^* | |w| \text{ gerade} \land \#_c(w) = 0\}
+    = \{w \in \Sigma^* |\ |w| \text{ gerade} \land \#_c(w) = 0\}
     = L\\
     \]
 \end{document}
