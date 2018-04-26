@@ -22,13 +22,13 @@ Loesungen
 * Excel
     + Nein: nicht Parallel, keine Tansaktionsmoeglichkeiten {8, 7}
 * LSF
-  + Anmeldung
+    + Anmeldung
 * IBM DB2
-  + Ja
+    + Ja
 * iTunes
-  + Anmeldung
+    + Anmeldung
 * Microsoft SQLServer
-  + Ja
+    + Ja
 
 A2
 ==
@@ -42,7 +42,7 @@ Loesung
 Das DBMS besteht aus den Ebenen:
 
 1. Exteren(s) Schema(ta)
-   + SQL : create view
+    + SQL : create view
         - Benutzer/ Programme erhalten verschiedene Ansichten auf die DB
 2. Semantisches/ Konzeptuelles Schema (Tabellen)
 3. Physikalisches Schema
