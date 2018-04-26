@@ -156,7 +156,7 @@ ist eine M"ogliche L"osung, da er nur f"unf Zust"ande besitzt und es gilt:\\
 \\
 Beim einlesens eines Zeichens $\sigma \in \Sigma$ nach einem zu $\sigma$
     unterschiedlichem Zeichen wird in den akzeptierenden Zustand $q_{\sigma}$ 
-    gewechselt. Wird ein Zeichen direkt wieder eingelesen, so wird
+    gewechselt. Wird ein gleiches Zeichen direkt wieder eingelesen, so wird
     in den nicht akzeptierenden Zustand $q_{\sigma \sigma}$ gewechselt.\\
 Ferner wird im Startzustand akzeptiert, da dass leere Wort in der Sprache
     enthalten ist.\\
@@ -252,8 +252,7 @@ Der Startzustand umfasst die Menge $\{1,2,3\}$, da dies der $\eps$-closure vom
 Jeder akzeptierender Zustand ist genau dann ein solcher, wenn er in seiner Menge
     mindestens einen akzeptierenden Zustand (2 oder 4) enth"alt.\\
 Die Transitionen von einem Zustand $q$ bei Eingabe des Zeichens $\sigma$ ergeben 
-    sich "uber die Konkatenation von $P_1, \ldots, P_n$ mit 
-    $q_k \rightarrow^{\sigma} P_k, 1 \leq k \leq n$ f"ur alle 
+    sich zu $q_k \rightarrow^{\sigma} P_k, 1 \leq k \leq n$ f"ur alle 
     $q_1,\ldots,q_n \in q$, wobei $P_k$ die jeweilige Menge von Zust"anden die 
     durch Eingabe von $\sigma$ erreicht werden k"onnen, bzw. closure ist.\\
 Ferner gilt, dass dabei auch alle Zust"ande in der jeweiligen Menge eines 
@@ -324,7 +323,7 @@ Eingaben aus $\{a,b\}^*$ die Zust"ande 0 und 1 abwechselnd durchlaufen. Dabei
     $\{a,b\}$ und alle W"orter in 1 ungerade und in 0 gerade.\\
 Nach einlesem des erstem c wird in den Zustand 2 gewchselt und dort f"ur alle
     Eingaben geblieben. Damit enthalten alle W"orter in 2 mindestens ein c, sind
-    sonst aber beliebig\\
+    sonst aber beliebig.\\
 \gap
 Ferner gilt $L(A) = (W_0 - W_1) - W_2$\\
 Offensichtlich gilt $(W_0 - W_1) = W_0$ und damit $L(A) = W_0 - W_2$.
