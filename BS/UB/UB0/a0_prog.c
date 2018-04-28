@@ -2,6 +2,9 @@
 #include <stdlib.h>
 
 int num_primes(int n){
+    if(n <= 2){
+        return 1;
+    }
     int c = 1;
     for(int i=3; i<n; ++i){
         for(int j=2; j<=i; ++j){
