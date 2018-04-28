@@ -1,0 +1,191 @@
+\documentclass{article}
+\textwidth=6in
+\hoffset=0in
+\voffset=0in
+
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{automata, arrows}
+\usepackage{pifont}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{ngerman}
+\usepackage[ampersand]{easylist}
+
+% needs to be updated
+\author{Max Springenberg, 177792}
+\title{\
+    EA Uebungsblatt 2
+    }
+\setcounter{section}{2}
+\date{}
+
+% custom commands
+% \Theta \Omega \omega
+\newcommand{\tab}{\null\ \qquad}
+\newcommand{\gap}{\null\ \\ \ \\}
+\newcommand{\la}{\leftarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\lra}{\leftrightarrow}
+\newcommand{\ue}{\infty}
+\newcommand{\eps}{\epsilon}
+\newcommand{\task}[1]{\textbf{#1} \\ \gap}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\newcommand{\degr}{\degree}
+
+% content
+\begin{document}
+% title page
+\maketitle
+\newpage
+% actual paper
+\subsection{
+    Tiefensuche, Breitensuche, Zusammenhang, starker Zusammenhang: Wiederholung 
+        und Verständnisfragen
+    }
+\subsubsection{
+    Wie ist der Ablauf von Tiefensuche und Breitensuche in ungerichteten 
+        Graphen?
+    }
+In der Tiefensuche wird erst der neuexn Knoten abgearbeitet. In der Breitensuche
+    werden immer erst die neuen Knoten abgearbeitet.\\
+\subsubsection{
+    Auf welcher Datenstruktur werden die Algorithmen durchgeführt?
+    }
+Knoten werden in eine Queue zwischengespeichert und in einem Array/ einer Map
+    mit random access markiert.\\
+Verbindungen/ Kanten werden mittels einer Adjazenzliste /-matrix realisiert.\\
+Nummern/ IDs f"ur die Ordnung hinsichtlich der Entdeckung der Knoten in 
+    DFS-Liste.\\
+\subsubsection{
+    Unter welchen Voraussetzungen ist die Höhe eines Breitensuche-Baumes 
+        eindeutig? Gilt bei diesen Voraussetzungen auch, dass der 
+        Breitensuche-Baum eindeutig ist?
+    }
+Die H"ohe des Baums ist immer eindeutig, dessen Zusammensetzung jedoch nicht.\\
+\subsubsection{
+    Ist für einen gegebenen Graphen jeder Breitensuche-Baum stets höchstens so 
+        tief wie jeder Tiefensuche-Baum?
+    }
+Ja, da der BFS-Baum generell fr"uher die Knoten abhandelt und dadurch eine 
+    gleichm"a"sigere Aufteilung der Kinder entsteht.\\
+\subsubsection{
+    Welche zusätzlichen Kantenklassen gibt es bei Tiefensuche auf gerichteten 
+        Graphen?
+    }
+Baum (T-), Forward (F-), Backward (B-) und Kreuz (C-) Kanten. Sonst gleich.\\
+\subsubsection{
+    Wie lassen sich die Kantenklassen im Tiefensuche-Algorithmus unterscheiden?
+    }
+\begin{tabular}{l|l}
+    Baum (T-)       & neu/ direkt gefunden\\
+    Forward (F-)    & Niedriegere auf h"ohere DFS-Nummer\\
+    Backward (B-)   & H"ohere auf niedrigere DFS-Nummer\\
+    Kreuz (C-)      & alle anderen Kanten\\
+\end{tabular}
+\subsubsection{
+    Wie sind Zusammenhangskomponenten (ZHK) und starke Zusammenhangskomponenten 
+        (SZHK) definiert? Worin unterscheiden diese sich?
+    }
+Existiert eine gerichteter weg von Knoten v nach w mit $v, w \in V$, so 
+    schreiben wir $v \ra w$.\\
+Starkter Zusammenhang ist definiert als 
+    $v \lra w \equiv v \ra w \land w \ra v$\\
+\\
+Zusammenhangskomponenten sind f"ur ungerichtete Graphen definiert und besagen,
+    dass man zwischen zwei Knoten hin und her gehen kann.\\
+\subsubsection{
+    Welchen Algorithmus haben Sie in der Vorlesung kennen gelernt, um die SZHKs 
+        eines Graphen zu berechnen? Wie lautet die asymptotische Laufzeit?
+    }
+In der Vorlesung wurde der Algorithmus von Ksaraju vorgestellt.\\
+Bei diesem Algorithmus word zwei mal eine DFS durchgef"uhrt. Dabei werden 
+    f-Nummern in absteigender Reihenfolge verteilt. Anschlie"send werden alle
+    Kanten invers gerichtet. Abschlie"send wird noch eine DFS-Traversierung
+    durchgef"uhrt, ausgehend von f[v] = 1. Die Dabei entstehenden T-Kanten
+    sind starke Zusammenhangskomponenten.\\
+Die Laufzeit bel"auft sich auf die der DFS mit $O(|V| + |E|)$\\
+\newpage
+\subsection{Starker Zusammenhang – Algorithmus durchführen}
+\task{DFS-, f-, ZHK-Nummern}
+G\\
+\begin{tabular}{lll}
+    Knoten      &DFS-Nummer     &f-Nummer\\
+    A           &1              &7\\
+    B           &2              &6\\
+    C           &4              &4\\
+    D           &3              &5\\
+    E           &5              &3\\
+    F           &6              &2\\
+    G           &7              &1\\
+\end{tabular}
+$G^*$\\
+\begin{tabular}{ll}
+    Knoten      &DFS-Nummer
+\end{tabular}
+ZHK\\
+\begin{enumerate}
+    \item G,E
+    \item F
+    \item C,A,B,D
+\end{enumerate}
+\gap
+\task{Kantenklassen}
+$G$:\\$
+    T = \{(A,B), (B,D), (D,C), (E,F), (E,G)\}\\
+    F = \{(A,D)\}\\
+    B = \{(G,E)\}\\
+    C = \{G,F\}\\
+    $\\
+$G^*$:\\$
+    T = \{(G,E), (C,D), (D,A), (D,B)\}\\
+    F = \emptyset\\
+    B = \{(E,G), (A,C)\}\\
+    C = \{(F,E), (F,G), (B,A), (B,F)\}\\
+    $\\
+\subsection{(Starker) Zusammenhang - Eigenschaften}
+\subsubsection{
+    Sei G ein beliebiger gerichteter Graph. Sind die SZHKs auf G eindeutig?
+    }
+Die SZHK sind eindeutig, nicht jedoch die Reihenfolge, in der sie gefunden
+    werden.\\
+\subsubsection{
+    Sei G ein beliebiger gerichteter Graph. Ergeben sich auf G∗ immer die 
+        gleichen SZHKs wie auf G?
+    }
+Ja, die da sich Zusammenhangskomponenten bei invertierung des Graphens bestehen
+    bleiben.\\
+Beweis:\\$
+    A \ra B \not \equiv B \ra A = A \ra^{-1} B\\
+    \\
+    A \lra B \equiv A \ra B \land B \ra A\\
+    A \lra^{-1} B \equiv B \ra A \land A \ra B \equiv A \lra B\\
+    $
+Damit verliert nach Invertierung der Richtungen eine Starke 
+    Zusammenhangskomponenten nicht ihre Eigenschaft und ein nicht in der 
+    "Aquivalenzrelation inbegriffenes Tupel erh"alt auch nicht die 
+    Eigenschaft.\\
+\subsubsection{
+    Betrachten Sie den Korrektheitsbeweis des Algorithmus von Kosaraju. Bei dem
+        DFS-Durchlauf auf $G^∗$ kann es vorkommen, dass eine Kante von 
+        $T_x$ nach $T_{x+1}$ verläuft. Welcher Kantenklasse werden diese Kanten
+        zugeordnet?
+    }
+\subsection{
+    Beschreiben Sie einen Algorithmus, der das bipartite Matchingproblem mit 
+        Hilfe eines Flussalgorithmus löst. Welche Laufzeit hat Ihr Algorithmus?
+    }
+In der Vorlesung wurde ein Algorithmus vorgestallt, bei dem "ahnlich, wie bei
+    Hopfield und Karp eine Quelle und Senke angef"ugt wurde. Zudem wurden alle
+    Knoten der bipartiten Mengen je nach Mengenzugeh"origkeit mit Quelle oder 
+    Senke Verbunden und Kanten zur Senke gerichtet.\\
+Jeder Knoten hat die Flusskapazit"at 1. Es wird sein maximaler Fluss 
+    mittels dem Algorithmus von Ford und Fulkerson berechnet.\\
+Die Laufzeit betr"agt dabei $O(B  (|V | + |E|))$ und ist echt 
+    pseudopolynomiell.\\
+\end{document}
