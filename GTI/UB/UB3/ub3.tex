@@ -187,8 +187,112 @@ Ein minimaler DFA hat soviele Zust"ande, wie "Aquivalenzklassen zu der Nerode
 \ \\
 \subsection\
 \subsubsection\
+Der Produktautomat $A$ mit den Akzeptierenden Zust"anden \[ 
+    F_A = \{(p,q) \in Q_S \times Q_P 
+        | (q \in F_S \land p \not \in F_P)
+        \lor (q \not \in F_S \land p \in F_P)\}
+    \]
+ergibt sich zu:\\
+\begin{tikzpicture}
+    \node[initial, accepting, state]    (s1p1)  at (0,0) {$s_1 p_1$};
+    \node[accepting, state]             (s1p2)  at (4,0) {$s_1 p_2$};
+    \node[state]                        (s1p3)  at (8,-3){$s_1 p_3$};
+    \node[state]                        (s2p1)  at (0,-3){$s_2 p_1$};
+    \node[state]                        (s2p2)  at (4,-3){$s_2 p_2$};
+    \node[accepting, state]             (s2p3)  at (4,-6){$s_2 p_3$};
+    \path
+        (s1p1)
+            edge [->, loop above] node {R} (s1p1)
+            edge [->, above] node {A} (s1p2)
+            edge [->, above] node {E} (s2p3)
+        (s1p2)
+            edge [->, loop above] node {A} (s1p2)
+            edge [->, above] node {R} (s1p3)
+            edge [->, bend right, left] node {E} (s2p2)
+        (s1p3)
+            edge [->, loop above] node {A} (s1p3)
+            edge [->, bend right, above] node {R} (s1p2)
+            edge [->, above] node {E} (s2p2)
+        (s2p1)
+            edge [->, loop below] node {R} (s2p1)
+            edge [->, above] node {A} (s1p2)
+            edge [->, below] node {E} (s2p3)
+        (s2p2)
+            edge [->, bend right, right] node {A} (s1p2)
+            edge [->, bend right, right] node {R} (s2p3)
+            edge [->, loop left] node {E} (s2p2)
+        (s2p3)
+            edge [->, right] node {A} (s1p3)
+            edge [->, bend right, right] node {R,E} (s2p2)
+        ;
+\end{tikzpicture}\\
+Ohne den unerreichbaren Zustand $s_2 p_1$:\\
+\begin{tikzpicture}
+    \node[initial, accepting, state]    (s1p1)  at (0,0) {$s_1 p_1$};
+    \node[accepting, state]             (s1p2)  at (4,0) {$s_1 p_2$};
+    \node[state]                        (s1p3)  at (8,-3){$s_1 p_3$};
+    \node[state]                        (s2p2)  at (4,-3){$s_2 p_2$};
+    \node[accepting, state]             (s2p3)  at (4,-6){$s_2 p_3$};
+    \path
+        (s1p1)
+            edge [->, loop above] node {R} (s1p1)
+            edge [->, above] node {A} (s1p2)
+            edge [->, above] node {E} (s2p3)
+        (s1p2)
+            edge [->, loop above] node {A} (s1p2)
+            edge [->, above] node {R} (s1p3)
+            edge [->, bend right, left] node {E} (s2p2)
+        (s1p3)
+            edge [->, loop above] node {A} (s1p3)
+            edge [->, bend right, above] node {R} (s1p2)
+            edge [->, above] node {E} (s2p2)
+        (s2p2)
+            edge [->, bend right, right] node {A} (s1p2)
+            edge [->, bend right, right] node {R} (s2p3)
+            edge [->, loop left] node {E} (s2p2)
+        (s2p3)
+            edge [->, right] node {A} (s1p3)
+            edge [->, bend right, right] node {R,E} (s2p2)
+        ;
+\end{tikzpicture}\\
 \subsubsection\
+Die Sprache $L(A)$ ist nicht leer, damit sind die Automaten nach dem 
+    "Aquivalenztest der Vorlesung "uber einen Produktautomaten mit akzeptierenden
+    Zust"anden bei zusammen gedassten Zust"anden mit ungleicher 
+    Akzeptiereigenschaft nicht "aquivalent.\\
+\gap
+Ferner erf"ullt $P$ damit auch nicht die Spezifikation $S$.\\
 \subsubsection\
+Es bietet sich, wie auch in den vorhergehenden Teilaufgaben die Konstruktion
+    eines Produktautomaten und ein Leerheitstest f"ur diesen an.\\
+\\
+Wie in der Vorlesung vorgestellt existiert ein Algorithmus f"ur den 
+    Leerheitstest mit:\\
+\begin{easylist}
+    & Vergiss die Kantenmarkierung 
+    & F"uge einen Zielknoten t und f"ur jeden akzeptierenden Zustand eine 
+        Transition zu t hinzu.
+    & Teste, ob ein Weg von s noch t existiert
+    & Wenn ja, so gilt $L(A) \neq \emptyset$
+\end{easylist}\ \\
+In der Laufzeit $O(|\delta|)$
+\\
+Die Konstruktion eines Produktautomaten $A$ aus den Automaten $A_1, A_2$ kann 
+    durch $A = A_1 \times A_2$ mit \[
+    F_A = \{
+        (p,q) \in Q_1 \times Q_2 
+            | (q \in F_1 \land p \not \in F_2)
+            \lor (q \not \in F_1 \land p \in F_2)
+        \}
+    \]
+Nach vorlesung bel"auft sich diese Konstruktion in ihrer Laufzeit auf
+    $O(|Q_1| \times |Q_2| \times |\Sigma|)$\\
+\\
+Der Algorithmus umfasst diese Konstruktion gefolgt von dem Leerheitstest und
+    bel"auft dementsprechend auf eine Laufzeit von \[
+    O(|Q_1| \times |Q_2| \times |\Sigma| + |\delta|) 
+        = O(|Q_1| \times |Q_2| \times |\Sigma|)
+    \]
 \subsubsection\
 \subsection\
 \subsubsection\
