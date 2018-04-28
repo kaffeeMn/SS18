@@ -30,5 +30,3 @@ luftreibung
 luftdichte                      
 parameter endgeschwindigkeit()  
 =============================== ========================
-
-
