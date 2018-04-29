@@ -1,6 +1,4 @@
 TODO-STACK:
-    - IS UB2
-    - IS UB3
     - SWT UB2
     - SWT Abgabe
     - GTI alte UBs 2-4 
@@ -10,3 +8,5 @@ IN REVIEW:
     - BS UB1
     - EA UB2
     - GTI UB3
+    - IS UB2
+    - IS UB3
