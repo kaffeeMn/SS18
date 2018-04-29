@@ -1,0 +1,106 @@
+\documentclass{article}
+\textwidth=6in
+\hoffset=0in
+\voffset=0in
+
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{ngerman}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{automata, arrows}
+\usepackage{pifont}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage[ampersand]{easylist}
+
+% needs to be updated
+\author{Max Springenberg, 177792}
+\title{\
+    IS Uebungsblatt 1
+    }
+\setcounter{section}{1}
+\date{}
+
+% custom commands
+% \Theta \Omega \omega
+\newcommand{\tab}{\null\ \qquad}
+\newcommand{\gap}{\null\ \\ \\}
+\newcommand{\lA}{\leftarrow}
+\newcommand{\rA}{\rightarrow}
+\newcommand{\ue}{\infty}
+\newcommand{\eps}{\epsilon}
+\newcommand{\task}[1]{\textbf{#1} \\ \gap}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\newcommand{\degr}{\degree}
+
+% content
+\begin{document}
+% title page
+\maketitle
+\newpage
+% actual paper
+\subsection\
+\subsubsection\
+Siehe UB\\
+\subsubsection\
+Ja z.B. dass 1 ODER 3 Betten belegt werden und nicht 2 und auch, dass 
+    nur M"anner oder Frauen in einem Zimmer liegen d"urfen.\\
+\subsubsection\
+Entities mit Attributen:\\$
+    Klinik = \{Name, KrankID, Ort\}\\
+    Station = \{Name, StatID, Stock\}\\
+    Zimmer = \{ID=\text{stock.nummer}\}\\
+    Patient = \{
+        PatID, Name, Anschrift, Versicherung, Befund
+        \}\\
+    Krankenschwester = \{
+        MitarbID, Name, Anschrift, Gehaltsdaten, Arbeitszeit, etc.
+        \}\\
+    $
+\subsection\
+\subsubsection{Anforderungsanalyse}
+Entities sind Klausuren und Lehrst"uhle.\\
+Attribute wurden durch das Nennen von PNr und dem Titel f"ur die 
+    Klausur verteilt.\\
+Attribute wurden durch das Nennen von LehrstuhlID, Professor und Geb"aude
+    f"ur den Lehrstuhl verteilt.\\
+Es wurde wahrscheinlich gennant, dass ein Lehrstuhl eine Klausur stellt und
+    diese Beziehung durch ein Datum festgehalten wird.\\
+Ferner muss genannt worden sein, dass ein Lehrstuhl beliebig viele Klausuren
+    stellen kann, aber jede Klausur genau einem Lehrstuhl zugeordnet wird.\\
+\subsubsection\
+Die Kardinalit"aten zeigen an, wie viele Lehst"uhle mindestens und maximal einer
+    Klausur angeh"oren und wie viele Klausuren ein Lehrstuhl mindestens und 
+    maximal stellt.\\
+\subsubsection\
+Tables der Entities:\\
+\\
+\begin{tabular}{lp{0.8\linewidth}}
+    Entity      &SQL-Befehl\\
+    \hline
+    Klausur     &CREATE TABLE Klausur (PNr INTEGER NOT NULL, Titel CHAR(n))\\
+    Lehrstuhl   &CREATE TABLE Lehrstuhl (
+                    LID INTEGER NOT NULL,
+                    Prof CHAR(n) NOT NULL, 
+                    Geb"aude CHAR(n) NOT NULL
+                    )\\
+\end{tabular}\\
+\gap
+Tables der Beziehungen:\\
+\\
+\begin{tabular}{lp{0.8\linewidth}}
+    Beziehung   &SQL-Befehl\\
+    \hline
+    stellt      &CREATE TABLE stellt(
+                    LID INTEGER NOT NULL,
+                    PNr INTEGER NOT NULL,
+                    Datum CHAR(n) NOT NULL,
+                    FOREIGN KEY (LID) REFERENCE Lehrstuhl,
+                    FOREIGN KEY (PNr) REFERENCE Klausur
+                    )\\
+\end{tabular}\\
+\end{document}
