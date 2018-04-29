@@ -4,16 +4,21 @@ import os.path as path
 
 def gen_page(li):
     return '''
-<header>
+<head>
     <link 
         rel="stylesheet" 
         href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         />
-</header>
+</head>
 <body>
     <div class="jumbotron mx-3 my-3">
         <H1 class="display-3">MODULES</H1>
-        <div class="list-group">{}</div>
+        <div class="list-group">
+            <a class="list-group-item list-group-item-action list-group-item-warning" 
+                href="todo.html"
+                >TODO</a>
+            {}
+        </div>
     </div>
 </body>
 </html>
@@ -36,7 +41,7 @@ if __name__ == '__main__':
                 <a 
                 class="list-group-item  
                     list-group-item-action 
-                    list-group-item-light
+                    list-group-item-success
                     " 
                 href="{}/rst/build/html/index.html"
                 >
