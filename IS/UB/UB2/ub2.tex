@@ -9,6 +9,8 @@
 \usepackage{stmaryrd}
 \usepackage{graphicx}
 \usepackage{tikz}
+\usepackage{tikz-er2}
+\usepackage{lscape}
 \usetikzlibrary{automata, arrows}
 \usepackage{pifont}
 \usepackage{amssymb}
@@ -20,7 +22,7 @@
 \title{\
     IS Uebungsblatt 2
     }
-\setcounter{section}{1}
+\setcounter{section}{2}
 \date{}
 
 % custom commands
@@ -42,4 +44,56 @@
 \maketitle
 \newpage
 % actual paper
+\subsection\ 
+Folgende Entity-Mengen sind gegeben:\\$
+    Bib = \{Ort, Name, BibID\}\\
+    Leser = \{Name, Adresse, PersID\}\\
+    Ausgabe = \{ISBN, Autor, Titel\}\\
+    Exemplar = \{Sig\}\\
+    Leihe = \{Datum\}\\
+    $\\
+%%%%
+\tikzstyle{every entity} = [
+    top color=white,bottom color=blue!30,draw=blue!50!black!100
+    ]
+\tikzstyle{every attribute} = [
+    top color=white, bottom color=yellow!20, draw=yellow
+    ]
+\tikzstyle{every relationship} = [
+    top color=white, bottom color=red!20, draw=red!50!black!100
+    ]
+\tikzstyle{every edge} = [link]
+\tikzstyle{every isa} = [
+    top color=white, bottom color=green!20, draw=green!50!black!100
+    ]
+\begin{landscape}
+\begin{tikzpicture}[node distance=10em]
+    % Bib
+    \node[entity] (Bib) {Bib};
+    \node[attribute] (Ort) [above left of=Bib] {Ort} edge (Bib);
+    \node[attribute] (Name) [above of=Bib] {Name} edge (Bib);
+    \node[attribute] (BibID) [left of=Bib] {\key{BibID}} edge (Bib);
+    \node[relationship] (Reg) [right of=Bib] 
+        {Registriert} edge node [above] {(5,*)} (Bib);
+    % Leser
+    \node[entity] (Les) [right of=Reg] {Leser} edge node [above] {(1,*)} (Reg);
+    \node[attribute] (Name) [above left of=Les] {Name} edge (Les);
+    \node[attribute] (PersID) [above of=Les] {\key{PersID}} edge (Les);
+    \node[attribute] (Adresse) [above right of=Les] {Adresse} edge (Les);
+    % Leihe
+    \node[entity] (Lei) [below right of=Les] {Leihe};
+    \node[attribute] (Datum) [right of=Lei] {Datum} edge (Lei);
+    % Exemplar
+    \node[entity] (Exe) [below left of=Lei] {Exemplar};
+    \node[attribute] (Sig) [below of=Exe] {Signatur} edge (Exe);
+    \node[relationship] (Zuo) [left of=Exe] 
+        {Zuordnung} edge node [above] {(1,1)} (Exe);
+    % Ausgabe
+    \node[entity] (Aus) [left of=Zuo] {Ausgabe} edge node [above] {(0,*)} (Zuo);
+    \node[attribute] (ISBN) [below left of=Aus] {ISBN} edge (Aus);
+    \node[attribute] (Autor) [below of=Aus] {Autor} edge (Aus);
+    \node[attribute] (Titel) [below right of=Aus] {Titel} edge (Aus);
+\end{tikzpicture}
+\end{landscape}
+\gap
 \end{document}
