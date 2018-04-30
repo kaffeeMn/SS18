@@ -6,7 +6,7 @@ int num_primes(int n){
         return 1;
     }
     int c = 1;
-    for(int i=3; i<n; ++i){
+    for(int i=3; i<=n; ++i){
         for(int j=2; j<=i; ++j){
             if(i % j == 0 && i != j){
                 break;
@@ -22,7 +22,7 @@ void fill_primes(int *p_list, int n){
     if(n >= 2){
         p_list[0] = 2;
         int c = 1;
-        for(int i=3; i<n; ++i){
+        for(int i=3; i<=n; ++i){
             for(int j=2; j<=i; ++j){
                 if(i % j == 0 && i != j){
                     break;

@@ -2,11 +2,11 @@
 #include <stdlib.h>
 
 int num_primes(int n){
-    if(n <= 2){
-        return 1;
+    if(n < 2){
+        return 0;
     }
     int c = 1;
-    for(int i=3; i<n; ++i){
+    for(int i=3; i<=n; ++i){
         for(int j=2; j<=i; ++j){
             if(i % j == 0 && i != j){
                 break;
@@ -22,7 +22,7 @@ void fill_primes(int *p_list, int n){
     if(n >= 2){
         p_list[0] = 2;
         int c = 1;
-        for(int i=3; i<n; ++i){
+        for(int i=3; i<=n; ++i){
             for(int j=2; j<=i; ++j){
                 if(i % j == 0 && i != j){
                     break;
@@ -42,6 +42,12 @@ int main(int argc, char* argv[]){
         return -1;
     }else{
         int limit = atoi(argv[1]);
+        if(limit < 0){
+            printf(
+                "Positive numbers only."
+            );
+            return -1;
+        }
         int len = num_primes(limit);
         int prime_list[len];
         fill_primes(prime_list, limit);

@@ -22,11 +22,48 @@ Systemumgebung
 Variablen in C
 ==============
 
+(i)
+
+Globale Variablen sind:
+* luftreibung
+* g
+* luftdichte
+
+davon initialisiert:
+* luftreibung
+* g
+
+
+Lokale Variablen sind:
+* v
+* parameter(von Endgeschwindigkeit): masse, flaeche
+
+
+Funktionen sind:
+* endgeschwindigkeit
+* main
+
+
+Demnach werden alle initialisierten globalen Variablen (luftreibung, g) im 
+Datensegment und alle uninitialisierten (luftdichte) im Block-Storage-Segment 
+gespeichert. Alle lokalen Variablen (v, masse, flaeche) landen im Stack.
+die Funktionen endgeschwindigkeit, main werden im Textsegment 
+gespeichert.
+
 =============================== ========================
 Variable/Funktion               Segment
 =============================== ========================
-endgeschwindigkeit()            
-luftreibung                     
-luftdichte                      
-parameter endgeschwindigkeit()  
+endgeschwindigkeit()            Textsegment
+main()                          Textsegment
+luftreibung                     Datensegment
+g                               Datensegment
+luftdichte                      Block-Storage-Segment
+v                               Stack
+masse                           Stack
+flaeche                         Stack
 =============================== ========================
+
+(ii)
+
+luftreibung und luftdichte befinden sich in verschiedenen Segmenten, weil 
+luftdichte nicht global initialisiert wurde.

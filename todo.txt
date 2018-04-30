@@ -5,7 +5,6 @@
     * EDV Folien zusammenfassen
 
 :IN REVIEW:
-    * BS UB1
     * EA UB2
     * GTI UB3
     * IS UB2
