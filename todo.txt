@@ -5,7 +5,10 @@
     * EDV Folien zusammenfassen
 
 :IN REVIEW:
-    * EA UB2
+
+:READY FOR EVALUATION:
     * GTI UB3
     * IS UB2
     * IS UB3
+
+:IN EVALUATION:

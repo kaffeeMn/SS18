@@ -146,7 +146,7 @@ Da dies vier Representationen, zu je einer "Aquivalenzklasse angegeben wurden
             edge [->, bend right, left] node {b} (2)
         ;
 \end{tikzpicture}\\
-$L(A) = L$:\\$
+Zu zeigen: $L(A) = L$:\\$
 \\
 L(A) \subseteq L:\\
 \text{Annahme } L(A) \not \subseteq L \text{, dann } 
@@ -155,7 +155,7 @@ L(A) \subseteq L:\\
 $ Alle W"orter $w \in L(A)$ sind l"anger als 1, da es mindestens 2 Transitionen
     bedarf um in einen akzeptierenden Zustand zu wechseln. Des weiteren gilt,
     dass alle W"orter genau dann akzeptiert werden, wenn die vorletzte 
-    Transition nach einlesen aller Zeichen, durch ein b erfolgte.\\
+    Transition nach dem Einlesen aller Zeichen, durch ein b erfolgte.\\
 1. Fall $|w| \leq 1$:\\
 $w \not \in L(A) \land w \not \in L$\\
 2. Fall $w = va\sigma, v \in \{a,b\}^*, \sigma \in \{a,b\}$:\\
@@ -169,11 +169,11 @@ $L \subseteq L(A):\\
 $ Alle W"orter aus L sind definiert als l"anger als 1 und mit einem b als
     vorletztes Zeichen.\\
 1. Fall $|w| \leq 1$:\\
-W"orter aus $L(A)$ muessen l"anger als 1 sein, da es mindestens zwei 
+W"orter aus $L(A)$ m"ussen l"anger als 1 sein, da es mindestens zwei 
     Transitionen bedarf um in einen akzeptierenden Zustand zu wechseln.\\
 $w \not \in L \land w \not \in L(A)$\\
 2. Fall $w = va\sigma, v \in \{a,b\}^*, \sigma \in \{a,b\}$:\\
-Es wird nur in einen akzeptierenden Zustand gewechselt, wenn die Vorletzte
+Es wird nur in einen akzeptierenden Zustand gewechselt, wenn die vorletzte
     Transition durch ein b erfolgte.\\
 $w \not \in L(A) \land w \not \in L\\
 \lightning$ es muss gelten $L \subseteq L(A)$\\
@@ -275,7 +275,7 @@ Wie in der Vorlesung vorgestellt existiert ein Algorithmus f"ur den
     & Teste, ob ein Weg von s noch t existiert
     & Wenn ja, so gilt $L(A) \neq \emptyset$
 \end{easylist}\ \\
-In der Laufzeit $O(|\delta|)$
+In der Laufzeit $O(|\delta|)$\\
 \\
 Die Konstruktion eines Produktautomaten $A$ aus den Automaten $A_1, A_2$ kann 
     durch $A = A_1 \times A_2$ mit \[
@@ -285,11 +285,11 @@ Die Konstruktion eines Produktautomaten $A$ aus den Automaten $A_1, A_2$ kann
             \lor (q \not \in F_1 \land p \in F_2)
         \}
     \]
-Nach vorlesung bel"auft sich diese Konstruktion in ihrer Laufzeit auf
-    $O(|Q_1| \times |Q_2| \times |\Sigma|)$\\
+nach der Vorlesung in der Laufzeit $O(|Q_1| \times |Q_2| \times |\Sigma|)$ 
+    erstellt werdem.\\
 \\
 Der Algorithmus umfasst diese Konstruktion gefolgt von dem Leerheitstest und
-    bel"auft dementsprechend auf eine Laufzeit von \[
+    hat dementsprechend eine Laufzeit von \[
     O(|Q_1| \times |Q_2| \times |\Sigma| + |\delta|) 
         = O(|Q_1| \times |Q_2| \times |\Sigma|)
     \]

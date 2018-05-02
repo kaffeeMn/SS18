@@ -239,12 +239,14 @@ Implementierung
   eine effiziente Implementierung vornehmen
 * Iterator wird auf Anforderung uebergeben
 
-.. 170
-
 Strategie
 =========
 
 .. 173
+
+Eine Strategie ermoeglicht das Festlegen eines Objekts ohne Zugriff aud die 
+Implementierung der Klasse des Objekts. Ferenr wird dabei auch nicht das 
+Verhalten des Objekts bei der Ausfuehrung veraendert.
 
 Adapter
 =======
