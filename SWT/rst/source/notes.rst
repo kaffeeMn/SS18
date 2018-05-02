@@ -149,4 +149,149 @@ Interfaces:
 * ein Interface wird in der bex mit einem zusaetzlichem Stereotyp
   '<<interface>>' versehen
 * Eine Klasse, die ein Interface implementiert zeigt mit einem gestrichelten
-  Pfeil mit holem Kopf auf dieses.
+  ynt
+
+.. 141
+
+Entwurfsmuster
+==============
+
+Entwurfsmuster bilden den Einstieg in die Techniken zum Entwerfen zon 
+Softwaresystemen
+
+Idee
+----
+
+Entwurfsmuster haben das Ziel:
+
+* Gleicharartige Probleme isolieren
+* Fuer jedes der gleichartigen Probleme Loesungen erarbeiten
+
+Der daraus entstandene Loesungsansatz wird als Entwurfsmuster bezeichnet
+
+Arten
+=====
+
+Die durch das Entwurfsmuster geloesten Probleme koennen in 3 Klassen eingeteilt
+werden
+
+1. struktuelle Verbindungen von Klassen und Objekten (Strukturmuster)
+2. Interaktion zwischen Objekten (Verhaltensmuster)
+3. Erzeugung von Objekten (Erzeugungsmuster)
+
+Klassenbezogen
+--------------
+
+Das Klassenbezogene Entwurfsmuster umfasst Klassen und ihre Beziehung auf
+Typebene
+
+=================== ======================= =============================
+Strukturmuster      Verhaltensmuster        Erzeugungsmuster
+=================== ======================= =============================
+Klassenadapter      Interpreter             Fabrikmethode
+                    Template
+=================== ======================= =============================
+
+Objektbezogen
+-------------
+
+Das objektbezogene Entwurfsmuster umfasst Objekte und ihre Beziehung bei der
+Ausfuehrung.
+
+=================== =======================     =============================
+Strukturmuster      Verhaltensmuster            Erzeugungsmuster
+=================== =======================     =============================
+Objektadabpter      Strategie                   Abstrakte Fabrik
+Dekorierer          Mediator                    Singleton
+Kompositum          Beobachter                  Erbauer
+Fassade             Verantwortlichkeitskette    Prototyp
+Bruecke             Kommando
+Fliegengewicht      Iterator
+Stellvertreter      Erinnerer
+                    Zustand
+                    Besucher
+=================== =======================     =============================
+
+Iterator
+========
+
+.. 148
+
+Ein Iterator ermoeglicht den sequentiellen Zugriff auf die Elemente eines
+Objektes, ohne dabei die dem Objekt (Aggregat) zugrunde liegende Struktur 
+aufzudecken.
+
+Durchlaeufe ueber das Objekt werden von dem zustaendigen Iterator-Objekt 
+uebernommen.
+
+Die Anwendung muss Aggregat und Iterator miteinander verbinden
+
+Implementierung
+---------------
+
+* Das Aggregat selbst muss eine Schnittstelle implementieren, so dass dann das
+  Aggregat als itterierbar gekennzeichnet wird.
+* Der Iterator implementiert eine einheitliche Schnittstelle fuer Iteratoren,
+  damit alle Iteratoren gleich genutzt werden koennen.
+* jedes Aggregat besitzt einen eigenen Iterator, der vom Aggregat bereit
+  gestellt wird.
+* Der Iterator kann damit bevorzugten Zugriff auf das Aggregat erhalten und so
+  eine effiziente Implementierung vornehmen
+* Iterator wird auf Anforderung uebergeben
+
+.. 170
+
+Strategie
+=========
+
+.. 173
+
+Adapter
+=======
+
+.. 193
+
+Dekorierer
+==========
+
+.. 210
+
+Kompositum
+==========
+
+.. 239
+
+Besucher
+========
+
+.. 262
+
+Fassade
+=======
+
+.. 266
+
+Mediator
+========
+
+.. 273
+
+Beobachter
+==========
+
+.. 283
+
+Fabrikmethode
+=============
+
+.. 309
+
+Singleton
+=========
+
+.. 315
+
+Abstrakte Fabrik
+================
+
+.. 322

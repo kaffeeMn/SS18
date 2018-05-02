@@ -294,7 +294,24 @@ Der Algorithmus umfasst diese Konstruktion gefolgt von dem Leerheitstest und
         = O(|Q_1| \times |Q_2| \times |\Sigma|)
     \]
 \subsubsection\
-\subsection\
-\subsubsection\
-\subsubsection\
+Zun"achst wandelt man jeden RA $\alpha_i$ in einen $\eps-NFA$ um, mit dem 
+    Baukastenprinzip bel"auft sich das auf $O(|\alpha_i|)$\\
+Im folgendem wird der Produktautomat mit durch die $\eps-NFA$s konstruiert
+    und deer Leerheitstest berechnet.\\
+Da $O(|\alpha|)$ linear ist bleibt die Laufzeit bei \[
+    O(|Q_1| \times |Q_2| \times |\Sigma|)
+    \]
+%\subsection\
+%\subsubsection\
+%$PRIM$ sei die Menge der Primzahlen.\\
+%$L=\{a^n | n \not \equiv_{pq} 1336\}, p,q \in PRIM: p,q < 1336 < pq$\\
+%\\
+%Gesucht NFA mit $p+q+1$ Zust"anden.\\
+%Ein naiver Ansatz w"are es fuer jeden Rest von $\equiv_{pq}$ einen Zustand zu
+%    waehlen, da aber nach Aufgabenstellung $p,q<1336<pq$ gilt folgt, dass
+%    $p,q$ ungleich $2,3$ sein m"ussen und damit fuer alle F"alle gilt
+%    $pq > p+q+1$\\
+%Es muss also ein effizienterer Weg gefunden werden.\\
+%\\
+%\subsubsection\
 \end{document}
