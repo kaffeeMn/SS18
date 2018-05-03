@@ -10,6 +10,7 @@
 \usepackage{graphicx}
 \usepackage{tikz}
 \usetikzlibrary{automata, arrows}
+\tikzset{initial text={}}
 \usepackage{pifont}
 \usepackage{amssymb}
 \usepackage{gensymb}
@@ -38,7 +39,20 @@
 \newcommand{\task}[1]{\textbf{#1} \\ \gap}
 \newcommand{\cmark}{\ding{51}}
 \newcommand{\xmark}{\ding{55}}
-\newcommand{\degr}{\degree}
+\newcommand{\degr}{\null \degree}
+\newcommand{\error}{\task{FEHLER:}}
+\newcommand{\correction}{\task{KORREKTUR:}}
+\newcommand{\mdef}{\overset{\text{def}}{=}}
+\newcommand{\rao}[1]{\overset{#1}{\rightarrow}}
+\newcommand{\automaton}[1]{
+    \begin{tikzpicture}
+    #1
+    \end{tikzpicture}
+    }
+\newcommand{\nd}[4]{
+    \node[#1](#2)at(#3){#4};
+    }
+
 
 % content
 \begin{document}
@@ -47,6 +61,7 @@
 \newpage
 % actual paper
 
+% A1
 \subsection\
 \subsubsection{\
     Hannah arbeitet seit einiger Zeit an einem Webportal. Dieses soll nun so 
@@ -60,6 +75,8 @@
         $\Sigma= \{a, \ldots,z\}$ mit möglichst wenigen Zust"anden, der genau 
         die Dateinamen mit g"ultigen Dateiendungen akzeptiert.
     }
+% Fehler
+\error
 (i) F"ur alle W"orter der durch den Automaten entschiedenen Sprache $L$ gilt,
     dass sie vor der Dateiendung nicht das Zeichen `.' enthalten, aber beliebige 
     Teilw"orter aus $\{a, \ldots, z\}^* - \{\eps\}$.\\
@@ -122,6 +139,79 @@ Hinsichtlich der "Ubersichtlichkeit werden Transitionen, wie auch in der
         %    edge [->, loop below] node {$\sigma \in \Sigma$} (decl)
         ;
 \end{tikzpicture}\\
+
+% Korrigiert
+\correction
+(i) F"ur alle W"orter der durch den Automaten entschiedenen Sprache $L$ gilt,
+    dass sie vor der Dateiendung nicht das Zeichen `.' enthalten, aber beliebige 
+    Teilw"orter aus $\{a, \ldots, z\}^* - \{\eps\}$.\\
+Es wurde nichts zu einer Datei gesagt, die als einziges Teilwort vor der 
+    Dateiendung das leere Wort enth"alt, aber auf Unix-System sind versteckte
+    Dateien durch das Zeichen `.' am Anfang gekennzeichnet. So k"onnte `.tar'
+    auch eine versteckte Datei mit Namen `tar' ohne Dateiendung sein.\\
+(ii) Ferner muss auf mindestens eine Dateiendung aus der Menge 
+    $\{.tar, .tar.gz, .tgz\}$ geendet werden. Wir nehmen an,
+    dass gueltige Dateiendungen aufeinander folgen d"urfen, da mehrfaches 
+    Vepacken m"oglich w"are.\\
+\\
+Konvention:\\
+Hinsichtlich der "Ubersichtlichkeit werden Transitionen, wie auch in der 
+    Vorlesung, die in den Senkenzustand f"uhren weggelassen. Falls von einem 
+    Zustand aus also die Eingabe
+    eines Zeichens nicht ber"ucksichtigt wird, ist das gleichbedeutend mit einer
+    Transition in den Senkenzustand.\\
+\automaton{
+    \nd{initial, state}{s}          {0,-4}{}
+    \nd{state}{char}                {0,-2} {}
+    \nd{state}{v_}                  {0,0} {}
+    \nd{state}{v_t}                 {2,0} {}
+    \nd{state}{v_ta}                {4,0} {}
+    \nd{accepting, state}{v_tar}    {6,0} {}
+    \nd{state}{v_tar_}              {8,0} {}
+    \nd{state}{v_tar_g}             {10,0} {}
+    \nd{accepting, state}{v_tar_gz} {12,0} {}
+    \path
+        % verwerfen, bei leerem Wort
+        (s)
+            edge [->, left] node {a, ..., z} (char)
+            %edge [->, above] node {.} (decl)
+        (char)
+            edge [->, loop left] node {a, ..., z} (char)
+            edge [->, left] node {.} (v_)
+        (v_)
+            edge [->, above] node {t} (v_t)
+            edge [->, above] node {$\eps$} (char)
+            %edge [->, left] node {$\eps$} (decl)
+        (v_t)
+            edge [->, above] node {a} (v_ta)
+            edge [->, bend left, above] node {$\eps$} (v_tar_)
+            edge [->, above] node {$\eps$} (char)
+        (v_ta)
+            edge [->, above] node {r} (v_tar)
+            edge [->, above] node {$\eps$} (char)
+            %edge [->, left] node {$\eps$} (decl)
+        (v_tar)
+            edge [->, above] node {.} (v_tar_)
+            edge [->, bend right, above] node {.} (v_)
+            edge [->, above] node {$\eps$} (char)
+        (v_tar_)
+            edge [->, above] node {g} (v_tar_g)
+            edge [->, above] node {$\eps$} (char)
+            %edge [->, left] node {$\eps$} (decl)
+        (v_tar_g)
+            edge [->, above] node {z} (v_tar_gz)
+            edge [->, above] node {$\eps$} (char)
+            %edge [->, left] node {$\eps$} (decl)
+        (v_tar_gz)
+            edge [->, bend right, above] node {.} (v_)
+            edge [->, above] node {$\eps$} (char)
+        %(decl)
+        %    edge [->, loop below] node {$\sigma \in \Sigma$} (decl)
+        ;
+    }\\
+
+
+
 \subsubsection\
 Die Aufgabe ist es einen DFA zu konstruieren, der W"orter, die nicht auf aa oder
     bb enden akzeptiert. Teilw"orter d"urfen jedoch auf aa, bb enden, wenn sie 
@@ -152,9 +242,9 @@ Der Automat $A$ mit:\\
             edge [->, loop right, right] node {b} (bb)
         ;
 \end{tikzpicture}\\
-ist eine M"ogliche L"osung, da er nur f"unf Zust"ande besitzt und es gilt:\\
+ist eine m"ogliche L"osung, da er nur f"unf Zust"ande besitzt und es gilt:\\
 \\
-Beim einlesens eines Zeichens $\sigma \in \Sigma$ nach einem zu $\sigma$
+Beim Einlesens eines Zeichens $\sigma \in \Sigma$ nach einem zu $\sigma$
     unterschiedlichem Zeichen wird in den akzeptierenden Zustand $q_{\sigma}$ 
     gewechselt. Wird ein gleiches Zeichen direkt wieder eingelesen, so wird
     in den nicht akzeptierenden Zustand $q_{\sigma \sigma}$ gewechselt.\\
@@ -162,6 +252,8 @@ Ferner wird im Startzustand akzeptiert, da dass leere Wort in der Sprache
     enthalten ist.\\
 In Konsequenz wird nur dann nicht akzeptiert, wenn ein Wort auf mindestens
     zweimal dem gleichem Zeichen endet.\\
+%A2
+\newpage
 \subsection\
 \subsubsection\
 \gap
@@ -211,6 +303,8 @@ Die Markierten Bereiche entsprechen den jeweiligen Teilw"ortern und entsprechen
     dem Baukastenprinzip aus der Vorlesung, damit ist dann auch der Automat 
     entsprechend dem Baukastenprinzip der Vorlesung aufgebaut.\\
 \subsubsection\
+% Fehler
+\error
 Die $\eps$-closures aller Knoten erbegen sich zu:\\$
     \eps\text{-clousre}(1) = \{3,2\} 
         \text{, mit } 1 \rightarrow^\eps 3 \rightarrow^\eps 2\\
@@ -258,7 +352,53 @@ Die Transitionen von einem Zustand $q$ bei Eingabe des Zeichens $\sigma$ ergeben
 Ferner gilt, dass dabei auch alle Zust"ande in der jeweiligen Menge eines 
     Zustands mit den jeweiligen $\eps$-closures konkateniert wurden und damit 
     auch alle $\eps$-closures ber"ucksichtigt wurden.\\
+
+% Korrigiert
+\correction
+Die $\eps$-closures aller Knoten erbegen sich zu:\\$
+    \eps\text{-clousre}(1) = \{1,3,2\} 
+        \text{, mit } 1 \rao{\eps} 3 \rao{\eps} 2\\
+    \eps\text{-clousre}(2) = \{2\}
+        \text{, mit } \nexists q \in Q : 2 \rao{\eps} q\\
+    \eps\text{-clousre}(3) = \{3,2\}
+        \text{, mit } 3 \rao{\eps} 2\\
+    \eps\text{-clousre}(4) = \{4\}
+        \text{, mit } \nexists q \in Q : 4 \rao{\eps} q\\
+    $\\
+Der folgende Automat $A$:\\
+\automaton{
+    \nd{initial, accepting, state}{123} {0,0}  {$\{1,2,3\}$}
+    \nd{accepting, state}   {24}        {2,2}  {$\{2,4\}$}
+    \nd{accepting, state}   {4}         {4,0}  {$\{4\}$}
+    \nd{accepting, state}   {23}        {2,-2} {$\{2,3\}$}
+    \nd{state}              {empty}     {6,0}  {$\emptyset$}
+    \path
+        (123)
+            edge [->, above] node {a} (24)
+            edge [->, right] node {b} (23)
+        (4)
+            edge [->, above] node {a} (empty)
+            edge [->, right] node {b} (23)
+        (23)
+            edge [->, bend right, right] node {a} (24)
+            edge [->, bend right, right] node {b} (empty)
+        (24)
+            edge [->, right] node {a} (4)
+            edge [->, bend right, right] node {b} (23)
+        (empty)
+            edge [->, loop right] node {a,b} (empty)
+        ;
+    }\\
+ist eine m"ogliche L"osung.\\
+\\
+Der Startzustand umfasst die Menge $\{1,2,3\}$, da dies der $\eps$-closure vom 
+    Startzustand 1 entspricht.\\
+Jeder akzeptierender Zustand ist genau dann ein solcher, wenn er in seiner Menge
+    mindestens einen akzeptierenden Zustand (2 oder 4) enth"alt.\\
+
 \subsubsection\
+% Fehler
+\error
 Uns interessieren nur die Ausdr"ucke $\alpha_{2,2}^{2}, \alpha_{1,2}^{2}$, da 2
     der einzige Akzeptierende Zustand ist.\\
 wir alhalten $\alpha_{acc} = \alpha_{2,2}^{2} + \alpha_{1,2}^{2}$ mit:\\
@@ -309,6 +449,50 @@ $
             + (a+b) + c(a+c)^*b ((a+b) + c(a+c)^*b)^*\\
     \equiv (a+b) + c^* (a+c)^*b ((a+b) + c(a+c)^*b)^*
     $\\
+% Korrigiert
+\correction
+Uns interessieren nur der Ausdruck $\alpha_{1,2}^{2}$, da 2
+    der einzige Akzeptierende Zustand ist und wir in 1 starten.\\
+wir erhalten $\alpha_{acc} = \alpha_{2,2}^{2} + \alpha_{1,2}^{2}$ mit:\\
+\\$
+    \alpha_{1,1}^{0} = a + c + \eps\\
+    \alpha_{2,2}^{0} = a + b + \eps\\
+    \alpha_{1,2}^{0} = b\\
+    \alpha_{2,1}^{0} = c\\
+    \gap
+    \alpha_{1,1}^{1} 
+        = \alpha_{1,1}^{0}
+            + \alpha_{1,1}^{0}(\alpha_{1,1}^{0})^* \alpha_{1,1}^{0}
+        \equiv (a+c+\eps) + (a+c+\eps)(a+c+\eps)^*(a+c+\eps) 
+        \equiv (a+c)^*\\
+    \alpha_{2,2}^{1}
+        = \alpha_{2,2}^{0} 
+            + \alpha_{2,1}^{0}(\alpha_{1,1}^{0})^* \alpha_{1,2}^{0}
+        \equiv (a+b+\eps) + c(a+c+\eps)^*b\\
+    \alpha_{1,2}^{1}
+        = \alpha_{1,2}^{0} 
+            + \alpha_{1,1}^{0}(\alpha_{1,1}^{0})^* \alpha_{1,2}^{0}
+        \equiv b + (a+c+\eps) (a+c+\eps)^* b
+        \equiv (a+c)^* b\\
+    \alpha_{2,1}^{1}
+        = \alpha_{2,1}^{0} 
+            + \alpha_{2,1}^{0}(\alpha_{1,1}^{0})^* \alpha_{1,1}^{0}
+        \equiv c + c (a+c+\eps)^* (a+c+\eps)
+        \equiv c (a+c)^*\\
+    \gap
+    \alpha_{1,2}^{2}
+        = \alpha_{1,2}^{1}
+            + \alpha_{1,2}^{1}(\alpha_{2,2}^{1})^* \alpha_{2,2}^{1}\\
+        \equiv ((a+c)^*b) 
+            + ((a+c)^*b) ((a+b+\eps) + c(a+c+\eps)^*b)^* ((a+b+\eps) + c(a+c+\eps)^*b)\\
+        \equiv (a+c)^*b ((a+b+\eps) + c(a+c+\eps)^*b)^*\\
+    $\\
+zu:\[
+    \alpha_{acc} \mdef \alpha_{1,2}^2
+        = (a+c)^*b ((a+b) + c(a+c)^*b)^*\\
+    \]
+% A3
+\newpage
 \subsection\
 Die Sprachen:\\
 $
