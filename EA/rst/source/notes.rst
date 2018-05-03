@@ -239,3 +239,16 @@ Dann gilt
 
 Matchings im allgemeinen Graphen
 ================================
+
+|
+
+
+Max-Flow Min-Cut
+================
+
+* Nur Kanten in richtung der Senke werden gezaehlt
+* der Wer eines maximalen Flusses in einem Netzwerk N ist gleich dem Wert eines
+  minimalen Q-S Schnittes
+
+.. todo::
+    DINIC!!!!! (Klausurrelevant!)

@@ -3,12 +3,14 @@
     * SWT Abgabe
     * GTI alte UBs 2-4 
     * EDV Folien zusammenfassen
+    * GTI Folien
+    * EA UB3
 
 :IN REVIEW:
+    * GTI UB1-2
 
 :READY FOR EVALUATION:
-    * GTI UB3
-    * IS UB2
     * IS UB3
 
 :IN EVALUATION:
+    * GTI UB3
