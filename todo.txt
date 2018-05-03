@@ -1,6 +1,5 @@
 :TODO-STACK:
     * SWT UB2
-    * SWT Abgabe
     * GTI alte UBs 2-4 
     * EDV Folien zusammenfassen
     * GTI Folien
@@ -8,6 +7,7 @@
 
 :IN REVIEW:
     * GTI UB1-2
+    * SWT Abgabe
 
 :READY FOR EVALUATION:
     * IS UB3
