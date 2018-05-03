@@ -248,6 +248,26 @@ Eine Strategie ermoeglicht das Festlegen eines Objekts ohne Zugriff aud die
 Implementierung der Klasse des Objekts. Ferenr wird dabei auch nicht das 
 Verhalten des Objekts bei der Ausfuehrung veraendert.
 
+|
+
+Dazu kapseln wir das neue Verhalten in eine eigene Strategie-Klasse.
+Bei Aenderung des Verhaltens muss lediglich das Strategie Objekt ausgetauscht
+werden.
+
+|
+
+Strategien werden also am Objekt gestzt und bei Aufruf einer Methode (apply())
+ausgefuehrt
+
+Vergleiche
+----------
+
++-------------------+---------------------------+-------------------------------+
+| Entwurfsmuster    | Vorteile                  | Nachteile                     |
++-------------------+---------------------------+-------------------------------+
+|                   |                           |                               |
++-------------------+---------------------------+-------------------------------+
+
 Adapter
 =======
 
