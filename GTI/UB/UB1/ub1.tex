@@ -38,7 +38,10 @@
 \newcommand{\task}[1]{\textbf{#1} \\ \gap}
 \newcommand{\cmark}{\ding{51}}
 \newcommand{\xmark}{\ding{55}}
-\newcommand{\degr}{\degree}
+\newcommand{\degr}{\null \degree}
+\newcommand{\error}{\task{FEHLER:}}
+\newcommand{\correction}{\task{KORREKTUR:}}
+\newcommand{\mdef}{\overset{\text{def}}{=}}
 
 % content
 \begin{document}
@@ -81,6 +84,9 @@
             \]
         spezifiziert. Beschreiben Sie L nat"urlichsprachlich kurz in einem Satz.
     }
+
+%%%% Fehler
+\error
 In $\gamma$ enthaltene W"orter haben mindestens eine der folgenden
 Eigenschaften:\\
 \begin{itemize}
@@ -99,6 +105,27 @@ Eigenschaften:\\
 \end{itemize}
 
 \gap
+%%%% Korrigiert
+\correction
+In $\gamma$ enthaltene W"orter haben mindestens eine der folgenden
+Eigenschaften:\\
+\begin{itemize}
+    \item Das Wort enth"alt drei aufeinanderfolgenede Nullen oder Einsen
+    \item Das Wort besteht aus eine beliebigen Folge von 10 endend auf 1 
+            oder $\eps$
+    \item Das Wort besteht aus eine beliebigen Folge von 01 endend auf 0 
+            oder $\eps$
+\end{itemize}
+, L enthaelt nur W"orter "uber $\{0, 1\}$, fuer die das nicht der Fall ist,
+    also W"orter, f"ur die alle der folgenden Eigenschaften gelten:\\
+\begin{itemize}
+    \item Das Wort enth"alt keine drei aufeinanderfolgenede Nullen oder Einsen
+    \item Das Wort besteht nicht aus eine beliebigen Folge von 10 endend auf 1 
+            oder $\eps$
+    \item Das Wort besteht nicht aus eine beliebigen Folge von 01 endend auf 0 
+            oder $\eps$
+\end{itemize}
+
 % begin A2
 \subsection{
     Geben Sie im Folgenden regul"are Ausdr"ucke bzw. erweiterte regul"are 
@@ -122,6 +149,8 @@ Eigenschaften:\\
         \item mit dem Zusatz $\degr C$ endet
     \end{itemize}\ \\
     }
+%%%% Fehler
+\error
 Positive Temperaturangaben beginnen mit $\oplus$ oder keinem Vorzeichen,
     negative Temperaturangaben mit $\ominus$.\\
 \\
@@ -165,6 +194,58 @@ Aus diesen Regel und den oben angegebenen Teilausdr"ucken ergibt sich
     $\alpha$ mit\[
         \alpha = (\oplus ? uv + n)c
         \]
+
+\gap
+%%%% Korrigiert
+\correction
+Positive Temperaturangaben beginnen mit $\oplus$ oder keinem Vorzeichen,
+    negative Temperaturangaben mit $\ominus$.\\
+\\
+Der ganzzahlige Bereich darf keine f"uhrenden Nullen aufweisen, wenn dieser
+    nicht genau 0 ist. Au"serdem darf der Ganzzahlige Bereich nicht leer sein.\\
+Der regul"are Ausdruck\[
+    u \mdef 0 + [1-9][0-9]^*
+    \]
+    erf"ullt genau diese Kriterien.\\
+\\
+Nachkommastellen k"onnen beliebige Ziffern sein, aber es muessen genau zwei
+    vorkommen. Nachkommstellen erfolgen unmittelbar nach dem Zeichen `.'.\\
+Der regul"are Ausdruck\[
+        v \mdef .[0-9]^2
+    \]
+erf"ullt genau diese Kriterien.\\
+\\
+W"ahrend Temperaturangaben unendlich gross werden d"urfen, wird eine untere
+    Grenze $-273.15 \degr C$ angegeben. Das bedeutet, dass im negativen Bereich
+    sicher gestellt werden muss, dass keine Zahl kleiner ist.\\
+    Der regul"are Ausdruck\[
+        n \mdef \ominus(
+            0v
+            + [1-9]([0-9]?)v    % up to  99.99
+            + 1[0-9]^2v         % up to 199.99
+            + 2[1-6][0-9]v      % up to 269.99
+            + 27[1-2]v          % up to 272.99
+            + 273.(0[0-9]+1[0-5])% up to 273.15
+            )
+        \] 
+    erf"ullt die Kriterien f"ur den numerischen Anteil von Temperaturangaben im 
+    negativen Bereich, da die erste Veroderung die Zahlen bis 99.99, die
+    Zweite die Zahlen bis 199.99, die Dritte die Zahlen bis 269.99, die Vierte
+    die Zahlen bis 272.99 und die F"unfte die Zahlen bis 273.15 abdeckt.\\
+\\
+Der Suffix der Temperaturangabe muss genau $\degr C$ sein.\\
+Der regul"are Ausdruck\[
+        c \mdef \degr C
+        \]
+    erf"ullt genau dieses Kriterium.\\
+\\
+Aus diesen Regel und den oben angegebenen Teilausdr"ucken ergibt sich 
+    $\alpha$ mit\[
+        \alpha \mdef (\oplus ? uv + n)c
+        \]
+
+\newpage
+% begin A2
 \subsubsection{\
     Seien $\Sigma = \{a,b\} 
         , L_1 = \{\sigma\sigma u | \sigma \in \Sigma, u \in \Sigma^*\}
@@ -172,19 +253,65 @@ Aus diesen Regel und den oben angegebenen Teilausdr"ucken ergibt sich
     Geben Sie regul"are Ausdr"ucke $\alpha_1,\alpha_2,\alpha$ an, mit
         $L_1 = L(\alpha_1), L_2 = L(\alpha_2), L = L_1 \cap L_2$ an.
     }
+
+%%%% Fehler
+\error
 \task{$L_1$}
 In $L_1$ enthaltene W"orter m"ussen mit mindest zwei beliebigen Zeichen aus 
     $\Sigma$ beginnen und k"onnen darauf folgend mit beliebig vielen
     Zeichen aus $\Sigma$ konkatiniert werden.\\
 Der entsprechende regul"are Ausdruck lautet:\[
-    \alpha_1 = (a+b)^2 (a+b)^*
+    \alpha_1 \mdef (a+b)^2 (a+b)^*
+    \]
+\task{$L_2$}
+In $L_2$ enthaltene W"orter fangen mit einem beliebigem Zeichen aus $\Sigma$ an
+    und enden mit einem gleichem Zeichen aus $\Sigma$. Zwischen diesen Zeichen
+    k"onnen beliebige Zeichen aus Sigma vorkommen.\\
+Der entsprechende erweiterte regul"are Ausdruck lautet:\[
+    \alpha_2 \mdef a(a+b)^*a + b(a+b)^*b
+    \]
+\task{TODO: Bewei"s ohne "Aquivalenz-Kette}
+\task{$L$}
+Im Folgendem wird die "Auquivalenz zwischen $\alpha_1$ und $\alpha_2$ und ferner
+    die Gleichheit von $L_1$ und $L_2$, sowie dann auch $L$ gezeigt.\\
+\gap
+\[
+    \alpha_1 = (a+b)^2(a+b)^*
+        \equiv (a+b)(a+b)(a+b)^*
+        \overset{{(\beta \beta^* \equiv \beta^* \beta)}}{\equiv}
+            (a+b)(a+b)^*(a+b)
+        \equiv \alpha_2
+    \]
+\gap
+Da $\alpha_1,\alpha_2$ "aquivalent und damit der Schnitt der durch sie erzeugten
+    Sprachen gleich den Sprachen selbst ist, muss
+    fuer den regul"aren Ausdruck $\alpha$ gelten, dass er nur W"orter
+    beschreibt, die auch $\alpha_1,\alpha_2$ beschreiben.\[
+    \alpha \equiv \alpha_1 \equiv \alpha_2
+    \]
+Dies ist etwa mit $\alpha = \alpha_1$ gegeben.\\
+Damit gilt \[
+    L(\alpha) = L(\alpha_1) = L(\alpha_2);
+    L(\alpha )= L(\alpha) \cap L(\alpha)
+        = L(\alpha_1) \cap L(\alpha_1)
+        = L(\alpha_1) \cap L(\alpha_2) 
+    \]
+
+%%%% Korrigiert
+\correction
+\task{$L_1$}
+In $L_1$ enthaltene W"orter m"ussen mit mindest zwei gleiche Zeichen aus 
+    $\Sigma$ beginnen und k"onnen darauf folgend mit beliebig vielen
+    Zeichen aus $\Sigma$ konkatiniert werden.\\
+Der entsprechende regul"are Ausdruck lautet:\[
+    \alpha_1 \mdef a^2 (a+b)^* + b^2 (a+b)^*
     \]
 \task{$L_2$}
 In $L_2$ enthaltene W"orter fangen mit einem beliebigem Zeichen aus $\Sigma$ an
     und enden mit einem beliebigem Zeichen aus $\Sigma$. Zwischen diesen Zeichen
     k"onnen beliebige Zeichen aus Sigma vorkommen.\\
 Der entsprechende erweiterte regul"are Ausdruck lautet:\[
-    \alpha_2 = (a+b)(a+b)^*(a+b)
+    \alpha_2 \mdef (a+b)(a+b)^*(a+b)
     \]
 \task{$L$}
 Im folgendem wird die "Auquivalenz zwischen $\alpha_1$ und $\alpha_2$ und ferner
@@ -204,13 +331,16 @@ Da $\alpha_1,\alpha_2$ "aquivalent und damit der Schnitt der durch sie erzeugten
     beschreibt, die auch $\alpha_1,\alpha_2$ beschreiben.\[
     \alpha \equiv \alpha_1 \equiv \alpha_2
     \]
-Dies ist etwa mit $\alpha = \alpha_1$ gegeben.\\
+Dies ist etwa mit $\alpha \mdef \alpha_1$ gegeben.\\
 Damit gilt \[
     L(\alpha) = L(\alpha_1) = L(\alpha_2);
     L(\alpha )= L(\alpha) \cap L(\alpha)
         = L(\alpha_1) \cap L(\alpha_1)
         = L(\alpha_1) \cap L(\alpha_2) 
     \]
+
+
+
 \subsubsection{\
     Nach dem Standard ISO 8601 wird ein Datum in der Form JJJJ-MM-TT notiert.
         Beispielsweise wird der Geburtstag Alan Turings, der 23. Juni 1912, 
@@ -222,7 +352,7 @@ Es sind folgende Regeln zu beachten:\\
 (i) Das Jahr ist 2018 und wird von einem $\ominus$ gefolgt\\
 \\
 Der regul"are Ausdruck\[
-    \beta = 2018 \ominus
+    \beta \mdef 2018 \ominus
     \]
 erfuellt genau diese Regel.\\
 \gap
@@ -233,10 +363,14 @@ erfuellt genau diese Regel.\\
     Monate und Tage sind mit einem $\ominus$ konkatiniert.
     Tage bestehen aus zwei Ziffern und k"onnen nicht kleiner als 01 sein.\\
 \\
-$m_{31} = (01+04+06+08+10+12), m_{30} = (03+05+07+09+11), m_{28} = 02$ seien die
-    regul"aren Ausdruecke fuer Monate mit 31, 30 oder 28 Tagen.\\
+$m_{31} \mdef (01+04+06+08+10+12)
+    , m_{30} \mdef (03+05+07+09+11)
+    , m_{28} \mdef 02$ 
+    seien die regul"aren Ausdruecke f"ur Monate mit 31, 30 oder 28 Tagen.\\
 Daraus ergibt sich fuer die Tage und Monate der regul"are Ausdruck\\
 \\
+% Fehler
+\error
 $\gamma = m_{31} \ominus (0(1-9)+(1+2)(0-9)+3(0+1))\\
     \tab + m_{30} \ominus (0(1-9)+(1+2)(0-9)+30))\\
     \tab + m_{28} \ominus (0(1-9)+1(0-9)+2(0-8))
@@ -244,5 +378,16 @@ $\gamma = m_{31} \ominus (0(1-9)+(1+2)(0-9)+3(0+1))\\
 \gap
 Der aus den Regeln resultierende regul"are Ausdruck ist\[
     \alpha = \beta (\gamma)
+    \]
+\gap
+%Korrigiert
+\correction
+$\gamma \mdef m_{31} \ominus (0[1-9]+(1+2)[0-9]+3(0+1))\\
+    \tab + m_{30} \ominus (0[1-9]+(1+2)[0-9]+30))\\
+    \tab + m_{28} \ominus (0[1-9]+1[0-9]+2[0-8])
+    $\\
+\gap
+Der aus den Regeln resultierende regul"are Ausdruck ist\[
+    \alpha \mdef \beta (\gamma)
     \]
 \end{document}
