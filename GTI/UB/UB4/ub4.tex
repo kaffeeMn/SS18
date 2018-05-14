@@ -189,9 +189,36 @@ Da dies f"ur beliebige n gilt, ist $L_2$ nicht regul"ar.\\
             edge [->, right] node {n} (ieren)
         (ieren)
             edge [->, loop above] node {$\Sigma$} (ieren)
-    ;}
+    ;}\\
+\\
+Bei einem NFA f"ur Zeichenkettensuche ist wichtig, dass der Automat genau dann
+    akzeptiert wenn eines der Zu suchenden W"orter als Teilwort enthalten ist.\\
+Ferner soll f"ur alle anderen W"orter "uber dem gegebenem Alphabet nicht 
+    akzeptiert wird.\\
+\\
+Das Verwerfen f"ur W"orter "uber dem Alphabet, die nicht eines der gesuchten
+    Teilw"orter enthalten ist durch die Transition 
+    $\eps \rao{\sigma \in \Sigma} \eps$ umgesetzt, da der Zustand $\eps$ nicht
+    akzeptierend ist und f"ur alle W"orter die keinen akzeptierenden Lauf haben
+    die Transition f"ur alle Zeichen angewandt werden kann.\\
+\\
+Das Akzeptieren erfolgt "uber das Sequenzzielle durchlaufen aller Zeichen f"ur
+    jedes gesuchte Wort.\\
+Dabei werden insbesondere die Pr"afixe $maxim, minim$ durch die L"aufe
+    $\delta^*(\eps, minim) = minim, \delta^*(\eps, maxim) = maxim$ realisierten,
+    von denen aus die gesuchten W"orter $maximal, maximieren, minimal$ "uber die
+    L"aufe 
+    $\delta^*(minim, al) = al,
+    \delta^*(maxim, al) = al, 
+    \delta^*(maxim, ieren) = ieren$, mit den akzeptierenden Zust"anden 
+    $al, ieren$, erreicht werden k"onnen.\\
+Da das einmalige einlesen eines Teilwortes, das einem gesuchten Wort entspricht 
+    bereits reicht, wird f"ur alle weiteren eingelesenen Zeichen in den 
+    akzeptierenden Zust"anden verweilt.\\
+\\
 
 % A2 b)
+\newpage
 \subsubsection\
 Konvention:\\
 Alle fehlenden Transitionen f"uhren in den Startzustand $\eps$ und werden f"ur 
@@ -249,6 +276,7 @@ Alle fehlenden Transitionen f"uhren in den Startzustand $\eps$ und werden f"ur
         (maxim)
             edge [->, above] node {a} (a)
             edge [->, above, bend left] node {i} (i)
+            edge [->, left, bend right] node {a} (ma)
 
         (a)
             edge [->, left] node {l} (al)
@@ -267,7 +295,36 @@ Alle fehlenden Transitionen f"uhren in den Startzustand $\eps$ und werden f"ur
             edge [->, above] node {n} (ieren)
         (ieren)
             edge [->, loop above] node {$\Sigma$} (ieren)
-    ;}
+    ;}\\
+Der Aufbau des DFA's erfolgt wie auch bei 4.2.1. Jedoch wurden noch transitionen
+    , die f"ur den Determinismus notwendendig sind erg"anzt.\\
+Zun"achst wurden die Transitionen der akzeptierenden Zust"ande, f"ur alle 
+    Zeichen, auf sich selbst beibehalten, da weiterhin nur ein gesuchtes 
+    Wort als Teilwort enthalten sein muss.\\
+Die Transition des Startzustandes auf sich selbst wird um die Zeichen, deren 
+    einlesen auch noch in einen anderen Zustand f"uhrt veringert.\\
+Damit sind Start und Akzeptierenden Zust"ande bereits deterministisch.\\
+\\
+F"ur die verbleibenden Zust"ande m"ussen noch Transitionen erg"anzt werden, die
+    nach Lesen eines Zeichens zu einem Pr"afix f"uhren, der durch einen Zustand
+    im Automaten repr"asentiert wird.\\
+Wurde zuvor ein $m$ eingelesen, so kann wieder mit den Pr"afixen ma und mi 
+    angefangen werden.
+    Daher die Transitionen 
+    $maxim \rao{a} ma, minim \rao{a} ma, minim \rao{i} mi$.\\
+F"ur den Zustand $maxim$ wird keine Transition in $mi$ angef"ugt, da $mi$ nicht 
+    akzeptierend ist und ein lauf zu $ieren$ noch m"oglich ist.
+    Daf"ur existiert die Transition $i \rao{n} min$, die nachtr"aglich zum 
+    Pr"afix min wechselt, da wir uns an der Stelle sicher sein k"onnen, dass
+    kein anderer Pr"afix mehr m"oglich ist.\\
+Zudem gibt es noch die M"oglichkeit, dass nach dem einlesen von ma wieder ein
+    Pr"afix max entsteht. Daher die Transition
+    $a \rao{x} max$.\\
+Alle Verbliebenen Transitionen je Zustand, f"uhren nach Konvention in den 
+    Startzustand.\\
+\\
+Damit existieren f"ur jeden Zustand Transitionen f"ur alle Zeichen aus dem 
+    Alphabet.\\
 
 % A 3
 \newpage
