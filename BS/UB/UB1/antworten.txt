@@ -1,0 +1,37 @@
+#############
+Theoriefragen
+#############
+
+
+1)
+==
+
+ls listet die Files und Ornder in einem Verzeichnis auf, der Pipeoperator
+leitet dessen output an den Befehl grep -x .pdf weiter, der die vorkomnisse von
+Woertern mit dem Teilwort .pdf Zaehlt.
+
+2)
+==
+
+Zombies sind Prozesse, die beendet wurden aber noch in der Systemtabelle 
+auftauchen. Sie nutzen geringfuegig Recourcen und fallen auch sonst negativ auf.
+
+3)
+==
+
+In C kann man den inhalt von Strings nicht vergleichen, da Strings Arrays von
+Characters sind. Die Gleichheit, bzw. Aequivalenz von Arrays muss je Anwendung
+selbst definiert werden.
+
+4)
+==
+
+Der Befehl
+
+for(;;) fork()
+
+ist eine Endlosschleife, da fuer for keine Variablen und Bedingungen angegeben
+wurden.
+
+Zudem werden exponentiell viele Prozesse Angelebt und das System stuerzt in
+der Regel durch Ueberlastung ab. (boom)
