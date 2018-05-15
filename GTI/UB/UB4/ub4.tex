@@ -277,7 +277,6 @@ Alle fehlenden Transitionen f"uhren in den Startzustand $\eps$ und werden f"ur
         (maxim)
             edge [->, above] node {a} (a)
             edge [->, above, bend left] node {i} (i)
-            edge [->, left, bend right] node {a} (ma)
 
         (a)
             edge [->, left] node {l} (al)
@@ -312,12 +311,14 @@ F"ur die verbleibenden Zust"ande m"ussen noch Transitionen erg"anzt werden, die
 Wurde zuvor ein $m$ eingelesen, so kann wieder mit den Pr"afixen ma und mi 
     angefangen werden.
     Daher die Transitionen 
-    $maxim \rao{a} ma, minim \rao{a} ma, minim \rao{i} mi$.\\
-F"ur den Zustand $maxim$ wird keine Transition nach $mi$ angef"ugt, da $mi$ 
-    nicht akzeptierend ist und ein lauf zu $ieren$ noch m"oglich ist.
-    Daf"ur existiert die Transition $i \rao{n} min$, die nachtr"aglich zum 
-    Pr"afix min wechselt, da wir uns an der Stelle sicher sein k"onnen, dass
-    kein anderer Pr"afix mehr m"oglich ist.\\
+    $minim \rao{a} ma, minim \rao{i} mi$.\\
+F"ur den Zustand $maxim$ werden keine Transitionen nach $mi, ma$ angef"ugt, 
+    da $mi, ma$ nicht akzeptierend sind und ein Lauf zu $ieren, al$ noch 
+    m"oglich ist.
+    Daf"ur existieren die Transition $i \rao{n} min a \rao{x} max$, 
+    die nachtr"aglich zu den
+    Pr"afix `min', `max' wechselen, da wir uns an der Stelle erst sicher sein 
+    k"onnen, dass kein anderer Pr"afix mehr m"oglich ist.\\
 Zudem gibt es noch die M"oglichkeit, dass nach dem einlesen von `ma' wieder ein
     Pr"afix `max' entsteht. Daher die Transition
     $a \rao{x} max$.\\
