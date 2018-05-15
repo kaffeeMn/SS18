@@ -1,12 +1,16 @@
 :TODO-STACK:
-    * SWT UB2
-    * SWT Abgabe
-    * GTI alte UBs 2-4 
+    * SWT Folien zu [Dekorierer, Kompositum, Beobachter]
+    * SWT UB3
+    * SWT UB4
+    * GTI Folien(KF Sprachen)
+    * GTI alte UBs 2-5 
     * EDV Folien zusammenfassen
 
 :IN REVIEW:
-    * BS UB1
-    * EA UB2
-    * GTI UB3
-    * IS UB2
-    * IS UB3
+    * GTI UB5
+    * SWT Abgabe2
+
+:READY FOR EVALUATION:
+
+:IN EVALUATION:
+    * GTI UB4
