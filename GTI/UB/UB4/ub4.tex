@@ -84,7 +84,7 @@ Aus $(i), (ii)$ folgt, dass $y$ mindestens ein Zeichen von $cu$ enth"alt.\\
 \\
 w"ahle $k=0$:\\
 \\
-1.Fall $y$ enth"alt nur das erste $c$:\\
+1.Fall $y$ enth"alt nur $c$:\\
 $xy^0z = xz \overset{\#_c(wz) \neq 2}{\not \in} L_1$\\
 \\
 2. Fall mindestens ein Zeichen von $u$ in $y$:\\
@@ -99,7 +99,7 @@ Da dies f"ur eine beliebiges n gilt, ist $L_1$ nicht regul"ar.\\
     }
 Es gelte:\\
 \\
-$w = xyz \text{, mit } w = ua^n, u=a^n\\
+$w = xyz \text{, mit } w = ua^n \overset{u=a^n}{=} a^n a^n\\
 |w| = 2n\\
 (i)     y \neq \eps\\
 (ii)    |xv| \leq n\\$
@@ -110,7 +110,8 @@ w"ahle $k=0$:
 \\
 $xy^0z = xz$\\
 Da nun $xz$ eine ungerade Anzahl an $a$ enth"alt, gibt es auch keine Aufteilung
-    von $xz = u'a^i$, sodass gelten w"urde $\#_a(u') = a^i$.\\
+    von $xz = u'a^n$, mit $u = u'\sigma, \sigma \in \{a\}$, sodass gelten 
+    w"urde $\#_a(u') = a^n$, da $\#_a(u') = n-1$.\\
 Daraus folgt: $wz \not \in L_2$\\
 \\
 Da dies f"ur beliebige n gilt, ist $L_2$ nicht regul"ar.\\
@@ -194,7 +195,7 @@ Da dies f"ur beliebige n gilt, ist $L_2$ nicht regul"ar.\\
 Bei einem NFA f"ur Zeichenkettensuche ist wichtig, dass der Automat genau dann
     akzeptiert wenn eines der Zu suchenden W"orter als Teilwort enthalten ist.\\
 Ferner soll f"ur alle anderen W"orter "uber dem gegebenem Alphabet nicht 
-    akzeptiert wird.\\
+    akzeptiert werden.\\
 \\
 Das Verwerfen f"ur W"orter "uber dem Alphabet, die nicht eines der gesuchten
     Teilw"orter enthalten ist durch die Transition 
@@ -202,7 +203,7 @@ Das Verwerfen f"ur W"orter "uber dem Alphabet, die nicht eines der gesuchten
     akzeptierend ist und f"ur alle W"orter die keinen akzeptierenden Lauf haben
     die Transition f"ur alle Zeichen angewandt werden kann.\\
 \\
-Das Akzeptieren erfolgt "uber das Sequenzzielle durchlaufen aller Zeichen f"ur
+Das Akzeptieren erfolgt "uber das sequenzielle Durchlaufen aller Zeichen f"ur
     jedes gesuchte Wort.\\
 Dabei werden insbesondere die Pr"afixe $maxim, minim$ durch die L"aufe
     $\delta^*(\eps, minim) = minim, \delta^*(\eps, maxim) = maxim$ realisierten,
@@ -296,8 +297,8 @@ Alle fehlenden Transitionen f"uhren in den Startzustand $\eps$ und werden f"ur
         (ieren)
             edge [->, loop above] node {$\Sigma$} (ieren)
     ;}\\
-Der Aufbau des DFA's erfolgt wie auch bei 4.2.1. Jedoch wurden noch transitionen
-    , die f"ur den Determinismus notwendendig sind erg"anzt.\\
+Der Aufbau des DFA's erfolgt wie auch bei 4.2.1. Jedoch wurden noch 
+    Transitionen, die f"ur den Determinismus notwendendig sind erg"anzt.\\
 Zun"achst wurden die Transitionen der akzeptierenden Zust"ande, f"ur alle 
     Zeichen, auf sich selbst beibehalten, da weiterhin nur ein gesuchtes 
     Wort als Teilwort enthalten sein muss.\\
@@ -312,13 +313,13 @@ Wurde zuvor ein $m$ eingelesen, so kann wieder mit den Pr"afixen ma und mi
     angefangen werden.
     Daher die Transitionen 
     $maxim \rao{a} ma, minim \rao{a} ma, minim \rao{i} mi$.\\
-F"ur den Zustand $maxim$ wird keine Transition in $mi$ angef"ugt, da $mi$ nicht 
-    akzeptierend ist und ein lauf zu $ieren$ noch m"oglich ist.
+F"ur den Zustand $maxim$ wird keine Transition nach $mi$ angef"ugt, da $mi$ 
+    nicht akzeptierend ist und ein lauf zu $ieren$ noch m"oglich ist.
     Daf"ur existiert die Transition $i \rao{n} min$, die nachtr"aglich zum 
     Pr"afix min wechselt, da wir uns an der Stelle sicher sein k"onnen, dass
     kein anderer Pr"afix mehr m"oglich ist.\\
-Zudem gibt es noch die M"oglichkeit, dass nach dem einlesen von ma wieder ein
-    Pr"afix max entsteht. Daher die Transition
+Zudem gibt es noch die M"oglichkeit, dass nach dem einlesen von `ma' wieder ein
+    Pr"afix `max' entsteht. Daher die Transition
     $a \rao{x} max$.\\
 Alle Verbliebenen Transitionen je Zustand, f"uhren nach Konvention in den 
     Startzustand.\\
