@@ -84,7 +84,7 @@ Aus $(i), (ii)$ folgt, dass $y$ mindestens ein Zeichen von $cu$ enth"alt.\\
 \\
 w"ahle $k=0$:\\
 \\
-1.Fall $y$ enth"alt nur $c$:\\
+1.Fall $y$ enth"alt $c$:\\
 $xy^0z = xz \overset{\#_c(wz) \neq 2}{\not \in} L_1$\\
 \\
 2. Fall mindestens ein Zeichen von $u$ in $y$:\\
@@ -109,8 +109,9 @@ Aus $(i),(ii)$ folgt f"ur $y$, dass $y$ nur Zeichen von u enth"alt.\\
 w"ahle $k=0$:
 \\
 $xy^0z = xz$\\
-Da nun $xz$ eine ungerade Anzahl an $a$ enth"alt, gibt es auch keine Aufteilung
-    von $xz = u'a^n$, mit $u = u'\sigma, \sigma \in \{a\}$, sodass gelten 
+Da nun $xz$ ein $a$ weniger enth"alt und ferner eine ungerade Anzahl von $a$
+    enth"alt, gibt es auch keine Aufteilung
+    von $xz = u'a^n$, mit $u = u'a$, sodass gelten 
     w"urde $\#_a(u') = a^n$, da $\#_a(u') = n-1$.\\
 Daraus folgt: $wz \not \in L_2$\\
 \\
@@ -128,15 +129,15 @@ Da dies f"ur beliebige n gilt, ist $L_2$ nicht regul"ar.\\
 
 
     \nd{state}                      {m}             {0,2}   {m}    ;
-    \nd{state}                      {mi}            {1,4}   {mi}   ;
-    \nd{state}                      {min}           {1,6}   {min}  ;
-    \nd{state}                      {mini}          {1,8}   {mini} ;
-    \nd{state}                      {minim}         {1,10}  {minim};
+    \nd{state}                      {mi}            {-1,4}   {mi}   ;
+    \nd{state}                      {min}           {-1,6}   {min}  ;
+    \nd{state}                      {mini}          {-1,8}   {mini} ;
+    \nd{state}                      {minim}         {-1,10}  {minim};
                                                                    ;
-    \nd{state}                      {ma}            {-1, 4} {ma}   ;
-    \nd{state}                      {max}           {-1, 6} {max}  ;
-    \nd{state}                      {maxi}          {-1, 8} {maxi} ;
-    \nd{state}                      {maxim}         {-1, 10}{maxim};
+    \nd{state}                      {ma}            {1, 4} {ma}   ;
+    \nd{state}                      {max}           {1, 6} {max}  ;
+    \nd{state}                      {maxi}          {1, 8} {maxi} ;
+    \nd{state}                      {maxim}         {1, 10}{maxim};
                                                                    ;
     \nd{state}                      {a}             {0,12}  {a}    ;
     \nd{accepting, state}           {al}            {0,14}  {al}   ;
@@ -156,22 +157,22 @@ Da dies f"ur beliebige n gilt, ist $L_2$ nicht regul"ar.\\
             edge [->, right] node {i} (mi)
             edge [->, right] node {a} (ma)
 
-        (mi)
-            edge [->, right] node {n} (min)
-        (min)
-            edge [->, right] node {i} (mini)
-        (mini)
-            edge [->, right] node {m} (minim)
-        (minim)
+        (ma)
+            edge [->, right] node {x}(max)
+        (max)                                
+            edge [->, right] node {i}(maxi)
+        (maxi)                               
+            edge [->, right] node {m}(maxim)
+        (maxim)
             edge [->, right] node {a} (a)
 
-        (ma)
-            edge [->, right] node {x} (max)
-        (max)
-            edge [->, right] node {i} (maxi)
-        (maxi)
-            edge [->, right] node {m} (maxim)
-        (maxim)
+        (mi)
+            edge [->, right] node {n}(min)    
+        (min)                                
+            edge [->, right] node {i}(mini)   
+        (mini)                               
+            edge [->, right] node {m}(minim)  
+        (minim)
             edge [->, right] node {a} (a)
             edge [->, right] node {i} (i)
 
@@ -222,11 +223,10 @@ Da das einmalige einlesen eines Teilwortes, das einem gesuchten Wort entspricht
 \newpage
 \subsubsection\
 Konvention:\\
-Alle fehlenden Transitionen f"uhren in den Startzustand $\eps$ und werden f"ur 
-    die "Ubersichtlichkeit nicht gezeichnet.\\
-Zudem f"uhren alle Transitionen unter einlesen des Zeichen $m$, die nicht 
+Alle fehlenden Transitionen unter einlesen des Zeichen $m$, die nicht 
     eingezeichnet wurden in den Zustand $m$.\\
-
+Zudem f"uhren alle restlichen fehlenden Transitionen in den Startzustand 
+    $\eps$ und werden f"ur die "Ubersichtlichkeit nicht gezeichnet.\\
 \automaton{
     \nd{initial, state}             {s}             {0,0}   {$\eps$};
 
@@ -243,7 +243,7 @@ Zudem f"uhren alle Transitionen unter einlesen des Zeichen $m$, die nicht
     \nd{state}                      {maxim}         {-2, 10}{maxim};
                                                                    ;
     \nd{state}                      {a}             {1,10}  {a}    ;
-    \nd{accepting, state}           {al}            {1,8}   {al}   ;
+    \nd{accepting, state}           {al}            {1,12}   {al}   ;
                                                                    ;
     \nd{state}                      {i}             {5, 12} {i}    ;
     \nd{state}                      {ie}            {7, 12} {ie}   ;
@@ -268,7 +268,7 @@ Zudem f"uhren alle Transitionen unter einlesen des Zeichen $m$, die nicht
             edge [->, left] node {m} (minim)
         (minim)
             edge [->, above] node {a} (a)
-            edge [->, left, bend right] node {i} (mi)
+            edge [->, above, bend left] node {i} (i)
 
         (ma)
             edge [->, left] node {x} (max)
@@ -278,13 +278,13 @@ Zudem f"uhren alle Transitionen unter einlesen des Zeichen $m$, die nicht
             edge [->, left] node {m} (maxim)
         (maxim)
             edge [->, above] node {a} (a)
-            edge [->, above, bend left] node {i} (i)
+            edge [->, above] node {i} (mi)
 
         (a)
             edge [->, left] node {l} (al)
             edge [->, left] node {x} (max)
         (al)
-            edge [->, loop below] node {$\Sigma$} (al)
+            edge [->, loop above] node {$\Sigma$} (al)
 
         (i)
             edge [->, above] node {e} (ie)
@@ -311,20 +311,17 @@ F"ur die verbleibenden Zust"ande m"ussen noch Transitionen erg"anzt werden, die
     nach Lesen eines Zeichens zu einem Pr"afix f"uhren, der durch einen Zustand
     im Automaten repr"asentiert wird.\\
 Wurde zuvor ein $m$ eingelesen, so wurde nach Konvention in den Zustan $m$ 
-    gewechselt und es kann wieder mit den Pr"afixen ma und mi 
+    gewechselt und es kann wieder mit dem Pr"afix ma
     angefangen werden.
-    Daher die Transitionen 
-    $minim \rao{a} ma, minim \rao{i} mi$.\\
-F"ur den Zustand $maxim$ werden keine Transitionen nach $mi, ma$ angef"ugt, 
-    da $mi, ma$ nicht akzeptierend sind und ein Lauf zu $ieren, al$ noch 
+    Daher die Transition
+    $maxim \rao{i} mi$.\\
+F"ur den Zustand $minim$ wird keine Transition nach $mi$ angef"ugt, 
+    da $mi$ nicht akzeptierend ist und ein Lauf zu $ieren, al$ noch 
     m"oglich ist.
-    Daf"ur existieren die Transition $i \rao{n} min a \rao{x} max$, 
+    Daf"ur existieren die Transition $i \rao{n} min, a \rao{x} max$, 
     die nachtr"aglich zu den
     Pr"afix `min', `max' wechselen, da wir uns an der Stelle erst sicher sein 
     k"onnen, dass kein anderer Pr"afix mehr m"oglich ist.\\
-Zudem gibt es noch die M"oglichkeit, dass nach dem einlesen von `ma' wieder ein
-    Pr"afix `max' entsteht. Daher die Transition
-    $a \rao{x} max$.\\
 Alle Verbliebenen Transitionen je Zustand, f"uhren nach Konvention in den 
     Startzustand.\\
 \\
@@ -344,7 +341,7 @@ Die Sprache $L(G)$ umfasst nur W"orter deren Zeichen von
     oder einem $b$ und einem $b$
     oder einem $c$ und einem $a$
     oder einem $c$ und einem $b$
-    eingeklammert werden, Bestandteil der Klammerung oder $c$'s, die 
+    eingeklammert werden, Bestandteil der Klammerung oder $c$'s, die
     inmitten aller Klammerungen stehen sind.\\
 \gap
 Diese informelle Beschreibung umfasst die Regeln:\\
