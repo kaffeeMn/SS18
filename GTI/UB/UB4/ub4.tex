@@ -224,6 +224,8 @@ Da das einmalige einlesen eines Teilwortes, das einem gesuchten Wort entspricht
 Konvention:\\
 Alle fehlenden Transitionen f"uhren in den Startzustand $\eps$ und werden f"ur 
     die "Ubersichtlichkeit nicht gezeichnet.\\
+Zudem f"uhren alle Transitionen unter einlesen des Zeichen $m$, die nicht 
+    eingezeichnet wurden in den Zustand $m$.\\
 
 \automaton{
     \nd{initial, state}             {s}             {0,0}   {$\eps$};
@@ -308,7 +310,8 @@ Damit sind Start und Akzeptierenden Zust"ande bereits deterministisch.\\
 F"ur die verbleibenden Zust"ande m"ussen noch Transitionen erg"anzt werden, die
     nach Lesen eines Zeichens zu einem Pr"afix f"uhren, der durch einen Zustand
     im Automaten repr"asentiert wird.\\
-Wurde zuvor ein $m$ eingelesen, so kann wieder mit den Pr"afixen ma und mi 
+Wurde zuvor ein $m$ eingelesen, so wurde nach Konvention in den Zustan $m$ 
+    gewechselt und es kann wieder mit den Pr"afixen ma und mi 
     angefangen werden.
     Daher die Transitionen 
     $minim \rao{a} ma, minim \rao{i} mi$.\\
