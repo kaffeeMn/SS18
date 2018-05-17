@@ -1,5 +1,4 @@
 :TODO-STACK:
-    * SWT Folien zu [Dekorierer, Kompositum, Beobachter]
     * SWT UB3
     * SWT UB4
     * GTI Folien(KF Sprachen)
