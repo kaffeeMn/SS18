@@ -68,46 +68,76 @@
 
 % A1
 \subsection\
-% A2 a)
+% A1 a)
 \subsubsection\
 $
 S   \rA \eps | S'\\
 S'  \rA D | H\\
-D   \rA AD'BB\\
-D'  \rA AD'BB | \eps\\
-H   \rA AAH'B\\
-H'  \rA AAH'B | \eps\\
-A   \rA a\\
-B   \rA b\\
+D   \rA aD'bb\\
+D'  \rA aD'bb | \eps\\
+H   \rA aaH'b\\
+H'  \rA aaH'b | \eps\\
 $
-% A2 b)
+% A1 b)
 \subsubsection\
 $
-S   \rA \eps | S'\\
-S'  \rA L | D | S'S'\\
-L   \rA [E_l] | []\\
-E_l \rA V | D | L | E_l,E_l\\
-D   \rA {E_d} | {}\\
-E_d \rA V:V | V:D | V:L | E_d,E_d\\
-V   \rA str | num | true | false | null\\ 
+S   \rA \eps | V\\
+V   \rA str | num | true | false | null | A | O\\
+O   \rA \{\} | \{V_o\}\\
+V_o \rA str:V | V_o, V_o\\
+A   \rA [] | [V_a]\\
+V_a \rA V | V_a,V_a\\
 $
 
 % A2
 \subsection\
 % A2 a)
 \subsubsection\
-nicht erzeugende variablen sind: $E$\\
-nicht erreichbare variablen sind: $A$\\
+Die Menge $V_e$ ergibt sich zu:\\
+$V_e = \{C, D, S, A,, B\}$\\
+Nicht erzeugende Variablen sind: $E$\\
+$E$ und Alle Regeln, die $E$ enthalten werden aus der Grammatik $G_0$ entfernt.\\
+\\
+Der Erreichbarkeitsgraph, der erzeugenden Variablen ergibt sich zu:\\
+\automaton{
+    \nd{state}{S}{0,0}{S};
+    \nd{state}{A}{2,-2}{A};
+    \nd{state}{B}{2,0}{B};
+    \nd{state}{C}{3,-1}{C};
+    \nd{state}{D}{0,-2}{D};
+    \path
+        (S)
+            edge [->] node {} (B)
+            edge [->] node {} (D)
+        (B)
+            edge [->, loop above] node {} (B)
+            edge [->] node {} (D)
+            edge [->] node {} (C)
+        (A)
+            edge [->, loop left] node {} (A)
+            edge [->] node {} (B)
+            edge [->] node {} (C)
+        ;
+    }\\
+nicht erreichbare Variablen sind: $A$\\
 \gap
 Daraus ergibt sich die Grammatik $G_0'$ mit:$\\
     S \rA Bb | Da\\
-    A \rA aAB | aA | C\\
     B \rA bBD | Bb | C\\
     C \rA c | D | B\\
     D \rA a\\
     $
 % A2 b)
 \subsubsection\
+CNF 2:\\
+$
+S \rA BBW_b | W_bW_c\\
+A \rA B | AW_a | W_c\\
+B \rA BABAW_a | BW_b | C\\ 
+C \rA W_c | A | B\\
+$\\
+\gap
+CNF 3:\\
 $
 S   \rA BS_1 | W_b W_c\\
 S_1 \rA BW_b\\
@@ -169,55 +199,67 @@ Wir f"uhren eine Induktion "uber die Wortl"ange $n = |w|$\\
 mit der Menge der Wortl"angen von $L(G)$:\[
         N_L = \{3n | n \in \mathbb{N}\}
     \]
-Aussage: $
-    \forall w \in L(G), |w| \in N_L:
-        w = a^nb^m, n,m \in \mathbb{N}, m \geq 2n)\\
-    $\\
+\gap
+Aussage: \[
+    \forall k \in N_L:
+        w = a^nb^m, w \in L(G), |w| = n:, (n,m \in \mathbb{N}, m \geq 2n)\\
+    \]\
 \\
 I.A.$\\
 \\
-n = 3 \text{, da $abb$ kleinstes Element der Sprache L(G) ist}\\
-\nexists w: w \not \equiv abb \land abb \in L(G)
-    \text{, da $S \RA abb$ die Einzige Ableitung f"ur W"orter der L"ange 3 ist.}\\
+k = 3 \text{, da $abb$ kleinstes Element der Sprache L(G) ist}\\
+\\
+\nexists w \in L(G): w \not \equiv abb \land |w| = 3
+    \text{
+        , da $S \RA^G abb$ 
+        die Einzige Ableitung f"ur W"orter der L"ange 3 ist.
+        }\\
 \\
 \text{F"ur $w=abb$:}\\
 \#_a(w) = 1, \#_b(w) = 2\\
 2 = 2*1\\
 \text{damit gilt auch } 2 \geq 2*1\\
-\text{dadurch wurde Gezeigt, dass die Aussage f"ur n=3 gilt.}\\
+\\
+\text{Dadurch wurde gezeigt, dass die Aussage f"ur k=3 gilt.}\\
 $\\
 \\
 I.V.\\
-Die Aussage gelte f"ur $n' \in N_L$ beliebig, aber fest.\\
+Die Aussage gelte f"ur $k' \in N_L$ beliebig, aber fest.\\
 \\
 I.S.$\\
-n = n'+3\\
-w_n \text{, mit: } |w| = n, w_n \in L(G)\\
-w_{n'} \text{, mit: } |w| = n', w_{n'} \in L(G)\\ 
+k = k'+3\\
+\\
+\text{definiert seien:}\\
+w_k \text{, mit: } |w| = k, w_k \in L(G)\\
+w_{k'} \text{, mit: } |w| = k', w_{k'} \in L(G)\\ 
+\\
 \text{nach der Ableitungsregel von $S$ gilt:}\\
-w_n = aw_{n'}bb\\
+w_k = aw_{k'}bb\\
 \\
 \text{nach der I.V. gilt:}\\
-\#_b(w_{n'}) \geq 2 * \#_a(w_{n'})\\
+\#_b(w_{k'}) \geq 2 * \#_a(w_{k'})\\
 \\
-\text{Aus:}\\
-\#_a(w_{n}) = 1 + \#_a(w_{n'})
-    \leq 2 * (1+\#_a(w_{n'}))
-    = 2 + 2 * \#_a(w_{n'})
-    \overset{I.V.}{\leq} 2 + \#_b(w_{n'})
-    = \#_b(w_n)\\
+\text{Daraus folgt:}\\
+\#_a(w_{k}) = 1 + \#_a(w_{k'})
+    \leq 2 * (1+\#_a(w_{k'}))
+    = 2 + 2 * \#_a(w_{k'})
+    \overset{I.V.}{\leq} 2 + \#_b(w_{k'})
+    = \#_b(w_k)\\
 \\
-\text{Damit wurde die Aussage f"ur beliebige $n \in N_L$ gezeigt.}\\
+\text{Damit wurde die Aussage f"ur beliebige $k \in N_L$ gezeigt.}\\
 $\\
 
 % A3 b)
 \subsubsection\
 Annahme $L \subseteq L(G)$:\\
+\\
+Daraus w"urde folgen:\\
 $
 \forall w \in L: w \in L(G)\\
+\\
 w \mdef abbb\\
 w \in L, w \not\in L(G) \lightning\\
-$
+$\\
 w ist nicht in $L(G)$, da $L(G)$ keine W"orter der L"ange 4 enth"alt.\\
 \\
 Damit gilt die Aussage nicht.
