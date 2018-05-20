@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-#
+import guzzle_sphinx_theme
+
+html_theme_path = guzzle_sphinx_theme.html_theme_path()#
 # Configuration file for the Sphinx documentation builder.
 #
 # This file does only contain a selection of the most common options. For a
@@ -19,7 +21,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'noname'
+project = 'BS'
 copyright = '2018, Max Springenberg'
 author = 'Max Springenberg'
 
@@ -78,7 +80,7 @@ pygments_style = 'sphinx'
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = 'guzzle_sphinx_theme'#alabaster'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -105,7 +107,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'nonamedoc'
+htmlhelp_basename = 'BSdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -132,7 +134,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'noname.tex', 'noname Documentation',
+    (master_doc, 'BS.tex', 'BS Documentation',
      'Max Springenberg', 'manual'),
 ]
 
@@ -142,7 +144,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'noname', 'noname Documentation',
+    (master_doc, 'BS', 'BS Documentation',
      [author], 1)
 ]
 
@@ -153,8 +155,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'noname', 'noname Documentation',
-     author, 'noname', 'One line description of project.',
+    (master_doc, 'BS', 'BS Documentation',
+     author, 'BS', 'One line description of project.',
      'Miscellaneous'),
 ]
 

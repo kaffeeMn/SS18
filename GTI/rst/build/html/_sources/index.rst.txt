@@ -15,8 +15,7 @@ Table Of Contents
 
 * :doc:`index`
 * :doc:`notes`
-* :doc:`p_ub00`
-* `UB1 <../../UB/UB1/ub1.pdf>`_
+* :doc:`ubs`
 
 
 

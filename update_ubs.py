@@ -2,11 +2,11 @@
 import os
 from copy import deepcopy
 
-def gen_rst(pdf_list, path_list):
+def gen_rst(pdf_list, path_list, header = ''):
     bullet_list = ''
     for i, pdf in enumerate(pdf_list):
         bullet_list += '    * :download:`{}<{}>`\n'.format(pdf, path_list[i])
-    return '''UBs\n===\n\n{}'''.format(bullet_list)
+    return '{}{}'.format(header, bullet_list)
 
 def crawl(dir):
     files = []
@@ -34,13 +34,18 @@ def crawl(dir):
 
     return files, paths
 
-def write(file_str, file_path):
-    for i, p in enumerate(file_path):
-        with open(p, 'w') as f:
-            f.close()
-        with open(p, 'a') as f:
-            f.write(file_str[i])
+def write(file_str, file_paths):
+    header = 'UBs\n===\n\n'
+    for fp in file_paths:
+        with open(fp, 'w') as f:
+            f.write(header)
+    for fs, fp in zip(file_str, file_paths):
+        with open(fp, 'a') as f:
+            f.write(fs)
 
 if __name__ == '__main__':
     files, paths = crawl('./')
     write(files, paths)
+    print('wrote:\n\n')
+    for f, p in zip(files, paths):
+        print('{}\t> {}\n'.format(f,p))
