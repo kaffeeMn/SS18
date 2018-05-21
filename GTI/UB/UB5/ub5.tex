@@ -70,24 +70,53 @@
 \subsection\
 % A1 a)
 \subsubsection\
+Eine m"ogliche L"osung die die Grammatik $G$ mit:\\
 $
-S   \rA \eps | S'\\
-S'  \rA D | H\\
-D   \rA aD'bb\\
-D'  \rA aD'bb | \eps\\
-H   \rA aaH'b\\
-H'  \rA aaH'b | \eps\\
-$
+\begin{array}{llll}
+    S   &\rA    &\eps   &| S'\\
+    S'  &\rA    &D      &| H\\
+    D   &\rA    &aDbb   &| abb\\
+    H   &\rA    &aaHb   &| aab\\
+\end{array}\\
+$\\
+Ein Beweis war nicht erforderlich, die Motivation hinter der Struktur der 
+    Grammatik ist:\\
+\\
+Ein Wort kann entweder halb oder doppelt soviele $b$'s, wie $a$'s haben.\\
+$L(G)$ enth"alt das leere wort, da $|\eps| = 0$ gilt und $0$ unter
+    Multiplikation idempotent ist ($2 * \#_a(\eps) = 2 * 0 = \#_b(\eps)$)\\
+Der Fall f"ur doppelt soviele $b$'s wie $a$'s ist durch die Variable $D$ 
+    abgedeckt, der Fall f"ur halb soviel durch die Variable $H$.\\
+Von der Startvariablen aus kann nur genau eine, oder keine der beiden Variablen 
+    erreicht werden, die Ableitungsb"aume der Variablen haben keine Gemeinsamen
+    Variablen.\\
+
 % A1 b)
 \subsubsection\
+Eine m"ogliche L"osung ist die Grammatik $G$ mit:\\
 $
-S   \rA \eps | V\\
-V   \rA str | num | true | false | null | A | O\\
-O   \rA \{\} | \{V_o\}\\
-V_o \rA str:V | V_o, V_o\\
-A   \rA [] | [V_a]\\
-V_a \rA V | V_a,V_a\\
-$
+\begin{array}{lllllllll}
+    V   &\rA    &str    &| num       &| true &| false &| null &| A &| O\\
+    O   &\rA    &\{\}   &| \{V_o\}\\
+    V_o &\rA    &str:V  &| V_o, V_o\\
+    A   &\rA    &[]     &| [V_a]\\
+    V_a &\rA    &V      &| V_a,V_a\\
+\end{array}\\
+$, mit der Startvariablen $V$.\\
+Ein Beweis wurde nicht gefordert, die Motivation hinter der Konstruktion der 
+    Grammatik ist:\\
+\\
+Es sollten genau die g"ultigen JSON $values$ beschrieben werden, damit ist das
+    leere Wort $\eps$ nicht in der Sprache $L(G)$, da anstelle dessen in JSON
+    $null$ verwendet wird.\\
+Ein $value$ kann aus einem der Terminalsymbolen $num, str, true false, null$ 
+    oder einem Array oder Objekt bestehen.\\
+Neben den trivialen Regeln f"ur die Terminalsymbole ergeben sich die Variablen
+    O, f"ur Objekte, und A, f"ur Arrays, durch die vorgeschriebene Syntax.\\
+Werte in einem Array sind durch je ein Komma getrennt und k"onnen s"amtliche
+    $values$ enthalten.\\
+Wertepaare in einem Objekt haben $str$ als Schl"ussel, ein $value$ als Wert
+    und sind wie auch im Array durch je einem Komma getrennt.\\
 
 % A2
 \subsection\
@@ -212,7 +241,7 @@ k = 3 \text{, da $abb$ kleinstes Element der Sprache L(G) ist}\\
 \nexists w \in L(G): w \not \equiv abb \land |w| = 3
     \text{
         , da $S \RA^G abb$ 
-        die Einzige Ableitung f"ur W"orter der L"ange 3 ist.
+        die einzige Ableitung f"ur W"orter der L"ange 3 ist.
         }\\
 \\
 \text{F"ur $w=abb$:}\\
@@ -240,8 +269,8 @@ w_k = aw_{k'}bb\\
 \#_b(w_{k'}) \geq 2 * \#_a(w_{k'})\\
 \\
 \text{Daraus folgt:}\\
-\#_a(w_{k}) = 1 + \#_a(w_{k'})
-    \leq 2 * (1+\#_a(w_{k'}))
+2 * \#_a(w_{k})
+    = 2 * (1+\#_a(w_{k'}))
     = 2 + 2 * \#_a(w_{k'})
     \overset{I.V.}{\leq} 2 + \#_b(w_{k'})
     = \#_b(w_k)\\
