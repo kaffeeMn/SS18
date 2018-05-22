@@ -87,7 +87,7 @@ $L(G)$ enth"alt das leere wort, da $|\eps| = 0$ gilt und $0$ unter
     Multiplikation idempotent ist ($2 * \#_a(\eps) = 2 * 0 = \#_b(\eps)$)\\
 Der Fall f"ur doppelt soviele $b$'s wie $a$'s ist durch die Variable $D$ 
     abgedeckt, der Fall f"ur halb soviel durch die Variable $H$.\\
-Von der Startvariablen aus kann nur genau eine, oder keine der beiden Variablen 
+Von dem Startsymbol aus kann nur genau eine, oder keine der beiden Variablen 
     erreicht werden, die Ableitungsb"aume der Variablen haben keine Gemeinsamen
     Variablen.\\
 
@@ -102,7 +102,7 @@ $
     A   &\rA    &[]     &| [V_a]\\
     V_a &\rA    &V      &| V_a,V_a\\
 \end{array}\\
-$, mit der Startvariablen $V$.\\
+$, mit dem Startsymbol $V$.\\
 Ein Beweis wurde nicht gefordert, die Motivation hinter der Konstruktion der 
     Grammatik ist:\\
 \\
@@ -156,7 +156,7 @@ Der Erreichbarkeitsgraph, der erzeugenden Variablen ergibt sich zu:\\
     }\\
 nicht erreichbare Variablen sind: $A$\\
 \\
-Dies kann z.B. durch BFS oder DFS auf der Startvariablen S im Graphen ermittelt
+Dies kann z.B. durch BFS oder DFS auf der Startsymbol S im Graphen ermittelt
     werden.\\
 \\
 A und alle Regeln, die A enthalten werden entfernt.\\
@@ -266,10 +266,16 @@ Sprache $L$ mit:$\\
     $\gap
 z.z.: $\forall w \in L(G): w = a^nb^m, n,m \in \mathbb{N}, m \geq 2n)$\\
 \\
-Wir f"uhren eine Induktion "uber die Wortl"ange $n = |w|$\\
-mit der Menge der Wortl"angen von $L(G)$:\[
+Wir f"uhren eine Induktion "uber die Wortl"ange $n = |w|$,
+    mit der Menge der Wortl"angen von $L(G)$:\[
         N_L = \{3n | n \in \mathbb{N}\}
     \]
+Ich nehme an, dass ich f"ur $N_L$ keinen Induktionsbeweis f"uhren muss, da
+    die Wortl"ange aller W"orter aus der Sprache der Grammatik mit der Einzigen 
+    Regel $S \rA abb | aSbb$ gleich 3 beim kleinsten, 3+3 beim n"achst kleinsten
+    Element ist und S induktiv definiert ist.\\
+Es geht mehr darum $k$ aus einer sinnvolleren Menge als $\mathbb{N}$ zu 
+    w"ahlen.\\
 \gap
 Aussage: \[
     \forall k \in N_L:
