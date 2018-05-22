@@ -123,13 +123,13 @@ Wertepaare in einem Objekt haben $str$ als Schl"ussel, ein $value$ als Wert
 % A2 a)
 \subsubsection\
 Die Menge $V_e$ ergibt sich zu:\\
-$V_e = \{C, D, S, A,, B\}$\\
+$V_e = \{C, D, S, A, B\}$\\
 Nicht erzeugende Variablen sind: $E$\\
 \\
-Die Menge wurde gebildet, indem zuerst alle Variablen mit regeln, die eine 
-    Regel mit nur Terminalsymbolen enthalten hinzugef"ugt. Darauf folgend
-    solange Variablen, die Regeln mit nur Variablen aus der Menge enthalten,
-    hinzugef"ugt, bis keine mehr gefunden werden.\\
+Die Menge wurde gebildet, indem zuerst alle Variablen, die eine 
+    Regel mit nur Terminalsymbolen enthalten hinzugef"ugt. Darauf folgend werden
+    solange Variablen, die Regeln mit nur Variablen aus der Menge $V_e$ 
+    enthalten, hinzugef"ugt, bis keine mehr gefunden werden.\\
 \\
 $E$ und Alle Regeln, die $E$ enthalten werden aus der Grammatik $G_0$ entfernt.\\
 \\
@@ -156,10 +156,10 @@ Der Erreichbarkeitsgraph, der erzeugenden Variablen ergibt sich zu:\\
     }\\
 nicht erreichbare Variablen sind: $A$\\
 \\
-Dies kann z.B. durch BFS oder DFS auf der Startsymbol S im Graphen ermittelt
-    werden.\\
+Dies kann z.B. durch BFS oder DFS ausgehend vom Startsymbol S im Graphen
+    ermittelt werden.\\
 \\
-A und alle Regeln, die A enthalten werden entfernt.\\
+$A$ und dessen Regeln werden entfernt.\\
 \gap
 Daraus ergibt sich die Grammatik $G_0$ mit:$\\
 \begin{array}{lllll}
@@ -205,8 +205,8 @@ $
 $\\
 Dabei werden die rechten Seiten so verk"urzt, dass die Bedingung gilt, dass
     nur je zwei Variablen konkateniert vorkommen.
-    Dies geschieht durch einf"ugen von Variablen, die Teilregeln ersetzen unter
-    dieser Bedingung.\\
+    Dies geschieht durch einf"ugen von Variablen, die Konkatenationen durch 
+    Regeln ersetzen unter Aufrecherhaltung der Bedingung.\\
 
 % A2 c)
 \subsubsection\
@@ -230,13 +230,15 @@ Die Menge $V'$ ergibt sich durch das Hinzuf"ugen von Variablen mit Regeln
     Regeln die zu Variablen f"uhren, die in der Menge $V'$ enthalten sind, bis
     keine mehr gefunden werden.\\
 Anschlie"send werden alle regeln mit $\eps$ entfernt und f"ur jede Regel mit
-    Variablen aus $V'$ neue Regeln ohne diese Variablen angef"ugt.\\
+    Variablen aus $V'$ auf der rechten Seite neue Regeln ohne diese Variablen
+    angef"ugt.\\
 \\
 CNF5:\\
 Die Grammatik $G_3$ ergibt sich nach CNF5 zu:\\
 $
 U = \{
-    (A,B), (A,W_a), (A,W_c), (A,W_b), (A,C)\\
+    (S, W_b), (S,W_c)
+    , (A,B), (A,W_a), (A,W_c), (A,W_b), (A,C)\\
     , (B,W_a), (B,W_b), (B,C), (B,W_c), (B,A)\\
     , (C,W_c), (C,A), (C,W_a), (C,B), (C,W_b)
     \}\\
@@ -258,7 +260,10 @@ Zus"atzlich werden alle nicht erreichbaren Regeln entfernt.\\
 
 % A3
 \subsection\
+
+
 % A3 a)
+
 \subsubsection\
 gegeben:\\
 Grammatik $G$ mit:$\\
@@ -266,82 +271,155 @@ Grammatik $G$ mit:$\\
     $\\
 Sprache $L$ mit:$\\
     L = \{a^nb^m | n,m \in \mathbb{N} \land m \geq 2n\}\\
-    $\gap
-z.z.: $\forall w \in L(G): w = a^nb^m, n,m \in \mathbb{N}, m \geq 2n)$\\
-\\
-Wir f"uhren eine Induktion "uber die Wortl"ange $n = |w|$,
-    mit der Menge der Wortl"angen von $L(G)$:\[
-        N_L = \{3n | n \in \mathbb{N}\}
-    \]
-Ich nehme an, dass ich f"ur $N_L$ keinen Induktionsbeweis f"uhren muss, da
-    die Wortl"ange aller W"orter aus der Sprache der Grammatik mit den einzigen 
-    Regeln $S \rA abb | aSbb$ gleich 3 beim kleinsten, 3+3 beim n"achst 
-    kleinsten Element ist und S induktiv definiert ist.\\
-Es geht mehr darum $k$ aus einer sinnvolleren Menge als $\mathbb{N}$ zu 
-    w"ahlen.\\
+    $
 \gap
-Aussage: \[
-    \forall k \in N_L:
-        w = a^nb^m, w \in L(G), |w| = n:, (n,m \in \mathbb{N}, m \geq 2n)\\
-    \]\
+Wir betrachten die Aussage:\[
+    \forall k \in \mathbb{N}, w \in L(G) \text{, mit w ist durch eine Ableitung
+        der L"ange $k$ aus $G$ abgeleitet} 
+        : w = a^nb^m , (m,n \in \mathbb{N}, m \geq 2n)
+    \]
 \\
-I.A.$\\
+Wir f"uhren einen Induktionsbeweis "uber die L"ange der Ableitung(sschritte) 
+    k.\\
+\gap
+I.A.\\
 \\
-k = 3 \text{, da $abb$ kleinstes Element der Sprache L(G) ist}\\
-\\
-\nexists w \in L(G): w \not \equiv abb \land |w| = 3
-    \text{
-        , da $S \RA^G abb$ 
-        die einzige Ableitung f"ur W"orter der L"ange 3 ist.
-        }\\
-\\
-\text{F"ur $w=abb$:}\\
-\#_a(w) = 1, \#_b(w) = 2\\
-2 = 2*1\\
-\text{damit gilt auch } 2 \geq 2*1\\
-\\
-\text{Dadurch wurde gezeigt, dass die Aussage f"ur k=3 gilt.}\\
-$\\
+$k = 1$\\
+Es existiert genau eine Ableitung der L"ange $1$ von $G$ mit:\[
+    S \RA_G abb
+    \], damit muss keine Fallunterscheidung betrachtet werden.\\
+damit muss $w$ gew"ahlt werden mit $w \mdef abb$\\
+es gilt:$\\
+    \#_a(w) = 1\\
+    \#_b(w) = 2 \geq 2 * 1 = 2 * \#_a(w)\\
+    $
+Damit gilt die Aussage f"ur k=1\\
 \\
 I.V.\\
-Die Aussage gelte f"ur $k' \in N_L$ beliebig, aber fest.\\
 \\
-I.S.$\\
-k = k'+3\\
+Die Aussage gelte f"ur $k' \in \mathbb{N}$, beliebig aber fest.\\ 
 \\
-\text{definiert seien:}\\
-w_k \text{, mit: } |w| = k, w_k \in L(G)\\
-w_{k'} \text{, mit: } |w| = k', w_{k'} \in L(G)\\ 
+I.S.\\
 \\
-\text{nach der Ableitungsregel von $S$ gilt:}\\
-w_k = aw_{k'}bb\\
+$k = k' + 1$\\
 \\
-\text{nach der I.V. gilt:}\\
-\#_b(w_{k'}) \geq 2 * \#_a(w_{k'})\\
-\\
-\text{Daraus folgt:}\\
-2 * \#_a(w_{k})
-    = 2 * (1+\#_a(w_{k'}))
-    = 2 + 2 * \#_a(w_{k'})
-    \overset{I.V.}{\leq} 2 + \#_b(w_{k'})
-    = \#_b(w_k)\\
-\\
-\text{Damit wurde die Aussage f"ur beliebige $k \in N_L$ gezeigt.}\\
-$\\
+Die Einzige Regel, die einen vorherigen Ableitungsschritt erlaubt ist:\[
+    S \rA aSbb
+    \], damit muss keine Fallunterscheidung betrachtet werden.\\
+Wir betrachten nun das abgeleitete Wort $w \mdef avbb$, mit $v$ als ein Wort,
+    dessen Ableitung die L"ange $k'$ hat.\\
+Nach I.V. gilt: $\#_b(v) \geq 2 * \#_a(v)$\\
+Ferner gilt:\\$
+    \#_b(w) = 2 + \#_b(v)\\
+    \#_a(w) = 1 +\#_a(v)\\
+    $
+Und damit dann auch:\\$
+    \#_a(w) \leq 2 * \#_a(w) 
+        = 2 * (1 +\#_a(v))
+        = 2 + 2 * \#_a(v))
+        \overset{I.V.}{\leq} 2 + \#_b(v) = \#_b(w)\\
+    $\\
+Damit wurde die Aussage auch f"ur $k = k' + 1$ gezeigt und gilt damit f"ur alle 
+    $k \in \mathbb{N}$\\
+
+%\subsubsection\
+%gegeben:\\
+%Grammatik $G$ mit:$\\
+%    S \rA aSbb | abb\\
+%    $\\
+%Sprache $L$ mit:$\\
+%    L = \{a^nb^m | n,m \in \mathbb{N} \land m \geq 2n\}\\
+%    $\gap
+%z.z.: $\forall w \in L(G): w = a^nb^m, n,m \in \mathbb{N}, m \geq 2n)$\\
+%\\
+%Wir f"uhren eine Induktion "uber die Wortl"ange $n = |w|$,
+%    mit der Menge der Wortl"angen von $L(G)$:\[
+%        N_L = \{3n | n \in \mathbb{N}\}
+%    \]
+%Ich nehme an, dass ich f"ur $N_L$ keinen Induktionsbeweis f"uhren muss, da
+%    die Wortl"ange aller W"orter aus der Sprache der Grammatik mit den einzigen 
+%    Regeln $S \rA abb | aSbb$ gleich 3 beim kleinsten, 3+3 beim n"achst 
+%    kleinsten Element ist und S induktiv definiert ist.\\
+%Es geht mehr darum $k$ aus einer sinnvolleren Menge als $\mathbb{N}$ zu 
+%    w"ahlen.\\
+%\gap
+%Aussage: \[
+%    \forall k \in N_L:
+%        w = a^nb^m, w \in L(G), |w| = n:, (n,m \in \mathbb{N}, m \geq 2n)\\
+%    \]\
+%\\
+%I.A.$\\
+%\\
+%k = 3 \text{, da $abb$ kleinstes Element der Sprache L(G) ist}\\
+%\\
+%\nexists w \in L(G): w \not \equiv abb \land |w| = 3
+%    \text{
+%        , da $S \RA^G abb$ 
+%        die einzige Ableitung f"ur W"orter der L"ange 3 ist.
+%        }\\
+%\\
+%\text{F"ur $w=abb$:}\\
+%\#_a(w) = 1, \#_b(w) = 2\\
+%2 = 2*1\\
+%\text{damit gilt auch } 2 \geq 2*1\\
+%\\
+%\text{Dadurch wurde gezeigt, dass die Aussage f"ur k=3 gilt.}\\
+%$\\
+%\\
+%I.V.\\
+%Die Aussage gelte f"ur $k' \in N_L$ beliebig, aber fest.\\
+%\\
+%I.S.$\\
+%k = k'+3\\
+%\\
+%\text{definiert seien:}\\
+%w_k \text{, mit: } |w| = k, w_k \in L(G)\\
+%w_{k'} \text{, mit: } |w| = k', w_{k'} \in L(G)\\ 
+%\\
+%\text{nach der Ableitungsregel von $S$ gilt:}\\
+%w_k = aw_{k'}bb\\
+%\\
+%\text{nach der I.V. gilt:}\\
+%\#_b(w_{k'}) \geq 2 * \#_a(w_{k'})\\
+%\\
+%\text{Daraus folgt:}\\
+%2 * \#_a(w_{k})
+%    = 2 * (1+\#_a(w_{k'}))
+%    = 2 + 2 * \#_a(w_{k'})
+%    \overset{I.V.}{\leq} 2 + \#_b(w_{k'})
+%    = \#_b(w_k)\\
+%\\
+%\text{Damit wurde die Aussage f"ur beliebige $k \in N_L$ gezeigt.}\\
+%$\\
 
 % A3 b)
 \subsubsection\
 Annahme $L \subseteq L(G)$:\\
 \\
 Daraus w"urde folgen:\\
-$
-\forall w \in L: w \in L(G)\\
+$\forall w \in L: w \in L(G)$\\
 \\
+Wir w"ahlen:\\$
 w \mdef abbb\\
 w \in L, w \not\in L(G) \lightning\\
 $\\
-w ist nicht in $L(G)$, da $L(G)$ unter anderem keine W"orter der L"ange 4 
-    enth"alt.\\
+w ist in $L$, da $w \equiv a^nb^m$, mit $n = 1, m = 3, m \geq 2n$ gilt.\\
+w ist nicht in $L(G)$, da $G$ $abbb$ nicht ableiten kann.\\
+Offensichtlich ist die Wortl"ange bei steigender Ableitungsl"ange monoton
+    steigend.\\
+\\
+Ableitung der L"ange 1:\\$
+    S \RA_G abb\\
+    abbb \not \equiv abb, |abbb| > |abb|
+    $\\
+\\
+Ableitung der L"ange 2:\\$
+    S \RA_G aSbb\\
+      \RA_G aabbbb\\
+    abbb \not \equiv aabbbb, |abbb| < |aabbbb|
+    $\\
+\\
+Damit gilt $abbb \not \in L(G)$\\
 \\
 Damit gilt die Aussage nicht.
 \end{document}
