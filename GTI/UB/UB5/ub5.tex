@@ -243,8 +243,8 @@ U = \{
 \gap
 \begin{array}{lllllllll}
     S   &\rA &W_bA  &| b &| BW_c &| c\\
-    A   &\rA &BW_a  &| a &| BW_b &| b &| c &| A &| AW_a\\
-    B   &\rA &BW_a  &| a &| BW_b &| b &| c &| AW_a\\
+    A   &\rA &BW_a  &| a &| BW_b &| b &| c &| A     &| AW_a\\
+    B   &\rA &BW_a  &| a &| BW_b &| b &| c &| AW_a  &| B\\
     W_a &\rA &a\\
     W_b &\rA &b\\
     W_c &\rA &c\\
@@ -252,6 +252,9 @@ U = \{
 $\\
 Die Menge U ergibt sich durch Variablen, die in einer Regel auf nur eine
     Variable verweisen, die nicht gleich ihnen selbst ist.\\
+Abschlie"send werden die Einheitsregeln durch die von ihnen erreichten 
+    nicht-Einheitsregeln ersetzt.\\
+Zus"atzlich werden alle nicht erreichbaren Regeln entfernt.\\
 
 % A3
 \subsection\
@@ -271,9 +274,9 @@ Wir f"uhren eine Induktion "uber die Wortl"ange $n = |w|$,
         N_L = \{3n | n \in \mathbb{N}\}
     \]
 Ich nehme an, dass ich f"ur $N_L$ keinen Induktionsbeweis f"uhren muss, da
-    die Wortl"ange aller W"orter aus der Sprache der Grammatik mit der Einzigen 
-    Regel $S \rA abb | aSbb$ gleich 3 beim kleinsten, 3+3 beim n"achst kleinsten
-    Element ist und S induktiv definiert ist.\\
+    die Wortl"ange aller W"orter aus der Sprache der Grammatik mit den einzigen 
+    Regeln $S \rA abb | aSbb$ gleich 3 beim kleinsten, 3+3 beim n"achst 
+    kleinsten Element ist und S induktiv definiert ist.\\
 Es geht mehr darum $k$ aus einer sinnvolleren Menge als $\mathbb{N}$ zu 
     w"ahlen.\\
 \gap
@@ -337,7 +340,8 @@ $
 w \mdef abbb\\
 w \in L, w \not\in L(G) \lightning\\
 $\\
-w ist nicht in $L(G)$, da $L(G)$ keine W"orter der L"ange 4 enth"alt.\\
+w ist nicht in $L(G)$, da $L(G)$ unter anderem keine W"orter der L"ange 4 
+    enth"alt.\\
 \\
 Damit gilt die Aussage nicht.
 \end{document}
