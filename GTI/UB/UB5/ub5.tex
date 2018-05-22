@@ -125,6 +125,12 @@ Wertepaare in einem Objekt haben $str$ als Schl"ussel, ein $value$ als Wert
 Die Menge $V_e$ ergibt sich zu:\\
 $V_e = \{C, D, S, A,, B\}$\\
 Nicht erzeugende Variablen sind: $E$\\
+\\
+Die Menge wurde gebildet, indem zuerst alle Variablen mit regeln, die eine 
+    Regel mit nur Terminalsymbolen enthalten hinzugef"ugt. Darauf folgend
+    solange Variablen, die Regeln mit nur Variablen aus der Menge enthalten,
+    hinzugef"ugt, bis keine mehr gefunden werden.\\
+\\
 $E$ und Alle Regeln, die $E$ enthalten werden aus der Grammatik $G_0$ entfernt.\\
 \\
 Der Erreichbarkeitsgraph, der erzeugenden Variablen ergibt sich zu:\\
@@ -149,53 +155,85 @@ Der Erreichbarkeitsgraph, der erzeugenden Variablen ergibt sich zu:\\
         ;
     }\\
 nicht erreichbare Variablen sind: $A$\\
+\\
+Dies kann z.B. durch BFS oder DFS auf der Startvariablen S im Graphen ermittelt
+    werden.\\
+\\
+A und alle Regeln, die A enthalten werden entfernt.\\
 \gap
-Daraus ergibt sich die Grammatik $G_0'$ mit:$\\
-    S \rA Bb | Da\\
-    B \rA bBD | Bb | C\\
-    C \rA c | D | B\\
-    D \rA a\\
-    $
+Daraus ergibt sich die Grammatik $G_0$ mit:$\\
+\begin{array}{lllll}
+    S &\rA  &Bb     &| Da\\
+    B &\rA  &bBD    &| Bb   &| C\\
+    C &\rA  &c      &| D    &| B\\
+    D &\rA  &a\\
+\end{array}
+$
 % A2 b)
 \subsubsection\
 CNF 2:\\
+Die Grammatik $G'$ ergibt sich nach CNF2 zu:\\
 $
-S \rA BBW_b | W_bW_c\\
-A \rA B | AW_a | W_c\\
-B \rA BABAW_a | BW_b | C\\ 
-C \rA W_c | A | B\\
+\begin{array}{lllll}
+    S   &\rA    &BBW_b      &| W_bW_c\\
+    A   &\rA    &B          &| AW_a &| W_c\\
+    B   &\rA    &BABAW_a    &| BW_b &| C\\ 
+    C   &\rA    &W_c        &| A    &| B\\
+\end{array}\\
 $\\
+Dabei wird f"ur jedes vorkommende Terminalsymbol $\sigma$ eine Variable 
+    $W_\sigma$ eingef"uhrt, die als einzige Regel das jeweilige Terminalsymbol 
+    enth"alt. Danach werden alle vorherigen Vorkommnisse des Terminalsymbols
+    durch die jeweilige Variable ersetzt.\\
 \gap
 CNF 3:\\
+die Grammatik $G_1$ ergibt sich nach CNF3 zu:\\
 $
-S   \rA BS_1 | W_b W_c\\
-S_1 \rA BW_b\\
-A   \rA B | AW_a | W_c\\
-B   \rA BB_1 | BW_b | C\\
-B_1 \rA AB_2\\
-B_2 \rA BB_3\\
-B_3 \rA AW_a\\
-C   \rA W_c | A | B\\
-W_a \rA a\\
-W_b \rA b\\
-W_c \rA c\\
-$
+\begin{array}{lllll}
+    S   &\rA &BS_1  &| W_bW_c\\
+    S_1 &\rA &BW_b\\
+    A   &\rA &B     &| AW_a &| W_c\\
+    B   &\rA &BB_1  &| BW_b &| C\\
+    B_1 &\rA &AB_2\\
+    B_2 &\rA &BB_3\\
+    B_3 &\rA &AW_a\\
+    C   &\rA &W_c   &| A    &| B\\
+    W_a &\rA &a\\
+    W_b &\rA &b\\
+    W_c &\rA &c\\
+\end{array}\\
+$\\
+Dabei werden die rechten Seiten so verk"urzt, dass die Bedingung gilt, dass
+    nur je zwei Variablen konkateniert vorkommen.
+    Dies geschieht durch einf"ugen von Variablen, die Teilregeln ersetzen unter
+    dieser Bedingung.\\
+
 % A2 c)
 \subsubsection\
 CNF4:
+Die Grammatik $G'$ ergibt sich nach CNF4 zu:\\
 $
 V' = \{C,B,A\}\\
 \gap
-S   \rA W_bA | W_b | BW_c | W_c\\
-A   \rA B | AW_a | W_a | W_c\\
-B   \rA BW_a| W_a | BW_b | W_b | C\\
-C   \rA W_c | A | B\\
-W_a \rA a\\
-W_b \rA b\\
-W_c \rA c\\
-$
+\begin{array}{lllllll}
+    S   &\rA &W_bA  &| W_b  &| BW_c &| W_c\\
+    A   &\rA &B     &| AW_a &| W_a  &| W_c\\
+    B   &\rA &BW_a  &| W_a  &| BW_b &| W_b  &| C\\
+    C   &\rA &W_c   &| A    &| B\\
+    W_a &\rA &a\\
+    W_b &\rA &b\\
+    W_c &\rA &c\\
+\end{array}
+$\\
+Die Menge $V'$ ergibt sich durch das Hinzuf"ugen von Variablen mit Regeln
+    die das Terminalsymbol $\eps$ enthalten und anschlie"send Variablen mit 
+    Regeln die zu Variablen f"uhren, die in der Menge $V'$ enthalten sind, bis
+    keine mehr gefunden werden.\\
+Anschlie"send werden alle regeln mit $\eps$ entfernt und f"ur jede Regel mit
+    Variablen aus $V'$ neue Regeln ohne diese Variablen angef"ugt.\\
 \\
 CNF5:\\
+Die Grammatik $G_3$ ergibt sich nach CNF5 zu:\\
 $
 U = \{
     (A,B), (A,W_a), (A,W_c), (A,W_b), (A,C)\\
@@ -203,13 +241,17 @@ U = \{
     , (C,W_c), (C,A), (C,W_a), (C,B), (C,W_b)
     \}\\
 \gap
-S   \rA W_bA | b | BW_c | c\\
-A   \rA BW_a| a | BW_b | b | c | A | AW_a\\
-B   \rA BW_a| a | BW_b | b | c | AW_a\\
-W_a \rA a\\
-W_b \rA b\\
-W_c \rA c\\
-$
+\begin{array}{lllllllll}
+    S   &\rA &W_bA  &| b &| BW_c &| c\\
+    A   &\rA &BW_a  &| a &| BW_b &| b &| c &| A &| AW_a\\
+    B   &\rA &BW_a  &| a &| BW_b &| b &| c &| AW_a\\
+    W_a &\rA &a\\
+    W_b &\rA &b\\
+    W_c &\rA &c\\
+\end{array}
+$\\
+Die Menge U ergibt sich durch Variablen, die in einer Regel auf nur eine
+    Variable verweisen, die nicht gleich ihnen selbst ist.\\
 
 % A3
 \subsection\
