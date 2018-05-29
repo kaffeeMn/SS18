@@ -109,12 +109,13 @@ Eine m"ogliche L"osung ist der PDA $A$ mit:\\
 \\
 $A$ wurde nach dem Vorgehen der Vorlesung konstruiert.\\
 \\
-$A$ Kann "uber seine $\eps$-Regeln die alle Regeln zu den jeweiligen Variablen
+$A$ Kann "uber seine $\eps$-Transitionen alle Regeln zu den jeweiligen Variablen
     aufbauen und damit auch s"amtliche Ableitungen von $G$.\\
 Die jeweilige gew"ahlte rechte Regelseite wird auf den Keller gelegt.\\
 Nach einlesen eines Terminalsymbols $\sigma \in \Sigma$ wird dieses vom Keller
     gel"oscht, wenn nun eine Variable oben auf dem Keller liegt kann diese
-    wieder abgeleitet werden.\\
+    wieder abgeleitet, bzw. ihre rechte Regelseite auf den Keller gepackt
+    werden.\\
 Insbesondere werden hierbei solange Terminalsymbole aus $\{b,c\}$ auf den Keller
     gelegt und nach Einlesen gel"oscht, bis ein a auf den Keller gelegt und 
     nach Einlesen gel"oscht wird. Dann k"onnen
@@ -123,12 +124,13 @@ Insbesondere werden hierbei solange Terminalsymbole aus $\{b,c\}$ auf den Keller
     den Keller gelegt und nach Einlsen gel"oscht. Damit gilt, dass 
     $A$ W"orter der Form $
     L(G) = \{u(av_ia)^k
-        | mit i \in \{1,\ldots n\}, v_i, u \in \{b,c\}^*, k \in \mathbb{N}_0
+        |\text{, mit} i \in \{1,\ldots n\}, v_i, u \in \{b,c\}^*, k \in \mathbb{N}_0\}
     $ mit leerem Keller akzeptiert und ferner $L(G)$ entscheidet.\\
 \\
     
 % A1 b)
 \subsubsection\
+\task{(i)}
 gegeben:\\
 $w_1 = ab, w_2 = abaa, w_3 = abaaaa$\\
 \gap
@@ -142,41 +144,41 @@ $A$ akzeptiert $w_1$ nicht, da nach dem Einlsen des letzten Zeichen $b$ ein b
 $w_2$:\\
 $A$ akzeptiert $w_2$ mit leerem Keller:$\\
 \begin{array}{lll}
-    (1,abaa,\#)     &\      &(1,baa, a\#)\\
-                    &\      &(1,aa, ba\#)\\
-                    &\      &(1,a, aba\#)\\
-                    &\      &(1,\eps, aaba\#)\\
-                    &\      &(2,\eps, aaba\#)\\
-                    &\      &(2,\eps, aba\#)\\
-                    &\      &(2,\eps, ba\#)\\
-                    &\      &(2,\eps, a\#)\\
-                    &\      &(2,\eps, \#)\\
-                    &\      &(2,\eps, \eps)\\
+    (1,abaa,\#)     &\vdash      &(1,baa, a\#)\\
+                    &\vdash      &(1,aa, ba\#)\\
+                    &\vdash      &(1,a, aba\#)\\
+                    &\vdash      &(1,\eps, aaba\#)\\
+                    &\vdash      &(2,\eps, aaba\#)\\
+                    &\vdash      &(2,\eps, aba\#)\\
+                    &\vdash      &(2,\eps, ba\#)\\
+                    &\vdash      &(2,\eps, a\#)\\
+                    &\vdash      &(2,\eps, \#)\\
+                    &\vdash      &(2,\eps, \eps)\\
 \end{array}
 $\\
 \\
 $w_3$:\\
 $A$ akzeptiert $w_3$ mit leerem Keller:$\\
 \begin{array}{lll}
-    (1,abaaaa,\#)     &\      &(1,baaaa, a\#)\\
-                    &\      &(1,aaaa, ba\#)\\
-                    &\      &(1,aaa, aba\#)\\
-                    &\      &(1,aa, aaba\#)\\
-                    &\      &(1,a, aaaba\#)\\
-                    &\      &(1,\eps, aaaaba\#)\\
-                    &\      &(2,\eps, aaaaba\#)\\
-                    &\      &(2,\eps, aaaba\#)\\
-                    &\      &(2,\eps, aaba\#)\\
-                    &\      &(2,\eps, aba\#)\\
-                    &\      &(2,\eps, ba\#)\\
-                    &\      &(2,\eps, a\#)\\
-                    &\      &(2,\eps, \#)\\
-                    &\      &(2,\eps, \eps)\\
+    (1,abaaaa,\#)   &\vdash      &(1,baaaa, a\#)\\
+                    &\vdash      &(1,aaaa, ba\#)\\
+                    &\vdash      &(1,aaa, aba\#)\\
+                    &\vdash      &(1,aa, aaba\#)\\
+                    &\vdash      &(1,a, aaaba\#)\\
+                    &\vdash      &(1,\eps, aaaaba\#)\\
+                    &\vdash      &(2,\eps, aaaaba\#)\\
+                    &\vdash      &(2,\eps, aaaba\#)\\
+                    &\vdash      &(2,\eps, aaba\#)\\
+                    &\vdash      &(2,\eps, aba\#)\\
+                    &\vdash      &(2,\eps, ba\#)\\
+                    &\vdash      &(2,\eps, a\#)\\
+                    &\vdash      &(2,\eps, \#)\\
+                    &\vdash      &(2,\eps, \eps)\\
 \end{array}
 $\\
 
 % A1 c)
-\subsubsection\
+\task{(ii)}
 Regeln f"ur die Variablen $X_{1,\tau,1}$ und $X_{1,\tau,2}$, mit $\tau \in \Gamma$
     waren bereits gegeben.\\
 F"ur die Variablen $X_{2,\tau,1}$, mit $\tau \in \Gamma$ gilt, dass sie nicht
@@ -185,7 +187,7 @@ Es w"urden sich ausschlie"slich Regeln, der Form:$
     X_{2,\tau,1} \rA X_{2,\tau',2} X_{2,\tau,1}
     $, mit $\tau, \tau' \in \Gamma$ ergeben, die keine endliche 
     Ableitung besitzen.\\
-Deshalb k"onnen diese nicht erzeugenden Variablen und Regeln, die sie enthalten
+Deshalb k"onnen diese nicht erzeugenden Variablen und Regeln, die sie enthalten,
     gestrichen werden.\\
 \\
 Die Regeln der Form $X_{2,\tau,2}$, mit $\tau \in \Gamma$ ergeben sich zu:$\\
@@ -231,45 +233,89 @@ Eine m"ogliche L"osung unter dem gew"ahlten Kelleralphabet ist:\\
                     $S_2$, nn : $\eps$\\
                 \end{tabular}
             }(q);
-    }
+    }\\
+\\
+Dieser Kellerautomat ist sinnvoll gew"ahlt, da ein leerer Spaziergung und ferner
+    das Beenden eines Spaziergangs durch $\eps, \# \eps$ m"oglich ist, Schritte
+    jeweils ein Symbol f"ur die Schrittrichtung auf den Keller legen oder eines
+    der Gegenrichtung l"oschen und die Spr"unge analog vorgehen, wobei zwei
+    Symbole der Gegenrichtung gel"oscht, eines der Gegenrichtung durch eines 
+    der Schrittrichtung ausgetauscht wird oder zwei der Schrittrichtung auf den
+    Keller gelegt werden.\\
+Dadurch l"asst sich das `"uber einem Punkt hin und her wandern' einfach
+    simulieren.\\
 
 % A3
 \subsection\
 % A3 a)
-\subsubsection{$L = \{a^lb^mc^pd^q | l,m,p,q \in \mathbb{N}_0, l<p \land q<m\}$}
-
+\subsubsection{$L_1 = \{a^lb^mc^pd^q | l,m,p,q \in \mathbb{N}_0, l<p \land q<m\}$}
+Wir zeigen, dass $L$ nicht kontextfrei ist nach dem Korrolar des Pumpinglemma
+    f"ur kontextfreie Sprachen.\\
+\\
+Insbesondere gilt f"ur alle W"orter aus $L$ die Eigenschaft:\[
+    \#_a(w)<\#_c(w) \land \#_b(w)<\#_d(w)
+\]
+\\
 wir w"ahlen:\[
-    z \mdef a^n b^{n+1} c^{n+1} d{n}
+    z \mdef a^n b^{n+1} c^{n+1} d^n
 \]
 wir betrachten Zerlegungen der Form $z = uvwxy$, mit:$\\
 vx \neq \eps\\
 |vwx| \leq n\\
 $\\
 Fortan werden 4 F"alle betrachtet:\\
-(i) mind. 1 $a$ in vx, aber kein $c$,
-    da zwischen $a$ und $c$ $n+1$ $b$'s liegen.\\
 
-(ii) mind. 1 $b$ in vx, aber kein $d$,
-    da zwischen $b$ und $d$ $n+1$ $c$'s liegen.\\
+(i) mindestens 1 $a$ in vx, aber kein $c$,
+    da zwischen $a$ und $c$ $(n+1)$ $b$'s liegen und $|vwx| \leq n$.\\
 
-(iii) mind. 1 $c$ in vx, aber kein $a$,
-    da zwischen $a$ und $c$ $n+1$ $b$'s liegen.\\
+(ii) mindestens 1 $b$ in vx, aber kein $d$,
+    da zwischen $b$ und $d$ $(n+1)$ $c$'s liegen und $|vwx| \leq n$.\\
 
-(iv) mind. 1 $d$ in vx, aber kein $b$,
-    da zwischen $a$ und $c$ $n+1$ $b$'s liegen.\\
+(iii) mindestens 1 $c$ in vx, aber kein $a$,
+    da zwischen $a$ und $c$ $(n+1)$ $b$'s liegen und $|vwx| \leq n$.\\
+
+(iv) mindestens 1 $d$ in vx, aber kein $b$,
+    da zwischen $d$ und $b$ $(n+1)$ $c$'s liegen und $|vwx| \leq n$.\\
 \gap
 (i)\\
+w"ahle $k=2$:\\
+Da $c$'s vom aufpumpen unaffektiert sind, bleiben $n+1$ $c$'s.\\
+Da mindestens ein $a$ aufgepumpt wird gilt, dass nun $\#_a(uv^kwx^ky) \geq n+1$
+    existieren, damit gilt $\#_a(uv^kwx^ky) \geq \#_c(uv^kwx^ky)$\\
+Dies verletzt die zuvor genannnte Eigenschaft von $L_1$.\\
 \\
 (ii)\\
+w"ahle $k=2$:\\
+Da $d$'s vom aufpumpen unaffektiert sind, bleiben $n+1$ $d$'s.\\
+Da mindestens ein $b$ aufgepumpt wird gilt, dass nun $\#_b(uv^kwx^ky) \geq n+1$
+    existieren, damit gilt $\#_b(uv^kwx^ky) \geq \#_d(uv^kwx^ky)$\\
+Dies verletzt die zuvor genannnte Eigenschaft von $L_1$.\\
 \\
 (iii)\\
+w"ahle $k=0$:\\
+Da $a$'s vom aufpumpen unaffektiert sind, bleiben $n$ $a$'s.\\
+Da mindestens ein $c$ abgepumpt wird gilt, dass nun $\#_c(uv^kwx^ky) \leq n$
+    existieren, damit gilt $\#_a(uv^kwx^ky) \geq \#_c(uv^kwx^ky)$\\
+Dies verletzt die zuvor genannnte Eigenschaft von $L_1$.\\
 \\
 (iv)\\
+w"ahle $k=0$:\\
+Da $b$'s vom aufpumpen unaffektiert sind, bleiben $n$ $b$'s.\\
+Da mindestens ein $b$ abgepumpt wird gilt, dass nun $\#_b(uv^kwx^ky) \leq n$
+    existieren, damit gilt $\#_b(uv^kwx^ky) \geq \#_d(uv^kwx^ky)$\\
+Dies verletzt die zuvor genannnte Eigenschaft von $L_1$.\\
 \\
+Da $vx$ mindestens ein Zeichen aus $\{a,b,c,d\}$ enthalten muss, wurde f"ur 
+    alle relevanten F"alle ein Pumpfaktor $k$ gefunden, f"ur den das
+    auf- oder abgepumpte Wort nichtmehr in $L_1$ ist.\\
+\\
+nach dem Korrolar zum Pumpinglemma ist $L_1$ damit nicht kontextfrei.\\
 
 % A3 b)
-\subsubsection{$L = \{ww^Rw | w \in \{a,b\}^*\}$}
-
+\subsubsection{$L_2 = \{ww^Rw | w \in \{a,b\}^*\}$}
+Wir zeigen, dass $L$ nicht kontextfrei ist nach dem Korrolar des Pumpinglemma
+    f"ur kontextfreie Sprachen.\\
+\\
 wir w"ahlen:\[
     z \mdef ba^nbba^nbba^nb
 \]
@@ -278,10 +324,36 @@ Wir betrachten Zerlegungen der Form $z = uvwxy$, mit:$\\
     |vwx| \leq n\\
 $\\
 Fortan werden 2 F"alle betrachtet:\\
-(i) mind. 1 $b$ in $vx$\\
-(ii) nur $a$'s in $vx$\\
+(i) genau ein $b$ und m"oglicher Weise $a$'s in $vx$, da zwischen $b$'s $n$ $a$'s 
+    liegen\\
+(ii) nur $a$'s und insbesondere mindestens ein $a$ in $vx$\\
 \gap
 (i)\\
+w"ahle $k=0$:\\
+Da genau ein $b$ abgepumpt wird und jedes Wort mit einem $b$ anf"angt und 
+    aufh"ort, kann das abgepumpte Wort $uwy$ nicht die Form $ww^Rw$ haben, da
+    ein b weniger und insbesondere 4 $b$'s "ubrig sind, die nicht gleichm"a"sig
+    auf 3 Teilw"orter aufgeteilt werden k"onnen.\\
 \\
 (ii)\\
+w"ahle $k=0$:\\
+Da im verbleibenden Fall nur $a$'s in $vx$ vorkommen und alle Teilw"orter aus 
+    der Definition von $L$ durch 
+    $b$'s geklammert sind, sind die $a$'s aus $vx$ aus einem Teilwort.\\
+Wir k"onnen annehmen, dass:\\
+    (1) alle Teilw"orter $w$, mit $z=ww^Rw$ unter unserem gew"ahlten Wort z 
+    die selbe Anzahl von $a$'s besitzt.\\
+\\
+Wenn nun mindestens ein $a$ abgepumpt wird, so besitzt ein Teilwort mindestens
+    ein $a$ weniger.\\
+Aus der Klammerung der Teilw"orter durch $b$'s folgt, dass die Zahl von $a$'s
+    der jeweiligen Teilw"orter gleich der zwischen den $b$'s stehenden 
+    Anzahl von $a$'s ist.\\
+Wie gesagt enth"alt ein Teilwort ein $a$ weniger, damit ist die Eigenschaft (1)
+    verletzt und das abgepumpte Wort nicht in der Sprache $L_2$.\\
+\\
+$vx$ mus ein $b$ oder nur $a$'s enthalten.\\
+\\
+nach dem Korrolar zum Pumpinglemma ist $L_2$ damit nicht kontextfrei.\\
+    
 \end{document}
