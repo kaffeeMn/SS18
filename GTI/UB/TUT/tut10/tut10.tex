@@ -1,0 +1,188 @@
+\documentclass{article}
+\textwidth=6in
+\hoffset=0in
+\voffset=0in
+
+
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+
+\usepackage{tikz}
+\usetikzlibrary{automata, arrows}
+\tikzset{initial text={}}
+
+\usepackage{pifont}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{ngerman}
+\usepackage[ampersand]{easylist}
+
+% needs to be updated
+\author{Max Springenberg}
+\title{\
+    Tutorium 10
+    }
+\setcounter{section}{10}
+\date{}
+
+% custom commands
+% \Theta \Omega \omega
+\newcommand{\tab}{\null\ \qquad}
+\newcommand{\gap}{\null\ \\ \\}
+\newcommand{\lA}{\leftarrow}
+\newcommand{\rA}{\rightarrow}
+\newcommand{\LA}{\Leftarrow}
+\newcommand{\RA}{\Rightarrow}
+\newcommand{\ue}{\infty}
+\newcommand{\eps}{\epsilon}
+\newcommand{\task}[1]{\textbf{#1} \\ \gap}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\newcommand{\degr}{\null \degree}
+\newcommand{\error}{\task{FEHLER:}}
+\newcommand{\correction}{\task{KORREKTUR:}}
+\newcommand{\mdef}{\overset{\text{def}}{=}}
+\newcommand{\rao}[1]{\overset{#1}{\rightarrow}}
+\newcommand{\automaton}[1]{
+    \begin{tikzpicture}
+    #1
+    \end{tikzpicture}
+    }
+\newcommand{\nd}[4]{
+    \node[#1](#2)at(#3){#4};
+    }
+
+
+% content
+\begin{document}
+% title page
+\maketitle
+\newpage
+% actual paper
+
+% A1
+\subsection\
+% A1 a)
+\subsubsection\
+\[
+    L = \{w \in \{a,b,c\}^* | \#_a(w) = \#_b(w) = \#_c(w)\}
+    \]
+Wir verwenden das Korrolar zum Pumpinglemma.\\
+\\
+$z$ sei gew"ahlt durch:\\
+$z \mdef a^nb^nc^n$\\
+\\
+Wir betrachten Zerlegungen der Form $z = uvwxy$, mit:\\
+$
+    (i) vx \neq \eps\\
+    (ii) |vwx| \leq n\\
+$\\
+Wir betrachten im folgenden die F"alle:\\
+(1) $vwx$ enth"alt mindestens ein $a$, aber kein $c$, da zwischen $a, c$ $n$ 
+    $b$'s liegen\\
+(2) $vwx$ enth"alt mindestens ein $b$ und entweder $a$'s oder $c$'s, 
+    da zwischen $a, c$ $n$ $b$'s liegen\\
+(3) $vwx$ enth"alt mindestens ein $c$, aber kein $a$, da zwischen $a, c$ $n$ 
+    $b$'s liegen\\
+\gap
+(1)\\
+w"ahle k=0:\\
+Nun wurde mindestens ein $a$ abgepumpt, aber kein $c$, damit gilt \[
+    \#_a(z) < \#_c(z)
+    \]
+Ferner ist das abgepumpte Wort damit nicht in der Sprache.\\
+\\
+(2)\\
+analog\\
+\\
+(3)\\
+analog\\
+\\
+Nach dem Pumping Lemma ist damit die Sprache $L$ nicht kontextfrei.\\
+
+% A1 b)
+\subsubsection\
+\[
+    L = \{a^kb^lc^m | k,l,m \in \mathbb{N} \land k<l<m\}
+    \]
+Wir verwenden das Korrolar zum Pumpinglemma.\\
+\\
+$z$ sei gew"ahlt durch:\\
+$z \mdef a^nb^{n+1}c^{n+2}$\\
+Wir betrachten Zerlegungen der Form $z = uvwxy$, mit:\\
+$
+    (i) vx \neq \eps\\
+    (ii) |vwx| \leq n\\
+$\\
+Wir betrachten im folgenden die F"alle:\\
+(1) $vwx$ enth"alt mindestens ein $a$, aber kein $c$, da zwischen $a, c$ $n+1$ 
+    $b$'s liegen\\
+(2) $vwx$ enth"alt mindestens ein $b$ und entweder $a$'s oder $c$'s, 
+    da zwischen $a, c$ $n+1$ $b$'s liegen\\
+(3) $vwx$ enth"alt mindestens ein $c$, aber kein $a$, da zwischen $a, c$ $n+1$ 
+    $b$'s liegen\\
+\gap
+(1)\\
+w"ahle k=2:\\
+1. nur $b$'s\\
+$z' \mdef uv^kwx^ky = a^{m}b^{n+1}c^{n+1}, m \geq n+1 \lightning$\\
+1. mindestens ein $a$ in $vx$\\
+Entweder illegale Folge von $a$'s auf $b$'s auf $a$'s auf $b$'s auf $c$'s, oder\\
+$z' \mdef uv^kwx^ky = a^mb^{m+1}c^{n+1}, m \geq n+1 \lightning$\\
+\\
+(2)\\
+w"ahle k=0\\
+analog\\
+\\
+(2)\\
+w"ahle k=0\\
+analog\\
+\\
+Nach dem Pumping Lemma ist damit die Sprache $L$ nicht kontextfrei.\\
+
+% A1 c)
+\subsubsection\
+\[
+    L = \{a^kba^kba^k | k\in \mathbb{N}\}
+    \]
+Wir verwenden das Korrolar zum Pumpinglemma.\\
+\\
+$z$ sei gew"ahlt durch:\\
+$z \mdef a^nba^nba^n$\\
+Wir betrachten Zerlegungen der Form $z = uvwxy$, mit:\\
+$
+    (i) vx \neq \eps\\
+    (ii) |vwx| \leq n\\
+$\\
+Wir betrachten im folgenden die F"alle:\\
+(1) $vwx$ enth"alt genau ein $b$, da zwischen $b$' $n$ 
+    $a$'s liegen\\
+(2) $vwx$ enth"alt nur $a$'s\\
+\gap
+(1)\\
+w"ahle k=0\\
+Insbesondere enth"alt jedes Wort aus $L$ genau zwei $b$'s, da nun ein $b$
+    abgepumpt wurde, ist nur noch eines im abgepumpten Wort und das Wort damit
+    auch nicht in der Sprache.\\
+\\
+(2)\\
+w"ahle k=0\\
+$a$'s sind durch $b$'s getrennt und, damit sind drei m"oglichen abgepumpten
+    W"orter \[
+        z'_1 = a^{k-1}ba^kba^k
+        , z'_2 = a^kba^{k-1}ba^k
+        , z'_3 = a^kba^kba^{k-1}
+        , k \in \mathbb{N}
+        \]
+nicht in der Sprache.\\
+\\
+Nach dem Pumping Lemma ist damit die Sprache $L$ nicht kontextfrei.\\
+
+% A2
+\subsection\
+% A2 a)
+\subsubsection\
+\end{document}
