@@ -38,7 +38,7 @@
 \newcommand{\RA}{\Rightarrow}
 \newcommand{\ue}{\infty}
 \newcommand{\eps}{\epsilon}
-\newcommand{\task}[1]{\textbf{#1} \\ \gap}
+\newcommand{\task}[1]{\textbf{#1} \gap}
 \newcommand{\cmark}{\ding{51}}
 \newcommand{\xmark}{\ding{55}}
 \newcommand{\degr}{\null \degree}
@@ -67,7 +67,11 @@
 \subsection\
 % A1 a)
 \subsubsection\
-\begin{tikzpicture}
+\begin{tikzpicture}[
+    baseline,
+    level/.style={level distance=20mm, sibling distance =35mm/#1},
+    scale=1
+]
     \node{S}
     child{
         child{node{aa}}
@@ -109,7 +113,104 @@ rechtsableitung analog...
 $a^6b^6$
 hat zwei verschiedene ableitungen.\\
 Man betrachte bereits die ersten Ableitungsschritte:\\
-$S \RA aaSbb$ und $S \RA AB$\\
-$\lightning$\\
+$S \RA aaSbb$ und $S \RA AB$ $\lightning$\\
 
+\subsection\
+$w \mdef$ [(0,1), (0,0)]\\
+\\
+\begin{tikzpicture}[
+    baseline,
+    level/.style={level distance=20mm, sibling distance =35mm/#1},
+    scale=1
+]
+    \node{S}
+    child{
+        child{node{ $[$ }}
+        child{node{E}}
+        child{
+            child{node{P}}
+            child{
+                child{node{$($}}
+                child{node{Z}
+                    child{node{0}}
+                }
+                child{node{,}}
+                child{node{Z}
+                    child{node{1}}
+                }
+                child{node{$)$}}
+            }
+            child{node{,}}
+            child{node{E}}
+            child{
+                child{node{$($}}
+                child{node{Z}
+                    child{node{0}}
+                }
+                child{node{,}}
+                child{node{Z}
+                    child{node{0}}
+                }
+                child{node{$)$}}
+            }
+        }
+        child{node{ $]$ }}
+    };
+\end{tikzpicture}\\
+\gap
+\task{Linksableitung}
+\begin{tabular}{lll}
+    L   &$\RA_{G,a}$    &[E]\\
+        &$\RA_{G,a}$    &[P,E]\\
+        &$\RA_{G,a}$    &[(Z,Z),E]\\
+        &$\RA_{G,a}$    &[(0,Z),E]\\
+        &$\RA_{G,a}$    &[(0,Z),E]\\
+        &$\RA_{G,a}$    &[(0,Z),P]\\
+        &$\RA_{G,a}$    &[(0,1),(Z,Z)]\\
+        &$\RA_{G,a}$    &[(0,1),(0,Z)]\\
+        &$\RA_{G,a}$    &[(0,1),(0,0)]\\
+\end{tabular}\\
+\\
+\task{Rechtsableitung}
+analog
+
+% b)
+\subsubsection\
+Die Sprache beschreibt Listen, die Tupelpaare aus $\{0,1\}$ enthalten.\\
+
+% A3
+\subsection\
+
+% a)
+\subsubsection\
+$G_a$ mit:\\
+$
+\begin{array}{llllll}
+    S&\rA&\eps|()|(S)|SS\\
+\end{array}
+$
+
+% b)
+\subsubsection\
+$G_b$ mit:\\
+$
+\begin{array}{llllll}
+    S   &\rA    &\eps   &| T    &| M    &|SS\\
+    M   &\rA    &\$\$   &| \$U\$\\
+    U   &\rA    &a      &| 0    &|UU\\
+    T   &\rA    &a      &| TT\\
+\end{array}
+$
+
+% c)
+\subsubsection\
+$G_c$ mit:\\
+$
+\begin{array}{llllllll}
+    S   &\rA    &\eps   &|()    &|(S)   &| T    &| M    &|SS\\
+    M   &\rA    &\$\$   &| \$U\$\\
+    U   &\rA    &a      &| 0    &| ()   &| (U)  &| UU\\
+    T   &\rA    &a      &| TT\\
+\end{array}
+$
 \end{document}
