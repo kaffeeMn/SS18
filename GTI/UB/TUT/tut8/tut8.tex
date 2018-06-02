@@ -1,0 +1,88 @@
+\documentclass{article}
+\textwidth=6in
+\hoffset=0in
+\voffset=0in
+
+
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+
+\usepackage{tikz}
+\usetikzlibrary{automata, arrows}
+\tikzset{initial text={}}
+
+\usepackage{pifont}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{ngerman}
+\usepackage[ampersand]{easylist}
+
+% needs to be updated
+\author{Max Springenberg, 177792}
+\title{\
+    Tutorium 8\\
+    }
+\setcounter{section}{8}
+\date{}
+
+% custom commands
+% \Theta \Omega \omega
+\newcommand{\tab}{\null\ \qquad}
+\newcommand{\gap}{\null\ \\ \\}
+\newcommand{\lA}{\leftarrow}
+\newcommand{\rA}{\rightarrow}
+\newcommand{\LA}{\Leftarrow}
+\newcommand{\RA}{\Rightarrow}
+\newcommand{\ue}{\infty}
+\newcommand{\eps}{\epsilon}
+\newcommand{\task}[1]{\textbf{#1} \gap}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\newcommand{\degr}{\null \degree}
+\newcommand{\error}{\task{FEHLER:}}
+\newcommand{\correction}{\task{KORREKTUR:}}
+\newcommand{\mdef}{\overset{\text{def}}{=}}
+\newcommand{\rao}[1]{\overset{#1}{\rightarrow}}
+\newcommand{\automaton}[1]{
+    \begin{tikzpicture}
+    #1
+    \end{tikzpicture}
+    }
+\newcommand{\nd}[4]{
+    \node[#1](#2)at(#3){#4};
+    }
+\newcommand{\SF}[15]{
+    $
+    \begin{array}{lllllllllllllll}
+        #1&#2&#3&#4&#5&#6&#7&#8&#9&#10&#11&#12&#13&#14&#15
+    \end{array}\\
+    $
+    }
+
+
+% content
+\begin{document}
+% title page
+\maketitle
+\newpage
+% actual paper
+
+% A1
+\subsection\
+
+% A2
+\subsection\
+% A2 a)
+\subsubsection\
+% A2 b)
+\subsubsection\
+% A2 c)
+\subsubsection\
+
+% A3
+\subsection\
+\SF{S}{aBb}{|bDbb}{\eps}
+\end{document}
