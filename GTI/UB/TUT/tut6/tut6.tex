@@ -1,0 +1,172 @@
+\documentclass{article}
+\textwidth=6in
+\hoffset=0in
+\voffset=0in
+
+
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+
+\usepackage{tikz}
+\usetikzlibrary{automata, arrows}
+\tikzset{initial text={}}
+
+\usepackage{pifont}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{ngerman}
+\usepackage[ampersand]{easylist}
+
+% needs to be updated
+\author{Max Springenberg}
+\title{\
+    Tutorium 6 
+    }
+\setcounter{section}{6}
+\date{}
+
+% custom commands
+% \Theta \Omega \omega
+\newcommand{\tab}{\null\ \qquad}
+\newcommand{\gap}{\null\ \\ \\}
+\newcommand{\lA}{\leftarrow}
+\newcommand{\rA}{\rightarrow}
+\newcommand{\LA}{\Leftarrow}
+\newcommand{\RA}{\Rightarrow}
+\newcommand{\ue}{\infty}
+\newcommand{\eps}{\epsilon}
+\newcommand{\task}[1]{\textbf{#1} \\ \gap}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\newcommand{\degr}{\null \degree}
+\newcommand{\error}{\task{FEHLER:}}
+\newcommand{\correction}{\task{KORREKTUR:}}
+\newcommand{\mdef}{\overset{\text{def}}{=}}
+\newcommand{\rao}[1]{\overset{#1}{\rightarrow}}
+\newcommand{\automaton}[1]{
+    \begin{tikzpicture}
+    #1
+    \end{tikzpicture}
+    }
+\newcommand{\nd}[4]{
+    \node[#1](#2)at(#3){#4};
+    }
+\renewcommand{\~}{\sim}
+
+
+% content
+\begin{document}
+% title page
+\maketitle
+\newpage
+% actual paper
+
+% A1
+\subsection\
+\subsubsection\
+$
+L= \Sigma^* - \{ b, abb \}\\
+\alpha = \eps + a + (a+b)(a+b)
+    + a(aa+ab+ba) 
+    + (a+b)^4 (a+b)^*
+    + b(a+b)(ab)^*\\
+$\\
+
+\subsubsection\
+$
+L= \Sigma^* - \{ a^na^n  | n \in \mathbb{N}_0\}\\
+\alpha = (a+b)^*b(a+b)^*
+    + a(aa)^*\\
+$
+
+\subsubsection\
+$
+L= \Sigma^* - \{ a^nb^n | n \in \mathbb{N}_0\}\\
+L' = \Sigma^* - L = \{ a^nb^n | n \in \mathbb{N}_0\}\\
+$\\
+Annahme: $L$ ist regul"ar. Dann auch $L'$.\\
+$L'$ ist eine Instanz der Klammersprache, damit nicht regul"ar.\\
+
+\subsubsection\
+$A$ mit $L(A) = \{w | \#_a(w) \equiv_2 1\}$\\
+\automaton{
+    \nd{initial, state}{0}{0,0}{0}
+    \nd{state, accepting}{1}{2,0}{1}
+    \path
+        (0)
+            edge [->, loop above] node {b} (0)
+            edge [->, bend right, above] node {a} (1)
+        (1)
+            edge [->, loop above] node {b} (1)
+            edge [->, bend right, above] node {a} (0)
+    ;
+    }\\
+\gap
+$A'$ mit $L(A') = h(\{w | \#_a(w) \equiv_2 1\})$\\
+\automaton{
+    \nd{initial, state}{0}{0,0}{0}
+    \nd{state}{0'}{0,-2}{0'}
+    \nd{state, accepting}{1}{2,0}{1}
+    \nd{state}{1'}{2,-2}{1'}
+    \path
+        (0)
+            edge [->, loop above] node {b} (0)
+            edge [->, bend right, above] node {c} (1)
+            edge [->, bend right, right] node {c} (0')
+        (0')
+            edge [->, bend right, right] node {d} (0)
+        (1)
+            edge [->, loop above] node {b} (1)
+            edge [->, bend right, above] node {c} (0)
+            edge [->, bend right, right] node {c} (1')
+        (1')
+            edge [->, bend right, right] node {d} (1)
+    ;
+    }\\
+
+% A3
+\subsection\
+
+% a)
+\subsubsection\
+\automaton{
+    \nd{initial, state, accepting}{e}{0,0}{$\eps$}
+    \nd{state}{a}{2,0}{a}
+    \path
+        (e)
+            edge [->, loop below] node {b,c} (e)
+            edge [->, bend right, above] node {a} (a)
+        (a)
+            edge [->, loop below] node {a,c} (a)
+            edge [->, bend right, above] node {b} (e)
+    ;
+    }\\
+mit :$\\
+$[$ \eps $]$ = L\\
+$[$ a $]$ = \Sigma^* - L\\
+\\
+a \not \~_L \eps, z = c\\
+$
+
+% b)
+\subsubsection\
+\task{Nach Pumpinglemma}
+\\
+Beweisskizze:\\
+w"ahle:\\
+$w \mdef (ab)^nc^n$\\
+\\
+Nur Zeichen aus $(ab)^n$ in y\\
+\\
+\task{Nach "Aquivalenzklassen}
+Sei $w \mdef (w_i)$, mit $w_i = (a)^i, i \in \mathbb{N}_0$ eine unendliche
+    Folge von W"ortern.\\
+\\
+Dann gilt:\[
+    \forall i,j \in \mathbb{N}_0, i<j: w_i \not \~_L w_j, z = c^i\\
+    \]
+Ferner ist $L$ damit nicht regul"ar\\
+\end{document}
