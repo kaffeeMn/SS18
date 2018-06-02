@@ -1,0 +1,216 @@
+\documentclass{article}
+\textwidth=6in
+\hoffset=0in
+\voffset=0in
+
+
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+
+\usepackage{tikz}
+\usetikzlibrary{automata, arrows}
+\tikzset{initial text={}}
+
+\usepackage{pifont}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{ngerman}
+\usepackage[ampersand]{easylist}
+
+% needs to be updated
+\author{Max Springenberg, 177792}
+\title{\
+    Tutorium 7\\
+    }
+\setcounter{section}{7}
+\date{}
+
+% custom commands
+% \Theta \Omega \omega
+\newcommand{\tab}{\null\ \qquad}
+\newcommand{\gap}{\null\ \\ \\}
+\newcommand{\lA}{\leftarrow}
+\newcommand{\rA}{\rightarrow}
+\newcommand{\LA}{\Leftarrow}
+\newcommand{\RA}{\Rightarrow}
+\newcommand{\ue}{\infty}
+\newcommand{\eps}{\epsilon}
+\newcommand{\task}[1]{\textbf{#1} \gap}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\newcommand{\degr}{\null \degree}
+\newcommand{\error}{\task{FEHLER:}}
+\newcommand{\correction}{\task{KORREKTUR:}}
+\newcommand{\mdef}{\overset{\text{def}}{=}}
+\newcommand{\rao}[1]{\overset{#1}{\rightarrow}}
+\newcommand{\automaton}[1]{
+    \begin{tikzpicture}
+    #1
+    \end{tikzpicture}
+    }
+\newcommand{\nd}[4]{
+    \node[#1](#2)at(#3){#4};
+    }
+
+
+% content
+\begin{document}
+% title page
+\maketitle
+\newpage
+% actual paper
+
+% A1
+\subsection\
+% A1 a)
+\subsubsection\
+\begin{tikzpicture}[
+    baseline,
+    level/.style={level distance=20mm, sibling distance =35mm/#1},
+    scale=1
+]
+    \node{S}
+    child{
+        child{node{aa}}
+        child{
+            node{S}
+            child{
+                child{
+                    node{A}
+                    child{node{aa}}
+                }
+                child{
+                    node{B}
+                    child{node{bb}}
+                    child{
+                        node{B}
+                        child{node{bbb}}
+                    }
+                    child{node{b}}
+                }
+            }
+        }
+        child{node{bb}}
+    }
+    ;
+\end{tikzpicture}
+
+% A1 b)
+\subsubsection\
+$
+S \RA^G_l aaSbb\\
+S \RA^G_l a^4ABb^4\\
+S \RA^G_l a^4Bbb\\
+S \RA^G_l a^4bbSb^4\\
+S \RA^G_l a^4b^8\\
+$
+rechtsableitung analog...
+% A1 c)
+\subsubsection\
+$a^6b^6$
+hat zwei verschiedene ableitungen.\\
+Man betrachte bereits die ersten Ableitungsschritte:\\
+$S \RA aaSbb$ und $S \RA AB$ $\lightning$\\
+
+\subsection\
+$w \mdef$ [(0,1), (0,0)]\\
+\\
+\begin{tikzpicture}[
+    baseline,
+    level/.style={level distance=20mm, sibling distance =35mm/#1},
+    scale=1
+]
+    \node{S}
+    child{
+        child{node{ $[$ }}
+        child{node{E}}
+        child{
+            child{node{P}}
+            child{
+                child{node{$($}}
+                child{node{Z}
+                    child{node{0}}
+                }
+                child{node{,}}
+                child{node{Z}
+                    child{node{1}}
+                }
+                child{node{$)$}}
+            }
+            child{node{,}}
+            child{node{E}}
+            child{
+                child{node{$($}}
+                child{node{Z}
+                    child{node{0}}
+                }
+                child{node{,}}
+                child{node{Z}
+                    child{node{0}}
+                }
+                child{node{$)$}}
+            }
+        }
+        child{node{ $]$ }}
+    };
+\end{tikzpicture}\\
+\gap
+\task{Linksableitung}
+\begin{tabular}{lll}
+    L   &$\RA_{G,a}$    &[E]\\
+        &$\RA_{G,a}$    &[P,E]\\
+        &$\RA_{G,a}$    &[(Z,Z),E]\\
+        &$\RA_{G,a}$    &[(0,Z),E]\\
+        &$\RA_{G,a}$    &[(0,Z),E]\\
+        &$\RA_{G,a}$    &[(0,Z),P]\\
+        &$\RA_{G,a}$    &[(0,1),(Z,Z)]\\
+        &$\RA_{G,a}$    &[(0,1),(0,Z)]\\
+        &$\RA_{G,a}$    &[(0,1),(0,0)]\\
+\end{tabular}\\
+\\
+\task{Rechtsableitung}
+analog
+
+% b)
+\subsubsection\
+Die Sprache beschreibt Listen, die Tupelpaare aus $\{0,1\}$ enthalten.\\
+
+% A3
+\subsection\
+
+% a)
+\subsubsection\
+$G_a$ mit:\\
+$
+\begin{array}{llllll}
+    S&\rA&\eps|()|(S)|SS\\
+\end{array}
+$
+
+% b)
+\subsubsection\
+$G_b$ mit:\\
+$
+\begin{array}{llllll}
+    S   &\rA    &\eps   &| T    &| M    &|SS\\
+    M   &\rA    &\$\$   &| \$U\$\\
+    U   &\rA    &a      &| 0    &|UU\\
+    T   &\rA    &a      &| TT\\
+\end{array}
+$
+
+% c)
+\subsubsection\
+$G_c$ mit:\\
+$
+\begin{array}{llllllll}
+    S   &\rA    &\eps   &|()    &|(S)   &| T    &| M    &|SS\\
+    M   &\rA    &\$\$   &| \$U\$\\
+    U   &\rA    &a      &| 0    &| ()   &| (U)  &| UU\\
+    T   &\rA    &a      &| TT\\
+\end{array}
+$
+\end{document}

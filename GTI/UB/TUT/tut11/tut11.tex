@@ -1,0 +1,153 @@
+\documentclass{article}
+\textwidth=6in
+\hoffset=0in
+\voffset=0in
+
+
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+
+\usepackage{tikz}
+\usetikzlibrary{automata, arrows}
+\tikzset{initial text={}}
+
+\usepackage{pifont}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{ngerman}
+\usepackage[ampersand]{easylist}
+
+% needs to be updated
+\author{Max Springenberg}
+\title{\
+    Tutorium 11
+    }
+\setcounter{section}{11}
+\date{}
+
+% custom commands
+% \Theta \Omega \omega
+\newcommand{\tab}{\null\ \qquad}
+\newcommand{\gap}{\null\ \\ \\}
+\newcommand{\lA}{\leftarrow}
+\newcommand{\rA}{\rightarrow}
+\newcommand{\LA}{\Leftarrow}
+\newcommand{\RA}{\Rightarrow}
+\newcommand{\ue}{\infty}
+\newcommand{\eps}{\epsilon}
+\newcommand{\task}[1]{\textbf{#1} \\ \gap}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\newcommand{\degr}{\null \degree}
+\newcommand{\error}{\task{FEHLER:}}
+\newcommand{\correction}{\task{KORREKTUR:}}
+\newcommand{\mdef}{\overset{\text{def}}{=}}
+\newcommand{\rao}[1]{\overset{#1}{\rightarrow}}
+\newcommand{\automaton}[1]{
+    \begin{tikzpicture}
+    #1
+    \end{tikzpicture}
+    }
+\newcommand{\nd}[4]{
+    \node[#1](#2)at(#3){#4};
+    }
+
+
+% content
+\begin{document}
+% title page
+\maketitle
+\newpage
+% actual paper
+
+% A1
+\subsection\
+siehe Blatt.
+
+% A2
+\subsection\
+Regeln f"ur LL(1) Grammatiken:\\
+
+    (i)$FIRST(\alpha) \cap FIRST(\beta) = \emptyset$\\
+
+    (ii)$(\alpha \RA^* \eps)$, dann $FOLLOW(X) \cap FIRST(\beta) = \emptyset$\\
+
+% A2 a)
+\subsubsection\
+$G_a$ mit:\\
+$
+\begin{tabular}{lllll}
+    S   &$\rA$    &EF\\
+    A   &$\rA$    &$\eps$\\
+    B   &$\rA$    &bACD\\
+    C   &$\rA$    &cC     &$|$ $\eps$\\
+    D   &$\rA$    &d\\
+    E   &$\rA$    &adB    &$|$cE    &$|$dE\\
+    F   &$\rA$    &eSf    &$|$c\\
+\end{tabular}\\
+$\\
+\task{FIRST}
+$
+FIRST(S) = \{a,cd\}\\
+FIRST(A) = \{\eps\}\\
+FIRST(B) = \{b\}\\
+FIRST(C) = \{c,\eps\}\\
+FIRST(D) = \{d\}\\
+FIRST(E) = \{a,c,d\}\\
+FIRST(F) = \{e,c\}\\
+$\\
+(i) gilt f"ur alle Regeln.\\
+\gap
+\task{FOLLOW}
+$
+FOLLOW(S) = \{f\}\\
+FOLLOW(A) = \{c\}\\
+FOLLOW(B) = \emptyset\\
+FOLLOW(C) = \{d\}\\
+FOLLOW(D) = \emptyset\\
+FOLLOW(E) = \{e,c\}\\
+FOLLOW(F) = \emptyset\\
+$\\
+(ii) nur $A$ zu betrachten, da $A$ nicht alleine auf einer rechten Regelseite
+    vorkommt gibt es keine Ableitung f"ur $\eps$ und ferner ist (ii) automatisch
+    erf"ullt.\\
+
+% A2 b)
+\subsubsection\
+$G_b$ mit:\\
+$
+\begin{tabular}{llll}
+    S   &$\rA$    &dBeSA  &$|$ $mC$\\
+    A   &$\rA$    &cS     &$|$ $\eps$\\
+    B   &$\rA$    &ab\\
+    C   &$\rA$    &AB     &$|$SC\\
+\end{tabular}\\
+$\\
+\task{FIRST}
+$
+FIRST(S) = \{d, m\}\\
+FIRST(A) = \{c, \eps\}\\
+FIRST(B) = \{a\}\\
+FIRST(C) = \{c, \eps, d, m\}\\
+$\\
+(i) gilt f"ur alle Regeln\\
+\gap
+\task{FOLLOW}
+$
+FOLLOW(S) = \{c, a\}\\
+FOLLOW(A) = \{a,c\}\\
+FOLLOW(B) = \{e\}\\
+FOLLOW(C) = \emptyset\\
+$\\
+(ii) $A \rA \eps|cS$ verletzt mit \[
+    FOLLOW(A) \cap FIRST(cS) = \{c\}
+    \]
+die Bedingung.\\
+\\
+($FOLLOW(A)$ enth"alt $c$ und ferner $FIRST(A)$ 
+    wegen $S \RA dBeSA \RA dBedBeSAA$)\\
+
+\end{document}
