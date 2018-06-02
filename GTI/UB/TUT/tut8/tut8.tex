@@ -54,13 +54,13 @@
 \newcommand{\nd}[4]{
     \node[#1](#2)at(#3){#4};
     }
-\newcommand{\SF}[15]{
-    $
-    \begin{array}{lllllllllllllll}
-        #1&#2&#3&#4&#5&#6&#7&#8&#9&#10&#11&#12&#13&#14&#15
-    \end{array}\\
-    $
+\makeatletter
+\newcommand{\SF}[1]{
+    #1&\rA&\checkNextRule
     }
+\newcommand{\checkNextRule}[1]{&#1 \@ifnextchar\bgroup{\nextRule}{\\}}
+\newcommand{\nextRule}[1]{&| #1 \@ifnextchar\bgroup{\nextRule}{\\}}
+\makeatother
 
 
 % content
@@ -72,7 +72,118 @@
 
 % A1
 \subsection\
-
+$G$ mit:$\\
+\begin{array}{llllllllllll}
+    \SF{S}{aBb}{bDbb}{\eps}
+    \SF{A}{AEF}{\eps}
+    \SF{B}{AA}{a}
+    \SF{C}{aFb}
+    \SF{D}{B}
+    \SF{E}{B}{D}{ab}{\eps}
+    \SF{F}{Fa}{FE}
+\end{array}\\
+$
+\gap
+\task{CNF1}
+(i) Entfernen der Nicht erzeugenden Variablen\\
+$V_e = \{S,A,B,D,E\}$\\
+Daraus folgt $G'$:\\
+$
+\begin{array}{llllllllllll}
+    \SF{S}{aBb}{bDbb}{\eps}
+    \SF{A}{\eps}
+    \SF{B}{AA}{a}
+    \SF{D}{B}
+    \SF{E}{B}{D}{ab}{\eps}
+\end{array}\\
+$
+(ii) Erreichbarkeitsgraph\\
+\\
+\automaton{
+    \nd{state}{S}{0,0}{S}
+    \nd{state}{A}{0,2}{A}
+    \nd{state}{B}{2,0}{B}
+    \nd{state}{D}{2,-2}{D}
+    \nd{state}{E}{0,-2}{E}
+    \path
+        (S)
+            edge [->] node {}(A)
+            edge [->] node {}(B)
+            edge [->] node {}(D)
+        (B)
+            edge [->] node {}(A)
+        (D)
+            edge [->] node {}(B)
+        (E)
+            edge [->] node {}(B)
+            edge [->] node {}(D)
+    ;
+    }
+erreichbar nur S,A,D,B\\
+Daraus folgt $G_1$:$\\
+\begin{array}{llllllllllll}
+    \SF{S}{aBb}{bDbb}{\eps}
+    \SF{A}{\eps}
+    \SF{B}{AA}{a}
+    \SF{D}{B}
+\end{array}\\
+$
+\gap
+\task{CNF2}
+$
+\begin{array}{llllllllllll}
+    \SF{S}{W_aBb}{W_bDW_bW_b}{\eps}
+    \SF{A}{\eps}
+    \SF{B}{AA}{W_a}
+    \SF{D}{B}
+\end{array}\\
+$
+\gap
+\task{CNF3}
+$
+\begin{array}{llllllllllll}
+    \SF{S}{W_aBb}{W_bS_1}{\eps}
+    \SF{S_1}{DS_2}
+    \SF{S_2}{W_bW_b}
+    \SF{A}{\eps}
+    \SF{B}{AA}{W_a}
+    \SF{D}{B}
+\end{array}\\
+$
+\gap
+\task{CNF4}
+$
+V' = \{S,A,B,D\}\\
+\begin{array}{llllllllllll}
+    \SF{S}{W_aBb}{W_bS_1}
+    \SF{S_1}{DS_2}
+    \SF{S_2}{W_bW_b}
+    \SF{B}{W_a}
+    \SF{D}{B}
+\end{array}\\
+$
+\gap
+\task{CNF5}
+$
+U = \{(B,W_a),(D,B)\}\\
+\begin{array}{llllllllllll}
+    \SF{S}{W_aBb}{W_bS_1}
+    \SF{S_1}{DS_2}
+    \SF{S_2}{W_bW_b}
+    \SF{D}{W_a}
+\end{array}\\
+$
+\gap
+\task{CNF6}
+$
+\begin{array}{llllllllllll}
+    \SF{S'}{\eps}{S}
+    \SF{S}{W_aBb}{W_bS_1}
+    \SF{S_1}{DS_2}
+    \SF{S_2}{W_bW_b}
+    \SF{D}{W_a}
+\end{array}\\
+$
 % A2
 \subsection\
 % A2 a)
@@ -84,5 +195,21 @@
 
 % A3
 \subsection\
-\SF{S}{aBb}{|bDbb}{\eps}
+
+% A4
+\subsection\
+$G$ (mindestens ein $b$) mit:\\
+$
+\begin{array}{llllllllllllll}
+    \SF{S}{TS}{b}
+    \SF{T}{ST}{a}
+\end{array}\\
+$\\
+$G_{Greibach}$ mit:\\
+$
+\begin{array}{llllllllllllll}
+    \SF{S}{aS}{bS'}{b}
+    \SF{S'}{aS'}{bS'}{\eps}
+\end{array}\\
+$
 \end{document}
