@@ -1,0 +1,315 @@
+\documentclass{article}
+\textwidth=6in
+\hoffset=0in
+\voffset=0in
+
+
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+
+\usepackage{tikz}
+\usetikzlibrary{automata, arrows}
+\tikzset{initial text={}}
+
+\usepackage{pifont}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{ngerman}
+\usepackage[ampersand]{easylist}
+
+% needs to be updated
+\author{Max Springenberg, 177792}
+\title{\
+    GTI "Ubungsblatt 6\\
+    Tutor: Marko Schmellenkamp\\
+    ID: MS1\\
+    "Ubung: Mi 16-18
+    }
+\setcounter{section}{6}
+\date{}
+
+% custom commands
+% \Theta \Omega \omega
+\newcommand{\tab}{\null\ \qquad}
+\newcommand{\gap}{\null\ \\ \\}
+\newcommand{\lA}{\leftarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\rA}{\rightarrow}
+\newcommand{\LA}{\Leftarrow}
+\newcommand{\RA}{\Rightarrow}
+\newcommand{\ue}{\infty}
+\newcommand{\eps}{\epsilon}
+\newcommand{\task}[1]{\textbf{#1} \\ \gap}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\newcommand{\degr}{\null \degree}
+\newcommand{\error}{\task{FEHLER:}}
+\newcommand{\correction}{\task{KORREKTUR:}}
+\newcommand{\mdef}{\overset{\text{def}}{=}}
+\newcommand{\rao}[1]{\overset{#1}{\rightarrow}}
+\newcommand{\automaton}[1]{
+    \begin{tikzpicture}
+    #1
+    \end{tikzpicture}
+    }
+\newcommand{\nd}[4]{
+    \node[#1](#2)at(#3){#4};
+    }
+
+
+% content
+\begin{document}
+% title page
+\maketitle
+\newpage
+% actual paper
+
+% A1
+\subsection\
+Mit $p, q \in Q, \sigma \in \Sigma, \tau \in \Gamma, w\in \Gamma^*$:\\
+In deterministischen Kellerautomaten darf es 
+    für jede Kombination von $p, \sigma, \tau$ 
+    nur eine Transition $(p, \sigma, \tau, q, w)$ in $\delta$ 
+    geben.\\
+Bei einem deterministischen Kellerautomaten, der mit leerem Keller akzeptiert
+    gibt es keine akzeptierenden Zust"ande und wenn f"ur $p, \sigma, \tau$ kein
+    $(p, \sigma, \tau, q, w)$ in $\delta$ existiert wird abgelehnt.\\
+\gap
+Eine Idee f"ur einen Kellerautomaten, der die Sprache entscheidet ist:\\
+    Jedes $\sigma \in \{a,b\}$, das eingelesen wird eben
+    dieses $\sigma$ auf den Keller zu legen. 
+    Wenn dann ein $c$ eingelesen wird,
+    wird abgeglichen, ob genau so viele $c$ hintereinander eingelesen werden, 
+    wie zuvor $a$ auf den Keller gelegt wurden. 
+    Wenn statt dem $c$ ein $d$ eingelesen wird, 
+    wird abgeglichen, ob genau so viele $d$ hintereinander eingelesen werden, 
+    wie zuvor $b$ auf den Keller gelegt wurden.\\
+\\
+Ein Kellerautomat, der Diese Idee umsetzt, deterministisch ist und mit leerem
+    Keller akzeptiert ist:\\
+\automaton{
+    \nd{initial, state}{s}{0,0}{s}
+    \nd{state}{ca}{4,2}{$q_{c,a}$}
+    \nd{state}{cb}{0,2}{$q_{c,b}$}
+    \nd{state}{da}{0,-2}{$q_{d,a}$}
+    \nd{state}{db}{4,-2}{$q_{d,b}$}
+
+    \path
+        (s)
+        edge [->, loop right] node {$\begin{array}{l}
+                                        a,*:a*\\
+                                        b,*:b*\\
+                                    \end{array}\\$} (s)
+        edge [->,left] node {$c,a:\eps$} (ca)
+        edge [->,left] node {$c,b:b$} (cb)
+        edge [->,left] node {$d,a:a$} (da)
+        edge [->,left] node {$d,b:\eps$} (db)
+
+        (ca)
+        edge [->, loop right] node {$\begin{array}{l}
+                                        c,a:\eps\\
+                                        \eps,\#:\eps\\
+                                        \eps,b:\eps\\
+                                    \end{array}$} (ca)
+
+        (cb)
+        edge [->, loop above] node {$\eps,b:\eps$}(cb)
+        edge [->, above] node {$\eps,a:\eps$} (ca)
+
+        (db)
+        edge [->, loop right] node {$\begin{array}{l}
+                                        d,b:\eps\\
+                                        \eps,\#:\eps\\
+                                        \eps,a:\eps\\
+                                    \end{array}$} (db)
+
+        (da)
+        edge [->, loop below] node {$\eps,a:\eps$}(da)
+        edge [->, below] node {$\eps,b:\eps$} (db)
+    ;}\\
+\\
+Im Startzustand werden $a,b$ auf den Keller gelegt, nachdem $d$ oder $c$ gelesen
+    werden, wird in Zust"ande gewechselt, die den Keller leeren k"onnen.\\
+Dabei muss vor dem Erreichen der Zust"ande mit $\eps$-Transitionen die 
+    Kellersymbole $a,b$ l"oschen sichergestellt werden, dass zuvor auch ein $c$
+    f"ur das l"oschen aller $b$'s und ein $d$ f"ur das l"oschen aller $a$'s
+    eingelesen wurde, dies wird durch die Transitionen von $s$ zu den 
+    Zust"anden $q_{c,\sigma}, q_{d,\sigma}, \sigma \in \{a,b\}$ umgesetzt.\\
+Da gegebenen falls beim einlesen des ersten $c$ oder $d$ ein unerw"unschtes
+    Kellersymbol, das nicht durch einlesen von $c$ oder $d$ gel"oscht werden 
+    kann, muss je ein 
+    Zwischenzustand gegeben sein, der die unerw"unschten und das erste
+    gew"unschte Kellersymbol l"oscht. Dies wird durch die Zust"ande 
+    $q_{c,a}, q_{c,b}$ und deren Transitionen f"ur $c$,
+    sowie $q_{d,a}, q_{d,b}$ und deren Transition f"ur $d$ umgesetzt.\\
+
+% A2
+\subsection\
+
+% A2 a)
+\subsubsection\
+Gegeben ist eine ausgewertetes Tableau des CYK-Algorithmus f"ur das 
+    Wort $baabc$.\\
+Die W"orter 
+
+    (i) $w_1 = baabc$,\\
+    
+    (ii) $w_2 = baab$,\\
+    
+    (iii) $w_3 = aabc$\\
+
+enth"alt $baabc$ als Teilw"orter an den Indices 1 bis 5 f"ur (i), 1 bis 4
+    f"ur (ii) und 2 bis 5 f"ur (iii).\\
+Dies sind die einzigen Vorkommnisse der Teilw"orter in $baabc$, da ihr ihre
+    Position unter anderem durch die zwei aufeinander folgenden $a$ festgelegt
+    ist.\\
+\\
+Im Tableau f"ur ein Wort $w$ enthalten die Felder (i,j), mit 
+    $i, j \in \mathbb{N}_0, i \leq |w|, j \leq |w|$ die Variablen, die
+    das Teilwort von w, das am Index i beginnt und j aufh"ort abgeleiten 
+    k"onnen.\\ 
+\\
+Aus der Tabelle l"asst sich f"ur die jeweiligen Indices der Teilw"orter ablesen,
+    dass:\\
+
+    (i) die Variable $S$ nicht im Feld (1,5) des Tableau eingetragen ist und 
+        ferner das  Wort nicht in der Sprache ist, da es nicht aus der 
+        Startvariablen abgeleitet werden kann.\\
+
+    (ii) die Variable $S$ im Feld (1,4) des Tableau eingetragen ist und ferner
+        das Wort in der Sprache ist, da es aus der Startvariablen abgeleitet
+        werden kann.\\
+
+    (iii) die Variable $S$ im Feld (2,5) des Tableau eingetragen ist und ferner
+        das Wort in der Sprache ist, da es aus der Startvariablen abgeleitet
+        werden kann.\\
+% A3
+\subsection\
+
+\subsubsection\
+
+F"ur LL(1) Grammtiken muss gelten:\\
+$
+\forall X \in V, X \ra \alpha, X \ra \beta, \alpha \neq \beta:\\
+(i) FIRST(\alpha) \cap FIRST(\beta) = \emptyset\\
+(ii) \alpha \RA^* \eps \text{, dann} FOLLOW(X) \cap FIRST(\beta) = \emptyset\\
+$\\
+\gap
+
+\task{$G_1$}
+Die $FIRST$- Mengen ergeben sich wie folgt:\\
+\gap
+$
+FIRST(S) = \{a,e,f\}\\
+FIRST(A) = \{e,d,b\}\\
+FIRST(B) = \{\eps, b\}\\
+FIRST(C) = \{\eps, d\}\\
+$
+Da kein element mehrfach entdeckt wurde gilt (i)\\
+\\
+Die FOLLOW Mengane ist nur f"ur $\alpha \RA^* \eps$ interessant, ferner ist das
+    in $G_1$ $A,B,C$\\
+\\
+betrachte:\\
+$
+A \RA ea | CB\\
+CB \RA^* \eps\\
+\\
+e \in FIRST(ea), e \in FIRST(S)\\
+S \RA eAS \text{, damit} e \in FOLLOW(A)\\
+\\
+FIRST(ea) \cap FOLLOW(A) \neq \emptyset \lightning\\
+$
+Damit wurde die Bedingung (ii) verletzt.\\
+
+\gap
+\task{$G_2$}
+Die $FIRST$- und $FOLLOW$- Mengen ergeben sich wie folgt:\\
+$
+FIRST(S) = \{a,c,b\}\\
+FIRST(B) = \{\eps, b\}\\
+FIRST(C) = \{a\}\\
+$
+Da kein element mehrfach entdeckt wurde gilt (i)\\
+\\
+$
+FOLLOW(S) = \emptyset
+FOLLOW(B) = \emptyset
+FOLLOW(C) = \emptyset
+$
+Da jede rechte Regelseite, die nicht $\eps$ ist,
+    mit genau einer Variablen endet, nur eine Variable enth"alt, 
+    und einem Terminalsymbol anf"angt sind alle
+    $FOLLOW$-Mengen leer.\\
+Ferner gilt damit dann auch (ii)\\
+Damit ist $G_2$ eine LL(1) Grammtik.\\
+    
+\gap
+\task{$G_3$}
+Die $FIRST$- Mengen ergeben sich wie folgt:\\
+\gap
+$
+FIRST(S) = \{a,b,c,d\}\\
+FIRST(A) = \{a,b\}\\
+FIRST(B) = \{\eps, c\}\\
+FIRST(C) = \{\eps, d\}\\
+$
+Da kein element mehrfach entdeckt wurde gilt (i)\\
+\\
+Die FOLLOW Mengen ist nur f"ur $\alpha \RA^* \eps$ interessant, ferner ist das
+    in $G_3$ $B,C$\\
+\\
+betrachte:\\
+$
+B \ra \eps | cS\\
+FIRST(cS) = \{c\}\\
+\\
+FOLLOW(B) = (FIRST(C) \cup FIRST(A)) - \{\eps\}\\
+c \not \in (FIRST(C) \cup FIRST(A)) - \{\eps\}\\
+\text{damit ist (ii) f"ur $B$ erf"ullt}\\
+\gap
+C \ra \eps | dC\\
+FIRST(dC) = \{d\}\\
+FOLLOW(C) = FIRST(A)\\
+d \not \in FIRST(A)\\
+\text{damit ist (ii) f"ur $C$ erf"ullt}\\
+$\\
+Da alle relevanten F"alle abgedeckt wurden ist (ii) erf"ullt und $G_3$ eine 
+    LL(1) Grammtik.\\
+
+\subsubsection\
+
+Es muss f"ur alle Satzformen $\alpha, \beta, \gamma$ und Variablen $X \in V$ der
+    gegebenen Grammtik $G_4$ mit $\sigma \in \Sigma$ gelten:\\
+
+    (i) ($S \RA^*_r \alpha X \sigma x \RA_r \alpha \beta \sigma x
+         \land \gamma \RA \alpha \beta \sigma y$)
+         $\RA$ ($\gamma$ ist nicht aus $S$ ableitbar), 
+         mit $x,y \in \Sigma^*, \gamma \neq \alpha X \sigma x $.\\
+
+    (ii) ($S \RA^*_r \alpha X \RA_r \alpha \beta
+         \land \gamma \RA \alpha \beta$)
+         $\RA$ ($\gamma$ ist nicht aus $S$ ableitbar), 
+         mit $\gamma \neq \alpha X$.\\
+\\
+Nun hat $G_4$ die folgenden Rechtsableitungen:\\
+(1)\\
+$S \RA_r aA \RA_r abCa \RA_r abcca$\\
+\\
+(2)\\
+$S \RA_r abBE \RA_r abBab \RA_r abCab \RA_r abccab$\\
+\\
+\task{Annahme $G$ sei LR(1) Grammtik}\\
+w"ahle $\alpha = ab, X = C, \sigma = a, x = \eps, \beta = cc, 
+    \gamma = abCab, y=b$\\
+\\
+$
+\alpha X \sigma x = abCa \RA_r abcca = \alpha \beta \sigma x\\
+\gamma = abCab \RA_r abccab = \alpha \beta \sigma y\\
+$\\
+aus (2) geht hervor, dass $\gamma$ aus $S$ ableitbar ist $\lightning$.\\
+Damit ist $G_4$ nach Widerspruch keine LR(1) Grammtik.\\
+\end{document}
