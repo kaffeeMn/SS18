@@ -186,15 +186,91 @@ $
 $
 % A2
 \subsection\
-% A2 a)
-\subsubsection\
-% A2 b)
-\subsubsection\
-% A2 c)
-\subsubsection\
+CNF analog zu 1.
 
 % A3
 \subsection\
+gegeben:\\
+$G$ mit:$
+\begin{array}{lllllll}
+    \SF{S}{aSa}{bSa}{bSb}{\eps}
+\end{array}\\
+\\
+L = \{w \in \{a,b\}^* | |w| \text{gerade}\}\\
+$\\
+\subsubsection{$L(G) \subseteq L$}
+Aussage:\\
+$k, w$, mit $S \RA^k w : w \in L$\\
+\\
+Induktion "uber Abgleitungsl"ange $k$.\\
+\\
+I.A.\\
+$k = 1$:\\
+Es gibt genau eine Ableitung der L"ange $k=1$, mit\[
+    S \RA^1 \eps
+    \]
+Es gilt $|\eps| = 0$, ferner ist 0 gerade und damit die Aussage f"ur $k=1$
+    erf"ullt.\\
+\\
+I.V.\\
+Die Aussage gelte f"ur $k \in \mathbb{N}$ beliebig, aber fest\\
+\\
+I.S.\\
+$k = k'+1$\\
+F"ur Ableitungen der L"ange $k \geq 1$ m"ussen folgende Regeln betrachtet werden:\\
+$
+    (i) S \rA aSa\\
+    (ii) S \rA aSb\\
+    (iii) S \rA bSa\\
+    (iii) S \rA bSb\\
+$\gap
+(i)\\
+$S \rA aSa $, ergibt sich zu $w \mdef ava$, mit $ S \RA^{k'} v$, ferner gilt 
+    aus I.V., dass $|v|$ gerade ist und damit dann $|w| = |ava| = |v| + 2$ 
+    auch.\\
+\\
+(ii) - (iv) analog.\\
+
+\subsubsection{$L \subseteq L(G)$}
+Aussage:\\
+$i$, mit $|w| = i, w \in L : w \in L(G)$\\
+\\
+Induktion "uber Wortl"ange i.\\
+Dabei muss die Wortl"ange nach definition aus 
+    $N_{|w|=2n} = \{2n | n \in \mathbb{N}_0\}$ sein.\\
+Ferner inkrementiert die Wortl"ange damit in der Induktion um 2.\\
+\\
+I.A.\\
+$i = 0$\\
+Nur das leere Wort $\eps$ hat die Wortl"ange 0.\\
+$S \RA \eps$ ist aus $G$ ableitbar, damit ist $\eps \in G$ und die Aussage f"ur
+    $i=0$ erf"ullt.\\
+\\
+I.V.\\
+Die Aussage gelte f"ur $k \in N_{|w|=2n}$ beliebig, aber fest.\\
+\\
+I.S.\\
+$i = i'+2$\\
+$\Sigma_L$ sei das Alphabet der Sprache $L$.\\
+Wir betrachten das Wort $w \mdef \sigma v \sigma'$, mit 
+    $|w| = i, |v| = i', (i,i' \in N_{|w|=2n}), (\sigma, \sigma' \in \Sigma_L)$.\\
+\\
+Nach I.V. gilt, dass $v$ aus $G$ ableitbar ist.\\
+\\
+Nun bleibt zu zeigen, dass:$\\
+\\
+(i) w_{(i)} \mdef ava\\
+(ii) w_{(ii)} \mdef avb\\
+(iii) w_{(iii)} \mdef bva\\
+(iv) w_{(iv)} \mdef bvb\\
+$\\
+aus $G$ abgeleitet werden k"onnen.\\
+\gap
+(i)\\
+nach I.V. gilt $S \RA^* v$, dann gilt auch $S \RA^* ava$, aufgrund der Regel
+    $S \rA aSa$\\
+\\
+(ii) - (iv) analog.\\
 
 % A4
 \subsection\
@@ -209,7 +285,7 @@ $G_{Greibach}$ mit:\\
 $
 \begin{array}{llllllllllllll}
     \SF{S}{aS}{bS'}{b}
-    \SF{S'}{aS'}{bS'}{\eps}
+    \SF{S'}{aS'}{bS'}{a}{b}
 \end{array}\\
 $
 \end{document}
