@@ -1,0 +1,137 @@
+\documentclass{article}
+\textwidth=6in
+\hoffset=0in
+\voffset=0in
+
+
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+
+\usepackage{tikz}
+\usetikzlibrary{automata, arrows}
+\tikzset{initial text={}}
+
+\usepackage{pifont}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{ngerman}
+\usepackage[ampersand]{easylist}
+
+% needs to be updated
+\author{Max Springenberg, 177792}
+\title{\
+    GTI "Ubungsblatt 8\\
+    Tutor: Marko Schmellenkamp\\
+    ID: MS1\\
+    "Ubung: Mi 16-18
+    }
+\setcounter{section}{8}
+\date{}
+
+% custom commands
+% \Theta \Omega \omega
+\newcommand{\tab}{\null\ \qquad}
+\newcommand{\gap}{\null\ \\ \\}
+\newcommand{\lA}{\leftarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\rA}{\rightarrow}
+\newcommand{\LA}{\Leftarrow}
+\newcommand{\RA}{\Rightarrow}
+\newcommand{\ue}{\infty}
+\newcommand{\eps}{\epsilon}
+\newcommand{\task}[1]{\textbf{#1} \\ \gap}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\newcommand{\degr}{\null \degree}
+\newcommand{\error}{\task{FEHLER:}}
+\newcommand{\correction}{\task{KORREKTUR:}}
+\newcommand{\mdef}{\overset{\text{def}}{=}}
+\newcommand{\rao}[1]{\overset{#1}{\rightarrow}}
+\newcommand{\automaton}[1]{
+    \begin{tikzpicture}
+    #1
+    \end{tikzpicture}
+    }
+\newcommand{\nd}[4]{
+    \node[#1](#2)at(#3){#4};
+    }
+
+
+% content
+\begin{document}
+% title page
+\maketitle
+\newpage
+% actual paper
+
+% A1
+\subsection\
+
+% a)
+\subsubsection\
+\task{(i)}
+$
+f(1) = \\ %\Bottom\\
+f(2) = 4\\
+$
+\gap
+\task{(ii)}
+$f_P(n) = 2^n$, f"ur $n \geq 2$\\
+
+% b)
+\subsubsection\
+\begin{tabular}{ll}
+    1:  & $x_3 := 0$;\\
+    2:  & $x_4 := 1$;\\
+    3:  & $x_5 := x_1$;\\
+    4:  & $x_6 := x_2$;\\
+
+    5:  & IF $x_1 = 0$ THEN GOTO 9;\\
+    6:  & $x_1 := x_1 - 1$;\\
+    7:  & $x_3 := x_3 + 1$;\\
+    8:  & IF $x_4 = 1$ THEN GOTO 5;\\
+
+    9:  & IF $x_3 = 0$ THEN GOTO 15;\\
+
+    10: & IF $x_3 = 0$ THEN GOTO 20;\\
+    11: & IF $x_2 = 0$ THEN GOTO 18;\\
+    12: & $x_2 := x_2 - 1$;\\
+    13: & $x_3 := x_3 - 1$;\\
+    14: & IF $x_4 = 1$ THEN GOTO 10;\\
+
+    15: & IF $x_2 = 0$ THEN GOTO 20; \\
+    16: & $x_2 := x_2 - 1$;\\
+    17: & IF $x_4 = 1$ THEN GOTO 15;\\
+
+    18: & $x_1 := x_5$;\\
+    19: & IF $x_4 = 1$ THEN GOTO 21;\\
+    20: & $x_1 := x_6$;\\
+
+    21: & HALT\\
+\end{tabular}\\
+
+\newpage
+% A2
+\subsection\
+
+% a)
+\subsubsection\
+
+% b)
+\subsubsection\
+
+
+\newpage
+% A3
+\subsection\
+
+% a)
+\subsubsection\
+
+% b)
+\subsubsection\
+
+\end{document}

@@ -85,3 +85,98 @@ Effekte:
 1. Privacy
     * das was zuerst wahrgenommen wird, bleibt am laengsten im Gedaechtniss
 2. Recency
+
+
+7.6.18
+######
+
+Koerpersprache
+==============
+
+Stichwort:
+inkongruenz -> Luege
+kongruenz -> Wahrheit
+
+* Diskussion Koerpersprache <-> gesagtem
+* Ironie, Subtext der Luege durch Koerpersprache deutlich
+* Emotionen / Luegen ueber Mikroreaktionen erkennbar
+
+Gesichtsexpressionen
+--------------------
+
+* Gesichtsmuskeln
+* Kehlkopf und Tonalitaet
+  + Stimmbaender "zittern" bei Luegen/ Nervoesitaet
+
+Basisemotionen:
+
+* Freude
+* Wut
+* Furcht
+* Ekel
+* Traurigkeit
+* Ueberraschung
+
+Eisbergmodell
+=============
+
+Ueber der Oberflaeche: Sachebene
+
+Unter der Oberflaeche: Psychosoziale Ebene
+
+Psychosoziale Ebende ist maechtiger als die Sachebene
+
+Rethorische Manipulation
+========================
+
+Schwammige Definition der VL:
+Unterbewusstsein entscheidet sich gegen das Bewusstsein.
+
+Methode 1
+---------
+
+Spiegeln
+
+* "gleich und gleich gesellt sich gerne"
+* vorspielen von Aehnlichkeit -> Vertrauen gewinnen
+
+Methode 2
+---------
+
+Kuenstliche erzeugen von zeitlichem Druck
+
+* irrationales Handeln durch den Druck provozieren
+
+Methode 3
+---------
+
+Schlechtes Gewissen machen
+
+Mehode 4
+--------
+
+Experten Taktik
+
+* Uebergeordnete Meinungen durch "Fakten"
+
+Methode 5
+---------
+
+Eindruck des Unausweichlichen
+
+* "Wir" statt "Ich"
+* "Uns" statt "Ich" und passiv-Form
+
+Methode 6
+---------
+
+Assoziationstechnik
+
+* Vision schaffen und manipulieren
+
+Methode 7
+---------
+
+Falsche Argumente Technik
+
+
