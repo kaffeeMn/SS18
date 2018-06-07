@@ -42,7 +42,7 @@
 \newcommand{\RA}{\Rightarrow}
 \newcommand{\ue}{\infty}
 \newcommand{\eps}{\epsilon}
-\newcommand{\task}[1]{\textbf{#1} \\ \gap}
+\newcommand{\task}[1]{\textbf{#1} \gap}
 \newcommand{\cmark}{\ding{51}}
 \newcommand{\xmark}{\ding{55}}
 \newcommand{\degr}{\null \degree}
@@ -58,6 +58,9 @@
 \newcommand{\nd}[4]{
     \node[#1](#2)at(#3){#4};
     }
+\newcommand{\dm}{\mathbin{\scriptstyle\dot{\smash{\textstyle-}}}}
+\newcommand{\s}{\rhd}
+\renewcommand{\u}{\underline}
 
 
 % content
@@ -73,13 +76,18 @@
 % a)
 \subsubsection\
 \task{(i)}
-$
-f(1) = \\ %\Bottom\\
-f(2) = 4\\
-$
+$f(1) = \bot$\\ %\Bottom\\
+$x_4$ ist bei $x_1 = 1$ nach ablauf des ersten WHILE-Programms echt gr"o"ser
+    0, damit endet das Folgende WHILE-Programm nie.\\
+\\
+$f(2) = 4$\\
+
 \gap
 \task{(ii)}
-$f_P(n) = 2^n$, f"ur $n \geq 2$\\
+$f_P(n) = \begin{cases}
+    2^n, n \geq 2\\ 
+    \bot, \text{sonst}\\
+\end{cases}$\\
 
 % b)
 \subsubsection\
@@ -88,28 +96,28 @@ $f_P(n) = 2^n$, f"ur $n \geq 2$\\
     2:  & $x_4 := 1$;\\
     3:  & $x_5 := x_1$;\\
     4:  & $x_6 := x_2$;\\
-
+    \\
     5:  & IF $x_1 = 0$ THEN GOTO 9;\\
-    6:  & $x_1 := x_1 - 1$;\\
+    6:  & $x_1 := x_1 \dm 1$;\\
     7:  & $x_3 := x_3 + 1$;\\
     8:  & IF $x_4 = 1$ THEN GOTO 5;\\
-
+    \\
     9:  & IF $x_3 = 0$ THEN GOTO 15;\\
-
+    \\
     10: & IF $x_3 = 0$ THEN GOTO 20;\\
     11: & IF $x_2 = 0$ THEN GOTO 18;\\
-    12: & $x_2 := x_2 - 1$;\\
-    13: & $x_3 := x_3 - 1$;\\
+    12: & $x_2 := x_2 \dm 1$;\\
+    13: & $x_3 := x_3 \dm 1$;\\
     14: & IF $x_4 = 1$ THEN GOTO 10;\\
-
+    \\
     15: & IF $x_2 = 0$ THEN GOTO 20; \\
-    16: & $x_2 := x_2 - 1$;\\
+    16: & $x_2 := x_2 \dm 1$;\\
     17: & IF $x_4 = 1$ THEN GOTO 15;\\
-
+    \\
     18: & $x_1 := x_5$;\\
     19: & IF $x_4 = 1$ THEN GOTO 21;\\
     20: & $x_1 := x_6$;\\
-
+    \\
     21: & HALT\\
 \end{tabular}\\
 
@@ -119,10 +127,71 @@ $f_P(n) = 2^n$, f"ur $n \geq 2$\\
 
 % a)
 \subsubsection\
+Betrachte:\\
+$
+w \mdef bab\\
+\\
+\text{Ersten 10 Konfigurationen:}\\
+(q_b,(\eps,\s,bab)) \vdash (q_b, (\s,b,ab))\\
+                    \vdash (q_r, (\s \u{b},a,b))\\
+                    \vdash (q_r, (\s \u{b}a,b,\eps))\\
+                    \vdash (q_r, (\s \u{b}ab,\sqcup,\eps))\\
+                    \vdash (q_l, (\s \u{b}a,b,\u{b}))\\
+                    \vdash (q_l, (\s \u{b},a,b\u{b}))\\
+                    \vdash (q_l, (\s ,\u{b},ab\u{b}))\\
+                    \vdash (q_l, (\eps ,\s,\u{b}ab\u{b}))\\
+                    \vdash (q_b, (\s ,\u{b},ab\u{b}))\\
+\\
+\text{Erste Konfiguration in $q_c$:}\\
+(q_c, (\s\u{b}a\u{b}\u{b},\u{b}, \sqcup))\\
+$
 
 % b)
 \subsubsection\
-
+Bedeutung der Zust"ande:\\
+\task{$q_b$}
+$q_b$ lie"st den gesamten String von links nach rechts, bis er endet, bzw. ein 
+    $\sqcup$ auftritt, oder ein b gelesen wird.\\
+Wenn ein b gelesen wird, so wird dieses durch ein markiertes b ($\u{b}$)
+    §ersetzt und in den Zustand $q_l$ gewechselt.\\
+Wenn ein $\sqcup$ gelesen wird, hat der String keine unmarkierten b mehr und es
+    wird in den Zustand $q_c$ gewechselt.\\
+\gap
+\task{$q_c$}
+$q_c$ liest den gesamten String von links nach rechts und ersetzt alle 
+    markierten b mit unmarkierten, bis das Startsymbol erreicht wird.\\
+In diesem Fall wird aufgeh"ort den Lesekopf zu bewegen und in den Zustand h
+    gewechselt.\\
+\gap
+\task{$q_r$}
+$q_r$ verschiebt den Lesekopf solange nach rechts, bis der String endet, bzw.
+    ein $\sqcup$ gelesen wird.\\
+Dann wird dieses durch ein markiertes b ersetzt, bzw. ein markiertes b an den
+    String hinten angehangen.\\
+\gap
+\task{$q_l$}
+$q_l$ verschiebt den Lesekopf solange nach links, bis das Startsymbol gelesen
+    wird.\\
+Dann wird in den Zustand $q_b$ gewechselt.\\
+\gap
+\task{$h$}
+Im Zustand h h"alt die Touringmaschine.\\
+\gap
+Aus der Bedeutung der Zust"ande geht hervor, dass:\\
+Die Touringmaschine jedes b markiert und anschlie"send ein markiertes b an den
+    String hinten anh"angt, bis es keine unmarkierten b mehr gibt.\\
+Abschlie"send werden alle markierten b durch normale b ersetzt und die TM h"alt.\\
+Da nach endlichen Operationen bei endlichen Eingaben alle b markiert worden sind
+    h"alt die TM auch f"ur alle Eingaben aus $\{a,b\}^*$ und weisst damit keine
+    Definitionsl"ucken auf.\\
+\\
+F"ur die Funktion $f_M$ der TM bedeutet das, dass die Touring maschine aus einem
+    Wort $w \in \{a,b\}^*$ ein Wort $v \in \{a,b\}$, das aus w konkateniert mit
+    $n=\#_b(w)$ b besteht
+    , also der Form $v = wb^{n=\#_b(w)}$ macht.\\
+Dadurch ergibt sich dann auch die Funktion $f_M$ zu:\[
+    f_M(w) = wb^{n=\#_b(w)}
+    \]
 
 \newpage
 % A3
