@@ -35,6 +35,8 @@
 % \Theta \Omega \omega
 \newcommand{\tab}{\null\ \qquad}
 \newcommand{\gap}{\null\ \\ \\}
+\newcommand{\da}{\downarrow}
+\newcommand{\la}{\leftarrow}
 \newcommand{\lA}{\leftarrow}
 \newcommand{\ra}{\rightarrow}
 \newcommand{\rA}{\rightarrow}
@@ -200,7 +202,159 @@ Dadurch ergibt sich dann auch die Funktion $f_M$ zu:\[
 % a)
 \subsubsection\
 
+\automaton{
+    \nd{initial, state}{s}      {0,0}   {$s$}
+    \nd{state}{ua}              {4,4}   {$u_a$}
+    \nd{state}{ub}              {4,-4}  {$u_b$}
+    \nd{state}{uav}             {8,4}   {$u_a v$}
+    \nd{state}{ubv}             {8,-4}  {$u_b v$}
+    \nd{state}{add}             {8,0}   {$add$}
+    \nd{state}{l}               {4,0}   {$l$}
+    \nd{state}{h}               {0,-4}  {$ja$}
+    \path
+        (s)
+            edge [->, loop above] node {$\begin{array}{l}
+                                            \s : \s, \ra\\
+                                            \u{a} : \u{a}, \ra\\
+                                            \u{b} : \u{b}, \ra\\
+                                        \end{array}$} (s')
+            edge [->, right] node {$a:\u{a}, \ra$}(ua)
+            edge [->, left] node {$b:\u{b}, \ra$}(ub)
+            edge [->, left] node {$\$:\$, \ra$}(h)
+        (ua)
+            edge [->, loop above] node {$\begin{array}{l}
+                                            a : a, \ra\\
+                                            b : b, \ra\\
+                                        \end{array}$} (ua)
+            edge [->, above] node {$\$:\$, \ra$}(uav)
+        (ub)
+            edge [->, loop below] node {$\begin{array}{l}
+                                            a : a, \ra\\
+                                            b : b, \ra\\
+                                        \end{array}$} (ub)
+            edge [->, below] node {$\$:\$, \ra$}(ubv)
+        (uav)
+            edge [->, loop above] node {$\begin{array}{l}
+                                            \u{a} : \u{a}, \ra\\
+                                            \u{b} : \u{b}, \ra\\
+                                        \end{array}$} (ub)
+            edge [->, left] node {$a:\u{a}, \ra$}(l)
+            edge [->, right] node {$b:\u{b}, \ra$}(add)
+        (ubv)
+            edge [->, loop below] node {$\begin{array}{l}
+                                            \u{a} : \u{a}, \ra\\
+                                            \u{b} : \u{b}, \ra\\
+                                        \end{array}$} (ub)
+            edge [->, right] node {$b:\u{b}, \ra$}(l)
+            edge [->, right] node {$a:\u{a}, \ra$}(add)
+        (add)
+            edge [->, loop right] node {$\begin{array}{l}
+                                            \u{a} : \u{a}, \ra\\
+                                            \u{b} : \u{b}, \ra\\
+                                            a : a, \ra\\
+                                            b : b, \ra\\
+                                            \$ : \$, \ra\\
+                                        \end{array}$} (add)
+            edge [->, above] node {$\sqcup : a, \la$} (l)
+        (l)
+            edge [->, loop below] node {$\begin{array}{l}
+                                            \u{a} : \u{a}, \la\\
+                                            \u{b} : \u{b}, \la\\
+                                            a : a, \la\\
+                                            b : b, \la\\
+                                            \$ : \$, \la\\
+                                        \end{array}$} (add)
+            edge [->, above] node {$\s : \s, \ra$} (s)
+    ;}\\
+\gap
+Es wird davon ausgegangen, dass die W"orter unter korrektar Syntax eingegeben
+    wurden.\\
+Alternativ kann vor der gegebenen TM auch eine TM durchlaufen werden, die nach
+    der Syntax pr"uft, so eine w"are in etwa:\\
+\automaton{
+    \nd{initial, state}{s}  {0,0}{$s$}
+    \nd{state}{u}           {0,0}{$u$}
+    \nd{state}{compare}     {0,0}{$compare$}
+    \nd{state}{v}           {0,0}{$v$}
+    \nd{state}{undo}        {0,0}{$undo$}
+    \nd{state}{ja}          {0,0}{$ja$}
+
+    \path
+        (s)
+            edge [->, loop above] node {$\begin{array}{l}
+                                            \s : \s, \ra\\
+                                            \u{a} : \u{a}, \ra\\
+                                            \u{b} : \u{b}, \ra\\
+                                        \end{array}$} (s')
+            edge [->, right] node {}(compare)
+            
+            
+    ;}
+$s$ aus $M_1$ w"urde aso unmittelbar auf $ja$ aus $M_2$ folgen.\\
+
 % b)
 \subsubsection\
+Es m"usste jedes Zeichen gleich sein und ferner keine $a$ angehangen werden.\\
+Der Zustand $add$ und alle Transitionen inzident zu diesem k"onnen entfernt 
+    werden.\\
+Ferner f"uhren nun alle Transitionen, die zuvor nach $add$ f"uhrten nun nach 
+    $nein$ und statt markieren bleibt der Lesekopf stehen, da bereits ein 
+    ungleiches Zeichen ausreicht, damit das Wort nicht in der Sprache ist.\\
+Die resultierende TM w"ahre damit:\\
 
+\automaton{
+    \nd{initial, state}{s}      {0,0}   {$s$}
+    \nd{state}{ua}              {4,4}   {$u_a$}
+    \nd{state}{ub}              {4,-4}  {$u_b$}
+    \nd{state}{uav}             {8,4}   {$u_a v$}
+    \nd{state}{ubv}             {8,-4}  {$u_b v$}
+    \nd{state}{add}             {8,0}   {$nein$}
+    \nd{state}{l}               {4,0}   {$l$}
+    \nd{state}{h}               {0,-4}  {$ja$}
+    \path
+        (s)
+            edge [->, loop above] node {$\begin{array}{l}
+                                            \s : \s, \ra\\
+                                            \u{a} : \u{a}, \ra\\
+                                            \u{b} : \u{b}, \ra\\
+                                        \end{array}$} (s')
+            edge [->, right] node {$a:\u{a}, \ra$}(ua)
+            edge [->, left] node {$b:\u{b}, \ra$}(ub)
+            edge [->, left] node {$\$:\$, \ra$}(h)
+        (ua)
+            edge [->, loop above] node {$\begin{array}{l}
+                                            a : a, \ra\\
+                                            b : b, \ra\\
+                                        \end{array}$} (ua)
+            edge [->, above] node {$\$:\$, \ra$}(uav)
+        (ub)
+            edge [->, loop below] node {$\begin{array}{l}
+                                            a : a, \ra\\
+                                            b : b, \ra\\
+                                        \end{array}$} (ub)
+            edge [->, below] node {$\$:\$, \ra$}(ubv)
+        (uav)
+            edge [->, loop above] node {$\begin{array}{l}
+                                            \u{a} : \u{a}, \ra\\
+                                            \u{b} : \u{b}, \ra\\
+                                        \end{array}$} (ub)
+            edge [->, left] node {$a:\u{a}, \ra$}(l)
+            edge [->, right] node {$b:b, \da$}(add)
+        (ubv)
+            edge [->, loop below] node {$\begin{array}{l}
+                                            \u{a} : \u{a}, \ra\\
+                                            \u{b} : \u{b}, \ra\\
+                                        \end{array}$} (ub)
+            edge [->, right] node {$b:\u{b}, \ra$}(l)
+            edge [->, right] node {$a:a, \da$}(add)
+        (l)
+            edge [->, loop below] node {$\begin{array}{l}
+                                            \u{a} : \u{a}, \la\\
+                                            \u{b} : \u{b}, \la\\
+                                            a : a, \la\\
+                                            b : b, \la\\
+                                            \$ : \$, \la\\
+                                        \end{array}$} (add)
+            edge [->, above] node {$\s : \s, \ra$} (s)
+    ;}
 \end{document}
