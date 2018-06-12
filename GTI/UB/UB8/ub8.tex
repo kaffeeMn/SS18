@@ -79,49 +79,80 @@
 \subsubsection\
 \task{(i)}
 $f(1) = \bot$\\ %\Bottom\\
-$x_4$ ist bei $x_1 = 1$ nach ablauf des ersten WHILE-Programms echt gr"o"ser
-    0, damit endet das Folgende WHILE-Programm nie.\\
+$x_4$ ist bei $x_1 = 1$ nach Ablauf des ersten WHILE-Programma (3-11) mit:\\$
+x_4 := x_4 \dm 1 = 1, \tab x_1 := x_1 \dm 1 = 0\\
+$echt gr"o"ser 0, damit endet das Folgende WHILE-Programm (12-14) nie.\\
 \\
 $f(2) = 4$\\
 
 \gap
 \task{(ii)}
+Da das WHILE-Programm (12-14) nur dann endet, bzw. umgangen wird, wenn zuvor
+    $x_4$ auf 0 gesetzt wurde. Muss das WHILE-Programm (3-11) mindestens
+    zwei mal durchlaufen werden, da $x_4$ initial auf 2 gesetzt und in 
+    diesem dekrementiert wird.\\
+Die Funktion $f_P$ ergibt sich dadurch zu:\\
 $f_P(n) = \begin{cases}
     2^n, n \geq 2\\ 
     \bot, \text{sonst}\\
 \end{cases}$\\
+\gap
+Werte- und Definitionsbereich sind wie folgt definiert.\\
+$
+D(f) = \{n \in \mathbb{N}_0 | f(n) \neq \bot\}\\
+W(f) = \{n \in \mathbb{N}_0 | \exists m \in \mathbb{N}_0 : f(m) = n\}\\
+$
+Aus den Definitionen und der Funktion $f_P$ ergeben sich $D(f_P), W(f_P)$ zu:\\
+$
+D(f_P)  = \{n \in \mathbb{N}_0 | f_P(n) \neq \bot\}
+        = \{n \in \mathbb{N}_0 | n \geq 2\}\\
+W(f_P)  = \{n \in \mathbb{N}_0 | \exists m \in \mathbb{N}_0 : f_P(m) = n\}
+        = \{2^n | n \in \mathbb{N}_0 \land n \geq 2\} \cup \{\bot\}\\
+$
 
 % b)
 \subsubsection\
-\begin{tabular}{ll}
-    1:  & $x_3 := 0$;\\
-    2:  & $x_4 := 1$;\\
-    3:  & $x_5 := x_1$;\\
-    4:  & $x_6 := x_2$;\\
+Konstruktionsidee:\\
+\begin{enumerate}
+    \item rechne $x_{diff} = x_2 \dm x_1$\\
+    \item wenn $x_{diff} = 0$ gebe x1 aus\\
+    \item sonst gebe x2 aus\\
+    \item halte an.\\
+\end{enumerate}\ \\
+Dieses Vorgehen gibt immer den maximalen Wert aus, da f"ur den Fall 
+    $x_1 \geq$ die Differenz $x_{diff}$ mit $\dm$ gleich 0 ist und $x_1$ 
+    ausgegeben wird und f"ur den Fall $x_1 < x_2$ die Differenz gr"o"ser 0 ist
+    und $x_2$ ausgegeben wird.\\
+\\
+Da nun Diese Operationen nicht genau so mit unserer Syntax f"ur GOTO-Programme
+    kompatibel sind m"ussen wir Anpassungen vornehmen.\\
+So brauchen wir:\\
+Eine Variable $x_3$ die $x_1$ kopiert und "uber die das 
+    Subtrahieren von $x_1$ simuliert werden kann.\\
+Eine Variable $x_4$ die die Funktion von $x_{diff}$ "ubernimmt und initial 
+    gleich $x_2$ ist.\\
+Ferner ben"otigen wir eine Variable $x_5$ f"ur Schleifenspr"unge.\\
+\gap
+Daraus ergibt sich das folgende GOTO-Programm $P$:\\
+$
+\begin{array}{ll}
+    1:  & x_3 := x_1;\\
+    2:  & x_4 := x_2;\\
+    3:  & x_5 := 1;\\
     \\
-    5:  & IF $x_1 = 0$ THEN GOTO 9;\\
-    6:  & $x_1 := x_1 \dm 1$;\\
-    7:  & $x_3 := x_3 + 1$;\\
-    8:  & IF $x_4 = 1$ THEN GOTO 5;\\
+    4:  & $IF $ x_3 = 0 $ THEN GOTO $ 8;\\
+    5:  & x_3 := x_3 \dm 1;\\
+    6:  & x_4 := x_4 \dm 1;\\
+    7:  & $IF $ x_5 = 1 $ THEN GOTO $ 4;\\
     \\
-    9:  & IF $x_3 = 0$ THEN GOTO 15;\\
+    8:  & $IF $ x_4 = 0 $ THEN GOTO $ 10;\\
+    9:  & x_1 := x_2;\\
     \\
-    10: & IF $x_3 = 0$ THEN GOTO 20;\\
-    11: & IF $x_2 = 0$ THEN GOTO 18;\\
-    12: & $x_2 := x_2 \dm 1$;\\
-    13: & $x_3 := x_3 \dm 1$;\\
-    14: & IF $x_4 = 1$ THEN GOTO 10;\\
-    \\
-    15: & IF $x_2 = 0$ THEN GOTO 20; \\
-    16: & $x_2 := x_2 \dm 1$;\\
-    17: & IF $x_4 = 1$ THEN GOTO 15;\\
-    \\
-    18: & $x_1 := x_5$;\\
-    19: & IF $x_4 = 1$ THEN GOTO 21;\\
-    20: & $x_1 := x_6$;\\
-    \\
-    21: & HALT\\
-\end{tabular}\\
+    10: & HALT
+\end{array}\\
+$\\
+(4-6) simulieren $x_{diff} = x_2 - x_1$ und der Ausgabewert $x_1$ wird nur dann
+    auf $x_2$ gesetzt, wenn $x_{diff} > 0$ gilt.\\
 
 \newpage
 % A2
@@ -146,6 +177,9 @@ w \mdef bab\\
 \\
 \text{Erste Konfiguration in $q_c$:}\\
 (q_c, (\s\u{b}a\u{b}\u{b},\u{b}, \sqcup))\\
+\\
+\text{Haltekonfiguration f"ur Eingabe $w$}\\
+(h, (\eps, \s, babbb))\\
 $
 
 % b)
@@ -201,16 +235,71 @@ Dadurch ergibt sich dann auch die Funktion $f_M$ zu:\[
 
 % a)
 \subsubsection\
-
+Eingabewort der Form: $u\$v\$$, mit $|u| = |v|$\\
+\\
+Konstruktionsidee:\\
+\begin{enumerate}
+    \item betrachte das erste unmarkierte Zeichen aus u und gleiche ab, 
+        ob das erste unmarkierte Zeichen aus v gleich diesem ist.
+        Markiere die beiden Zeichen\\
+    \item falls nein h"ange an das Wort ein $a$\\
+    \item gehe zur"uck zum Anfang des Wortes und mache weiter bei 1, bis 
+        alles Markiert wurde. Dann mache die markierungen r"ueckg"angig und 
+        halte an.\\
+\end{enumerate}\ \\
+Das Markieren und "uberlesen der markierten Zust"ande erfolgt in $s$, dann
+    wird "uber $u_\sigma$ ein $\sigma \in \{a,b\}$ gemerkt und nachdem v in
+    $u_\sigma v$ erreicht wurde alle markierten Zeichen "uberlesen werden und
+    verglichen wird, ob das erste unmarkierte Zeichen gleich $\sigma$ ist.\\
+Falls ja wird zur"uck gegangen. Sonst wird ein $a$ angehangen und dann zur"uck
+    gegangen. Das anh"angen eines $a$ erfolgt "uber $add$, das Zur"ucklaufen
+    "uber $l$.\\
+Das r"uckg"angigmachen der Markierung erfolgt "uber die Zust"ande 
+    $\{l', unmark\}$, nachdem alles markiert wurde.\\
+Das Halten darauf "uber den Zustand $h$.\\
+Des weiteren muss die Syntax der eingabe nach $\$$ gecheckt werden, von 
+    $|u| = |v|$ kann nach Aufgabe ausgegangen werden.\\
+Dieses Syntax-checking, ob das eingegebene Wort auch mit $\$$ endet 
+    f"uhrt zu den Zust"anden $\{
+    syntax
+    ,syntax'
+    ,syntax''
+    \}$\\
+\\
+Eine m"ogliche L"osung w"are die TM $M = (Q, \Gamma, \delta, s)$, mit:$\\
+Q = \{
+,s
+,u_a
+,u_b
+,u_a v
+,u_b v
+,add
+,l
+,l'
+,unmark
+,syntax
+,syntax'
+,syntax''
+,h
+\}\\
+\Gamma = \{a,b,\$,\s,\sqcup,\u{a},\u{b}\}\\
+\delta \text{ nach Aufgabenstellung nicht formal spezifiziert.}\\
+s = \s\\
+$, mit dem zugeh"origem Diagramm:\\
 \automaton{
     \nd{initial, state}{s}      {0,0}   {$s$}
     \nd{state}{ua}              {4,4}   {$u_a$}
     \nd{state}{ub}              {4,-4}  {$u_b$}
     \nd{state}{uav}             {8,4}   {$u_a v$}
     \nd{state}{ubv}             {8,-4}  {$u_b v$}
-    \nd{state}{add}             {8,0}   {$add$}
+    \nd{state}{syntax}          {8,0}   {$syntax$}
+    \nd{state}{syntax'}         {6,2}   {$syntax'$}
+    \nd{state}{syntax''}        {6,-2}  {$syntax''$}
+    \nd{state}{add}             {11,0}  {$add$}
     \nd{state}{l}               {4,0}   {$l$}
-    \nd{state}{h}               {0,-4}  {$ja$}
+    \nd{state}{l'}              {0,-2}  {$l'$}
+    \nd{state}{unmark}          {0,-5}  {$unmark$}
+    \nd{state}{h}               {0,-8} {$h$}
     \path
         (s)
             edge [->, loop above] node {$\begin{array}{l}
@@ -218,9 +307,9 @@ Dadurch ergibt sich dann auch die Funktion $f_M$ zu:\[
                                             \u{a} : \u{a}, \ra\\
                                             \u{b} : \u{b}, \ra\\
                                         \end{array}$} (s')
-            edge [->, right] node {$a:\u{a}, \ra$}(ua)
+            edge [->, left] node {$a:\u{a}, \ra$}(ua)
             edge [->, left] node {$b:\u{b}, \ra$}(ub)
-            edge [->, left] node {$\$:\$, \ra$}(h)
+            edge [->, left] node {$\$:\$, \ra$}(l')
         (ua)
             edge [->, loop above] node {$\begin{array}{l}
                                             a : a, \ra\\
@@ -238,14 +327,14 @@ Dadurch ergibt sich dann auch die Funktion $f_M$ zu:\[
                                             \u{a} : \u{a}, \ra\\
                                             \u{b} : \u{b}, \ra\\
                                         \end{array}$} (ub)
-            edge [->, left] node {$a:\u{a}, \ra$}(l)
+            edge [->, left] node {$a:\u{a}, \ra$}(syntax')
             edge [->, right] node {$b:\u{b}, \ra$}(add)
         (ubv)
             edge [->, loop below] node {$\begin{array}{l}
                                             \u{a} : \u{a}, \ra\\
                                             \u{b} : \u{b}, \ra\\
                                         \end{array}$} (ub)
-            edge [->, right] node {$b:\u{b}, \ra$}(l)
+            edge [->, right] node {$b:\u{b}, \ra$}(syntax'')
             edge [->, right] node {$a:\u{a}, \ra$}(add)
         (add)
             edge [->, loop right] node {$\begin{array}{l}
@@ -253,9 +342,29 @@ Dadurch ergibt sich dann auch die Funktion $f_M$ zu:\[
                                             \u{b} : \u{b}, \ra\\
                                             a : a, \ra\\
                                             b : b, \ra\\
-                                            \$ : \$, \ra\\
                                         \end{array}$} (add)
+            edge [->, above] node {$\$: \$, \ra$} (syntax)
+        (syntax)
+            edge [->, loop above] node {$\begin{array}{l}
+                                            a : a, \ra\\
+                                        \end{array}$}(syntax)
             edge [->, above] node {$\sqcup : a, \la$} (l)
+        (syntax')
+            edge [->, loop left] node {$\begin{array}{l}
+                                            \u{a} : \u{a}, \ra\\
+                                            \u{b} : \u{b}, \ra\\
+                                            a : a, \ra\\
+                                            b : b, \ra\\
+                                        \end{array}$} (syntax')
+            edge [->, right] node {$\$: \$, \la$} (l)
+        (syntax'')
+            edge [->, loop right] node {$\begin{array}{l}
+                                            \u{a} : \u{a}, \ra\\
+                                            \u{b} : \u{b}, \ra\\
+                                            a : a, \ra\\
+                                            b : b, \ra\\
+                                        \end{array}$} (syntax'')
+            edge [->, right] node {$\$: \$, \la$} (l)
         (l)
             edge [->, loop below] node {$\begin{array}{l}
                                             \u{a} : \u{a}, \la\\
@@ -265,32 +374,25 @@ Dadurch ergibt sich dann auch die Funktion $f_M$ zu:\[
                                             \$ : \$, \la\\
                                         \end{array}$} (add)
             edge [->, above] node {$\s : \s, \ra$} (s)
+        (l')
+            edge [->, loop left] node {$\begin{array}{l}
+                                            \u{a} : \u{a}, \la\\
+                                            \u{b} : \u{b}, \la\\
+                                            a : a, \la\\
+                                            b : b, \la\\
+                                            \$ : \$, \la\\
+                                        \end{array}$} (add)
+            edge [->, left] node {$\s : \s, \ra$} (unmark)
+        (unmark)
+            edge [->, loop left] node {$\begin{array}{l}
+                                            \u{a} : a, \ra\\
+                                            \u{b} : b, \ra\\
+                                            \$ : \$, \ra\\
+                                        \end{array}$} (add)
+            edge [->, left] node {$\sqcup : \sqcup, \da$} (h)
     ;}\\
 \gap
-Es wird davon ausgegangen, dass die W"orter unter korrektar Syntax eingegeben
-    wurden.\\
-Alternativ kann vor der gegebenen TM auch eine TM durchlaufen werden, die nach
-    der Syntax pr"uft, so eine w"are in etwa:\\
-\automaton{
-    \nd{initial, state}{s}  {0,0}{$s$}
-    \nd{state}{u}           {0,0}{$u$}
-    \nd{state}{compare}     {0,0}{$compare$}
-    \nd{state}{v}           {0,0}{$v$}
-    \nd{state}{undo}        {0,0}{$undo$}
-    \nd{state}{ja}          {0,0}{$ja$}
-
-    \path
-        (s)
-            edge [->, loop above] node {$\begin{array}{l}
-                                            \s : \s, \ra\\
-                                            \u{a} : \u{a}, \ra\\
-                                            \u{b} : \u{b}, \ra\\
-                                        \end{array}$} (s')
-            edge [->, right] node {}(compare)
-            
-            
-    ;}
-$s$ aus $M_1$ w"urde aso unmittelbar auf $ja$ aus $M_2$ folgen.\\
+Alle nicht angegebenen Zust"ande f"uhren zum halten, bzw. verwerfen der Eingabe.\\
 
 % b)
 \subsubsection\
@@ -300,17 +402,22 @@ Der Zustand $add$ und alle Transitionen inzident zu diesem k"onnen entfernt
 Ferner f"uhren nun alle Transitionen, die zuvor nach $add$ f"uhrten nun nach 
     $nein$ und statt markieren bleibt der Lesekopf stehen, da bereits ein 
     ungleiches Zeichen ausreicht, damit das Wort nicht in der Sprache ist.\\
-Die resultierende TM w"ahre damit:\\
-
+Zudem muss nun lediglich akzeptiert und nichtmehr demakiert werden, also 
+    k"onnen $\{l', unmark, h\}$ 
+    und ihre inzidenten Transitionen auch gel"oscht und durch einen 
+    Zustand $ja$ ersetzt werden.\\
+Die resultierende TM h"atte damit das zugeh"orige Diagramm:\\
 \automaton{
     \nd{initial, state}{s}      {0,0}   {$s$}
     \nd{state}{ua}              {4,4}   {$u_a$}
     \nd{state}{ub}              {4,-4}  {$u_b$}
     \nd{state}{uav}             {8,4}   {$u_a v$}
     \nd{state}{ubv}             {8,-4}  {$u_b v$}
-    \nd{state}{add}             {8,0}   {$nein$}
+    \nd{state}{syntax'}         {6,2}   {$syntax'$}
+    \nd{state}{syntax''}        {6,-2}  {$syntax''$}
+    \nd{state}{add}             {11,0}  {$nein$}
     \nd{state}{l}               {4,0}   {$l$}
-    \nd{state}{h}               {0,-4}  {$ja$}
+    \nd{state}{l'}              {0,-2}  {$ja$}
     \path
         (s)
             edge [->, loop above] node {$\begin{array}{l}
@@ -318,9 +425,9 @@ Die resultierende TM w"ahre damit:\\
                                             \u{a} : \u{a}, \ra\\
                                             \u{b} : \u{b}, \ra\\
                                         \end{array}$} (s')
-            edge [->, right] node {$a:\u{a}, \ra$}(ua)
+            edge [->, left] node {$a:\u{a}, \ra$}(ua)
             edge [->, left] node {$b:\u{b}, \ra$}(ub)
-            edge [->, left] node {$\$:\$, \ra$}(h)
+            edge [->, left] node {$\$:\$, \ra$}(l')
         (ua)
             edge [->, loop above] node {$\begin{array}{l}
                                             a : a, \ra\\
@@ -338,15 +445,31 @@ Die resultierende TM w"ahre damit:\\
                                             \u{a} : \u{a}, \ra\\
                                             \u{b} : \u{b}, \ra\\
                                         \end{array}$} (ub)
-            edge [->, left] node {$a:\u{a}, \ra$}(l)
-            edge [->, right] node {$b:b, \da$}(add)
+            edge [->, left] node {$a:\u{a}, \ra$}(syntax')
+            edge [->, right] node {$b:\u{b}, \ra$}(add)
         (ubv)
             edge [->, loop below] node {$\begin{array}{l}
                                             \u{a} : \u{a}, \ra\\
                                             \u{b} : \u{b}, \ra\\
                                         \end{array}$} (ub)
-            edge [->, right] node {$b:\u{b}, \ra$}(l)
-            edge [->, right] node {$a:a, \da$}(add)
+            edge [->, right] node {$b:\u{b}, \ra$}(syntax'')
+            edge [->, right] node {$a:\u{a}, \ra$}(add)
+        (syntax')
+            edge [->, loop left] node {$\begin{array}{l}
+                                            \u{a} : \u{a}, \ra\\
+                                            \u{b} : \u{b}, \ra\\
+                                            a : a, \ra\\
+                                            b : b, \ra\\
+                                        \end{array}$} (syntax')
+            edge [->, right] node {$\$: \$, \la$} (l)
+        (syntax'')
+            edge [->, loop right] node {$\begin{array}{l}
+                                            \u{a} : \u{a}, \ra\\
+                                            \u{b} : \u{b}, \ra\\
+                                            a : a, \ra\\
+                                            b : b, \ra\\
+                                        \end{array}$} (syntax'')
+            edge [->, right] node {$\$: \$, \la$} (l)
         (l)
             edge [->, loop below] node {$\begin{array}{l}
                                             \u{a} : \u{a}, \la\\
@@ -356,5 +479,6 @@ Die resultierende TM w"ahre damit:\\
                                             \$ : \$, \la\\
                                         \end{array}$} (add)
             edge [->, above] node {$\s : \s, \ra$} (s)
-    ;}
+        (l')
+    ;}\\
 \end{document}
