@@ -115,12 +115,12 @@ $
 Konstruktionsidee:\\
 \begin{enumerate}
     \item rechne $x_{diff} = x_2 \dm x_1$\\
-    \item wenn $x_{diff} = 0$ gebe x1 aus\\
-    \item sonst gebe x2 aus\\
+    \item wenn $x_{diff} = 0$ gebe $x_1$ aus\\
+    \item sonst gebe $x_2$ aus\\
     \item halte an.\\
 \end{enumerate}\ \\
 Dieses Vorgehen gibt immer den maximalen Wert aus, da f"ur den Fall 
-    $x_1 \geq$ die Differenz $x_{diff}$ mit $\dm$ gleich 0 ist und $x_1$ 
+    $x_1 \geq x_2$ die Differenz $x_{diff}$ mit $\dm$ gleich 0 ist und $x_1$ 
     ausgegeben wird und f"ur den Fall $x_1 < x_2$ die Differenz gr"o"ser 0 ist
     und $x_2$ ausgegeben wird.\\
 \\
@@ -218,13 +218,13 @@ Die Touringmaschine jedes b markiert und anschlie"send ein markiertes b an den
     String hinten anh"angt, bis es keine unmarkierten b mehr gibt.\\
 Abschlie"send werden alle markierten b durch normale b ersetzt und die TM h"alt.\\
 Da nach endlichen Operationen bei endlichen Eingaben alle b markiert worden sind
-    h"alt die TM auch f"ur alle Eingaben aus $\{a,b\}^*$ und weisst damit keine
+    h"alt die TM auch f"ur alle Eingaben aus $\{a,b\}^*$ und wei"st damit keine
     Definitionsl"ucken auf.\\
 \\
 F"ur die Funktion $f_M$ der TM bedeutet das, dass die Touring maschine aus einem
     Wort $w \in \{a,b\}^*$ ein Wort $v \in \{a,b\}$, das aus w konkateniert mit
     $n=\#_b(w)$ b besteht
-    , also der Form $v = wb^{n=\#_b(w)}$ macht.\\
+    , also der Form $v = wb^{n=\#_b(w)}$, macht.\\
 Dadurch ergibt sich dann auch die Funktion $f_M$ zu:\[
     f_M(w) = wb^{n=\#_b(w)}
     \]
@@ -244,23 +244,24 @@ Konstruktionsidee:\\
         Markiere die beiden Zeichen\\
     \item falls nein h"ange an das Wort ein $a$\\
     \item gehe zur"uck zum Anfang des Wortes und mache weiter bei 1, bis 
-        alles Markiert wurde. Dann mache die markierungen r"ueckg"angig und 
+        alles Markiert wurde. Dann mache die Markierungen r"ueckg"angig und 
         halte an.\\
 \end{enumerate}\ \\
-Das Markieren und "uberlesen der markierten Zust"ande erfolgt in $s$, dann
+Das Markieren und "uberlesen der markierten Zeichen aus $u$ erfolgt in $s$, dann
     wird "uber $u_\sigma$ ein $\sigma \in \{a,b\}$ gemerkt und nachdem v in
-    $u_\sigma v$ erreicht wurde alle markierten Zeichen "uberlesen werden und
-    verglichen wird, ob das erste unmarkierte Zeichen gleich $\sigma$ ist.\\
+    $u_\sigma v$ erreicht wurde alle markierten Zeichen "uberlesen und
+    verglichen, ob das erste unmarkierte Zeichen gleich $\sigma$ ist.\\
 Falls ja wird zur"uck gegangen. Sonst wird ein $a$ angehangen und dann zur"uck
     gegangen. Das anh"angen eines $a$ erfolgt "uber $add$, das Zur"ucklaufen
     "uber $l$.\\
 Das r"uckg"angigmachen der Markierung erfolgt "uber die Zust"ande 
     $\{l', unmark\}$, nachdem alles markiert wurde.\\
 Das Halten darauf "uber den Zustand $h$.\\
-Des weiteren muss die Syntax der eingabe nach $\$$ gecheckt werden, von 
+Des weiteren muss die Syntax der eingabe nach dem Trennsymbol $\$$ gecheckt 
+    werden, von 
     $|u| = |v|$ kann nach Aufgabe ausgegangen werden.\\
-Dieses Syntax-checking, ob das eingegebene Wort auch mit $\$$ endet 
-    f"uhrt zu den Zust"anden $\{
+F"ur das Syntax-checking, ob das eingegebene Wort auch mit $\$$ endet, ben"otigen
+    wir die Zust"ande $\{
     syntax
     ,syntax'
     ,syntax''
@@ -283,7 +284,7 @@ Q = \{
 ,h
 \}\\
 \Gamma = \{a,b,\$,\s,\sqcup,\u{a},\u{b}\}\\
-\delta \text{ nach Aufgabenstellung nicht formal spezifiziert.}\\
+\delta \text{ nach Aufgabenstellung nicht formal zu spezifizieren.}\\
 s = \s\\
 $, mit dem zugeh"origem Diagramm:\\
 \automaton{
@@ -309,7 +310,7 @@ $, mit dem zugeh"origem Diagramm:\\
                                         \end{array}$} (s')
             edge [->, left] node {$a:\u{a}, \ra$}(ua)
             edge [->, left] node {$b:\u{b}, \ra$}(ub)
-            edge [->, left] node {$\$:\$, \ra$}(l')
+            edge [->, left] node {$\$:\$, \la$}(l')
         (ua)
             edge [->, loop above] node {$\begin{array}{l}
                                             a : a, \ra\\
@@ -338,8 +339,6 @@ $, mit dem zugeh"origem Diagramm:\\
             edge [->, right] node {$a:\u{a}, \ra$}(add)
         (add)
             edge [->, loop right] node {$\begin{array}{l}
-                                            \u{a} : \u{a}, \ra\\
-                                            \u{b} : \u{b}, \ra\\
                                             a : a, \ra\\
                                             b : b, \ra\\
                                         \end{array}$} (add)
@@ -351,16 +350,12 @@ $, mit dem zugeh"origem Diagramm:\\
             edge [->, above] node {$\sqcup : a, \la$} (l)
         (syntax')
             edge [->, loop left] node {$\begin{array}{l}
-                                            \u{a} : \u{a}, \ra\\
-                                            \u{b} : \u{b}, \ra\\
                                             a : a, \ra\\
                                             b : b, \ra\\
                                         \end{array}$} (syntax')
             edge [->, right] node {$\$: \$, \la$} (l)
         (syntax'')
             edge [->, loop right] node {$\begin{array}{l}
-                                            \u{a} : \u{a}, \ra\\
-                                            \u{b} : \u{b}, \ra\\
                                             a : a, \ra\\
                                             b : b, \ra\\
                                         \end{array}$} (syntax'')
@@ -378,9 +373,6 @@ $, mit dem zugeh"origem Diagramm:\\
             edge [->, loop left] node {$\begin{array}{l}
                                             \u{a} : \u{a}, \la\\
                                             \u{b} : \u{b}, \la\\
-                                            a : a, \la\\
-                                            b : b, \la\\
-                                            \$ : \$, \la\\
                                         \end{array}$} (add)
             edge [->, left] node {$\s : \s, \ra$} (unmark)
         (unmark)
@@ -392,7 +384,7 @@ $, mit dem zugeh"origem Diagramm:\\
             edge [->, left] node {$\sqcup : \sqcup, \da$} (h)
     ;}\\
 \gap
-Alle nicht angegebenen Zust"ande f"uhren zum halten, bzw. verwerfen der Eingabe.\\
+Alle nicht angegebenen Transitionen f"uhren zum halten, bzw. verwerfen der Eingabe.\\
 
 % b)
 \subsubsection\
@@ -456,16 +448,12 @@ Die resultierende TM h"atte damit das zugeh"orige Diagramm:\\
             edge [->, right] node {$a:\u{a}, \ra$}(add)
         (syntax')
             edge [->, loop left] node {$\begin{array}{l}
-                                            \u{a} : \u{a}, \ra\\
-                                            \u{b} : \u{b}, \ra\\
                                             a : a, \ra\\
                                             b : b, \ra\\
                                         \end{array}$} (syntax')
             edge [->, right] node {$\$: \$, \la$} (l)
         (syntax'')
             edge [->, loop right] node {$\begin{array}{l}
-                                            \u{a} : \u{a}, \ra\\
-                                            \u{b} : \u{b}, \ra\\
                                             a : a, \ra\\
                                             b : b, \ra\\
                                         \end{array}$} (syntax'')
