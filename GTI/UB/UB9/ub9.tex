@@ -42,6 +42,8 @@
 \newcommand{\rA}{\rightarrow}
 \newcommand{\LA}{\Leftarrow}
 \newcommand{\RA}{\Rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\Lra}{\Leftrightarrow}
 \newcommand{\ue}{\infty}
 \newcommand{\eps}{\epsilon}
 \newcommand{\task}[1]{\textbf{#1} \gap}
@@ -262,6 +264,116 @@ Dadurch, dass $f$ korrekt, berechenbar und total ist, ist $f$ eine Reduktion
 \subsection\
 % a)
 \subsubsection{}
+Aus den Aussagen der Aufgabenstellung folgt, dass eine Menge dann abz"ahlbar
+    unendlich ist, wenn sie gleichm"achtig zur Mende $\mathbb{N}$ ist.\\
+Ferner sind die Mengen $A, B$ genau dann zueinander gleichm"achtig, wenn eine
+    Bijektion $f: A \ra B$ existiert.\\
+Zu zeigen bleibt nun, dass eine solche Bijektion f"ur $\Sigma^*, \mathbb{N}$
+    existiert.\\
+Das Alphabet besteht aus den Elementen 0,1.\\
+\\
+Beobachtung:\\
+Betrachte ein m"ogliche zuordnung von W"ortern und Zahlen:\[
+    \begin{array}{ll}
+        \eps    &1\\
+        0       &2\\
+        1       &3\\
+        00      &4\\
+        01      &5\\
+        10      &6\\
+        11      &7\\
+        000     &8\\
+        001     &9\\
+        010     &10\\
+        011     &12\\
+        100     &13\\
+        101     &14\\
+        110     &15\\
+        111     &16\\
+        \ldots  &\ldots\\
+    \end{array}
+    \]
+Wir sehen, das einerseits die umwandlung von Bin"ar- in Dezimalwerte, sowie
+    auch die Wortl"ange selbst einen Faktor darstellen.\\
+$b2d(w): \{0,1\}^* \ra \mathbb{N}$ sei die Funktion, die jeder Bin"arzahl die
+    "aquuivalente Dezimalzahl zuordnet.\\
+Wir m"ussen f"ur jede Wortl"ange $n \in \mathbb{N}$ neue Zahlen aus $\mathbb{N}$
+    vergeben k"onnen. Da wir ein zweielementiges Alphabet haben bedeutet das,
+    dass vor vergabe der Zahlen f"ur die n"achst gr"o"sere 
+    Worl"ange $n+1$ bereits $2^n$ Zahlen vergeben wurden.
+    Daraus ergibt sich ein Bias von $2^n$ f"ur alle B"inarzahlen.\\
+Ferner muss das leere Wort $\eps$ auf die 1 abgebildet werden, da wir auf
+    $\mathbb{N}$ abbilden und die 0 nicht enthalten ist.\\
+\\
+Betrachte die Funktion:\\
+$f: \Sigma^* \ra \mathbb{N}$, mit\[
+    f(w) \mdef
+    \begin{cases}
+        1, w = \eps\\
+        1 + 2^{|w|} + b2d(w), \text{sonst}\\
+    \end{cases}
+    \]
+\\
+Zu zeigen bleibt, dass $f$ eine Bijektion ist.\\
+\\
+(1) $f$ ist injektiv:\\
+$
+w, w' \in \Sigma^*\\
+f(w) = f(w') \overset{!}{\Leftrightarrow} w = w'\\
+(i) w = \eps \lor w' = \eps\\
+f(\eps) = 1\\
+\nexists x \in \Sigma^* - \{\eps\}: 1 + 2^{|x|} + b2d(x) = 1\\
+\Ra w = \eps = w'\\
+\\
+(ii) w \neq \eps \land w' \neq \eps\\
+f(w) = 1 + 2^{|w|} + b2d(w)\\
+f(w') = 1 + 2^{|w'|} + b2d(w')\\
+f(w) = f(w)\\
+\Lra 1 + 2^{|w|} + b2d(w) = 1 + 2^{|w'|} + b2d(w')\\
+\Lra 2^{|w|} + b2d(w) = 2^{|w'|} + b2d(w')\\
+$\\
+Wenn $|w| > |w'|$, dann $2^{|w|} > 2^{|w'|} + b2d{1^{|w'|}}$\\
+Wenn $|w| < |w'|$, dann $2^{|w'|} > 2^{|w|} + b2d{1^{|w|}}$\\
+Wenn $|w| = |w'|$, dann $\Lra 2^{|w|} + b2d(w) = 2^{|w'|} + b2d(w')$ genau dann,
+    wenn $b2d(w) = b2d(w')$, dies ist genau dann der Fall, wenn $w = w'$.\\
+Damit ist $f$ injektiv.\\
+\gap
+(2) $f$ ist surjektiv:\\
+Aussage:\\
+$\\
+n \in \mathbb{N} \exists w \in \Sigma^*: f(w) = n\\
+\\
+I.A.:\\
+n = 1\\
+f(\eps) = 1\\
+\\
+I.V.\\
+$Die Aussage gelte f"ur $n' \in \mathbb{N}$ beliebig, aber fest.\\$
+\\
+I.S.\\
+n = n'+1\\
+n = f(w) = 1 + 2^{|w|} + b2d(w)\\
+\Lra n-1 = 2^{|w|} + b2d(w)\\
+\Lra n' = 2^{|w|} + b2d(w)\\
+$Es existiert $ w'$, mit $ f(w') = 2^{|w|} + b2d(w), $mit$:\\
+|w| = |w'|, b2d(w) = b2d(w')-1,
+    1 + 2^{|w|} + b2d(w') - 1 = 2^{|w|} + b2d(w)\\
+\\
+$oder falls $ w = 0^{|w|}:\\
+|w'| = |w| - 1, b2d(w') = 2^{|w'|} - 1, b2d(w) = 0,
+    1 + 2 * 2^{|w| - 1} - 1 = 2 * 2^{|w| - 1} = 2^{|w|} = 2^{|w|} + 0
+    = 2^{|w|} + b2d(w)\\
+\\
+$damit gilt also$:\\
+n' = 2^{|w|} + b2d(w)\\
+\Lra n' = f(w')\\
+$Dies gilt nach $ I.V.\\
+$\\
+Damit ist $f$ surjektiv.\\
+\\
+Da $f$ in- und surjektiv ist ist es ferner auch bijektiv und damit sind dann 
+    auch $\Sigma^*$ und $\mathbb{N}$ gleichm"achtig.\\
+
 % b)
 \subsubsection{}
 \end{document}
