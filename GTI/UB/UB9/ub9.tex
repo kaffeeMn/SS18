@@ -1,0 +1,211 @@
+\documentclass{article}
+\textwidth=6in
+\hoffset=0in
+\voffset=0in
+
+
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+
+\usepackage{tikz}
+\usetikzlibrary{automata, arrows}
+\tikzset{initial text={}}
+
+\usepackage{pifont}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{ngerman}
+\usepackage[ampersand]{easylist}
+
+% needs to be updated
+\author{Max Springenberg, 177792}
+\title{\
+    GTI "Ubungsblatt 9\\
+    Tutor: Marko Schmellenkamp\\
+    ID: MS1\\
+    "Ubung: Mi 16-18
+    }
+\setcounter{section}{9}
+\date{}
+
+% custom commands
+% \Theta \Omega \omega
+\newcommand{\tab}{\null\ \qquad}
+\newcommand{\gap}{\null\ \\ \\}
+\newcommand{\da}{\downarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\lA}{\leftarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\rA}{\rightarrow}
+\newcommand{\LA}{\Leftarrow}
+\newcommand{\RA}{\Rightarrow}
+\newcommand{\ue}{\infty}
+\newcommand{\eps}{\epsilon}
+\newcommand{\task}[1]{\textbf{#1} \gap}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\newcommand{\degr}{\null \degree}
+\newcommand{\error}{\task{FEHLER:}}
+\newcommand{\correction}{\task{KORREKTUR:}}
+\newcommand{\mdef}{\overset{\text{def}}{=}}
+\newcommand{\rao}[1]{\overset{#1}{\rightarrow}}
+\newcommand{\automaton}[1]{
+    \begin{tikzpicture}
+    #1
+    \end{tikzpicture}
+    }
+\newcommand{\nd}[4]{
+    \node[#1](#2)at(#3){#4};
+    }
+\newcommand{\dm}{\mathbin{\scriptstyle\dot{\smash{\textstyle-}}}}
+\newcommand{\s}{\rhd}
+\renewcommand{\u}{\underline}
+
+
+% content
+\begin{document}
+% title page
+\maketitle
+\newpage
+% actual paper
+
+% A1
+\subsection\
+% a)
+\subsubsection{}
+Gegeben sei ein 2-Kellerautomat $A$ mit \[
+    A=(Q, \Sigma, \Gamma, \delta, s, \tau_0, F)
+    \]
+Dabei hat $\delta$ die Form\[
+    \delta \subseteq 
+        (Q \times (\Sigma \cup \{\eps\}) \times \Gamma \times \Gamma)
+        \times (Q \times \Gamma^* \times \Gamma^*)
+    \]
+\gap
+Folglich besteht eine Konfiguration von $A$ aus:\\
+\begin{enumerate}
+    \item einem Zustand $q \in Q$
+    \item einem Kellerinhalt des ersten Kellers $u \in \Gamma$
+    \item einem Kellerinhalt des zweiten Kellers $v \in \Gamma$
+    \item der noch zu lesenden Eingabe $w \in \Sigma^*$
+\end{enumerate}
+Dementsprechend kann eine Solche konfiguration auch als Tupel notiert werden,
+    mit:\[
+        (q,w,u,v), q \in Q, w \in \Sigma^*, u, v \in \Gamma^*
+    \]
+Die untersten Kellsymbole der jeweiligen Keller k"onnen, aber m"ussen nicht 
+    gleich sein, wichtig ist lediglich, dass sie als solche definiert sind.\\
+$\tau_n, n \in \{1,2\}$, sei das unterste Kellersymbol des n-ten Kellers.\\
+Des weiteren sei ein Stratzustand $s$ nach Notation des Automaten aus der
+    Aufgabenstellung definiert.\\
+\gap
+Daraus folgt die Startkonfiguration 
+    $K_0 = (s,w,\tau_1,\tau_2), w \in \Sigma^*$, mit
+    dem Eingabewort w f"ur $A$.\\
+\gap
+Die Folgekonfigurationsrelation $\vdash_A$ sei wie folgt definiert:\\
+$
+\forall 
+    p,q \in Q,
+    \tab \sigma \in \Sigma, y \in \Sigma^*,
+    \tab \tau',\tau'' \in \Gamma, u,v,z',z'' \in \Gamma^*
+    :\\
+\\
+(p, \sigma y, \tau'u, \tau''v) 
+    \vdash_A (q, y, z'u,z''v)
+    , \text{falls: } ((p, \sigma, \tau', \tau''), (q, z',z'')) \in \delta\\
+\\
+(p, y, \tau'u, \tau''v) 
+    \vdash_A (q, y, z'u,z''v)
+    , \text{falls: } ((p, \eps, \tau', \tau''), (q, z',z'')) \in \delta\\
+$\\
+Eine Konfiguration $K'$ ist also genau dann eine Nachfolgekonfiguration von $K$,
+    wenn gilt $K \vdash_A K'$.\\
+\gap
+Nach Aufgabenstellung wird mit akzeptierenden Zust"anden akzeptiert.\\
+Eine Eingabe $w \in \Sigma^*$ wird genau dann akzeptiert, wenn gilt:\\
+\\
+$
+(F \neq \emptyset)
+    \land (K_0 \vdash_A^* (q, \eps, w', w''), w', w'' \in \Gamma^*, q \in F)
+$\\
+\gap
+F"ur die Semantik von $A$ bedeuted dies ferner:\[
+    L(A) = \{w \in \Sigma^* | A \text{ akzeptiert } w\}
+    \]
+\gap
+Damit $A$ deterministisch ist muss zus"atzlich mit den Konfigurationen
+    $K, K_1, K_2$ gelten:\\
+$
+\nexists K_1, K_2: K \vdash_A K_1 \land K \vdash_A K_2 \land K_1 \neq K_2\\
+$
+
+% b)
+\subsubsection{}
+Das unterste Kellersymbol beider Keller sei $\s$, der erste Keller enthalte
+    den Teil des Strings vom linken Rand bis zur aktuellen Position, der
+    zweite Keller enthalte den Teil rechts von der aktuellen Position.\\
+\\
+Zun"achst soll die Eingabe komplett eingelesen werden.\\
+Dies geschieht "uber Transitionsregeln:\[
+    (
+        (p, \sigma y, u, \s), 
+        (q, \sigma u, \s)
+    ) \in \delta
+    \]
+, die zu Nachfolgekonfigurationen der Form:\[
+    (p, \sigma y, u, \s) 
+        \vdash_A (q, y, \sigma u, \s),
+    \]
+, mit $
+    \sigma \in \Sigma, y \in \Sigma^*, u \in \Gamma^*, 
+    p,q \in Q - F$ f"uhren.\\
+\\
+Nachdem die Eingabe eingelesen wurde befindet sich $A$ also noch nicht
+    in einem Akzeptierenden Zustand.\\
+Fortan wird mit $\eps$-Transitionen die Touringmaschine $M$ simuliert.\\
+\\
+Dabei wird zun"achst wieder zur"uck zum Start des Strings gelaufen:\[
+    (p,\eps,\tau u \s, \s v) \vdash_A (q,\eps,u\s,\s \tau v),
+    \tau \in \Gamma, u,v \in \Gamma^*, p,q \in Q-F\\
+    \]
+, bis die Konfiguration 
+    $K_{M0} = (q_{M0}, \eps, \s , \s w), q_{M0} \in Q-F, w \in \Gamma^*$
+    erreicht wird.\\
+\\
+%Akzeptiert $M$ $\eps$ so existiert eine Transition 
+%    $(
+%        (q_{M0}, \eps, \s, \s w), 
+%        (q_{M\eps}, \s, \s w)
+%    ) \in \delta$, mit $q_{M\eps} \in F$\\
+\\
+Jede Transition
+    $\delta_M(p_M,\tau) = (q_M, \tau', a),
+    p_M,q_M \in Q_M, \tau, \tau' \in \Gamma, a \in \{\ra,\la,\da\}$
+    von $M$ wird durch:\\
+$\\
+((p, \eps, \tau u, \tau''v), (q, u, \tau' \tau'' v))
+    , \text{ wenn } a = \la\\
+((p, \eps, \tau u, v), (q, u \tau' \tau'', v))
+    , \text{ wenn } a = \ra\\
+((p, \eps, \tau u, v), (q, u \tau', \tau'' v))
+    , \text{ wenn } a = \da\\
+,p,q \in Q, \tau'' \in \Gamma\\
+$\\
+in $A$ , mit $p,q$ denau dann akzeptierend, wenn $p_M$, bzw. $q_M \in \{ja\}$,
+    simuliert.\\
+
+% A2
+\subsection\
+
+
+% A3
+\subsection\
+% a)
+\subsubsection{}
+% b)
+\subsubsection{}
+\end{document}
