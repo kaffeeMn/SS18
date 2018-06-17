@@ -200,6 +200,62 @@ in $A$ , mit $p,q$ denau dann akzeptierend, wenn $p_M$, bzw. $q_M \in \{ja\}$,
 
 % A2
 \subsection\
+Zu zeigen ist:\[
+    Reach \leq DG-Cycle
+    \]
+Dazu m"ussen wir:
+
+    (i) eine Reduktionsfunktion $f$ angeben
+
+    (ii) beweisen, dass $f$ eine g"ultige Reduktion ist
+\gap
+\task{(i)}
+Ein gerichteter Graph $G = (V,E)$ enth"alt genau dann einen Kreis durch 
+    $v \in V$, wenn ein Weg von $v$ nach $v$ "uber mindestens einen zu $v$ 
+    verschiedenen Knoten gibt.\\
+Wenn man nun eine Kante von einem neuem Knoten $s$ zu $v$ und Kanten die nach
+    $v$ gehen auch an einen neuen Knoten $t$ anf"ugt, so existiert mit einem 
+    Solchen Kreis "uber $v$ auch zwingend ein Weg von $s$ nach $t$.\\
+\gap
+Aus dieser "Uberlegung folgt $f$ mit:\\
+$
+f(G) = f((V,E)) = G' = (V',E')\\
+(1) V' = V \cup \{s,t\}\\
+(2) E' = E \cup {(s,v)} \cup \{(w,t) | \forall w \in V: (w,v) \in E\}\\
+$
+\gap
+\task{(ii)}
+Nun bleibt zu zeigen, dass $f$ total und berechenbar ist, sowie dass $f$ die 
+    Vor"uberlegung erf"ullt und diese korrekt ist.\\
+\\
+Das $f$ berechenbar ist geht aus der Definition mittles Mengenvereinigung
+    hervor.\\
+Das $f$ total ist, daraus, dass $f$ auf jeden Graphen $G = (V,E)$ angewandt
+    werden kann, da keine Bedingungen an $V, E$ gekn"upft sind und lediglich
+    Kanten und Knoten hinzugef"ugt werden.\\
+\\
+$f$ erf"ullt die Vor"uberlegung, da das hinzuf"ugen von den Knoten durch (1)
+    und das der Kanten durch (2) umgesetzt wird.\\
+\\
+Nun zur Korrektheit der "Uberlegung:\\
+\gap
+Annahme: Es existiert ein Graph $G$ mit einem Kreis durch $v$, f"ur den
+    $f(G)$ mit einem Weg von $s$ nach $t$ diesen nicht ermittelt.\\
+\\
+Nach Annahme existiert ein Kreis durch $v$, das bedeutet insbesondere, das
+    mindestens eine Kante, die zu $v$ f"uhrt von $v$ und damit auch von
+    $s$, mit $(s,v) \in E'$ erreichbar ist. Inzidente Kanten zu $t$ wurden durch
+    (2) definiert. Existiert also von einem durch $s$ und auch $v$
+    erreichbaren Knoten keine Kante zu $t$, so existiert auch keine Kante zu 
+    $v$.\\
+Nach Annahme darf keine solche Kante existieren, das w"urde bedeuten, dass auch
+    kein Weg von $v$ nach $v$ existiert und damit dann auch kein Kreis "uber $v$
+    .$\lightning$\\
+\\
+Nach Widerspruch ist damit $f$ korrekt.\\
+\\
+Dadurch, dass $f$ korrekt, berechenbar und total ist, ist $f$ eine Reduktion
+    f"ur $Reach \leq DG-Cycle$\\
 
 
 % A3
