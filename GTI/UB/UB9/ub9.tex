@@ -216,15 +216,30 @@ Dazu m"ussen wir:
 Ein gerichteter Graph $G = (V,E)$ enth"alt genau dann einen Kreis durch 
     $v \in V$, wenn ein Weg von $v$ nach $v$ "uber mindestens einen zu $v$ 
     verschiedenen Knoten gibt.\\
-Wenn man nun eine Kante von einem neuem Knoten $s$ zu $v$ und Kanten die nach
-    $v$ gehen auch an einen neuen Knoten $t$ anf"ugt, so existiert mit einem 
-    Solchen Kreis "uber $v$ auch zwingend ein Weg von $s$ nach $t$.\\
+Existiert nun ein Weg von dem Knoten $s$ "uber mindestens einen zu $t$ 
+    verschiedenen Knoten nach $t$ und man `verschmilzt' die 
+    Knoten $s,t$ und deren inzidente Kanten ohne dierekte Kanten zwischen den 
+    Knoten zu einem Knoten $v$, 
+    so existiert auch ein Kreis durch v.\\
 \gap
 Aus dieser "Uberlegung folgt $f$ mit:\\
 $
-f(G) = f((V,E)) = G' = (V',E')\\
-(1) V' = V \cup \{s,t\}\\
-(2) E' = E \cup {(s,v)} \cup \{(w,t) | \forall w \in V: (w,v) \in E\}\\
+G \text{ kreisfrei}:\\
+f(G) = f((V,E)) = G' = (V',E') $, mit:$\\
+(1) V' = V - \{s,t\} \cup \{v\}\\
+(2) E' = E
+    - (\{(w,s) | w \in V\}
+        \cup \{(s,w) | w \in V\}
+        \cup \{(w,t) | w \in V\}
+        \cup \{(t,w) | w \in V\}
+    )\\
+    \tab \tab \cup (
+        \{(w,v) 
+            | ((w,t) \in E \land w \neq s) \lor ((w,s) \in E \land w \neq t)\}\\
+        \tab \tab \tab \cup 
+        \{(v,w) 
+            | ((t,w) \in E \land w \neq s) \lor ((s,w) \in E \land w \neq t)\}
+    )\\
 $
 \gap
 \task{(ii)}
@@ -235,31 +250,22 @@ Das $f$ berechenbar ist geht aus der Definition mittles Mengenvereinigung
     hervor.\\
 Das $f$ total ist, daraus, dass $f$ auf jeden Graphen $G = (V,E)$ angewandt
     werden kann, da keine Bedingungen an $V, E$ gekn"upft sind und lediglich
-    Kanten und Knoten hinzugef"ugt werden.\\
+    Kanten und Knoten hinzugef"ugt oder entfernt werden.\\
 \\
-$f$ erf"ullt die Vor"uberlegung, da das hinzuf"ugen von den Knoten durch (1)
-    und das der Kanten durch (2) umgesetzt wird.\\
+Es bleibt zu zeigen:\\
+$I: G \in Reach \rightarrow G \in DG-Cycle$\\
+Wenn $t$ von $s$ aus erreichbar, und deren ein und ausgehende Kanten werden
+    in einem Knoten verschmolzen, so existiert auch ein Weg von dem Knoten 
+    zu sich selbst, genau dann wenn mindestens ein Knoten auf dem Weg zwischen
+    $s$ und $t$ liegt.\\
+Damit gilt $G \in Reach \rightarrow G \in DG-Cycle$\\
 \\
-Nun zur Korrektheit der "Uberlegung:\\
-\gap
-Annahme: Es existiert ein Graph $G$ mit einem Kreis durch $v$, f"ur den
-    $f(G)$ mit einem Weg von $s$ nach $t$ diesen nicht ermittelt.\\
+$II: G \not \in Reach \rightarrow G \not \in DG-Cycle$\\
+Wenn $t$ von $s$ aus nicht erreichbar ist, so existiert auch kein Weg und damit
+    kein Kreis von $v$ nach $v$, es seie denn es $s$ oder $t$ w"aren bereits in
+    einem Kreis in $G$. Dies ist nicht m"oglich, da $G$ kreisfrei ist.\\
 \\
-Nach Annahme existiert ein Kreis durch $v$, das bedeutet insbesondere, das
-    mindestens eine Kante, die zu $v$ f"uhrt von $v$ und damit auch von
-    $s$, mit $(s,v) \in E'$ erreichbar ist. Inzidente Kanten zu $t$ wurden durch
-    (2) definiert. Existiert also von einem durch $s$ und auch $v$
-    erreichbaren Knoten keine Kante zu $t$, so existiert auch keine Kante zu 
-    $v$.\\
-Nach Annahme darf keine solche Kante existieren, das w"urde bedeuten, dass auch
-    kein Weg von $v$ nach $v$ existiert und damit dann auch kein Kreis "uber $v$
-    .$\lightning$\\
-\\
-Nach Widerspruch ist damit $f$ korrekt.\\
-\\
-Dadurch, dass $f$ korrekt, berechenbar und total ist, ist $f$ eine Reduktion
-    f"ur $Reach \leq DG-Cycle$\\
-
+Damit gilt $G \not \in Reach \rightarrow G \not \in DG-Cycle$\\
 
 % A3
 \subsection\
