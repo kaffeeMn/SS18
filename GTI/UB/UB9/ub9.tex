@@ -94,7 +94,7 @@ Folglich besteht eine Konfiguration von $A$ aus:\\
     \item einem Kellerinhalt des zweiten Kellers $v \in \Gamma$
     \item der noch zu lesenden Eingabe $w \in \Sigma^*$
 \end{enumerate}
-Dementsprechend kann eine Solche konfiguration auch als Tupel notiert werden,
+Dementsprechend kann eine Solche Konfiguration auch als Tupel notiert werden,
     mit:\[
         (q,w,u,v), q \in Q, w \in \Sigma^*, u, v \in \Gamma^*
     \]
@@ -142,7 +142,7 @@ F"ur die Semantik von $A$ bedeuted dies ferner:\[
 Damit $A$ deterministisch ist muss zus"atzlich mit den Konfigurationen
     $K, K_1, K_2$ gelten:\\
 $
-\nexists K_1, K_2: K \vdash_A K_1 \land K \vdash_A K_2 \land K_1 \neq K_2\\
+\forall K \nexists K_1, K_2: K \vdash_A K_1 \land K \vdash_A K_2 \land K_1 \neq K_2\\
 $
 
 % b)
@@ -168,7 +168,8 @@ Dies geschieht "uber Transitionsregeln:\[
 \\
 Nachdem die Eingabe eingelesen wurde befindet sich $A$ also noch nicht
     in einem Akzeptierenden Zustand.\\
-Fortan wird mit $\eps$-Transitionen die Touringmaschine $M$ simuliert.\\
+Fortan wird mit $\eps$-Transitionen die Touringmaschine 
+    $M = (Q_M, \Gamma, \delta_M, s_M)$ simuliert.\\
 \\
 Dabei wird zun"achst wieder zur"uck zum Start des Strings gelaufen:\[
     (p,\eps,\tau u \s, \s v) \vdash_A (q,\eps,u\s,\s \tau v),
@@ -285,11 +286,11 @@ Betrachte ein m"ogliche zuordnung von W"ortern und Zahlen:\[
         000     &8\\
         001     &9\\
         010     &10\\
-        011     &12\\
-        100     &13\\
-        101     &14\\
-        110     &15\\
-        111     &16\\
+        011     &11\\
+        100     &12\\
+        101     &13\\
+        110     &14\\
+        111     &15\\
         \ldots  &\ldots\\
     \end{array}
     \]
@@ -310,7 +311,7 @@ $f: \Sigma^* \ra \mathbb{N}$, mit\[
     f(w) \mdef
     \begin{cases}
         1, w = \eps\\
-        1 + 2^{|w|} + b2d(w), \text{sonst}\\
+        2^{|w|} + b2d(w), \text{sonst}\\
     \end{cases}
     \]
 \\
@@ -320,20 +321,20 @@ Zu zeigen bleibt, dass $f$ eine Bijektion ist.\\
 $
 w, w' \in \Sigma^*\\
 f(w) = f(w') \overset{!}{\Leftrightarrow} w = w'\\
+\\
 (i) w = \eps \lor w' = \eps\\
 f(\eps) = 1\\
-\nexists x \in \Sigma^* - \{\eps\}: 1 + 2^{|x|} + b2d(x) = 1\\
+\nexists x \in \Sigma^* - \{\eps\}: 2^{|x|} + b2d(x) = 1\\
 \Ra w = \eps = w'\\
 \\
 (ii) w \neq \eps \land w' \neq \eps\\
-f(w) = 1 + 2^{|w|} + b2d(w)\\
-f(w') = 1 + 2^{|w'|} + b2d(w')\\
+f(w) = 2^{|w|} + b2d(w)\\
+f(w') = 2^{|w'|} + b2d(w')\\
 f(w) = f(w)\\
-\Lra 1 + 2^{|w|} + b2d(w) = 1 + 2^{|w'|} + b2d(w')\\
 \Lra 2^{|w|} + b2d(w) = 2^{|w'|} + b2d(w')\\
 $\\
-Wenn $|w| > |w'|$, dann $2^{|w|} > 2^{|w'|} + b2d{1^{|w'|}}$\\
-Wenn $|w| < |w'|$, dann $2^{|w'|} > 2^{|w|} + b2d{1^{|w|}}$\\
+Wenn $|w| > |w'|$, dann $2^{|w|} > 2^{|w'|} + b2d(w')$, da $ b2d(w') < 2^{|w'|}$\\
+Wenn $|w| < |w'|$, dann $2^{|w'|} > 2^{|w|} + b2d(w)$, da $ b2d(w) < 2^{|w|}$\\
 Wenn $|w| = |w'|$, dann $\Lra 2^{|w|} + b2d(w) = 2^{|w'|} + b2d(w')$ genau dann,
     wenn $b2d(w) = b2d(w')$, dies ist genau dann der Fall, wenn $w = w'$.\\
 Damit ist $f$ injektiv.\\
@@ -341,7 +342,7 @@ Damit ist $f$ injektiv.\\
 (2) $f$ ist surjektiv:\\
 Aussage:\\
 $\\
-n \in \mathbb{N} \exists w \in \Sigma^*: f(w) = n\\
+n \in \mathbb{N} \land \exists w \in \Sigma^*: f(w) = n\\
 \\
 I.A.:\\
 n = 1\\
@@ -352,17 +353,17 @@ $Die Aussage gelte f"ur $n' \in \mathbb{N}$ beliebig, aber fest.\\$
 \\
 I.S.\\
 n = n'+1\\
-n = f(w) = 1 + 2^{|w|} + b2d(w)\\
-\Lra n-1 = 2^{|w|} + b2d(w)\\
-\Lra n' = 2^{|w|} + b2d(w)\\
-$Es existiert $ w'$, mit $ f(w') = 2^{|w|} + b2d(w), $mit$:\\
-|w| = |w'|, b2d(w) = b2d(w')-1,
-    1 + 2^{|w|} + b2d(w') - 1 = 2^{|w|} + b2d(w)\\
+n = f(w) = 2^{|w|} + b2d(w)\\
+\Lra n-1 = 2^{|w|} + b2d(w) - 1\\
+\Lra n' = 2^{|w|} + b2d(w) - 1\\
+$Es existiert $ w'$, mit $ f(w') = 2^{|w|} + b2d(w) - 1 $, mit$:\\
+|w| = |w'|, b2d(w) = b2d(w')+1,
+    2^{|w|} + b2d(w') = 2^{|w|} + b2d(w) -1\\
 \\
 $oder falls $ w = 0^{|w|}:\\
-|w'| = |w| - 1, b2d(w') = 2^{|w'|} - 1, b2d(w) = 0,
-    1 + 2 * 2^{|w| - 1} - 1 = 2 * 2^{|w| - 1} = 2^{|w|} = 2^{|w|} + 0
-    = 2^{|w|} + b2d(w)\\
+|w'| = |w| - 1, b2d(w') = 2^{|w'|} - 1, b2d(w) = 0,\\
+2^{|w'|} + 2^{|w'|} - 1 = 2 * 2^{|w| - 1} - 1 = 2^{|w|} - 1 = 2^{|w|} + 0 - 1
+    = 2^{|w|} + b2d(w) - 1\\
 \\
 $damit gilt also$:\\
 n' = 2^{|w|} + b2d(w)\\
@@ -371,7 +372,7 @@ $Dies gilt nach $ I.V.\\
 $\\
 Damit ist $f$ surjektiv.\\
 \\
-Da $f$ in- und surjektiv ist ist es ferner auch bijektiv und damit sind dann 
+Da $f$ in- und surjektiv ist, ist es ferner auch bijektiv und damit sind dann 
     auch $\Sigma^*$ und $\mathbb{N}$ gleichm"achtig.\\
 
 % b)
@@ -379,21 +380,24 @@ Da $f$ in- und surjektiv ist ist es ferner auch bijektiv und damit sind dann
 Im Rahmen der Veranstaltung haben wir keien Ordnung auf Mengen definiert, wir
     k"onnen aber annehmen, dass es Tupel $T$ gibt, deren Elemente an i-ter 
     stelle, $0 \leq i < |T|, i \in \mathbb{N}_0$, fest definiert sind.\\ 
+\\
 Wir definieren die Funktionen $s2t: S \ra T, t2s: T \ra S$, mit:\\
-$
+$\\
 s2t(S) = (s_0, \ldots, s_n), s_0
     , \ldots, s_n \in S, s_0 < \ldots < s_n, n \in \mathbb{N}\\
 t2s((t_0, \ldots, t_n)) = \{t_0, \ldots, t_n\}
     ,  n \in \mathbb{N}\\
 $, die eine Menge mit ausschlie"slich unterschiedlichen Elementen auf ein 
     aufsteigend sortiertes Tupel und ein Tupel auf eine Menge abbilden.\\
+\\
 Wir definieren die Funktionen 
     $map_t: f \times T \ra T, map_s: f \times S \ra S$, mit:$\\
 map_t(f, (a_0, \ldots, a_n)) = (f(a_0), \ldots, f(a_n)), n \in \mathbb{N}\\
 map_s(f, \{a_0, \ldots, a_n\}) = \{f(a_0), \ldots, f(a_n)\}, n \in \mathbb{N}\\
-$\\
+$
 , die auf jedes Element von einem Tupel T/ einer Menge S, die Funktion f 
     anwenden.\\
+\\
 Die Ordnungsstruktur erleichtert uns sp"ater den Beweis.\\
 \gap
 Wir wissen, dass $\Sigma^*$ abz"ahlbar unendlich ist und damit Bijektionen
@@ -401,7 +405,7 @@ Wir wissen, dass $\Sigma^*$ abz"ahlbar unendlich ist und damit Bijektionen
     existieren.\\
 Ferner bedeutet dies, dass wenn gezeigt werden kann, dass $P(\mathbb{N})$
     "uberabz"ahlbar unendlich ist, dann auch 
-    $P(map(b^{-1},\mathbb{N})) = P(\Sigma)$\\
+    $P(map_s(b^{-1},\mathbb{N})) = P(\Sigma)$\\
 \\
 Wir betrachten alle Unendlichen Mengen $M \in P(\mathbb{N})$, die zueinander
     verschieden sind und jedes Element nur einzeln enthalten.\\
@@ -415,17 +419,18 @@ Alle Tupel aus $M_t$ enthalten also noch
     die selben Elemente wie zuvor die jeweiligen Mengen in $M$.\\
 Wir nehmen an, dass jeder Zahl $n \in \mathbb{N}$ ein Element aus $M$
     zugeordnet wurde, M also abz"ahlbar unendlich sei.\\
-Wir definieren $T_t = (T_0, \ldots, T_i), i \in \mathbb{N}_0$, als alle 
+\\
+Wir definieren $T_t = (T_0, \ldots, T_i)$, als alle 
     Tupel aus $M_t$, f"ur die gilt $t_{i,j} < t_{i+1,j}, i,j \in \mathbb{N}$, 
-    wobei $t{i,j}$ das $j-te$ Element aus dem $i-ten$ Tupel aus $T_t$ ist.
+    wobei $t_{i,j}$ das $j-te$ Element aus dem $i-ten$ Tupel aus $T_t$ ist.
     Dann kann zun"achst das Tupel $
-    T = (t_{0,0}, \ldots, t{i,j}), i,j \in \mathbb{N}_0
+    T = (t_{0,0}, \ldots, t{i,j}), i,j \in \mathbb{N}_0, i=j
     $ gebildet werden. $T$ enth"alt also das $j-te$ Element, des $i-ten$ Tupel 
-    aus $T_t$ und ist damit auch aufsteigend sortiert.\\
+    aus $T_t$, mit $i=j$ und ist damit auch aufsteigend sortiert.\\
 \\
 Wenden wir nun auf $T$, die Funktion $add1(x) = x+1$ an, so erhalten wir
     mit:\[
-    T' = map(add1, T)
+    T' = map_t(add1, T)
     \]
 ein Tupel, dass zu jedem Tupel aus $T_t$ ein
     Element $t_j \in T'$, mit $t_j \neq t_{i,j}, i,j \in \mathbb{N}_0$ enth"alt.\\
@@ -433,7 +438,7 @@ ein Tupel, dass zu jedem Tupel aus $T_t$ ein
 Ferner ist das Tupel $T'$ damit nicht in $T_t$ enthalten, obwohl es die Kriterien 
     f"ur $T_t$ erf"ullt und auch $S=t2s(T')$ ist nicht in $M$, da sonst
     $T'$ in $T_t$ w"are.\\
-Ferner gilt, das $M$ damit nach Diagonalisierung nicht "uberabz"ahlbar unendlich
+Ferner gilt, das $M$ damit nach Diagonalisierung "uberabz"ahlbar unendlich
     ist. $\lightning$\\
 \\
 Da $M \subset P(\mathbb{N})$ und $M$ "uberabz"ahlbar unendlich ist, ist dann auch
@@ -441,9 +446,14 @@ Da $M \subset P(\mathbb{N})$ und $M$ "uberabz"ahlbar unendlich ist, ist dann auc
 \gap
 Nun wissen wir, dass $P(\mathbb{N})$ "uberabz"ahlbar unendlich ist.\\
 Wir K"onnen analog zu dem Beweis von $P(\mathbb{N})$ agieren, indem wir 
-    zun"auchst $P(\mathbb{N}) = P(map(b, \Sigma^*))$ bilden, dann wie zuvor 
+    zun"auchst $P(\mathbb{N}) = P(map_s(b, \Sigma^*))$ bilden, dann wie zuvor 
     vorgehen und argumentieren, dass 
-    $map(b^{-1}, S) \not \in \{map(b^{-1}, m) | m \in M\}$ gilt
+    $map_s(b^{-1}, S) \not \in \{map_s(b^{-1}, m) | m \in M\}$ gilt
     und dadurch den Widerspruch erlangen.\\
+\\
+Einfacher ist es aber zu sagen, dass $\Sigma^*$ und $\mathbb{N}$ gleichm"achtig
+    und damit dann auch $P(\Sigma^*), P(\mathbb{N})$ gleichm"achtig sind. Da
+    $P(\mathbb{N})$"uberabz"ahlbar unendlich ist, ist jede andere gleichm"achtige
+    Menge dann auch "uberabz"ahlbar unendlich.\\
 Damit ist auch $P(\Sigma^*)$ nach Diagonalisierung "uberabz"ahlbar unendlich.\\
 \end{document}
