@@ -376,4 +376,74 @@ Da $f$ in- und surjektiv ist ist es ferner auch bijektiv und damit sind dann
 
 % b)
 \subsubsection{}
+Im Rahmen der Veranstaltung haben wir keien Ordnung auf Mengen definiert, wir
+    k"onnen aber annehmen, dass es Tupel $T$ gibt, deren Elemente an i-ter 
+    stelle, $0 \leq i < |T|, i \in \mathbb{N}_0$, fest definiert sind.\\ 
+Wir definieren die Funktionen $s2t: S \ra T, t2s: T \ra S$, mit:\\
+$
+s2t(S) = (s_0, \ldots, s_n), s_0
+    , \ldots, s_n \in S, s_0 < \ldots < s_n, n \in \mathbb{N}\\
+t2s((t_0, \ldots, t_n)) = \{t_0, \ldots, t_n\}
+    ,  n \in \mathbb{N}\\
+$, die eine Menge mit ausschlie"slich unterschiedlichen Elementen auf ein 
+    aufsteigend sortiertes Tupel und ein Tupel auf eine Menge abbilden.\\
+Wir definieren die Funktionen 
+    $map_t: f \times T \ra T, map_s: f \times S \ra S$, mit:$\\
+map_t(f, (a_0, \ldots, a_n)) = (f(a_0), \ldots, f(a_n)), n \in \mathbb{N}\\
+map_s(f, \{a_0, \ldots, a_n\}) = \{f(a_0), \ldots, f(a_n)\}, n \in \mathbb{N}\\
+$\\
+, die auf jedes Element von einem Tupel T/ einer Menge S, die Funktion f 
+    anwenden.\\
+Die Ordnungsstruktur erleichtert uns sp"ater den Beweis.\\
+\gap
+Wir wissen, dass $\Sigma^*$ abz"ahlbar unendlich ist und damit Bijektionen
+    $b : \Sigma^* \ra \mathbb{N}$ und $b^{-1} : \mathbb{N} \ra \Sigma^*$ 
+    existieren.\\
+Ferner bedeutet dies, dass wenn gezeigt werden kann, dass $P(\mathbb{N})$
+    "uberabz"ahlbar unendlich ist, dann auch 
+    $P(map(b^{-1},\mathbb{N})) = P(\Sigma)$\\
+\\
+Wir betrachten alle Unendlichen Mengen $M \in P(\mathbb{N})$, die zueinander
+    verschieden sind und jedes Element nur einzeln enthalten.\\
+M lie"se sich in etwa wie folgt rekursiv definieren:\\
+$M = \{S \in P(\mathbb) |
+    \text{S ist unendlich und enth"lt jedes element nur einmal}, S \not \in M\}$\\
+Nun bilden wir die Menge $M_t$, die alle Mengen als aufsteigend sortierte Tupel
+    enth"alt.\\
+$M_t = map_s(s2t, M)$.\\
+Alle Tupel aus $M_t$ enthalten also noch
+    die selben Elemente wie zuvor die jeweiligen Mengen in $M$.\\
+Wir nehmen an, dass jeder Zahl $n \in \mathbb{N}$ ein Element aus $M$
+    zugeordnet wurde, M also abz"ahlbar unendlich sei.\\
+Wir definieren $T_t = (T_0, \ldots, T_i), i \in \mathbb{N}_0$, als alle 
+    Tupel aus $M_t$, f"ur die gilt $t_{i,j} < t_{i+1,j}, i,j \in \mathbb{N}$, 
+    wobei $t{i,j}$ das $j-te$ Element aus dem $i-ten$ Tupel aus $T_t$ ist.
+    Dann kann zun"achst das Tupel $
+    T = (t_{0,0}, \ldots, t{i,j}), i,j \in \mathbb{N}_0
+    $ gebildet werden. $T$ enth"alt also das $j-te$ Element, des $i-ten$ Tupel 
+    aus $T_t$ und ist damit auch aufsteigend sortiert.\\
+\\
+Wenden wir nun auf $T$, die Funktion $add1(x) = x+1$ an, so erhalten wir
+    mit:\[
+    T' = map(add1, T)
+    \]
+ein Tupel, dass zu jedem Tupel aus $T_t$ ein
+    Element $t_j \in T'$, mit $t_j \neq t_{i,j}, i,j \in \mathbb{N}_0$ enth"alt.\\
+\\
+Ferner ist das Tupel $T'$ damit nicht in $T_t$ enthalten, obwohl es die Kriterien 
+    f"ur $T_t$ erf"ullt und auch $S=t2s(T')$ ist nicht in $M$, da sonst
+    $T'$ in $T_t$ w"are.\\
+Ferner gilt, das $M$ damit nach Diagonalisierung nicht "uberabz"ahlbar unendlich
+    ist. $\lightning$\\
+\\
+Da $M \subset P(\mathbb{N})$ und $M$ "uberabz"ahlbar unendlich ist, ist dann auch
+    die echt m"achtigere Menge $P(\mathbb{N})$ auch "uberabz"ahlbar.\\
+\gap
+Nun wissen wir, dass $P(\mathbb{N})$ "uberabz"ahlbar unendlich ist.\\
+Wir K"onnen analog zu dem Beweis von $P(\mathbb{N})$ agieren, indem wir 
+    zun"auchst $P(\mathbb{N}) = P(map(b, \Sigma^*))$ bilden, dann wie zuvor 
+    vorgehen und argumentieren, dass 
+    $map(b^{-1}, S) \not \in \{map(b^{-1}, m) | m \in M\}$ gilt
+    und dadurch den Widerspruch erlangen.\\
+Damit ist auch $P(\Sigma^*)$ nach Diagonalisierung "uberabz"ahlbar unendlich.\\
 \end{document}
