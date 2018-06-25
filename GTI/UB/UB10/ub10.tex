@@ -1,0 +1,183 @@
+\documentclass{article}
+\textwidth=6in
+\hoffset=0in
+\voffset=0in
+
+
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+
+\usepackage{tikz}
+\usetikzlibrary{automata, arrows}
+\tikzset{initial text={}}
+
+\usepackage{pifont}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{ngerman}
+\usepackage[ampersand]{easylist}
+
+% needs to be updated
+\author{Max Springenberg, 177792}
+\title{\
+    GTI "Ubungsblatt 10\\
+    Tutor: Marko Schmellenkamp\\
+    ID: MS1\\
+    "Ubung: Mi 16-18
+    }
+\setcounter{section}{10}
+\date{}
+
+% custom commands
+% \Theta \Omega \omega
+\newcommand{\tab}{\null\ \qquad}
+\newcommand{\gap}{\null\ \\ \\}
+\newcommand{\da}{\downarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\lA}{\leftarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\rA}{\rightarrow}
+\newcommand{\LA}{\Leftarrow}
+\newcommand{\RA}{\Rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\Lra}{\Leftrightarrow}
+\newcommand{\ue}{\infty}
+\newcommand{\eps}{\epsilon}
+\newcommand{\task}[1]{\textbf{#1} \gap}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\newcommand{\degr}{\null \degree}
+\newcommand{\error}{\task{FEHLER:}}
+\newcommand{\correction}{\task{KORREKTUR:}}
+\newcommand{\mdef}{\overset{\text{def}}{=}}
+\newcommand{\rao}[1]{\overset{#1}{\rightarrow}}
+\newcommand{\automaton}[1]{
+    \begin{tikzpicture}
+    #1
+    \end{tikzpicture}
+    }
+\newcommand{\nd}[4]{
+    \node[#1](#2)at(#3){#4};
+    }
+\newcommand{\dm}{\mathbin{\scriptstyle\dot{\smash{\textstyle-}}}}
+\newcommand{\s}{\rhd}
+\renewcommand{\u}{\underline}
+
+
+% content
+\begin{document}
+% title page
+\maketitle
+\newpage
+% actual paper
+
+% A1
+\subsection\
+\subsubsection\
+Siehe ausgedrucktes Blatt vom Aufgabenzettel.\\
+
+\subsubsection\
+
+% A2
+\subsection\
+% a)
+\subsubsection\
+$L_a = L_1 \cup L_2$\\
+\\
+Wir wissen, dass $L_n$ von einer TM $M_n, n \in \{1,2\}$ entschieden wird.\\
+Ferner muss unsere TM nach Aufgabenstellung nicht f"ur alle Eingaben terminieren,
+    wenn diese nicht in der Sprache sind.\\
+Damit erg"abe sich $M_a$ aus den Turingmaschinen $M_1, M_2$ wie folgt:\\
+\begin{enumerate}
+    \item Zust"ande aus $M_1, M_2$ werden so umgennant, dass sie nicht 
+            konkurierent sind
+    \item Der Starzustand aus $M_a$ sei der Startzustand aus $M_1$
+    \item $M_a$ simuliert zun"achst $M_1$, bis entweder akzeptiert wird, oder
+            nicht. wenn nicht wird der String wieder auf die initiale eingabe
+            gesetzt und in den Startzustand von $M_2$ gewechselt.\\
+\end{enumerate}
+
+% b)
+\subsubsection\
+$L_b = L_1 \odot L_2$\\
+\\
+Wir wissen, dass $L_n$ von einer TM $M_n, n \in \{1,2\}$ entschieden wird.\\
+Wir k"onnen die TM $M_b$ wie folgt konstruieren.\\
+\begin{enumerate}
+    \item Zust"ande aus $M_1, M_2$ werden so umgennant, dass sie nicht 
+            konkurierent sind
+    \item Es wird mit der TM $M_1$ begeonnen.
+            Zun"achst wird getestet, ob die ganze Eingabe in $L_1$ ist.
+            Wenn nicht wird das letzte Symbol $\sigma \in \Sigma$ der Eingabe
+            markiert (durch z.B.$\u{\sigma}$) und erneut getest ob der 
+            Teilstring aller nicht markierten Zeichen in $L_1$ ist, solange
+            bis der erste Teilstring aus $L_1$ gefunden wurde.
+    \item Nun wird das letzte Zeichen des Teilstring aus $L_1$ markiert und 
+            alle zovor markierten zeichen demarkiert. 
+            $M_2$ wird ab dem markiertem Zeichen simuliert.
+    \item Wenn der Verbliebene String nicht in $L_2$ ist werden alle Zeichen 
+            rechts vom markierten letzten Symbol, dass noch zu dem Teilstring
+            aus $L_1$ markiert und auf allen unmarkierten Zeichen wieder, wie
+            zuvor durch sequentielles suchen und markieren des letzten Zeichens
+            vestgestellt, welches der n"achst l"angste Teilstring aus $L_1$
+            ist.
+    \item weiter bei 3
+\end{enumerate}
+
+% A3
+\subsection\
+% a)
+\task{\begin{tabular}{ll}
+        Problem:    &A\\
+        Gegeben:    &TM $M$, $k \in \mathbb{N}_0$\\
+        Frage:      &Erzeugt $M$ bei Eingabe $0^k$ die Ausgabe 1?\\
+    \end{tabular}}
+\\
+Nach der Vorlesung existiert keine TM $M_{hw}$, die entscheidet, ob eine TM bei
+    einer Eingabe $I$ $ `hello world' $ ausgibt.\\
+Der Beweis, dass es keine solche Turingmaschine $M_1$ f"ur das Problem A gibt
+    kann analog gezeigt werden.\\
+\\
+Da es keine M"oglichkeit gibt mit einer Turingmaschine zu testen ob eine andere
+    TM $M$ bei Eingabe $0^k$ 1 ausgibt, kann es auch keine Turingmaschine $M'$
+    mit $L(M') = \{k | \text{$M$ gibt bei Eingabe $0^k$ 1 aus}\}$ geben.\\
+Ferner ist A damit auch nicht semientscheidbar.\\
+
+% b)
+\subsubsection\
+\task{\begin{tabular}{ll}
+        Problem:    &B\\
+        Gegeben:    &TM $M$\\
+        Frage:      &Erzeugt $M$ bei keiner Eingabe die Ausgabe 1?\\
+    \end{tabular}}
+\\
+F"ur das komplement"arproblem, ob eine eingabe existiert, f"ur die $M$ 1 ausgibt
+    ist semientscheidbar.\\
+Ferner ist damit B unentscheidbar.\\
+
+% A4
+\subsection\
+Konstante funktionen sind primitiv rekursiv.\\
+$g(x) = 1, h(x) = 0$ sind solche konstanten Funktionen.\\
+\\
+$even(x)$ l"asst sich nun auch als:\\
+$
+even(x) =   \begin{cases}
+                g(x)& \text{, x ist gerade}\\
+                h(x)& \text{, x ist ungerade}\\
+            \end{cases}\\
+$\\
+primitive Rekursionen von primitiv rekursiven Funktionen sind auch primitiv
+    rekursiv.\\
+Wir stellen fest $even$ kann auch wie folgt definiert werden:\\
+$
+even(0) = g(x)\\
+even(1) = h(x)\\
+even(x+2) = even(x)\\
+$
+da $g,h$ primitiv rekursiv ist $even$ nach der Definition von primitv rekursiven
+    Funktionen aus der Vorlesung auch primitiv rekursiv.\\
+\end{document}
