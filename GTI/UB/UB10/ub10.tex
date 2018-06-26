@@ -76,10 +76,7 @@
 
 % A1
 \subsection\
-\subsubsection\
 Siehe ausgedrucktes Blatt vom Aufgabenzettel.\\
-
-\subsubsection\
 
 % A2
 \subsection\
@@ -93,30 +90,30 @@ Ferner muss unsere TM nach Aufgabenstellung nicht f"ur alle Eingaben terminieren
 Damit erg"abe sich $M_a$ aus den Turingmaschinen $M_1, M_2$ wie folgt:\\
 \begin{enumerate}
     \item Zust"ande aus $M_1, M_2$ werden so umgennant, dass sie nicht 
-            konkurierent sind
+            konkurierend sind
     \item Der Starzustand aus $M_a$ sei der Startzustand aus $M_1$
     \item $M_a$ simuliert zun"achst $M_1$, bis entweder akzeptiert wird, oder
-            nicht. wenn nicht wird der String wieder auf die initiale eingabe
+            nicht. wenn nicht wird der String wieder auf die initiale Eingabe
             gesetzt und in den Startzustand von $M_2$ gewechselt.\\
 \end{enumerate}
 
 % b)
 \subsubsection\
-$L_b = L_1 \odot L_2$\\
+$L_b = L_1 \circ L_2$\\
 \\
 Wir wissen, dass $L_n$ von einer TM $M_n, n \in \{1,2\}$ entschieden wird.\\
 Wir k"onnen die TM $M_b$ wie folgt konstruieren.\\
 \begin{enumerate}
     \item Zust"ande aus $M_1, M_2$ werden so umgennant, dass sie nicht 
-            konkurierent sind
+            konkurierend sind
     \item Es wird mit der TM $M_1$ begeonnen.
             Zun"achst wird getestet, ob die ganze Eingabe in $L_1$ ist.
             Wenn nicht wird das letzte Symbol $\sigma \in \Sigma$ der Eingabe
-            markiert (durch z.B.$\u{\sigma}$) und erneut getest ob der 
+            markiert (durch z.B. $\u{\sigma}$) und erneut getest ob der 
             Teilstring aller nicht markierten Zeichen in $L_1$ ist, solange
             bis der erste Teilstring aus $L_1$ gefunden wurde.
     \item Nun wird das letzte Zeichen des Teilstring aus $L_1$ markiert und 
-            alle zovor markierten zeichen demarkiert. 
+            alle zuvor markierten Zeichen demarkiert. 
             $M_2$ wird ab dem markiertem Zeichen simuliert.
     \item Wenn der Verbliebene String nicht in $L_2$ ist werden alle Zeichen 
             rechts vom markierten letzten Symbol, dass noch zu dem Teilstring
@@ -136,12 +133,23 @@ Wir k"onnen die TM $M_b$ wie folgt konstruieren.\\
         Frage:      &Erzeugt $M$ bei Eingabe $0^k$ die Ausgabe 1?\\
     \end{tabular}}
 \\
-Nach der Vorlesung existiert keine TM $M_{hw}$, die entscheidet, ob eine TM bei
-    einer Eingabe $I$ $ `hello world' $ ausgibt.\\
+Nach der Vorlesung existiert keine TM $M_{hw}$, die testet, ob eine TM bei
+    einer Eingabe $I$ `hello world' ausgibt.\\
 Der Beweis, dass es keine solche Turingmaschine $M_1$ f"ur das Problem A gibt
     kann analog gezeigt werden.\\
+In der Vorlesung wurde angenommen, dass eine TM $H$ existiert die testen kann
+    ob eine TM $M$ bei einer Eingabe $I$, `hello world' ausgibt, und dem 
+    entsprechend selbst `ja', oder `nein' ausgibt.
+    Anschlie"send wurde die TM $H_1$ betrachtet, die `ja' ausgibt, wenn eine 
+    TM $M$ bei eingabe $I$ `hello world' ausgibt und `hello world' sonst.
+    Abschlie"send wurde eine TM $H_2$ eingef"uhrt, die `ja' ausgibt wenn 
+    $M$ unter der Eingabe $M$ `hello world' aus gibt und `hello world' sonst.\\
+Es wurde gezeigt, dass $H$ unter der Eingabe $H_2, H_2$ nicht korrekt ist und
+    es ferner keine TM gibt, die `hello world' unter Eingabe testet.\\
+Wenn man nun im Beweis 1 anstatt `hello world' betrachtet, so erkennt man, dass
+    es auch keinen 1-Tester gibt.\\
 \\
-Da es keine M"oglichkeit gibt mit einer Turingmaschine zu testen ob eine andere
+Da es keine M"oglichkeit gibt mit einer Turingmaschine zu testen, ob eine andere
     TM $M$ bei Eingabe $0^k$ 1 ausgibt, kann es auch keine Turingmaschine $M'$
     mit $L(M') = \{k | \text{$M$ gibt bei Eingabe $0^k$ 1 aus}\}$ geben.\\
 Ferner ist A damit auch nicht semientscheidbar.\\
@@ -154,13 +162,17 @@ Ferner ist A damit auch nicht semientscheidbar.\\
         Frage:      &Erzeugt $M$ bei keiner Eingabe die Ausgabe 1?\\
     \end{tabular}}
 \\
-F"ur das komplement"arproblem, ob eine eingabe existiert, f"ur die $M$ 1 ausgibt
-    ist semientscheidbar.\\
-Ferner ist damit B unentscheidbar.\\
+Damit $M$ semientscheidbar w"are m"usste es m"oglich sein zu testen, ob $M$ bei
+    einer Eingabe 1 ausgibt.\\
+Nach Aufgabenteil a) ist dies nicht m"oglich.\\
+Wenn es also nicht m"oglich ist zu testen, ob eine $TM$ eine bestimmte Ausgabe
+    macht, so ist es auch nicht m"oglich zu testen,
+    ob eine $TM$ diese ausgabe nicht macht.
+    Ferner ist es nicht m"oglich zu testen, ob eine TM diese Ausgabe nie macht.\\
 
 % A4
 \subsection\
-Konstante funktionen sind primitiv rekursiv.\\
+Konstante Funktionen sind primitiv rekursiv.\\
 $g(x) = 1, h(x) = 0$ sind solche konstanten Funktionen.\\
 \\
 $even(x)$ l"asst sich nun auch als:\\
@@ -169,8 +181,8 @@ even(x) =   \begin{cases}
                 g(x)& \text{, x ist gerade}\\
                 h(x)& \text{, x ist ungerade}\\
             \end{cases}\\
-$\\
-primitive Rekursionen von primitiv rekursiven Funktionen sind auch primitiv
+$ schreiben.\\
+Primitive Rekursionen mit primitiv rekursiven Funktionen sind auch primitiv
     rekursiv.\\
 Wir stellen fest $even$ kann auch wie folgt definiert werden:\\
 $
@@ -178,6 +190,7 @@ even(0) = g(x)\\
 even(1) = h(x)\\
 even(x+2) = even(x)\\
 $
-da $g,h$ primitiv rekursiv ist $even$ nach der Definition von primitv rekursiven
+da $g,h$ primitiv rekursiv sind, 
+    ist $even$ nach der Definition von primitv rekursiven
     Funktionen aus der Vorlesung auch primitiv rekursiv.\\
 \end{document}
