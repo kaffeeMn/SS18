@@ -83,7 +83,7 @@ Wir betrachten das Hilfs-Programm Prog in Pseudo-Code:
 \\
 Eingaben: 
     Knoten $v$, 
-    Array mit boolschen Werten von markierten Knoten $mk$,
+    Array mit boolschen Werten f"ur die Markierung von Knoten $mk$,
     $k \in \mathbb{N}$\\
 \begin{enumerate}
     \item IF $k>0$ THEN
@@ -101,12 +101,13 @@ Dabei wird "uber die Adjazenzlisten in $O(n^2)$ iteriert und insegesamt $O(n^2)$
     k mal ausgef"uhrt werden, mit $n = |V|$.\\
 $O(\prod_{i=1}^{k} n^2) = O(n^{2*k})$\\
 \\
-Da $k$ eine konstante ist ,ist die Laufzeit f"ur k-WEG-FORTSETZUNG noch 
+Da $k$ eine konstante ist, ist die Laufzeit f"ur k-WEG-FORTSETZUNG noch 
     polynomiell.\\
+\\
 Ist k nun aber eine codierte Eingabe, die eine Zahl repr"asentiert, so gilt
-    f"ur den Algorithmus, dass er $O(n^{2 * 2^|k|})$ ben"otigt, da exponentiell
+    f"ur den Algorithmus, dass er $O(n^{2 * 2^{|k|}}) = O(n^{2^{|k|+1}})$ ben"otigt, da exponentiell
     gro"se Zahle in logarithmischer L"ange codiert werden. Ferner ist die 
-    Laufzeit dann nichtmehr polynomiell.\\
+    Laufzeit dann auch nichtmehr polynomiell.\\
 
 % b)
 \newpage
@@ -130,10 +131,10 @@ Damit Kann WEG-FORTSETZUNG-O in polynomieller Zeit berechnet werden, wenn
 (ii) $ALG_\text{WFO}$ sei wie folgt definiert:\\
 \begin{enumerate}
     \item $k_\text{max}$ = $ALG_\text{WFW}$(G,w)
-    \item $\forall v \in V$ DO
-    \item $G' = (V - \{v\}, E - \{\{v,u\}| u \in V\})$
-    \item IF $ALG_\text{WFW}(G,w) = k_\text{max}$ THEN
-    \item \tab \tab G = G'
+    \item FOR $v \in V$ DO
+    \item \tab $G' = (V - \{v\}, E - \{\{v,u\}| u \in V\})$
+    \item \tab IF $ALG_\text{WFW}(G,w) = k_\text{max}$ THEN
+    \item \tab \tab \tab G = G'
     \item return V
 \end{enumerate}
 Wenn die L"ange einer maximalen Fortsetzung ermittelt werden kann, so kann f"ur
@@ -168,15 +169,15 @@ Der Suchraum von L"osungen ist \[
     \]
 \\
 3.\\
-Die Zusatzeingabe ist ein Wort $w$ aus $L(\beta)$.\\
+Die Zusatzeingabe ist ein Wort $w$ aus $L_\text{Such}$.\\
 Nach Der Vorlesung kann zu jedem RE ein $\eps-NFA$ und zu jedem $\eps-NFA$ ein
-    $NFA$.\\
-Der zugeh"orige $NFA$ $A_\beta$ testet dann in polynomieller Zeit ob $w$ in der
+    $NFA$ in polynomieller Zeit konstruiert werden.\\
+Der zugeh"orige $NFA$ $A_\beta$ testet dann in polynomieller Zeit, ob $w$ in der
     Sprache $L(\beta)$ ist.\\
 Damit kann ein L"osungskandidat in polynomieller Zeit getestet werden.\\
 \\
 2.\\
-Der Ausdruck, das Alphabet und die Zusatzeingabe habe allesamt polynomielle 
+Der Ausdruck, das Alphabet und die Zusatzeingabe haben alle polynomielle 
     Gr"o"se in ihrer Eingabe.\\
 \\
 Da alle Eigenschaften erf"ullt werden k"onnen gilt: $ALLEZEICHEN \in NP$\\
@@ -189,7 +190,9 @@ $
     \land (x_2 \lor x_3 \lor \neg x_3)\\
 \\
 f(\phi) = (\beta_\phi, \Sigma_\phi) \text{, mit:}\\
+\\
 \Sigma_\phi = \{c_1, c_2, c_3\}\\
+\\
 \beta_\phi = (p(x_1) + n(x_1))
     (p(x_2) + n(x_2))
     (p(x_3) + n(x_3))\\
@@ -212,14 +215,16 @@ Insgesamt werden also $2*m*k$ Teilausdr"ucke erstellt, verodert und
 Dies geht in $O(m*k)$\\
 \\
 F"ur $\Sigma_\phi$:\\
-$k$ Klauseln-repr"asentierende Zeichen k"onnen in $O(k)$ erstellt werden.\\
-Damit ist der Aufwand der Funktion in $O(m*k)$ und ferner polynomiell.\\
+$k$ Klauseln-repr"asentierende Zeichen k"onnen in $O(k)$ erstellt und mit einem
+    leer initialisiertem Alphabet vereinigt werden.\\
+\\
+Damit ist der Aufwand der Funktion in $O(m*k)$ und insbesondere polynomiell.\\
 
 % e)
 \subsubsection\
 $w_i$ sei der $i-te$ regul"are Teilausdruck von $\beta_\phi$ mit 
     $w_i = (p(x_i) + n(x_i)), 1 \leq i \leq m$, $\beta_\phi$ kann also auch als
-    konkatenation aller $w_i$ geschrieben werden.\\
+    Konkatenation aller $w_i$ geschrieben werden.\\
 \\
 1. $\phi \in SAT \Ra f(\phi) \in ALLEZEICHEN$\\
 \\
@@ -253,4 +258,85 @@ Wenn nun alle Zeichen in einem Wort $w$ vorkommen, so gibt es eine M"oglichkeit
     Klauseln erf"ullt sind.\\
 Wenn eine Belegung alle Klauseln erf"ullt, so erf"ullt sie auch $\phi$.\\
 Damit gilt auch $f(\phi) \in ALLEZEICHEN \Ra \phi \in SAT$.\\
+
+% A3
+\subsubsection\
+Wir haben zwei Bedingungen:\\
+1. Jede Kante hat einen Knoten in $S$\\
+2. $|S| \leq k$\\
+\\
+Idee:\\
+f konstruiert unter anderem f"ur einen Graphen einen RE, 
+    der f"ur jeden Knoten einen Teilausdruck 
+    aus der Konkatenation eines Repr"asentaten f"ur die existens eines Knoten
+    und Repr"asentaten f"ur alle zum Knoten inzidenten
+    Kanten bereitstellt. Alle Teilausdr"ucke werden
+    verodert, da Knoten gew"ahlt werden k"onnen.\\
+F"ur jeden f"ur $VERTEXCOVER$ gew"ahlten Knoten, kann also ein Teilausdruck
+    mit einem Repr"asentanten f"ur die existenz eines Knoten und Repr"asentanten
+    f"ur dessen inzidente Kanten gew"ahlt werden.\\
+Danach kann "uberpr"uft werden wie viele Repr"asentanten f"ur die existenz eines
+    Knotens vorkommen (Anzahl der Knoten) und ob auch Repr"asentanten f"ur
+    alle Kanten aus $E$ vorkommen (jede Kante einen Knoten hat).\\
+$\Sigma_i, m_i$ befassen sich je mit der $i-ten$ oben genannten Bedingung.\\
+\gap
+Wir betrachten die Funktion $f$ mit:\\
+$
+G=(V,E)\\
+f(G,k) = (\alpha, m_1,m_2, \Sigma_1, \Sigma_2) \text{, mit:}\\
+\\
+\Sigma_1 = \{\sigma_{i,j} | \{i,j\} \in E\}\\
+m_1 = 1\\
+\\
+\Sigma_2 = \{\$\}\\
+m_2 = k\\
+\\
+\bigcirc \text{ sei das "Aquivalent der Summenformel $\sum$ zur Adition,
+    f"ur die Konkatenation.\\
+Also Eine Konkatenation "uber Elemente/ Indices.}\\
+\alpha = \alpha_1 + \ldots + \alpha_{|V|}\\
+\forall l, 1 \leq l \leq |V| : 
+    \alpha_l =  \$ \bigcirc_{(i,j) \in E} \ \sigma_{i,j} \sigma_{j,i}\\
+$\gap
+\gap
+$f$ ist total, da wir keine Definitionsl"ucken definiert haben, 
+    und polynomiell berechenbar,
+    da lediglich "uber Mengen iteriert wird.\\
+\gap
+Zu Zeigen bleibt:\\
+\\
+(1) $(G,k) \in VERTEXCOVER \RA f(G,k) \in MINMAXZEICHEN$\\
+Aus $(G,K) \in VERTEXCOVER$ folgt, dass nur maximal $k$ Knoten gew"ahlt wurden
+    und alle Kanten einen Knoten in $S$ haben.\\
+F"ur $f(G,k)$ bedeutet das insbesondere, dass es $k$ Teilausdr"ucke 
+    $\alpha_l, 1 \leq l \leq |V|$ gibt, die Repr"asentanten aller Kanten als 
+    Teilw"orter enthalten, da f"ur jeden Knoten Repr"asentanten aller seiner
+    Kanten im ihm designierten Teilausdruck vorhanden sind.\\
+So gilt f"ur das Wort $w$ der zu den Knoten aus $S$ korrespondierenden 
+    konkatenierten Teilausdr"ucke:\[
+        \forall \sigma \in \Sigma_1: \#_\sigma(w) \geq 1
+    \]
+, da $\Sigma_1$ die Repr"asentanten aller Kanten umfasst und wie gesagt alle 
+    Kanten einen Knoten haben m"ussen.\\
+\\
+Ferner gilt f"ur $w$, dass nur $k$ Teilausdr"ucke gew"ahlt wurden, da auch nur $k$ 
+    Knoten gew"ahlt wurden, ferner enth"alt jeder Teilausdruck genau ein $\$$.\\
+also  gilt auch \[
+        \#_\$(w) \leq k
+    \]
+\\
+Damit gilt $(G,k) \in VERTEXCOVER \RA f(G,k) \in MINMAXZEICHEN$.\\
+\gap
+(2) $f(G,k) \in MINMAXZEICHEN \Ra (G,k) \in VERTEXCOVER$.\\
+Wenn $f(G,k) \in MINMAXZEICHEN$, dann wissen wir, dass:\\
+$\exists w \in L(\beta)$, sodass:\\
+(i) $\#_\$(w) \leq k$ und ferner weniger als k Knoten gew"ahlt wurden.\\
+(ii) $\forall \sigma \in \Sigma_2: \#_\sigma(w) \geq 1$ und ferner jede Kante
+    zu einem der Knoten f"uhrt.\\
+Dies sind die zwei oben genannten Bedingungen die $VERTEXCOVER$ erf"ullen.\\
+\\
+Damit gilt $f(G,k) \in MINMAXZEICHEN \Ra (G,k) \in VERTEXCOVER$.\\
+Und durch (1) auch $f(G,k) \in MINMAXZEICHEN \Lra (G,k) \in VERTEXCOVER$.\\
+\\
+$f$ ist also eine polynomielle Reduktion von $VERTEXCOVER$ auf $MINMAXZEICHEN$.\\
 \end{document}
