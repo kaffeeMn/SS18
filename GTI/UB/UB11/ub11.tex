@@ -1,0 +1,256 @@
+\documentclass{article}
+\textwidth=6in
+\hoffset=0in
+\voffset=0in
+
+
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+
+\usepackage{tikz}
+\usetikzlibrary{automata, arrows}
+\tikzset{initial text={}}
+
+\usepackage{pifont}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{ngerman}
+\usepackage[ampersand]{easylist}
+\usepackage{xcolor}
+
+% needs to be updated
+\author{Max Springenberg, 177792}
+\title{\
+    GTI "Ubungsblatt 11\\
+    Tutor: Marko Schmellenkamp\\
+    ID: MS1\\
+    "Ubung: Mi 16-18
+    }
+\setcounter{section}{11}
+\date{}
+
+% custom commands
+% \Theta \Omega \omega
+\newcommand{\tab}{\null\ \qquad}
+\newcommand{\gap}{\null\ \\ \\}
+\newcommand{\da}{\downarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\lA}{\leftarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\rA}{\rightarrow}
+\newcommand{\LA}{\Leftarrow}
+\newcommand{\RA}{\Rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\Lra}{\Leftrightarrow}
+\newcommand{\ue}{\infty}
+\newcommand{\eps}{\epsilon}
+\newcommand{\task}[1]{\textbf{#1} \gap}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\newcommand{\degr}{\null \degree}
+\newcommand{\error}[1]{\colorbox{red}{\task{FEHLER:}\\#1}}
+\newcommand{\correction}[1]{\colorbox{green}{\task{KORREKTUR:}\\#1}}
+\newcommand{\mdef}{\overset{\text{def}}{=}}
+\newcommand{\rao}[1]{\overset{#1}{\rightarrow}}
+\newcommand{\automaton}[1]{
+    \begin{tikzpicture}
+    #1
+    \end{tikzpicture}
+    }
+\newcommand{\nd}[4]{
+    \node[#1](#2)at(#3){#4};
+    }
+\newcommand{\dm}{\mathbin{\scriptstyle\dot{\smash{\textstyle-}}}}
+\newcommand{\s}{\rhd}
+\renewcommand{\u}{\underline}
+
+
+% content
+\begin{document}
+% title page
+\maketitle
+\newpage
+% actual paper
+
+% A1
+\subsection\
+% a)
+\subsubsection\
+Wir betrachten das Hilfs-Programm Prog in Pseudo-Code:
+\\
+Eingaben: 
+    Knoten $v$, 
+    Array mit boolschen Werten von markierten Knoten $mk$,
+    $k \in \mathbb{N}$\\
+\begin{enumerate}
+    \item IF $k>0$ THEN
+    \item \tab IF $\neg \bigvee_{u \in adj(v)} mk[u]$ THEN
+    \item \tab \tab return false
+    \item \tab $V' = \{u \in adj(v) | \neg mk[u]\}$
+    \item \tab return $\bigvee_{u \in V'} Prog(u,mk',k-1)$
+                    , mit $mk'$ als $mk$ mit $mk[u] = true$
+    \item return true
+\end{enumerate}
+Dieses Programm testet, ob von einem Knoten aus alle m"oglichen Wege bis zur
+    L"ange k.\\
+Dabei wird "uber die Adjazenzlisten in $O(n^2)$ iteriert und insegesamt $O(n^2)$
+    rekursive Aufrufe, je Rekursionsschritt get"atigt, die jedoch nur maximal
+    k mal ausgef"uhrt werden, mit $n = |V|$.\\
+$O(\prod_{i=1}^{k} n^2) = O(n^{2*k})$\\
+\\
+Da $k$ eine konstante ist ,ist die Laufzeit f"ur k-WEG-FORTSETZUNG noch 
+    polynomiell.\\
+Ist k nun aber eine codierte Eingabe, die eine Zahl repr"asentiert, so gilt
+    f"ur den Algorithmus, dass er $O(n^{2 * 2^|k|})$ ben"otigt, da exponentiell
+    gro"se Zahle in logarithmischer L"ange codiert werden. Ferner ist die 
+    Laufzeit dann nichtmehr polynomiell.\\
+
+% b)
+\newpage
+\subsubsection\
+$ALG_\text{WF}$ sei ein Algorithmus, der WEG-FORTSETZUNG l"ose.\\
+
+(i) $ALG_\text{WFW}$ sei wie folgt definiert:\\
+\begin{enumerate}
+    \item FOR $k:=|V|$ DOWNTO 1 DO
+    \item IF $ALG_\text{WF}(G,w,k)$ THEN
+    \item \tab return k
+\end{enumerate}
+Die maximale L"ange eines Weges ist $|V|$, da jeder Knoten H"ochstens einmal
+    besucht werden kann.\\
+Wenn getestet werden kann, ob ein Weg der L"ange $k$ m"oglich ist, so kann von
+    dem gr"o"st m"oglichem bis zu den je n"achst gr"os"sten in polynomieller 
+    Zeit getestet werden, welches $k$ die L"ange der maximalen Fortsetzung w"are.\\
+Damit Kann WEG-FORTSETZUNG-O in polynomieller Zeit berechnet werden, wenn
+    WEG-FORTSETZUNG in polynomieller Zeit berechnet werden kann.\\
+
+(ii) $ALG_\text{WFO}$ sei wie folgt definiert:\\
+\begin{enumerate}
+    \item $k_\text{max}$ = $ALG_\text{WFW}$(G,w)
+    \item $\forall v \in V$ DO
+    \item $G' = (V - \{v\}, E - \{\{v,u\}| u \in V\})$
+    \item IF $ALG_\text{WFW}(G,w) = k_\text{max}$ THEN
+    \item \tab \tab G = G'
+    \item return V
+\end{enumerate}
+Wenn die L"ange einer maximalen Fortsetzung ermittelt werden kann, so kann f"ur
+    jeden Knoten, sowie dann auch seinen inzidenten Kanten in polynomieller Zeit
+    getestet werden, ob diese Auf dem Weg liegen, bzw. in dem Weg enthalten sind.\\
+Wenn man alle Knoten und Kanten entfernt, die nicht auf dem Weg liegen, bzw.
+    in diesem enthalten sind, so bleibt nur noch der Weg "ubrig.\\
+Damit Kann WEG-FORTSETZUNG-O in polynomieller Zeit berechnet werden, wenn
+    WEG-FORTSETZUNG-W in polynomieller Zeit berechnet werden kann.\\
+
+% A2
+\subsection\
+
+% a)
+\subsubsection\
+Eine m"ogliche L"osung w"are das Wort $w \mdef c_1 c_3 c_2$\\
+
+% b)
+\subsubsection\
+Damit ein Problem in NP liegt m"ussen 3 Eigenschaften gelten:\\
+\begin{enumerate}
+    \item Es gibt einen Suchraum von L"osungskandidaten
+    \item Die L"osungskandidaten sind polynomiell gro"s in der Eingabe
+    \item Jeder L"osungskandidat kann in polynomieller Zeit getestet werden
+\end{enumerate}
+1.\\
+Der Suchraum von L"osungen ist \[
+        L_\text{Such} = \{
+            w \in \Sigma^* 
+            |\forall \sigma \in \Sigma: \#_\sigma(w) > 0
+            \}
+    \]
+\\
+3.\\
+Die Zusatzeingabe ist ein Wort $w$ aus $L(\beta)$.\\
+Nach Der Vorlesung kann zu jedem RE ein $\eps-NFA$ und zu jedem $\eps-NFA$ ein
+    $NFA$.\\
+Der zugeh"orige $NFA$ $A_\beta$ testet dann in polynomieller Zeit ob $w$ in der
+    Sprache $L(\beta)$ ist.\\
+Damit kann ein L"osungskandidat in polynomieller Zeit getestet werden.\\
+\\
+2.\\
+Der Ausdruck, das Alphabet und die Zusatzeingabe habe allesamt polynomielle 
+    Gr"o"se in ihrer Eingabe.\\
+\\
+Da alle Eigenschaften erf"ullt werden k"onnen gilt: $ALLEZEICHEN \in NP$\\
+
+% c)
+\subsubsection\
+$
+\phi = (\neg x_2 \lor \neg x_1) 
+    \land (\neg x_1 \lor \neg x_3 \lor x_1)
+    \land (x_2 \lor x_3 \lor \neg x_3)\\
+\\
+f(\phi) = (\beta_\phi, \Sigma_\phi) \text{, mit:}\\
+\Sigma_\phi = \{c_1, c_2, c_3\}\\
+\beta_\phi = (p(x_1) + n(x_1))
+    (p(x_2) + n(x_2))
+    (p(x_3) + n(x_3))\\
+= (\eps\eps\eps + c_1 c_2 \eps)
+    (c_1\eps\eps + \eps c_2 c_3)
+    (\eps c2 c_3 + \eps\eps c_3)\\
+= (\eps + c_1 c_2) (c_1 + c_2 c_3) (c_2 c_3 + c_3)\\
+$
+% d)
+\subsubsection\
+Es existieren $m$ Variablen und $k$ Klauseln in $\phi$.\\
+\\
+F"ur $\beta_\phi$:\\
+Es wird f"ur jede Variable eine der String von Klauseln-repr"asentierenden 
+    Zeichen erstellt die sie erf"ullt, wenn sie positiv - 
+    und der String von Klauseln-repr"asentierenden
+    Zeichen erstellt, die sie erf"ullt wenn sie neativ belegt wird.\\
+Insgesamt werden also $2*m*k$ Teilausdr"ucke erstellt, verodert und 
+    konkateniert.\\
+Dies geht in $O(m*k)$\\
+\\
+F"ur $\Sigma_\phi$:\\
+$k$ Klauseln-repr"asentierende Zeichen k"onnen in $O(k)$ erstellt werden.\\
+Damit ist der Aufwand der Funktion in $O(m*k)$ und ferner polynomiell.\\
+
+% e)
+\subsubsection\
+$w_i$ sei der $i-te$ regul"are Teilausdruck von $\beta_\phi$ mit 
+    $w_i = (p(x_i) + n(x_i)), 1 \leq i \leq m$, $\beta_\phi$ kann also auch als
+    konkatenation aller $w_i$ geschrieben werden.\\
+\\
+1. $\phi \in SAT \Ra f(\phi) \in ALLEZEICHEN$\\
+\\
+Wir wissen:\\
+(i) Wenn die Variable $x_i, 1 \leq i \leq m$ die Klausel $\psi_j, 1 \leq j \leq k$
+    unter einer Belegung $\alpha$ erf"ullt, so ist das 
+    Klausel-repr"asentierende Zeichen $c_j$ in $w_i$ durch $p(x_i)$ w"ahlbar.\\
+(ii) Wenn die Variable $\neg x_i, 1 \leq i \leq m$ die Klausel $\psi_j, 1 \leq j \leq k$
+    unter einer Belegung $\alpha$ erf"ullt, so ist das 
+    Klausel-repr"asentierende Zeichen $c_j$ in $w_i$ durch $n(x_i)$ w"ahlbar.\\
+\\
+Wenn es eine Belegung $\alpha$ gibt, die $\phi$ erf"ullt, so gilt, dass die 
+    Variablen unter der Belegung auch alle Klauseln der KNF erf"ullen, demnach
+    sind alle Klauseln-repr"asentierenden Zeichen und ferner alle Zeichen des
+    Alphabets durch (i) oder (ii) in $\beta$ w"ahlbar und ein Wort mit allen
+    Zeichen des Alphabets existiert.\\
+Damit gilt dann auch $f(\phi) \in ALLEZEICHEN$\\
+\\
+2. $f(\phi) \in ALLEZEICHEN \Ra \phi \in SAT$\\
+$f(\phi) \in ALLEZEICHEN \Ra 
+    \exists w \in L(f(\phi)): \#_\sigma(w)>1, \forall \sigma \in \Sigma$\\
+Ferner wissen wir, dass $\beta_\phi$ auch als Konkatenation der Teilausdr"ucke 
+    $w_i$ geschrieben werden kann. $w_i$ enth"alt 
+    Strings mit Klauseln-repr"asentierenden Zeichen f"ur ein 
+    positive oder negative
+    Belegung der jeweiligen Variablen $x_i$.\\
+Wenn nun alle Zeichen in einem Wort $w$ vorkommen, so gibt es eine M"oglichkeit
+    aus den einzelnen Teilausdr"ucken $w_i$ dieses zu bilden. Ferner existiert
+    damit die M"oglichkeit alle $x_i$ so zu belegen, dass alle 
+    Klauseln-repr"asentierenden Zust"ande gew"ahlt werden und ferner alle 
+    Klauseln erf"ullt sind.\\
+Wenn eine Belegung alle Klauseln erf"ullt, so erf"ullt sie auch $\phi$.\\
+Damit gilt auch $f(\phi) \in ALLEZEICHEN \Ra \phi \in SAT$.\\
+\end{document}
