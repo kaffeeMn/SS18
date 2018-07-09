@@ -66,6 +66,7 @@
 \newcommand{\dm}{\mathbin{\scriptstyle\dot{\smash{\textstyle-}}}}
 \newcommand{\s}{\rhd}
 \renewcommand{\u}{\underline}
+\renewcommand{\phi}{\varphi}
 
 
 % content
@@ -115,7 +116,7 @@ $G = (V,E), G' = (V',E')$\\
     \item \tab \tab IF $\neg ( f^{-1}(u) \in adj(f^{-1}(v)) )$ THEN
     \item \tab \tab \tab return false
     \item \tab \tab $marked = marked \cup \{u\}$
-    \item return true
+    \item return tr"u
 \end{enumerate}
 Der algorithmus testet f"ur jeden Knoten, allen adjazenten Knoten in $adj$ 
     auch nach anwenden der Bijektion noch adjazent sind. Und umgekehrt.\\
@@ -127,6 +128,48 @@ Der Algorithmus hat also eine Laufzeitschranke von $O(|E|)$.\\
 
 % b)
 \subsubsection\
+Eine aussagenlogische Formel $\phi$ bestehe aus $k$ Klauseln und $n$ Literalen,
+    mit $k,n \in \mathbb{N}$\\
+Da eine Klausel aus Verorderungen besteht ist diese Bereits erf"ullt, sobald
+    eine Belegung eine in der Klausel enthaltenem Variable so belegt, dass das
+    Literal positiv ist, ist die KLausel erf"ullt.\\
+Bereits erf"ullte Klauseln sind nicht mehr ausschlaggeben f"ur die 
+    Erf"ullbarkeit von $\phi$.\\
+\\
+%Wir betrachten die Funktion $lit(i,j)$, die zu jeder Variable $x_i$ alle Literale
+%    aus der Klausel $\psi_j$ ausgibt, die sie enthalten.\\
+%Ferner nehmen wir an, dass $\alpha$ auf einer menge $L_X$ von Literalen
+%    ausgef"uhrt werden kann und $\alpha(L_X)$ dann nur noch bin"are Werte
+%    enth"alt. Ferner gebe die Funktion $any(M)$, genau dann 1 aus, wenn die ihr 
+%    "ubergebene Menge $M$ mindestens einmal 1 enth"alt und 0 sonst.\\
+%$D(f)$ ordne der Funktion $f$ ihren Definitionsbereich zu.\\
+%$filter(\psi,M)$ Sie eine Funktion, die aus $\psi$ alle Literale aus 
+%    der Menge $M$ entfernt.\\
+%\gap
+%Aus dieser Erkenntnis folgt die Funktion $f$ mit:\\
+%$
+%\phi = \psi_1 \land \ldots \land \psi_k\\
+%f(\phi, \alpha) = \phi'\\
+%\\
+%\phi' = \bigvee_{k' \in K_{\phi'}} \psi_{k'}\\
+%\\
+%% alle durch alpha erf"ullten Klauseln werden rausgeschmissen
+%(i) K_{\phi'} = \{1, \ldots, k\} 
+%    - \{ 
+%        j \in \{1,\ldots,k\}
+%        | \exists i \in \{1,\ldots,n\}: any(\alpha(lit(i,j)))=1
+%    \}\\
+%% phi' frei von variablen aus dem Wertebereich von alpha
+%(ii) \forall k' \in K_{\phi'}, i \in \{1, \ldots, n\}: 
+%    \psi_{k'} = filter(\psi_k, lit(i,k'))\\
+$f$ Sei gegeben durch \[
+    f(\phi, \alpha) = \phi'
+    \]
+Wobei $\phi'$ (i) nur Klauseln aus $\phi$ enth"alt, 
+    die unter Belegung $\alpha$ nicht
+    schon erf"ullt sind 
+    und (ii) deren Klauseln nur noch Variablen 
+    enthalten, die nicht im Definitionsbereich von $\alpha$ liegen.\\
 
 
 
@@ -136,4 +179,16 @@ Der Algorithmus hat also eine Laufzeitschranke von $O(|E|)$.\\
 
 % a)
 \subsubsection\
+Betrachte $I=\{2,3,4\}$ mit:\\
+$
+\bigcup_{i \in I} S_i = \{a,b,c,d\}\\
+S_2 \cap S_3  = \emptyset\\
+S_2 \cap S_4  = \emptyset\\
+S_3 \cap S_4  = \emptyset\\
+$\\
+$I$ ist eine entsprechende Indexmenge.\\
+
+% b)
+\subsubsection\
+
 \end{document}
