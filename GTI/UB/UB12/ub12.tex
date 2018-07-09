@@ -109,13 +109,6 @@ $G = (V,E), G' = (V',E')$\\
     \item \tab \tab IF $\neg ( f(u) \in adj(f(v)) )$ THEN
     \item \tab \tab \tab return false
     \item \tab \tab $marked = marked \cup \{u\}$
-    \item $marked = \emptyset$
-    \item FOR $v' \in V'$ DO
-    \item \tab $marked = marked \cup \{v\}$
-    \item \tab FOR $u' \in adj(v') \cap marked$ DO
-    \item \tab \tab IF $\neg ( f^{-1}(u) \in adj(f^{-1}(v)) )$ THEN
-    \item \tab \tab \tab return false
-    \item \tab \tab $marked = marked \cup \{u\}$
     \item return tr"u
 \end{enumerate}
 Der algorithmus testet f"ur jeden Knoten, allen adjazenten Knoten in $adj$ 
@@ -136,32 +129,6 @@ Da eine Klausel aus Verorderungen besteht ist diese Bereits erf"ullt, sobald
 Bereits erf"ullte Klauseln sind nicht mehr ausschlaggeben f"ur die 
     Erf"ullbarkeit von $\phi$.\\
 \\
-%Wir betrachten die Funktion $lit(i,j)$, die zu jeder Variable $x_i$ alle Literale
-%    aus der Klausel $\psi_j$ ausgibt, die sie enthalten.\\
-%Ferner nehmen wir an, dass $\alpha$ auf einer menge $L_X$ von Literalen
-%    ausgef"uhrt werden kann und $\alpha(L_X)$ dann nur noch bin"are Werte
-%    enth"alt. Ferner gebe die Funktion $any(M)$, genau dann 1 aus, wenn die ihr 
-%    "ubergebene Menge $M$ mindestens einmal 1 enth"alt und 0 sonst.\\
-%$D(f)$ ordne der Funktion $f$ ihren Definitionsbereich zu.\\
-%$filter(\psi,M)$ Sie eine Funktion, die aus $\psi$ alle Literale aus 
-%    der Menge $M$ entfernt.\\
-%\gap
-%Aus dieser Erkenntnis folgt die Funktion $f$ mit:\\
-%$
-%\phi = \psi_1 \land \ldots \land \psi_k\\
-%f(\phi, \alpha) = \phi'\\
-%\\
-%\phi' = \bigvee_{k' \in K_{\phi'}} \psi_{k'}\\
-%\\
-%% alle durch alpha erf"ullten Klauseln werden rausgeschmissen
-%(i) K_{\phi'} = \{1, \ldots, k\} 
-%    - \{ 
-%        j \in \{1,\ldots,k\}
-%        | \exists i \in \{1,\ldots,n\}: any(\alpha(lit(i,j)))=1
-%    \}\\
-%% phi' frei von variablen aus dem Wertebereich von alpha
-%(ii) \forall k' \in K_{\phi'}, i \in \{1, \ldots, n\}: 
-%    \psi_{k'} = filter(\psi_k, lit(i,k'))\\
 $f$ Sei gegeben durch \[
     f(\phi, \alpha) = \phi'
     \]
@@ -181,7 +148,7 @@ Wobei $\phi'$ (i) nur Klauseln aus $\phi$ enth"alt,
 \subsubsection\
 Betrachte $I=\{2,3,4\}$ mit:\\
 $
-\bigcup_{i \in I} S_i = \{a,b,c,d\}\\
+\bigcup_{i \in I} S_i = \{a,b,c,d,h\}\\
 S_2 \cap S_3  = \emptyset\\
 S_2 \cap S_4  = \emptyset\\
 S_3 \cap S_4  = \emptyset\\
@@ -190,5 +157,56 @@ $I$ ist eine entsprechende Indexmenge.\\
 
 % b)
 \subsubsection\
+$
+f(M,(S_1,\ldots,S_4)) = 
+\gap
+(i) (c_{1,e}x_1 + \ldots + c_{k,e}x_k \geq 1):\\
+e=a:\\
+x_1 + x_4 \geq 1\\
+e=b:\\
+x_2 + x_2 \geq 1\\
+e=c:\\
+x_2 \geq 1\\
+e=d:\\
+x_3 \geq 1\\
+e=h:\\
+x_3 \geq 1\\
+\\
+(ii) (x_i + x_j \leq 1, \forall i \neq j : S_i \cap S_j \neq \emptyset):\\
+i=1,j=2:\\
+x_1 + x_2 \leq 1\\
+i=2,j=1:\\
+x_2 + x_1 \leq 1\\
+i=1,j=4:\\
+x_1 + x_4 \leq 1\\
+i=4,j=1:\\
+x_4 + x_1 \leq 1\\
+$
 
+% c)
+\subsubsection\
+(i) $(c_{1,e}x_1 + \ldots + c_{k,e}x_k \geq 1)$:\\
+Es muss f"ur jede Variable eine Menge gew"ahlt werden, in der diese Variable 
+    enthalten ist.\\
+(ii) $(x_i + x_j \leq 1, \forall i \neq j : S_i \cap S_j \neq \emptyset)$:\\
+Es darf von Menge, die zueinander einen nicht leeren Schnitt haben nur eine der
+    jeweiligen Mengen genommen werden.\\
+
+% d)
+\subsubsection\
+
+% e)
+\subsubsection\
+(i) $(c_{1,e}x_1 + \ldots + c_{k,e}x_k \geq 1)$:\\
+Es gibt $|M|$ Ungleichungen, deren L"ange je durch $O(k)$ eingegrenzt werden
+    kann.\\
+Damit also in $O(|M| * k)$.\\
+(ii) $(x_i + x_j \leq 1, \forall i \neq j : S_i \cap S_j \neq \emptyset)$:\\
+Es kann maximal jede Menge zu jeder anderen Menge nicht disjunkt sein.\\
+Daraus ergeben sich dann maximal $2*k^2$ Ungleichungen deren L"ange jeweils
+    durch $O(1)$ beschr"ankt ist.\\
+Damit also in $O(k^2)$\\
+\\
+Insgesamt ist die Laufzeit der Funktion damit in $O(k^2 + |M| * k)$ und damit
+insbesondere polynomiell zur Gr"o"se der Eingaben.\\
 \end{document}
