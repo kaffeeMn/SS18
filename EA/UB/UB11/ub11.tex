@@ -1,0 +1,103 @@
+\documentclass{article}
+\textwidth=6in
+\hoffset=0in
+\voffset=0in
+
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{automata, arrows}
+\usepackage{pifont}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{ngerman}
+\usepackage[ampersand]{easylist}
+
+% needs to be updated
+\author{Max Springenberg, 177792}
+\title{\
+    EA Uebungsblatt 11
+    }
+\setcounter{section}{11}
+\date{}
+
+% custom commands
+% \Theta \Omega \omega
+\newcommand{\tab}{\null\ \qquad}
+\newcommand{\gap}{\null\ \\ \ \\}
+\newcommand{\la}{\leftarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\lra}{\leftrightarrow}
+\newcommand{\ue}{\infty}
+\newcommand{\eps}{\epsilon}
+\newcommand{\task}[1]{\textbf{#1} \\ \gap}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\newcommand{\degr}{\degree}
+
+% content
+\begin{document}
+% title page
+\maketitle
+\newpage
+% actual paper
+
+% Fragen
+\subsection\
+
+% A2
+\subsection\
+Wir brauchen einen Algorithmus, der mit Wahrscheinlichkeit von\[
+    P = \frac{w(e_i)}{W}, 
+    \text{ mit $W = \sum_{e \in E} w(e)$ und $e_i \in E$}
+    \]
+ein einzelnes Zufallsexperiment in $O(|V|)$ durchf"uhrt.\\
+\gap
+Da wir pro Knoten nur eine Operation machen d"urfen m"ussen wir "uber die
+    knoten iterieren. Dabei muss allerdings die Wahrscheinlichkeit aufrecht
+    erhalten werden.\\
+Dazu ben"otigen wir ein Preprocessing, dass in $O(V^2)$ vor dem eigentlichem 
+    Algorithmus ausgef"uhrt wird.\\
+Beaobachtung:\[
+    \frac{w(e_i)}{W} = \frac{w(e_i)}{w'} \frac{w'}{W}
+    \]
+, mit $w' \in \mathbb{R}$\\
+Aus dieser Beaobachtung folgt das Preprocessing, dass vor der schleife des
+    Hauptalgorithmus in $O(|E|) = O(|V|^2)$ festlegt, welche Kanten pro
+    Knoten betrachtet werden sollen, ohne dass die Bedingung verletzt wird.\\
+\gap
+$pre\_pro(G = (V,E)):$\\
+\begin{enumerate}
+    \item berechne $W =  \sum_{e \in E} w(e)$
+    \item unmarked = $Matrix(|V|,|V|, init=\top)$
+    \item prob = $\emptyset$
+    \item num = 1
+    \item $\forall v \in V:$
+    \item \tab $w'$ = $\sum_{e \in adj(v)} w(e)$
+    \item \tab $\forall e = \{x,y\} \in adj(v)$:
+    \item \tab \tab IF $unmarked[x][y]$ THEN:
+    \item \tab \tab \tab mit W'keit von $ num * w(e) / w'$ DO:
+    \item \tab \tab \tab \tab prob = prob $\cup \{(e, w'/W)\}$
+    \item \tab \tab \tab \tab $unmarked[u][v] = \bot$
+    \item \tab \tab \tab \tab BREAK inner for-loop
+    \item \tab \tab num += w(e) / W
+    \item return prob
+\end{enumerate}
+Der eigentliche Algorithmus wird dann wie folgt angepasst:\\
+\begin{enumerate}
+    \item prob = pre\_prob(G)
+    \item Repeat
+    \item \tab num = 1
+    \item \tab $\forall (e=\{u,v\}, w) \in$ prob:
+    \item \tab \tab mit W'keit von $num * w$:
+    \item \tab \tab \tab l"osche $(e=\{u,v\}, w)$ aus prob
+    \item \tab \tab \tab G := Kontraktion(G,u,v)
+    \item \tab \tab \tab BREAK inner for-loop
+    \item \tab \tab num += w(e) / W
+    \item Until $|V| = 2$
+    \item Gib den durch die beiden Knoten definierten Schnitt aus.\\
+\end{enumerate}
+\end{document}

@@ -1,0 +1,139 @@
+\documentclass{article}
+\textwidth=6in
+\hoffset=0in
+\voffset=0in
+
+
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+
+\usepackage{tikz}
+\usetikzlibrary{automata, arrows}
+\tikzset{initial text={}}
+
+\usepackage{pifont}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{ngerman}
+\usepackage[ampersand]{easylist}
+\usepackage{xcolor}
+
+% needs to be updated
+\author{Max Springenberg, 177792}
+\title{\
+    GTI "Ubungsblatt 12\\
+    Tutor: Marko Schmellenkamp\\
+    ID: MS1\\
+    "Ubung: Mi 16-18
+    }
+\setcounter{section}{12}
+\date{}
+
+% custom commands
+% \Theta \Omega \omega
+\newcommand{\tab}{\null\ \qquad}
+\newcommand{\gap}{\null\ \\ \\}
+\newcommand{\da}{\downarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\lA}{\leftarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\rA}{\rightarrow}
+\newcommand{\LA}{\Leftarrow}
+\newcommand{\RA}{\Rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\Lra}{\Leftrightarrow}
+\newcommand{\ue}{\infty}
+\newcommand{\eps}{\epsilon}
+\newcommand{\task}[1]{\textbf{#1} \gap}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\newcommand{\degr}{\null \degree}
+\newcommand{\error}[1]{\colorbox{red}{\task{FEHLER:}\\#1}}
+\newcommand{\correction}[1]{\colorbox{green}{\task{KORREKTUR:}\\#1}}
+\newcommand{\mdef}{\overset{\text{def}}{=}}
+\newcommand{\rao}[1]{\overset{#1}{\rightarrow}}
+\newcommand{\automaton}[1]{
+    \begin{tikzpicture}
+    #1
+    \end{tikzpicture}
+    }
+\newcommand{\nd}[4]{
+    \node[#1](#2)at(#3){#4};
+    }
+\newcommand{\dm}{\mathbin{\scriptstyle\dot{\smash{\textstyle-}}}}
+\newcommand{\s}{\rhd}
+\renewcommand{\u}{\underline}
+
+
+% content
+\begin{document}
+% title page
+\maketitle
+\newpage
+% actual paper
+
+% A1
+\subsection\
+
+% a)
+\subsubsection\
+z.z.: $G_{RAPH}I_{SOMORPHIE} \in NP$\\
+\\
+Nach Vorlesung hatten wir die Zugeh"origkeit von Problemen wie folgt definiert:\\
+\begin{enumerate}
+    \item es existiert ein Suchraum von L"osungen
+    \item jede L"osung ist polynomiell gro"s in ihrer Eingabe
+    \item jede L"osung kann in polynomieller Zeit "uberpr"uft werden
+\end{enumerate}
+\gap
+Der Suchraum umfasst Bijektionen von Graph $G$ nach $G'$, oder TUringmaschinen
+    die eine Bijektion umsetzten.\\
+\\
+Diese Funktionen, oder auch Turingmaschinen sind polynomiell in ihrer 
+    Eingabegr"o"se, da f"ur jede Kante und jeden Knoten je ein Fall, oder ein
+    Zustand ben"otigt wird, der die Jeweiligen variablen umbenennt.\\
+Insbesondere ergibt sich daraus, dass Die Funktion oder auch TM durch den Betrag
+    an Kanten und Knoten mit $O(|V|+E|)$ eingeschr"ankt werden kann.\\
+\\
+Der Test eines L"osungskandidaten kann wie folgt getestet werden.\\
+$G = (V,E), G' = (V',E')$\\
+\begin{enumerate}
+    \item $marked = \emptyset$
+    \item FOR $v \in V$ DO
+    \item \tab $marked = marked \cup \{v\}$
+    \item \tab FOR $u \in adj(v) \cap marked$ DO
+    \item \tab \tab IF $\neg ( f(u) \in adj(f(v)) )$ THEN
+    \item \tab \tab \tab return false
+    \item \tab \tab $marked = marked \cup \{u\}$
+    \item $marked = \emptyset$
+    \item FOR $v' \in V'$ DO
+    \item \tab $marked = marked \cup \{v\}$
+    \item \tab FOR $u' \in adj(v') \cap marked$ DO
+    \item \tab \tab IF $\neg ( f^{-1}(u) \in adj(f^{-1}(v)) )$ THEN
+    \item \tab \tab \tab return false
+    \item \tab \tab $marked = marked \cup \{u\}$
+    \item return true
+\end{enumerate}
+Der algorithmus testet f"ur jeden Knoten, allen adjazenten Knoten in $adj$ 
+    auch nach anwenden der Bijektion noch adjazent sind. Und umgekehrt.\\
+Wenn dies der Fall ist wurde die Kantenrelation eingehalten sonst nicht.\\
+Die umkehrung der codierung einer bijektiven Funktion, oder einer TM 
+    kann polynomiell berechnet werden.\\
+Insbesondere ist der Test durch die Anzahl an Kanten begrenzt.\\
+Der Algorithmus hat also eine Laufzeitschranke von $O(|E|)$.\\
+
+% b)
+\subsubsection\
+
+
+
+\newpage
+% A2
+\subsection\
+
+% a)
+\subsubsection\
+\end{document}
