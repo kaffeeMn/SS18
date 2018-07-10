@@ -90,15 +90,18 @@ Nach Vorlesung hatten wir die Zugeh"origkeit von Problemen wie folgt definiert:\
     \item jede L"osung kann in polynomieller Zeit "uberpr"uft werden
 \end{enumerate}
 \gap
-Der Suchraum umfasst Bijektionen von Graph $G$ nach $G'$, oder TUringmaschinen
+1.\\
+Der Suchraum umfasst Bijektionen von Graph $G$ nach $G'$, oder Turingmaschinen
     die eine Bijektion umsetzten.\\
 \\
+2.\\
 Diese Funktionen, oder auch Turingmaschinen sind polynomiell in ihrer 
     Eingabegr"o"se, da f"ur jede Kante und jeden Knoten je ein Fall, oder ein
     Zustand ben"otigt wird, der die Jeweiligen variablen umbenennt.\\
 Insbesondere ergibt sich daraus, dass Die Funktion oder auch TM durch den Betrag
     an Kanten und Knoten mit $O(|V|+E|)$ eingeschr"ankt werden kann.\\
 \\
+3.\\
 Der Test eines L"osungskandidaten kann wie folgt getestet werden.\\
 $G = (V,E), G' = (V',E')$\\
 \begin{enumerate}
@@ -109,21 +112,20 @@ $G = (V,E), G' = (V',E')$\\
     \item \tab \tab IF $\neg ( f(u) \in adj(f(v)) )$ THEN
     \item \tab \tab \tab return false
     \item \tab \tab $marked = marked \cup \{u\}$
-    \item return tr"u
+    \item return true
 \end{enumerate}
 Der algorithmus testet f"ur jeden Knoten, allen adjazenten Knoten in $adj$ 
-    auch nach anwenden der Bijektion noch adjazent sind. Und umgekehrt.\\
-Wenn dies der Fall ist wurde die Kantenrelation eingehalten sonst nicht.\\
-Die umkehrung der codierung einer bijektiven Funktion, oder einer TM 
-    kann polynomiell berechnet werden.\\
-Insbesondere ist der Test durch die Anzahl an Kanten begrenzt.\\
+    auch nach anwenden der Bijektion noch adjazent sind. Sowie implizit umgekehrt.\\
+Wenn dies der Fall ist wurde die Kantenrelation eingehalten, sonst nicht.\\
+Insbesondere ist der Test durch die Anzahl an Kanten begrenzt da nur unmarkierte
+    Kanten durchlaufen werden.\\
 Der Algorithmus hat also eine Laufzeitschranke von $O(|E|)$.\\
 
 % b)
 \subsubsection\
 Eine aussagenlogische Formel $\phi$ bestehe aus $k$ Klauseln und $n$ Literalen,
     mit $k,n \in \mathbb{N}$\\
-Da eine Klausel aus Verorderungen besteht ist diese Bereits erf"ullt, sobald
+Da eine Klausel aus Veroderungen besteht ist diese Bereits erf"ullt, sobald
     eine Belegung eine in der Klausel enthaltenem Variable so belegt, dass das
     Literal positiv ist, ist die KLausel erf"ullt.\\
 Bereits erf"ullte Klauseln sind nicht mehr ausschlaggeben f"ur die 
@@ -136,8 +138,58 @@ Wobei $\phi'$ (i) nur Klauseln aus $\phi$ enth"alt,
     die unter Belegung $\alpha$ nicht
     schon erf"ullt sind 
     und (ii) deren Klauseln nur noch Variablen 
-    enthalten, die nicht im Definitionsbereich von $\alpha$ liegen.\\
-
+    enthalten, die nicht im Definitionsbereich von $\alpha$ liegen.
+    Und (iii) $\phi'$ abschlie"send mit einer 1 verundet wird.\\
+\\
+Zu zeigen bleibt:\\
+(1) f ist total\\
+(2) f ist polynomiell berechenbar\\
+(3) f erf"ullt $F_{INISH}S_{AT} \leq S_{AT}$\\
+\gap
+(1) Es wurden keine Definitionsl"ucken definiert also, ist f total.\\
+\\
+(2) f ist polynomiell berechenbar, da:\\
+(i)\\
+F"ur jede Klausel in polynomiell getested werden kann ob eines der belegten
+    Literale wahr ist.\\
+(ii)\\
+Literale, die Variablen aus einer Menge enthalten in polynomieller zeit 
+    rausgefiltert werden k"onnen.\\
+(iii)\\
+Eine 1 in polynomieller Zeit verundet werden kann.\\
+\\
+(3)\\
+$(\phi, \alpha) \in F_{INISH}S_{AT} \Ra \phi' \in S_{AT}$\\
+Wenn es eine erweiterte Belgeung $\beta$ zu $\alpha$ gibt, die $\phi$ erf"ullt,
+    dann:\\
+\\
+1. War $\phi$ schon durch $\alpha$ erf"ullt:\\
+    So wurden alle Klauseln aus $\phi$ f"ur $\phi'$ getstirchen und nur noch
+    1 bleibt "ubrig, $\phi'$ hat keine Variablen und ist immer erf"ullt.\\
+\\
+2. Sonst:\\
+    Dann bleibt noch mindestens eine Klausel und eine Variable "ubrig. Da alle 
+    bereits belegten Variablen entfernt wurden sind nur noch die Variablen zu
+    belegen, die unter der Erweiterung von $\beta$ von $\alpha$ dazu kommen.
+    sei nun $\gamma$ die Belegung, die wie $\beta$ auf allen Variablen die 
+    in $\beta$ aber nicht in $\alpha$ definiert sind, so ist $\gamma$ auf
+    $\phi'$ total und ferner eine $\phi'$ erf"ullende Belegung.\\
+\\
+$\phi' \in S_{AT} \Ra (\phi, \alpha) \in F_{INISH}S_{AT}$\\
+Wenn f"ur $\phi'$ eine erf"ullende Belgung existiert, so ist:\\
+\\
+1. $\phi'$ frei von variablen und enth"alt nur 1:\\
+    Dann hatte bereits $\alpha$ f"ur jede Klausel mindestens ein Literal 
+    erf"ullt und alle erweiterungen von $\alpha$ auf eine totale Belegung
+    w"urden $\phi$ erf"ullen.\\
+\\
+2. Sonst:\\
+    Da nur noch Variablen, die nicht in $\alpha$ vorkommen betrachtet werden
+    und eine erf"ullende Belegung $\gamma$ existiert, 
+    muss $\alpha$ unter der Erweiterung
+    der Belegungen aus $\gamma$ auch $\phi$ erf"ullen.\\
+\\
+Damit ist $f$ eine polynomielle Reduktion von $F_{INISH}S_{AT}$ auf $S_{AT}$.\\
 
 
 \newpage
@@ -148,7 +200,7 @@ Wobei $\phi'$ (i) nur Klauseln aus $\phi$ enth"alt,
 \subsubsection\
 Betrachte $I=\{2,3,4\}$ mit:\\
 $
-\bigcup_{i \in I} S_i = \{a,b,c,d,h\}\\
+\bigcup_{i \in I} S_i = \{a,b,c,d,h\} = M\\
 S_2 \cap S_3  = \emptyset\\
 S_2 \cap S_4  = \emptyset\\
 S_3 \cap S_4  = \emptyset\\
@@ -194,6 +246,45 @@ Es darf von Menge, die zueinander einen nicht leeren Schnitt haben nur eine der
 
 % d)
 \subsubsection\
+z.z.:\\
+$(M,S_1,\ldots,S_k) \in E_{XACT}C_{OVER} \Lra f(M,S_1,\ldots,S_k) \in 0-1-ILP$\\
+\\
+$(M,S_1,\ldots,S_k) \in E_{XACT}C_{OVER} \Ra f(M,S_1,\ldots,S_k) \in 0-1-ILP$\\
+Ist $(M,S_1,\ldots,S_k) \in E_{XACT}C_{OVER}$, so existiert eine Indexmenge $I$
+mit:\\ 
+$\bigcup_{i \in I} S_i = M \land \forall i \neq j: S_i \cap S_j = \emptyset$\\
+\\
+F"ur die durch $f$ berechneten Ungleichungen bedeutet das, dass:\\
+\\
+(i) alle Ungleichungen der Form $(c_{1,e}x_1 + \ldots + c_{k,e}x_k \geq 1)$ 
+    erf"ullt werden k"onnen. Da $\bigcup_{i \in I} S_i = M$ gilt. Also jede Variable
+    in mindestens einer Menge vorkommt.\\
+\\
+(ii) alle Ungleichungen der Form 
+    $(x_i + x_j \leq 1, \forall i \neq j : S_i \cap S_j \neq \emptyset)$ 
+    ebenfalls erf"ullt werden, da 
+    $\forall i \neq j: S_i \cap S_j = \emptyset$ 
+    gilt. Also von den Variablen aus den Mengen, die gew"ahlt wurden keine in
+    mehr als eine der Mengen vorkommt.\\
+Damit sind dann auch alle Ungleichungen erf"ullt.\\
+\\
+$f(M,S_1,\ldots,S_k) \in 0-1-ILP \Ra (M,S_1,\ldots,S_k) \in E_{XACT}C_{OVER}$\\
+Ist $f(M,S_1,\ldots,S_k) \in 0-1-ILP$, so gilt, dass alle der Unglichungen:\\
+(i) $(c_{1,e}x_1 + \ldots + c_{k,e}x_k \geq 1)$\\
+(ii) $(x_i + x_j \leq 1, \forall i \neq j : S_i \cap S_j \neq \emptyset)$\\
+erf"ullbar sind.\\
+\\
+Das bedeutet im R"uckschluss f"ur $(M,S_1,\ldots,S_k)$:\\
+(1) Jedes Element aus $M$ ist in einer der Teilmengen $S_i, i \in I$ enthalten,
+    da (i) gilt.\\
+(2) Jede der Teilmengen $S_i \in I$ zu jeder anderen Teilmenge Disjunkt ist,
+    da (ii) gilt.\\
+Damit ist 
+    $\bigcup_{i \in I} S_i = M \land \forall i \neq j: S_i \cap S_j = \emptyset$
+    erf"ullt.\\
+\\
+Ferner ist damit die Reduktionseigenschaft erf"ullt.\\
+
 
 % e)
 \subsubsection\
