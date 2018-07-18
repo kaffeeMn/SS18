@@ -1,0 +1,149 @@
+\documentclass{article}
+\textwidth=6in
+\hoffset=0in
+\voffset=0in
+
+
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+
+\usepackage{tikz}
+\usetikzlibrary{automata, arrows}
+\tikzset{initial text={}}
+
+\usepackage{pifont}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{ngerman}
+\usepackage[ampersand]{easylist}
+\usepackage{xcolor}
+
+% needs to be updated
+\author{Max Springenberg, 177792}
+\title{\
+    GTI "Ubungsblatt 12\\
+    Tutor: Marko Schmellenkamp\\
+    ID: MS1\\
+    "Ubung: Mi 16-18
+    }
+\setcounter{section}{13}
+\date{}
+
+% custom commands
+% \Theta \Omega \omega
+\newcommand{\tab}{\null\ \qquad}
+\newcommand{\gap}{\null\ \\ \\}
+\newcommand{\da}{\downarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\lA}{\leftarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\rA}{\rightarrow}
+\newcommand{\LA}{\Leftarrow}
+\newcommand{\RA}{\Rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\Lra}{\Leftrightarrow}
+\newcommand{\ue}{\infty}
+\newcommand{\eps}{\epsilon}
+\newcommand{\task}[1]{\textbf{#1} \gap}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\newcommand{\degr}{\null \degree}
+\newcommand{\error}[1]{\colorbox{red}{\task{FEHLER:}\\#1}}
+\newcommand{\correction}[1]{\colorbox{green}{\task{KORREKTUR:}\\#1}}
+\newcommand{\mdef}{\overset{\text{def}}{=}}
+\newcommand{\rao}[1]{\overset{#1}{\rightarrow}}
+\newcommand{\automaton}[1]{
+    \begin{tikzpicture}
+    #1
+    \end{tikzpicture}
+    }
+\newcommand{\nd}[4]{
+    \node[#1](#2)at(#3){#4};
+    }
+\newcommand{\dm}{\mathbin{\scriptstyle\dot{\smash{\textstyle-}}}}
+\newcommand{\s}{\rhd}
+\renewcommand{\u}{\underline}
+\renewcommand{\phi}{\varphi}
+
+
+% content
+\begin{document}
+% title page
+\maketitle
+\newpage
+
+% A1
+\subsection\
+Wir beginnen mit den $\eps$-closures eines jeden Zustandes:\\
+$
+\begin{array}{ll}
+    closure(a) & \{a,b,c\}\\
+    closure(b) & \{b\}\\
+    closure(c) & \{c\}\\
+\end{array}\\
+$\\
+Im folgenden wird der Automat $A_P$, durch sukzessives verfolgen aller 
+    Transitionen, ausgehend von a, konsturiert.\\
+\\
+Konvention:\\
+Alle nicht gezeichneten Transitionen f"uhren in den Senkenzustand.\\
+\\
+\automaton{
+    \nd{initial,state,accepting}        {abc}{0,0}{\{a,b,c\}}
+    \nd{state, accepting}               {bc}{4,0}{\{b,c\}}
+    \nd{state, accepting}               {c}{0,4}{\{c\}}
+
+    \path
+        (abc)
+            edge [->, above, bend right] node {1} (bc)
+            edge [->, loop below] node {0,2} (abc)
+        (bc)
+            edge [->, above, bend right] node {0,2} (abc)
+            edge [->, right] node {1} (c)
+    ;}
+
+% A2
+\subsection\
+Sei:\\$
+\Sigma = \{a,b,c\}\\
+L = \{w \in \Sigma^* | \#_a(w) \text{ gerade, }, \#_b(w),\#_c(w) \text{ ungerade}\}\\
+$\\
+$[ \tau_a \tau_b \tau_c ], \tau_a, \tau_b, \tau\in \{u,g\}$, sei die 
+    Klasse von Sprachen f"ur die die Anzahl von der Zeichen $\sigma \in \Sigma$
+    ungerade, wenn $\tau_{\sigma} = u$ oder gerade, wenn $\tau_{\sigma} = g$ ist.\\
+Daraus ergeben sich die "Aquivalenzklassen zu:\\
+$
+$[ uuu ]$, z = a\\
+$[ uug ]$, z = ac\\
+$[ ugu ]$, z = ab\\
+$[ ugg ]$, z = abc\\
+$[ guu ]$, z = \eps\\
+$[ gug ]$, z = c\\
+$[ ggu ]$, z = b\\
+$[ ggg ]$, z = bc\\
+$\\
+\\
+Die Konstruktion des Automaten erfolgt "uber die Zust"ande 
+    $Q = \{q_{vwx} | v,w,x \in \Sigma\}$.\\
+sowie den transitionen bei einlsesen eines $a$ von $q_{uwx}$ nach $a_{gwx}$
+    und umgekehrt,
+    eines $b$ von $q_{vux}$ nach $a_{vgx}$ und umgekehrt,
+    eines $c$ von $q_{vwu}$ nach $a_{vwg}$ und umgekehrt.\\
+Der akzeptierende Zustand ist $q_{guu}$, der Startzustand $q_{uuu}$.\\
+Es wird $\Sigma^*$ abgedeckt, da das vorkommen eines Zeichens entweder ungerade
+    oder gerade oft passieren kann. Ferner wurden alle kombinatioenen von geraden,
+    und ungeraden Vorkommen abgedeckt.\\
+
+% A3
+\subsection\
+
+\subsubsection\
+Sprache ist endlich, damit regul"ar.\\
+
+\subsubsection\
+$\alpha = (a+b+c)^4(a+b+c)^*$, damit regul"ar.\\
+
+\end{document}
