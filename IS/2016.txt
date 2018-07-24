@@ -1,0 +1,65 @@
+Hinweis: Es gab bei dieser Klausur insgesamt 66 Punkte, als volle Punktzahl wurden aber 60 gewertet.
+
+Folgendes Schema wurde in der Klausur benutzt:
+
+sch(Filiale)=(Filial_Nr,Standort) (Key: Filial_Nr)
+sch(Konto)=(Konto_Nr,Stand) (Key: Konto_Nr)
+sch(fuehrt)=(Konto_Nr,Filial_Nr) (Key: Konto_Nr, Filial_Nr)
+sch(Kunde)=(Kunden_Nr,Name,Strasse,Wohnort) (Key: Kunden_Nr)
+sch(betreut)=(Filial_Nr,Kunden_Nr) (Key: Kunden_Nr)
+sch(eroeffnet)=(Kunden_Nr,Konto_Nr) (Key: Konto_Nr)
+
+1. Aufgabe (16 Punkte)
+1) Das obige Schema in ein ER-Diagramm übersetzen. (5 Punkte)
+2) Kardinalitäten in (min,max) Notation übersetzen. (Kardinalitäten waren aus den Schlüsseln des Schemas zu folgern) (4 Punkte)
+3) Das Schema lässt sich vereinfachen. Vereinfachungen angeben und begründen. (? Punkte)
+
+2. Aufgabe (13 Punkte)
+Anfragen in relationaler Algebra stellen.
+1) Kontostand von Konto 123 (2 Punkte)
+2) Kunden mit zwei verschiedenen Konten (3 Punkte) 
+3) (4 Punkte)
+4) (4 Punkte)
+
+3. Aufgabe
+Hier sollte man relationale Algebra-Ausdrücke in Safe-TRC übersetzen.
+Dabei waren die Übersetzungs-Funktionen T und TRC auf dem Beiblatt angegeben.
+1) Projektion über eine Tabelle
+2) Selektion über ein kartesiches Produkt
+3) Schnitt von zwei Relationen.
+   Da der Schnitt kein Basis-Operator ist, war hier keine Übersetzung auf dem Beiblatt.
+   Man musste die Übersetzung also über eine äquivalente Schreibweise mit Basis-Operatoren herleiten.
+   
+4. Aufgabe (13 Punkte)
+SQL Queries
+1) Kontostand von Konto 123 (2 Punkte)
+2) 							(3 Punkte)
+3) Kunden mit zwei verschiedenen Konten, die von verschiedenen Filialen geführt werden. (4 Punkte)
+4) Orte, in denen es mehr als 25 Kunden gibt, obwohl dort keine Filiale liegt. (4 Punkte)
+
+5. Aufgabe
+Funktionale Abhängigkeiten
+Gegeben war ein Schema sch(R)=(A,B,C,D,E).
+Außerdem gab es eine Menge F von funktionalen Abhängigkeiten und eine Tabelle mit Tupeln aus der Relation R. Einiger der Tupel haben die Abhängigkeiten in F verletzt.
+Aufgabe war, eine minimale Anzahl von Tupeln aus der Tabelle zu streichen, sodass alle Abhängigkeiten aus F halten. Außerdem sollte für jedes gestrichene Tupel angegeben werden, welche Abhängigkeiten verletzt wurden.
+
+Ich meine, es war F={A->B, BD->B, BC->D, E->ABCD}.
+In der Tabelle waren circa 8 Tupel. (2 oder 3 waren zu streichen)
+
+6. Aufgabe (9 Punkte, pro Teil 4,5)
+Zwei Teilaufgaben, in denen jeweils ein Schedule gegeben war. 
+Pro Teilaufgabe:
+1) Vollständige Konfliktrelation angeben
+2) Konfliktgraphen zeichnen
+3) Ist der Schedule konfliktserialisierbar? Falls ja, konfliktäquivalentes serielles Schedule angeben.
+
+7. Aufgabe (10 Punkte)
+B- und B+-Bäume
+Zu Beginn der Aufgabe war ein B-Baum gegeben. (Mit Ordnung d=1)
+1) Unterschied zwischen B- und B+-Bäumen (2 Punkte)
+2) Den gegebenen B-Baum in einen B+-Baum umwandeln. (5 Punkte)
+   Der ursprüngliche Baum war so geformt, dass die Inhalte einfach in die Blätter geschoben werden konnten.
+3) Angenommen, man erhöht die Anzahl der Werte pro Knoten von 2 auf 8. Wie ändern sich folgende Werte? (Anzugeben war nur "steigt", "fällt", "bleibt gleich") (3 Punkte)
+   1. Höhe des Baums
+   2. Anzahl innerer Knoten
+   3. Ordnung
