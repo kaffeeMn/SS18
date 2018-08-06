@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import guzzle_sphinx_theme
+import sys
 
 html_theme_path = guzzle_sphinx_theme.html_theme_path()#
 # Configuration file for the Sphinx documentation builder.
@@ -123,7 +124,7 @@ latex_elements = {
 
     # Additional stuff for the LaTeX preamble.
     #
-    # 'preamble': '',
+     'preamble': '\usepacakge{amssymb}',
 
     # Latex figure (float) alignment
     #

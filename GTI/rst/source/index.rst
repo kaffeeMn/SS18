@@ -7,8 +7,9 @@ Welcome to -'s documentation!
 =============================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :caption: Contents:
+    ../../fragen.rst
 
 Table Of Contents
 ------------------
@@ -16,6 +17,7 @@ Table Of Contents
 * :doc:`index`
 * :doc:`notes`
 * :doc:`ubs`
+* :doc:`fragen`
 
 
 
