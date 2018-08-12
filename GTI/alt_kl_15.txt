@@ -1,0 +1,130 @@
+Aufgabe 1 (Endliche Automaten) (Insgesamt 16 Punkte)
+
+a.) I.) Es waren die beiden Automaten B und C gegeben. Es sollte nun der Produktautomat von b geschnitten (not C) erstellt werden. (5 Punkte)
+    II.) Es sollte der resultierende Automat beschrieben werden, zudem sollten die Sprachen der beiden Automaten beschrieben werden. (2 Punkte)
+
+b.) I.) Es sollte ein Potenzmengenautomat erstellt werden. (4 Punkte)
+    II.) Es sollte die Sprache des Automats beschrieben werden. (1 Punkt)
+
+c.) Es war folgender Text gegeben: Die Eisdiele BlaBlaBla will einen Eisautomaten bauen. Ein Eis besteht zuerst aus einer Waffel, dann aus mindestens einer
+    aber sonst beliebeig vielen Kugeln Eis. Der Kunde hat dabei die Wahl zwischen Zitrone, Banane und Tiramisu. Um den Magen der Kunden zu schonen sollten
+    keine zwei Kugeln Tiramisu hintereinander mÃ¶glich sein. Optional sollte am Ende noch ein Topping (hab ich vorher noch nie gehÃ¶rt ;)) mÃ¶glich sein.
+
+    Es sollte zu dieser Gegebenheit ein DFA konstruiert werden. (4 Punkte)
+
+
+
+
+
+Aufgabe 2 (CYK-Algorithmus) (Insgesamt 10 Punkte)
+
+a.) Es sollte zu einer gegebenen Grammatik in CNF und einem Wort der erweiterte CYK-Algorithmus angewendet werden. !!!Es sollte auch der resultierende 
+    Ableitungsbaum angegeben werden (hab ich vergessen:(). (7 Punkte)
+
+b.) Keine Ahnung mehr (KÃ¶nnte sowas der Art gewesen sein: Ist das Wort in der Sprache der Grammatik enthalten?) (1 Punkt)
+
+
+c.) Ist die Grammatik eindeutig? (2 Punkte)
+
+
+
+
+  
+
+Aufgabe 3 (Einordnung von Sprachen) (Insgesamt 15 Punkte)
+
+Es waren die Sprachen
+
+L_1 = {w_1 c^n w_2 | w_1, w_2 â‚¬ {a,b}^* und |w_1|=n=|w_2| }
+
+L_2 = {w_1 c (w_2)^R | w_1 beginnt mit bb und |w_2| ist gerade}
+
+L_3 = {w_1 c (w_2)^R | w_2 ist ein Teilwort von w_1}
+
+a.) Die Sprachen sollten eingeordnet werden, ob sie 
+	- nicht kontextfrei
+	- kontextfrei aber nicht regulÃ¤r
+	- regulÃ¤r
+sind. (3 Punkte)
+
+b.) Zu der oberen Einteilung sollten nun Beweise angegeben werden. (12 Punkte)
+
+
+
+
+
+
+
+Aufgabe 4 (Entscheidungs vs. Optimierungsprobleme) (6 Punkte)
+
+Gegeben war das Problem 2ColSubgraph und die entsprechenden Optimierungs- und Werteprobleme
+Ausserdem war ein Beispielsgraph G = ((a,b,c,d,e), ((a,b)(a,c)(a,d)(b,d)(c,d)(c,e)(d,e)) gegeben.
+
+a.) Ist (G,4) â‚¬ 2ColSubgraph (1 Punkt)
+
+b.) Zeigen Sie: Ist 2ColSubgraph in P, dann auch 2ColSubgraphW
+
+c.) Zeigen Sie: Ist 2ColSubGraphW in P, dann auch 2ColSubgraphO
+
+
+
+
+
+
+
+Aufgabe 5 (Entscheidbarkeit) (8 Punkte)
+
+Es waren drei Probleme gegeben.
+
+TM1: fm = _ , fÃ¼r alle w element âˆ‘* , abs(w) <=10 ? 
+TM2: hÃ¤lt fÃ¼r mindestens 2 verschiedene Eingaben ?
+TM3: geht Kopf zum ersten Symbol der Eingabe ?
+
+a.) Zeigen Sie, welche Probleme entscheidbar ist. (2 Punkte)
+
+b.) Zeigen Sie, we lche Probleme unentscheidbar sind.  (4 Punkte)
+
+c.) Zeigen Sie, dass eines der Probleme auch nicht semi-entscheidbar ist. (2 Punkte)
+
+
+
+
+
+
+
+Aufgabe 6 (Konstruktionsaufgabe) (X Punkte -> Da es 72 Punkte gab, mÃ¼ssten das hier 5 Punkte gewesen sein)
+
+Neues Kellerautomatenmodell (Lukenautomat) 
+
+a) Konfiguration berechnen 
+b) Konfigurationen definieren
+c) Lukenautomat konstruieren , fÃ¼r w_doppel (2mal das gleiche Wort hintereinander) 
+
+
+
+
+
+
+
+Aufgabe 7 (Quizfragen) (11 Punkte)
+
+Es waren 6 Quizfragen gegeben. Pro richtigem Kreuz gab es 0,5 Punkte. FÃ¼r eine richtige BegrÃ¼ndung gab es zudem noch einmal
+bis zu einem Punkt. Ausserdem gab es bis zu 2 Bonuspunkte fÃ¼r die Vermeidung falscher Kreuze.
+
+
+a.) Ein Automat mit n ZustÃ¤nden und n+2 ZustandsÃ¼bergÃ¤ngen entscheidet eine unendliche Sprache
+
+
+b.) 
+
+
+c.) Zu einem Wort w sei eine Grammatik gegeben. Es ist unentscheidbar, ob die Grammatik zu dem Wort eindeutig ist.
+
+
+d.) Ist ein Problem auf PCP reduzierbar, dann auch auf TM-Halt
+
+
+e.) Ein Problem das sich auf Rucksack reduzieren lÃ¤sst, lÃ¤sst sich auch auf Clique reduzieren
+
+
+f.) Alle NP-Schwierigen Probleme sind entscheidbar 

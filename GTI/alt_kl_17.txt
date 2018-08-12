@@ -1,0 +1,48 @@
+GTI Ersttermin SS17
+
+Klausur über 180 Minuten, es gab insgesamt 90 Punkte, wobei 45 zum bestehen nötig waren. Punkteverteilung ist sicher nicht 100% korrekt, aber die Verhältnisse sollten passen.
+
+Aufgabe 1: 
+- [6 Punkte] e-NFA erstellen für folgende Sprache: {w aus {0,1}* | w enthält den String 10 oder |w| ist durch 3 teilbar}
+- [5 Punkte] gegebenen DFA minimieren, Tableau für Markierungsalgorithmus war vorgegeben und musste ausgefüllt wurde, danach sollte der minimale DFA gezeichnet werden. Am Ende sollte noch die Zahl der Nerode-Äquivalenzklassen des DFA angegeben werden und wie man die anhand des minimalen Automaten bestimmen kann.
+- [6 Punkte] Potenzmengenautomat zu gegebenem e-NFA erstellen.
+
+Aufgabe 2: 
+- [12 Punkte] für ein gegebenes Wort w und eine kontextfreie Grammatik G, soll mittels CYK Algorithmus festgestellt werden, ob w aus G ableitbar ist. Tableau war wieder vorgegeben und musste ausgefüllt werden.
+- [1 Punkt] ist die Grammatik eindeutig?
+- [2 Punkte] einen Ableitungsbaum für w in G angeben und eine konkrete Rechtsableitung
+
+Aufgabe 3:
+- [3 Punkte] folgende Sprachen sollten in die Kategorien „regulär“, „kontextfrei aber nicht regulär“ oder „nicht kontextfrei“ eingeordnet werden:
+L1 = {0^K 1^L 0^L 1^K | K,L}
+L2 = {0^k 1^(k!-k) | k}
+L3 = {w | w aus {0,1}* enthält den String 01 genau so oft wie den String 10}
+
+Zusätzlich wurde angegeben, dass für alle Variablen gilt „Element der natürlichen Zahlen ohne die 0“ und es gibt genau je eine Sprache pro Kategorie.
+- [15 Punkte] nun sollte die Zuordnung aus der vorhergehenden Aufgabe bewiesen werden. Kontextfreiheit durch Angabe eines Automaten oder einer Grammatik, Regularität durch Automaten oder Regulären Ausdruck jeweils mit ausführlicher Beschreibung der Zustände oder Variablen. 
+
+Aufgabe 4:
+- [5 Punkte] Reduktion eines Entscheidbarkeitsproblems; Entscheiden ob ein anderes Problem entscheidbar ist. (CFG-All <= CFG-ALMOSTALL)
+- [5 Punkte] Entscheiden ob entscheidbar, dass keine der Ausgaben einer TM „epsilon“ ist.
+
+
+Aufgabe 5: 
+- [8 Punkte] Komplexere Reduktion (polynomiell) von einer Menge an unabhängigen Knoten eines Graphen auf SubsetSum
+
+Aufgabe 6:
+Neues Konzept einer Turingmaschine mit bedingter Rückbewegung (im Prinzip ein Linkslauf, bis der Zeiger ein Zeichen gefunden hat).
+- [2 Punkte] Anhand der gegebenen Definition und einer Konfiguration zwei Berechnungsschritte ausführen
+- [2 Punkte] Eine Semantik definieren
+- [4 Punkte] begründen, warum die Maschine nicht mächtiger als eine gewöhnliche Tuningmaschine ist.
+
+Aufgabe 7:
+[14 Punkte] Quizfragen 0,5 Punkte pro richtiger Antwort, 1,5 Punkte pro richtiger Begründung zusätzlich bis zu 2 Punkte für Vermeidung falscher Antworten:
+
+- TSP<=EulerCycle?
+- Wenn P1 vereinigt P2 in P liegt, folgt dann auch P1 und P2 liegen jeweils in P?
+- Alle Regulären Sprachen sind inhärent mehrdeutig?
+- Gibt es eine LR(1) Grammatik in NP?
+- Gibt es 2 semientscheidbare Sprachen, sodass deren Differenz nicht semi-entscheidbar ist?
+- Für eine unendliche Sprache über dem Alphabet 0 und ein n<=m sodass für jedes k aus N0 das Wort 0^{m-n}0^{k * m} in der Sprache ist
+
+

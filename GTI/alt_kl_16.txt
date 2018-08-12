@@ -1,0 +1,172 @@
+GTI Klausur 2016 / 1
+Gesamtpunktzahl: 72
+
+Aufgabe 1 (15 Punkte)
+a) (5 Punkte)
+Minimierungs-Algorithmus
+Gegeben war ein DFA mit Zuständen A-H.
+Man sollte für diesen den Minimierungs-Algorithmus anwenden und den Minimal-Automaten angeben.
+Die Tabelle für den Algorithmus war vorgegeben, es konnten zwei Zustände entfernt werden.
+Der Automat hatte 4 akzeptierende Zustände, das Eingabe-Alphabet war {a,b}
+
+b) (3 Punkte)
+RE -> eNFA
+Gegeben war ein regulärer Ausdruck: (1(11)* + 0)*0
+Zu diesem sollte man einen epsilon-NFA mit dem Baukasten-Prinzip aus der Vorlesung erstellen und für die einzelnen Teile markieren, welchem Teil des RE sie entsprechen
+
+c) (7 Punkte)
+Problem -> eNFA
+Folgendes Problem war gegeben:
+In Land xy werden viele Schals getragen.
+Ein Schal besteht dabei aus mehreren Schal-Stücken, die zusammen genäht werden.
+Jedes Schal-Stück besteht wiederum aus Streifen einer Farbe und muss folgende Eigenschaften erfüllen:
+1. Es beginnt und endet mit einem weißen Streifen.
+2. Dazwischen kommen keine weißen Streifen vor.
+3. Es enthält eine gerade Anzahl von blauen Streifen
+
+Ein Schal-Stück heißt rot, wenn es mindestens einen roten Streifen aber keine grünen Streifen enthält.
+Ein Schal-Stück heißt grün, wenn es mindestens einen grünen Streifen aber keine roten Streifen enthält.
+
+Ein Schal ist modisch korrekt, falls er nur aus roten und grünen Schalstücken besteht und mindestens ein Schalstück beinhaltet.
+
+Ein Schal soll mit dem Alphabet Sigma={w,b,r,g} kodiert werden (Die einzelnen Buchstaben stehen dabei jeweils für einen Streifen in der entsprechenden Farbe)
+
+Konstruieren Sie einen epsilon-NFA, der modisch korrekt Schals akzeptiert und erklären sie die Funktionsweise ihres Automaten. Erläutern sie ferner kurz die Bedeutung der Zustände.
+
+
+
+Aufgabe 2 (10 Punkte)
+a)
+Es waren zwei Grammatiken gegeben.
+Man sollte zeigen, dass beide der Grammatiken keine LL(1)-Grammatiken sind und die dazu benötigten FIRST- und FOLLOW-Mengen angeben. (Ich glaub man sollte entscheiden, ob es LL(1)-Grammatiken sind)
+
+b)
+Es war eine Grammatik gegeben.
+Frage: Ist die Grammatik eindeutig? Begründen Sie ihre Behauptung.
+
+c)
+CNF-Algorithmen
+(i)  Gegeben war eine Grammatik G1. Man sollte CNF1 anwenden.
+(ii) Gegeben war eine Grammatik G2. Man sollte CNF4 anwenden.
+
+d) (1 Punkt)
+Gegeben war eine Grammatik G.
+Diese sollte möglichst genau in die Chomsky-Hierarchie eingeordnet werden.
+
+
+
+Aufgabe 3 (15 Punkte)
+Gegeben waren die folgenden drei Sprachen:
+L_1 = {a^i b^j c^k d^l | i,j,k,l aus N0, i=l und k > j}
+L_2 = {a^i b^j c^k d^l | i,j,k,l aus N0, i=k, j=k+l}
+L_3 = {a^i b^j c^k d^l | i,j,k,l aus N0, i<=l, j<=1, k+l >= i+j}
+
+a) (3 Punkte)
+Entscheiden Sie für jede Sprache ob sie regulär, kontextfrei aber nicht regulär, oder nicht kontextfrei ist.
+
+b) (12 Punkte)
+Beweisen Sie Ihre Behauptungen aus a)
+
+
+Aufgabe 4 (7 Punkte)
+Entscheidbarkeit
+
+Gegeben waren folgende Probleme:
+
+Problem IDENTITY:
+Gegeben: TM M
+Frage: Berechnet M für alle Elemente aus dem Definitions-Bereich die Indentität?
+		Also: Ist für alle x aus D(fM) fM(x) = x?
+
+Problem NOFIVE:
+Gegeben: TM M
+Frage: Gibt es ein x mit f(x) != 5? (Hier sind wir uns bezüglich der Frage nicht ganz sicher.)
+
+a) Ist das Problem IDENTITY entscheidbar, unentscheidbar aber semi-entscheidbar, oder nicht semi-entscheidbar? (4 Punkte)
+	(Beweis angeben)
+
+b) Ist das Problem NOFIVE entscheidbar, unentscheidbar aber semi-entscheidbar, oder nicht semi-entscheidbar?
+	(Beweis angeben) (Die Teilaufgabe gab es in meiner Verison nicht)
+c) Seien L1 und L2  semi-entscheidbar. Gilt dann L1 konkateniert L2 ist semi-entscheidbar? (War hier vllt nicht Konkatenation sondern Schnitt? --> Konkatenation ist richtig) (3 Punkte)
+d) Gibt es semi-entscheidbare L1 und L2, sodass L1 konkateniert L2 entscheidbar ist? (1 Punkt)
+
+
+Aufgabe 5 (6 Punkte)
+Erzeugung von polynomiellen Algorithmen bzw. Entscheidungs-Probleme vs Optimierungs-Probleme
+Gegeben war als erstes eine Reihe von Definitionen: 
+1. Für einen Graph G=(V,E) ist ein Teilgraph G[U]=(U,E') mit U Teilmenge von V und E'=E geschnitten UxU.
+	Ein Teilgraph enthält also Knoten aus U und die Kanten, die zwischen diesen Knoten in G existieren.
+2. Wir definieren für v in V: G-v = G[V-{v}], also der Graph G ohne Knoten v
+3. Als Größe eines Graphen G=(V,E) sei |V| definiert.
+4. Ein gemeinsamer Teilgraph sei H1=G1[U1] und H2=G1[U2] sodass die beiden Graphen H1 und H2 bis auf isomorphie äquivalent sind. (Eine Definition von Isomorphie wurde angegeben)
+5. GT(G1,G2) berechne den größten gemeinsamen Teilgraph von G1 und G2 als Ausgabe sei H1 gewählt.
+
+Wir betrachten im Folgenden drei verschiedene Probleme:
+1. TEILGRAPHO:
+Gegeben: Ungerichtete Graphen G1, G2
+Gesucht: Größter gemeinsamer Teilgraph von G1 und G2 (Ausgabe ist der Teilgraph von G1)
+
+2. TEILGRAPHV
+Gegeben: Ungerichtete Graphen G1 und G2
+Gesucht: Größe von GT(G1, G2)
+
+3. TEILGRAPH
+Gegeben: Ungerichtete Graphen G1 und G2, Zahl k
+Frage:	 Ist k <= Größte von GT(G1, G2)?
+
+a) (1 Punkt)
+Gegeben waren zwei Graphen G1 und G2.
+Frage: Ist (G1,G2,3) in TEILGRAPH?
+
+b) (2 Punkte)
+Zeigen Sie: Wenn TEILGRAPH in polynomieller Zeit lösbar ist, dann auch TEILGRAPHV
+
+c) (3 Punkte)
+Zeigen Sie: Wenn TEILGRAPHV in polynomieller Zeit lösbar ist, dann auch TEILGRAPHO
+
+Aufgabe 6 (7 Punkte)
+Polynomielle Reduktion
+Gegeben waren zwei Probleme:
+
+Problem DOMINATINGSET:
+Geg: Ungerichteter Graph G=(V,E), Zahl k
+Frage: Gibt es ein D, was eine Teilmenge von V ist, sodass D den Graph G dominiert und |D| <= k ist?
+
+Problem SETCOVER:
+Geg: Menge S, Teilmengen S1, ... , Sn von S, Zahl k
+Frage: Gibt es eine Index-Folge i1,...,ik, sodass die Vereinigung von Si1,...,Sik die Menge S ergibt?
+
+Des weiteren waren zwei Funktionen f1 und f2 gegeben:
+f1(G,k) = (V,S1,...,Sn,k)
+	Für G=(V,E) und V=(v1,...,vn) ist Si={u | (vi,u) in E}
+	
+f2(G,k) = (V,S1,...,Sn,k)
+	Für G=(V,E) und V=(v1,...,vn) ist Si={u | (vi,u) in E} vereinigt {vi}
+
+Es war dann ein Graph H gegeben
+a) (1 Punkt)
+Ist (H,3) in DOMINATINGSET?
+
+b) (2 Punkte)
+Ist f1(H,3) in SETCOVER?
+Ist f2(H,3) in SETCOVER?
+(Die Antworten sollten natürlich begründet werden)
+	
+c) (3 Punkte)
+Entscheiden Sie für f1 und f2 ob es sich um eine polynomielle Reduktion von DOMINATINGSET auf SETCOVER handelt.
+Begründen Sie Ihre Entscheidung. Sollten sie zeigen, dass fi eine polynomielle Reduktion ist, beweisen Sie, dass (G,k) in DOMINATINGSET => fi(G,k) in SETCOVER gilt und begründen Sie, warum die übrigen Eigenschaften gelten.
+
+d) (1 Punkt)
+Es ist bekannt, dass DOMINATINGSET NP-vollständig ist. Was können sie daraus für das Problem SETCOVER folgern? Begründen Sie Ihre Aussage.
+
+Aufgabe 7 (11 Punkte)
+Quizfragen
+Für jedes richtige Kreuz gibt es 0,5 Pkt.
+Richtige Begründungen geben 1 Pkt.
+Bei vollständiger Vermeidung fehlerhafter Kreuze gibt es 2Pkt, jedes falsche Kreuz gibt 0,5 Pkt Abzug.
+1. Jede deterministisch kontextfreie Sprache lässt sich als Vereinigung zweier regulärer Sprachen darstellen.
+2. LL(3) ist eine Teilmenge von NP.
+3. Man kann PCP auf 3-SAT reduzieren.
+4. Mit dem Pumping-Lemma für kontextfreie Sprachen kann man zeigen, dass eine Sprache nicht regulär ist.
+5. Zu jedem WHILE-Programm f1 gibt es ein GOTO-Programm f2, sodass d(f1)=w(f2)
+6. Wenn es für L1 und L2 reguläre Ausdrücke gibt, lässt sich L1∩L2 durch einen DFA darstellen
