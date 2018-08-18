@@ -123,7 +123,7 @@ latex_elements = {
 
     # Additional stuff for the LaTeX preamble.
     #
-    # 'preamble': '',
+    'preamble': '\usepacakge{amssymb}',
 
     # Latex figure (float) alignment
     #
