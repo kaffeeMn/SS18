@@ -52,8 +52,6 @@
       <ul>
 <li><a class="reference internal" href="#">Mitschriften EDV</a><ul>
 <li><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
-<li><a class="reference internal" href="#besonders-pruefungsrelevant">Besonders Pruefungsrelevant</a></li>
-<li><a class="reference internal" href="#orga">Orga</a></li>
 <li><a class="reference internal" href="#skript">Skript</a><ul>
 <li><a class="reference internal" href="#block-b">Block B</a><ul>
 <li><a class="reference internal" href="#pipilines">Pipilines</a><ul>
@@ -71,10 +69,19 @@
 <li><a class="reference internal" href="#d-bilderzeugung">2D Bilderzeugung</a><ul>
 <li><a class="reference internal" href="#koordinatensysteme">Koordinatensysteme</a></li>
 <li><a class="reference internal" href="#transformationen">Transformationen</a></li>
+<li><a class="reference internal" href="#transformationsmatrix">Transformationsmatrix</a></li>
+<li><a class="reference internal" href="#clipping">Clipping</a></li>
+<li><a class="reference internal" href="#verrasterung">Verrasterung</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id3">3D-Bilderzeugung</a><ul>
+<li><a class="reference internal" href="#transformation">Transformation</a></li>
+<li><a class="reference internal" href="#beleuchtung">Beleuchtung</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li><a class="reference internal" href="#moegliche-pruefungsfragen">Moegliche Pruefungsfragen</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#block-c">Block C</a><ul>
@@ -84,7 +91,7 @@
 <li><a class="reference internal" href="#optmierungsproblem">Optmierungsproblem</a></li>
 <li><a class="reference internal" href="#hauptachsen">Hauptachsen</a></li>
 <li><a class="reference internal" href="#projektion">Projektion</a></li>
-<li><a class="reference internal" href="#id3">Dimensionsreduktion</a></li>
+<li><a class="reference internal" href="#id4">Dimensionsreduktion</a></li>
 <li><a class="reference internal" href="#singularwertzerlegung">Singularwertzerlegung</a></li>
 </ul>
 </li>
@@ -137,17 +144,9 @@
 <h1>Mitschriften EDV<a class="headerlink" href="#mitschriften-edv" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="table-of-contents">
 <h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="besonders-pruefungsrelevant">
-<h2>Besonders Pruefungsrelevant<a class="headerlink" href="#besonders-pruefungsrelevant" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Clipping algorithmus mit bitmasken</li>
+<li>B_Fragen</li>
 </ul>
-</div>
-<div class="section" id="orga">
-<h2>Orga<a class="headerlink" href="#orga" title="Permalink to this headline">¶</a></h2>
-<p>R-intro:    Di 24.04. 9-10, 10-11 OH16 R115
-UBs:        ab Di 8.5. 9-12 OH16 R115</p>
 </div>
 <div class="section" id="skript">
 <h2>Skript<a class="headerlink" href="#skript" title="Permalink to this headline">¶</a></h2>
@@ -158,16 +157,13 @@ farbmodelle
 phong modell
 shading
 projektionsmodelle</p>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Todo</p>
-<p class="last">bis Folie 82</p>
-</div>
 <div class="section" id="block-b">
 <h3>Block B<a class="headerlink" href="#block-b" title="Permalink to this headline">¶</a></h3>
 <p>Der Block B beschaeftigt sich mit der Ueberfuehrung einer Szenenbschreibung in
 eine bildliche Darstellung.</p>
 <p>Daten koennen durch Berechnungen oder Messungen von der Datenquelle erfasst
 werden.</p>
+<p>Wir untescheiden ferner zwischen 2- und 3d Bilderzeugung</p>
 <div class="section" id="pipilines">
 <h4>Pipilines<a class="headerlink" href="#pipilines" title="Permalink to this headline">¶</a></h4>
 <p>Die Daten durchlaufen einer Pipeline. Diese ist fuer 2D und 3D Modelle
@@ -270,25 +266,243 @@ sich in einem Raum, dem globalen Koordinatensystem</p>
 </div>
 <div class="section" id="transformationen">
 <h5>Transformationen<a class="headerlink" href="#transformationen" title="Permalink to this headline">¶</a></h5>
-<p>Wir koennen einen punkt anhand einer affinen Abbildung transformieren.</p>
-<p>p^- = A * p + t</p>
+<p>Wir koennen einen punkt anhand einer affinen Abbildung transformieren.
+.. math:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="s1">&#39; = A * p + t</span>
+</pre></div>
+</div>
 <p>Dabei ist A eine Matrix fuer Skalierung und Rotation, t ein vektor fuer die
 Translation.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Spezialfaelle fuer die affine Abbildung sind:</p>
-<p>Translation: E*p + t
-Skalierung: ((a,0),(0,b)) * p
-Rotation: M_rot * p
-Spielgelung: E_{negative 1 je nach Spiegelung} * p
-Scheerung: ( E + ((0,s_1),(s_2,0)) ) * p</p>
-<div class="admonition-todo admonition" id="index-1">
-<p class="first admonition-title">Todo</p>
-<p class="last">homogene abbildung und erweiterung</p>
+<p>Translation:
+.. math:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">E</span><span class="o">*</span><span class="n">p</span> <span class="o">+</span> <span class="n">t</span>
+</pre></div>
+</div>
+<p>Skalierung:
+.. math:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">((</span><span class="n">a</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="n">b</span><span class="p">))</span> <span class="o">*</span> <span class="n">p</span>
+</pre></div>
+</div>
+<p>Rotation:
+.. math:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">M_rot</span> <span class="o">*</span> <span class="n">p</span> \\
+\<span class="n">text</span><span class="p">{</span><span class="n">wobei</span> <span class="p">}</span> <span class="n">M_rot</span> \<span class="n">text</span><span class="p">{</span> <span class="n">die</span> <span class="n">Rotationsmatrix</span> <span class="n">ist</span><span class="o">.</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Spielgelung:
+.. math:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">E_</span><span class="p">{</span><span class="n">mod</span><span class="p">}</span> <span class="o">*</span> <span class="n">p</span>\\
+\<span class="n">text</span><span class="p">{</span><span class="n">waagerecht</span><span class="p">:</span> <span class="p">}</span> <span class="n">e_</span><span class="p">{</span><span class="mi">22</span><span class="p">}</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>\\
+\<span class="n">text</span><span class="p">{</span><span class="n">senkrecht</span><span class="p">:</span> <span class="p">}</span> <span class="n">e_</span><span class="p">{</span><span class="mi">11</span><span class="p">}</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>\\
+\<span class="n">text</span><span class="p">{</span><span class="n">am</span> <span class="n">Ursprung</span><span class="p">:</span> <span class="p">}</span> <span class="n">e_</span><span class="p">{</span><span class="mi">22</span><span class="p">}</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">=</span> <span class="n">e_</span><span class="p">{</span><span class="mi">11</span><span class="p">}</span>\\
+</pre></div>
+</div>
+<p>Scheerung:
+.. math:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span> <span class="n">E</span> <span class="o">+</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="n">s_1</span><span class="p">),(</span><span class="n">s_2</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span> <span class="p">)</span> <span class="o">*</span> <span class="n">p</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="transformationsmatrix">
+<h5>Transformationsmatrix<a class="headerlink" href="#transformationsmatrix" title="Permalink to this headline">¶</a></h5>
+<p>Um alle Transformationen in einer Matrix abdecken zu koennen benutzen wir eine
+Transformationsmatrix.</p>
+<div class="math notranslate">
+\[\begin{split}\begin{array}
+    a&amp;b&amp;c\\
+    d&amp;e&amp;f\\
+    g&amp;h&amp;i
+\end{array}\end{split}\]</div>
+</div>
+<div class="section" id="clipping">
+<h5>Clipping<a class="headerlink" href="#clipping" title="Permalink to this headline">¶</a></h5>
+<p>Clipping bezeichnet das Abschneiden von Teilen einer Szene die ausserhalb des
+definierten Bildbereichs liegen.</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Streckenclipping</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>Algorithmus fuer Clipping</dt>
+<dd><ol class="first last arabic">
+<li><dl class="first docutils">
+<dt>Unterscheide zwischen Punkten, die links/rechts/unterhalb/oberhalb</dt>
+<dd>vom Bildbereich liegen.
+Entferne alle Kanten, die durch einfache Vergleiche eliminiert
+werden koennen</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Wenn die Kante/ Linie von zwei Punkten durch den Bildbereich geht</dt>
+<dd>unterteile die Linie in mehrere Linien am Schnittpunkt mit dem
+Bildbereich</dd>
+</dl>
+</li>
+</ol>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Durchfuehrung von Schritt 1:</p>
+<ul class="simple">
+<li>Bitmaske fuer die 8 quadranten um den Bildbereich herum</li>
+<li>Verundung muss 0000 sein</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Durchfuehrung von Schritt 2:</p>
+<ul class="simple">
+<li>Veroderung muss 0000 sein, schnittpunkte dementsprechend waehlen</li>
+</ul>
+</div>
+<div class="section" id="verrasterung">
+<h5>Verrasterung<a class="headerlink" href="#verrasterung" title="Permalink to this headline">¶</a></h5>
+<p>Das Problem, mit dem sich die Verrasterung auseinander setzt ist</p>
+<p>Der Algorithmus fuer die Verrasterung betrachtet jeweils die x-punkte/pixel
+und rundet die y-punkte/pixel auf den naechsten int/ganzzahligen Wert.</p>
+</div>
+</div>
+<div class="section" id="id3">
+<h4>3D-Bilderzeugung<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="transformation">
+<h5>Transformation<a class="headerlink" href="#transformation" title="Permalink to this headline">¶</a></h5>
+<p>Die Transformationsmatrix bleibt generell gleich, nur das eine weitere
+Reihe und spalte hinzugefuegt wird.</p>
+</div>
+<div class="section" id="beleuchtung">
+<h5>Beleuchtung<a class="headerlink" href="#beleuchtung" title="Permalink to this headline">¶</a></h5>
+<p>Das Beleuchtungsmodell von Phong besteht aus:</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Ambienten Anteil</dt>
+<dd><ul class="first last">
+<li>sozusagen ein bias-lichtanteil/ indirekte Beleuchtung</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Diffuser Anteil</dt>
+<dd><ul class="first last">
+<li>Reflexionen an Materialoberflaeche</li>
+<li>Gleichmaessige Reflexion in alle Richtungen</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Glaenzender Anteil</dt>
+<dd><ul class="first last">
+<li>Gerichtete Reflexion</li>
+<li>Abhaengig von Betrachtungspunkt</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Es existieren verschiedene shading Modelle</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Flat Shading</dt>
+<dd><ul class="first last">
+<li>keien Interpolation, Mittelwerte Fuellen die Flaechen</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Gouraud Shading</dt>
+<dd><ul class="first last">
+<li>Berechnet Farbwerte an den Eckpunkten der Polygone</li>
+<li>lineare Interpolation, gleichmaessiger</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Phong Shading</dt>
+<dd><ul class="first last">
+<li>Material und Normalattribute an den Eckpunkten</li>
+<li>Interpolation der Normalvektoren der Eckpunkte ueber die Flaeche</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Textur wird durch eine Rastermatrix vorgegeben</p>
 </div>
 </div>
 </div>
+<div class="section" id="moegliche-pruefungsfragen">
+<h3>Moegliche Pruefungsfragen<a class="headerlink" href="#moegliche-pruefungsfragen" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Allgemeines zu Farben</dt>
+<dd><ul class="first last">
+<li>Was sind die aus der VL vorgestellten Farbsysteme?</li>
+<li>Warum koennen nicht alle fuer den Menschen sichtbaren Farben effizient
+dargestellt werden?</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Allgemeines zur Bilderzeugung</dt>
+<dd><ul class="first last">
+<li>2D/ 3D Pipeline- Ablauf zeichnen.</li>
+<li>Was ist der Unterschied zwischen 2D/ 3D?</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Transformation</dt>
+<dd><ul class="first last">
+<li>Welche Transformationsarten existieren?</li>
+<li>Was benutzen wir in der VL als Mittel um alle Transformationsarten
+abzudecken?</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Clipping</dt>
+<dd><ul class="first last">
+<li>wie wird Clipping durchgefuehrt/ welcher algorithmus?</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Verrasterung</dt>
+<dd><ul class="first last">
+<li>wie wird Verrasterung durchgefuehrt/ welcher algorithmus?</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>3D Tansvormation vs 2D Transformation?</li>
+<li>Woraus besteht das vorgestellte 3D-Beleuchtungsmodell?</li>
+<li>Welche arten von Shading existieren, welche ist am besten und warum?</li>
+</ul>
 </div>
 </div>
 <div class="section" id="block-c">
@@ -333,8 +547,8 @@ Schwerpunkt.</p>
 <div class="section" id="projektion">
 <h4>Projektion<a class="headerlink" href="#projektion" title="Permalink to this headline">¶</a></h4>
 </div>
-<div class="section" id="id3">
-<h4>Dimensionsreduktion<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id4">
+<h4>Dimensionsreduktion<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
 </div>
 <div class="section" id="singularwertzerlegung">
 <h4>Singularwertzerlegung<a class="headerlink" href="#singularwertzerlegung" title="Permalink to this headline">¶</a></h4>
