@@ -56,7 +56,7 @@
 <li><a class="reference internal" href="#block-b">Block B</a><ul>
 <li><a class="reference internal" href="#pipilines">Pipilines</a><ul>
 <li><a class="reference internal" href="#d">2D</a></li>
-<li><a class="reference internal" href="#id2">3D</a></li>
+<li><a class="reference internal" href="#id1">3D</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#farben">Farben</a><ul>
@@ -77,25 +77,32 @@
 <li><a class="reference internal" href="#id3">3D-Bilderzeugung</a><ul>
 <li><a class="reference internal" href="#transformation">Transformation</a></li>
 <li><a class="reference internal" href="#beleuchtung">Beleuchtung</a></li>
+<li><a class="reference internal" href="#projektion">Projektion</a></li>
+<li><a class="reference internal" href="#sichtbarkeitsberechnung">Sichtbarkeitsberechnung</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#moegliche-pruefungsfragen">Moegliche Pruefungsfragen</a></li>
+<li><a class="reference internal" href="#moegliche-pruefungsfragen-b">Moegliche Pruefungsfragen B</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#block-c">Block C</a><ul>
-<li><a class="reference internal" href="#dimensionsreduktion">Dimensionsreduktion</a><ul>
-<li><a class="reference internal" href="#lagrange-multiplikation">Lagrange-Multiplikation</a></li>
-<li><a class="reference internal" href="#ausgleichsebenen">Ausgleichsebenen</a></li>
+<li><a class="reference internal" href="#dimensionsreduktion">Dimensionsreduktion</a></li>
+<li><a class="reference internal" href="#hauptachsentransformation">Hauptachsentransformation</a><ul>
+<li><a class="reference internal" href="#lagrange-multiplikatoren">Lagrange-Multiplikatoren</a></li>
+<li><a class="reference internal" href="#ausgleichsebenen">Ausgleichsebenen</a><ul>
 <li><a class="reference internal" href="#optmierungsproblem">Optmierungsproblem</a></li>
-<li><a class="reference internal" href="#hauptachsen">Hauptachsen</a></li>
-<li><a class="reference internal" href="#projektion">Projektion</a></li>
-<li><a class="reference internal" href="#id4">Dimensionsreduktion</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#erkenntniss">Erkenntniss</a></li>
+<li><a class="reference internal" href="#alternativer-ansatz">Alternativer Ansatz</a></li>
+<li><a class="reference internal" href="#id4">Projektion</a></li>
+<li><a class="reference internal" href="#id5">Dimensionsreduktion</a></li>
 <li><a class="reference internal" href="#singularwertzerlegung">Singularwertzerlegung</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#beispiel">Beispiel</a></li>
+<li><a class="reference internal" href="#moegliche-pruefungsfragen-c">Moegliche Pruefungsfragen C</a></li>
 </ul>
 </li>
 </ul>
@@ -145,18 +152,12 @@
 <div class="section" id="table-of-contents">
 <h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>B_Fragen</li>
+<li><a class="reference internal" href="#b-fragen">B_Fragen</a></li>
+<li><a class="reference internal" href="#c-fragen">C_Fragen</a></li>
 </ul>
 </div>
 <div class="section" id="skript">
 <h2>Skript<a class="headerlink" href="#skript" title="Permalink to this headline">¶</a></h2>
-<p>wichtig:
-pipeline
-(…)
-farbmodelle
-phong modell
-shading
-projektionsmodelle</p>
 <div class="section" id="block-b">
 <h3>Block B<a class="headerlink" href="#block-b" title="Permalink to this headline">¶</a></h3>
 <p>Der Block B beschaeftigt sich mit der Ueberfuehrung einer Szenenbschreibung in
@@ -169,15 +170,15 @@ werden.</p>
 <p>Die Daten durchlaufen einer Pipeline. Diese ist fuer 2D und 3D Modelle
 unterschiedlich.</p>
 <div class="section" id="d">
-<h5>2D<a class="headerlink" href="#d" title="Permalink to this headline">¶</a></h5>
+<span id="d-pipe"></span><h5>2D<a class="headerlink" href="#d" title="Permalink to this headline">¶</a></h5>
 <ol class="arabic simple">
 <li>Transformation</li>
 <li>Clipping</li>
 <li>Verrasterung</li>
 </ol>
 </div>
-<div class="section" id="id2">
-<h5>3D<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id1">
+<span id="id2"></span><h5>3D<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h5>
 <ol class="arabic simple">
 <li><dl class="first docutils">
 <dt>Transformation</dt>
@@ -266,46 +267,34 @@ sich in einem Raum, dem globalen Koordinatensystem</p>
 </div>
 <div class="section" id="transformationen">
 <h5>Transformationen<a class="headerlink" href="#transformationen" title="Permalink to this headline">¶</a></h5>
-<p>Wir koennen einen punkt anhand einer affinen Abbildung transformieren.
-.. math:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="s1">&#39; = A * p + t</span>
-</pre></div>
-</div>
+<p>Wir koennen einen punkt anhand einer affinen Abbildung transformieren.</p>
+<div class="math notranslate">
+\[p' = A * p + t\]</div>
 <p>Dabei ist A eine Matrix fuer Skalierung und Rotation, t ein vektor fuer die
 Translation.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Spezialfaelle fuer die affine Abbildung sind:</p>
-<p>Translation:
-.. math:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">E</span><span class="o">*</span><span class="n">p</span> <span class="o">+</span> <span class="n">t</span>
-</pre></div>
-</div>
-<p>Skalierung:
-.. math:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">((</span><span class="n">a</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="n">b</span><span class="p">))</span> <span class="o">*</span> <span class="n">p</span>
-</pre></div>
-</div>
-<p>Rotation:
-.. math:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">M_rot</span> <span class="o">*</span> <span class="n">p</span> \\
-\<span class="n">text</span><span class="p">{</span><span class="n">wobei</span> <span class="p">}</span> <span class="n">M_rot</span> \<span class="n">text</span><span class="p">{</span> <span class="n">die</span> <span class="n">Rotationsmatrix</span> <span class="n">ist</span><span class="o">.</span><span class="p">}</span>
-</pre></div>
-</div>
-<p>Spielgelung:
-.. math:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">E_</span><span class="p">{</span><span class="n">mod</span><span class="p">}</span> <span class="o">*</span> <span class="n">p</span>\\
-\<span class="n">text</span><span class="p">{</span><span class="n">waagerecht</span><span class="p">:</span> <span class="p">}</span> <span class="n">e_</span><span class="p">{</span><span class="mi">22</span><span class="p">}</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>\\
-\<span class="n">text</span><span class="p">{</span><span class="n">senkrecht</span><span class="p">:</span> <span class="p">}</span> <span class="n">e_</span><span class="p">{</span><span class="mi">11</span><span class="p">}</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>\\
-\<span class="n">text</span><span class="p">{</span><span class="n">am</span> <span class="n">Ursprung</span><span class="p">:</span> <span class="p">}</span> <span class="n">e_</span><span class="p">{</span><span class="mi">22</span><span class="p">}</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">=</span> <span class="n">e_</span><span class="p">{</span><span class="mi">11</span><span class="p">}</span>\\
-</pre></div>
-</div>
-<p>Scheerung:
-.. math:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span> <span class="n">E</span> <span class="o">+</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="n">s_1</span><span class="p">),(</span><span class="n">s_2</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span> <span class="p">)</span> <span class="o">*</span> <span class="n">p</span>
-</pre></div>
-</div>
+<p>Translation:</p>
+<div class="math notranslate">
+\[E*p + t\]</div>
+<p>Skalierung:</p>
+<div class="math notranslate">
+\[((a,0),(0,b)) * p\]</div>
+<p>Rotation:</p>
+<div class="math notranslate">
+\[\begin{split}M_rot * p \\
+\text{wobei } M_rot \text{ die Rotationsmatrix ist.}\end{split}\]</div>
+<p>Spielgelung:</p>
+<div class="math notranslate">
+\[\begin{split}E_{mod} * p\\
+\text{waagerecht: } e_{22} = -1\\
+\text{senkrecht: } e_{11} = -1\\
+\text{am Ursprung: } e_{22} = -1 = e_{11}\\\end{split}\]</div>
+<p>Scheerung:</p>
+<div class="math notranslate">
+\[( E + ((0,s_1),(s_2,0)) ) * p\]</div>
 </div>
 <div class="section" id="transformationsmatrix">
 <h5>Transformationsmatrix<a class="headerlink" href="#transformationsmatrix" title="Permalink to this headline">¶</a></h5>
@@ -449,10 +438,59 @@ Reihe und spalte hinzugefuegt wird.</p>
 </div>
 <p>Textur wird durch eine Rastermatrix vorgegeben</p>
 </div>
+<div class="section" id="projektion">
+<h5>Projektion<a class="headerlink" href="#projektion" title="Permalink to this headline">¶</a></h5>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Parrallelprojektion</dt>
+<dd><ul class="first last">
+<li>eine Bildebene wird durch einen Bildursprung o und zwei koordinaten u, v
+definiert</li>
+<li>Die Parrallelprojektion ist dann bezueglich einer Richtung w parralle
+Projektion der Richtung w auf die Ebene</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>perspetivische Projektion</dt>
+<dd><ul class="first last">
+<li>zuvor wurden alle Punkte eines Objekts bezueglich einer Richtung w parrallel
+auf die Bildebene projeziert</li>
+<li>nun wird von einem Augenpunkt aus auf die Ebene Projeziert</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="sichtbarkeitsberechnung">
+<h5>Sichtbarkeitsberechnung<a class="headerlink" href="#sichtbarkeitsberechnung" title="Permalink to this headline">¶</a></h5>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Szenenbasiert</dt>
+<dd><ul class="first last">
+<li>Painters Algorithmus/ Binary Space Partitioning</li>
+<li>erst Sichtbarkeitsberechnung, dann Verrasterung</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Rasterbasiert</dt>
+<dd><ul class="first last">
+<li>Tiefenpunktverfahren / Scan-Line / Bereichsunterteilungsverfahren</li>
+<li>erst Verrasterung, dann Sichtbarkeitsberechnung</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
 </div>
 </div>
-<div class="section" id="moegliche-pruefungsfragen">
-<h3>Moegliche Pruefungsfragen<a class="headerlink" href="#moegliche-pruefungsfragen" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="moegliche-pruefungsfragen-b">
+<span id="b-fragen"></span><h3>Moegliche Pruefungsfragen B<a class="headerlink" href="#moegliche-pruefungsfragen-b" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><dl class="first docutils">
 <dt>Allgemeines zu Farben</dt>
@@ -502,6 +540,8 @@ abzudecken?</li>
 <li>3D Tansvormation vs 2D Transformation?</li>
 <li>Woraus besteht das vorgestellte 3D-Beleuchtungsmodell?</li>
 <li>Welche arten von Shading existieren, welche ist am besten und warum?</li>
+<li>Welche Projektionsverfahren existieren, was ist der fundamentale Unterschied?</li>
+<li>Welche herangehensweisen existieren zur Sichtbarkeitsberechnung?</li>
 </ul>
 </div>
 </div>
@@ -509,6 +549,9 @@ abzudecken?</li>
 <h2>Block C<a class="headerlink" href="#block-c" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="dimensionsreduktion">
 <h3>Dimensionsreduktion<a class="headerlink" href="#dimensionsreduktion" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="hauptachsentransformation">
+<h3>Hauptachsentransformation<a class="headerlink" href="#hauptachsentransformation" title="Permalink to this headline">¶</a></h3>
 <p>Generell wird das Problem der Datenerfassung und Reduktion dieser Daten auf das
 Wesentliche betrachtet. Dabei sollen Unterschiede der Daten immernoch
 ersichtlich bleiben.</p>
@@ -518,8 +561,8 @@ ersichtlich bleiben.</p>
 <p>Ueber die Dimensionsreduktion wird versucht die Richtungen in einem
 hochdimensionalen Raum zu bestimmen, in denne die wesentlichen Strukturen in den
 Daten deutlich werden.</p>
-<div class="section" id="lagrange-multiplikation">
-<h4>Lagrange-Multiplikation<a class="headerlink" href="#lagrange-multiplikation" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="lagrange-multiplikatoren">
+<h4>Lagrange-Multiplikatoren<a class="headerlink" href="#lagrange-multiplikatoren" title="Permalink to this headline">¶</a></h4>
 <p>Wir betrachten das Minimierungsproblem von</p>
 <div class="math notranslate">
 \[\begin{split}f(x,y) - \lambda * g(x,y) = \text{min}\\
@@ -534,21 +577,40 @@ f_y - \lambda g_y = 0\end{split}\]</div>
 <p>Wir suchen eine Hyperebene e* x = d (e:Koeffizienten Vektor, x:Punkt)</p>
 <p>Dabei soll die Summe der quadratischen Abstaende der Punkte zur Hyperebene
 minimal sein.</p>
-</div>
 <div class="section" id="optmierungsproblem">
-<h4>Optmierungsproblem<a class="headerlink" href="#optmierungsproblem" title="Permalink to this headline">¶</a></h4>
+<h5>Optmierungsproblem<a class="headerlink" href="#optmierungsproblem" title="Permalink to this headline">¶</a></h5>
 <p>f ist die Summe ueber alle Punmkte mal den Koeffizienten Vektor minus dem
 Schwerpunkt.</p>
 <p>g ist der quadratische Betrag des Koeffizienten Vektor.</p>
+<div class="math notranslate">
+\[\text{min} f(\ldots) = \Sum^n_{i=1} (e * a_i - d)^2
+\text{, wobei } g(\ldots) = ||e||_2^2 = 1\]</div>
+<p>Dieses Problem kann durch Lagrange Multiplikatoren geloesst werden</p>
 </div>
-<div class="section" id="hauptachsen">
-<h4>Hauptachsen<a class="headerlink" href="#hauptachsen" title="Permalink to this headline">¶</a></h4>
 </div>
-<div class="section" id="projektion">
-<h4>Projektion<a class="headerlink" href="#projektion" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="erkenntniss">
+<h4>Erkenntniss<a class="headerlink" href="#erkenntniss" title="Permalink to this headline">¶</a></h4>
+<p>Damit eine Hyperebene den quadratischen Abstand zu allen Punkten minimiert,
+muss sie durch den Schwerpunkt dieser Punkte gehen.</p>
+<p>Dadurch erhalten wir eine Vereinfacherung des Problems. So koennen wir die
+gegebenen Punkte in den Schwerpunkt verschieben</p>
+<p>Dadurch erhalten wir ein neues Verfahren:
+1. Verschieben der Punkte, sodass der Schwerpunkt im Ursprung liegt
+2. Loesen des Problem fuer den Spezialfall, das die Ausgleichsebene durch den</p>
+<blockquote>
+<div>Ursprung geht</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Verschiebe die gefundene Loesung in den Urspruenglichen Schwerpunkt</li>
+</ol>
+</div>
+<div class="section" id="alternativer-ansatz">
+<h4>Alternativer Ansatz<a class="headerlink" href="#alternativer-ansatz" title="Permalink to this headline">¶</a></h4>
 </div>
 <div class="section" id="id4">
-<h4>Dimensionsreduktion<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<h4>Projektion<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id5">
+<h4>Dimensionsreduktion<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
 </div>
 <div class="section" id="singularwertzerlegung">
 <h4>Singularwertzerlegung<a class="headerlink" href="#singularwertzerlegung" title="Permalink to this headline">¶</a></h4>
@@ -556,6 +618,9 @@ Schwerpunkt.</p>
 </div>
 <div class="section" id="beispiel">
 <h3>Beispiel<a class="headerlink" href="#beispiel" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="moegliche-pruefungsfragen-c">
+<span id="c-fragen"></span><h3>Moegliche Pruefungsfragen C<a class="headerlink" href="#moegliche-pruefungsfragen-c" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 </div>

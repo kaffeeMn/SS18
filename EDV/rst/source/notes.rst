@@ -5,19 +5,11 @@ Mitschriften EDV
 Table of Contents
 #################
 
-* B_Fragen
+* B_Fragen_
+* C_Fragen_
 
 Skript
 ######
-
-wichtig:
-pipeline 
-(...)
-farbmodelle
-phong modell
-shading
-projektionsmodelle
-
 
 Block B
 =======
@@ -37,6 +29,7 @@ Die Daten durchlaufen einer Pipeline. Diese ist fuer 2D und 3D Modelle
 unterschiedlich.
 
 .. _2d_pipe:
+
 2D
 ^^
 
@@ -45,6 +38,7 @@ unterschiedlich.
 3. Verrasterung
 
 .. _3d_pipe:
+
 3D
 ^^
 
@@ -109,8 +103,8 @@ Transformationen
 ^^^^^^^^^^^^^^^^
 
 Wir koennen einen punkt anhand einer affinen Abbildung transformieren.
-.. math::
 
+.. math::
     p' = A * p + t
 
 Dabei ist A eine Matrix fuer Skalierung und Rotation, t ein vektor fuer die
@@ -121,16 +115,23 @@ Translation.
 Spezialfaelle fuer die affine Abbildung sind:
 
 Translation: 
+
 .. math::
     E*p + t
+
 Skalierung: 
+
 .. math::
     ((a,0),(0,b)) * p
+
 Rotation:
+
 .. math::
     M_rot * p \\
     \text{wobei } M_rot \text{ die Rotationsmatrix ist.}
+
 Spielgelung: 
+
 .. math::
     E_{mod} * p\\
     \text{waagerecht: } e_{22} = -1\\
@@ -138,6 +139,7 @@ Spielgelung:
     \text{am Ursprung: } e_{22} = -1 = e_{11}\\
     
 Scheerung:
+
 .. math::
     ( E + ((0,s_1),(s_2,0)) ) * p
 
@@ -231,9 +233,33 @@ Es existieren verschiedene shading Modelle
 
 Textur wird durch eine Rastermatrix vorgegeben
 
+Projektion
+^^^^^^^^^^
+
+* Parrallelprojektion
+    + eine Bildebene wird durch einen Bildursprung o und zwei koordinaten u, v 
+      definiert
+    + Die Parrallelprojektion ist dann bezueglich einer Richtung w parralle
+      Projektion der Richtung w auf die Ebene
+* perspetivische Projektion
+    + zuvor wurden alle Punkte eines Objekts bezueglich einer Richtung w parrallel
+      auf die Bildebene projeziert
+    + nun wird von einem Augenpunkt aus auf die Ebene Projeziert
+
+Sichtbarkeitsberechnung
+^^^^^^^^^^^^^^^^^^^^^^^
+
+* Szenenbasiert
+    + Painters Algorithmus/ Binary Space Partitioning
+    + erst Sichtbarkeitsberechnung, dann Verrasterung
+* Rasterbasiert
+    + Tiefenpunktverfahren / Scan-Line / Bereichsunterteilungsverfahren
+    + erst Verrasterung, dann Sichtbarkeitsberechnung
+
 .. _B_Fragen:
-Moegliche Pruefungsfragen
-=========================
+
+Moegliche Pruefungsfragen B
+===========================
 
 * Allgemeines zu Farben
     + Was sind die aus der VL vorgestellten Farbsysteme?
@@ -253,6 +279,8 @@ Moegliche Pruefungsfragen
 * 3D Tansvormation vs 2D Transformation?
 * Woraus besteht das vorgestellte 3D-Beleuchtungsmodell?
 * Welche arten von Shading existieren, welche ist am besten und warum?
+* Welche Projektionsverfahren existieren, was ist der fundamentale Unterschied?
+* Welche herangehensweisen existieren zur Sichtbarkeitsberechnung?
 
 
 Block C
@@ -260,6 +288,9 @@ Block C
 
 Dimensionsreduktion
 ===================
+
+Hauptachsentransformation
+=========================
 
 
 Generell wird das Problem der Datenerfassung und Reduktion dieser Daten auf das
@@ -272,12 +303,13 @@ Ueber die Dimensionsreduktion wird versucht die Richtungen in einem
 hochdimensionalen Raum zu bestimmen, in denne die wesentlichen Strukturen in den
 Daten deutlich werden.
 
-Lagrange-Multiplikation
------------------------
+Lagrange-Multiplikatoren
+------------------------
 
 Wir betrachten das Minimierungsproblem von
 
 .. math::
+
     f(x,y) - \lambda * g(x,y) = \text{min}\\
     g(x,y) = 0\\
     \text{mit den partiellen Ableitungen:}\\
@@ -295,15 +327,37 @@ Dabei soll die Summe der quadratischen Abstaende der Punkte zur Hyperebene
 minimal sein.
 
 Optmierungsproblem
-------------------
+^^^^^^^^^^^^^^^^^^
 
 f ist die Summe ueber alle Punmkte mal den Koeffizienten Vektor minus dem 
 Schwerpunkt.
 
 g ist der quadratische Betrag des Koeffizienten Vektor.
 
-Hauptachsen
+.. math::
+
+    \text{min} f(\ldots) = \Sum^n_{i=1} (e * a_i - d)^2
+    \text{, wobei } g(\ldots) = ||e||_2^2 = 1
+
+Dieses Problem kann durch Lagrange Multiplikatoren geloesst werden
+
+Erkenntniss
 -----------
+
+Damit eine Hyperebene den quadratischen Abstand zu allen Punkten minimiert, 
+muss sie durch den Schwerpunkt dieser Punkte gehen.
+
+Dadurch erhalten wir eine Vereinfacherung des Problems. So koennen wir die 
+gegebenen Punkte in den Schwerpunkt verschieben
+
+Dadurch erhalten wir ein neues Verfahren:
+1. Verschieben der Punkte, sodass der Schwerpunkt im Ursprung liegt
+2. Loesen des Problem fuer den Spezialfall, das die Ausgleichsebene durch den
+   Ursprung geht
+3. Verschiebe die gefundene Loesung in den Urspruenglichen Schwerpunkt
+
+Alternativer Ansatz
+-------------------
 
 Projektion
 ----------
@@ -316,3 +370,8 @@ Singularwertzerlegung
 
 Beispiel
 ========
+
+.. _C_Fragen:
+
+Moegliche Pruefungsfragen C
+===========================
