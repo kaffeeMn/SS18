@@ -333,7 +333,7 @@ g ist der quadratische Betrag des Koeffizienten Vektor.
 
 .. math::
 
-    \text{min} f(\ldots) = \Sum^n_{i=1} (e * a_i - d)^2
+    \text{min} f(\ldots) = \Sigma^n_{i=1} (e * a_i - d)^2
     \text{, wobei } g(\ldots) = ||e||_2^2 = 1
 
 Dieses Problem kann durch Lagrange Multiplikatoren geloesst werden
