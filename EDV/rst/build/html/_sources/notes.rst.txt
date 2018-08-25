@@ -8,11 +8,8 @@ Table of Contents
 * B_Fragen_
 * C_Fragen_
 
-Skript
-######
-
 Block B
-=======
+#######
 
 Der Block B beschaeftigt sich mit der Ueberfuehrung einer Szenenbschreibung in
 eine bildliche Darstellung.
@@ -336,7 +333,7 @@ g ist der quadratische Betrag des Koeffizienten Vektor.
 
 .. math::
 
-    \text{min} f(\ldots) = \Sum^n_{i=1} (e * a_i - d)^2
+    \text{min} f(\ldots) = \Sigma^n_{i=1} (e * a_i - d)^2
     \text{, wobei } g(\ldots) = ||e||_2^2 = 1
 
 Dieses Problem kann durch Lagrange Multiplikatoren geloesst werden
@@ -356,22 +353,244 @@ Dadurch erhalten wir ein neues Verfahren:
    Ursprung geht
 3. Verschiebe die gefundene Loesung in den Urspruenglichen Schwerpunkt
 
-Alternativer Ansatz
+Kohonenkarten
+=============
+
+Eine Kohonenkarte definiert eine Abbildung eines d-dimensionalen Raums auf 
+einen k-dimensionalen.
+Dabei sollen nachbarschaften moeglichst gut erhalten bleiben.
+
+|
+
+Im Bereich der Datenvisualisierung wird dabei auf k = 2 oder k = 3 reduziert.
+
+Aufbau
+------
+
+Die Kohonenkarte besteht aus einem n x m Gitter aus Neuronen. Dabei ist jedem
+Neuron ein d-dimensionaler Punkt zugeordnet.
+
+Anlernen
+--------
+
+Initialisiert wird die Kohonenkarte durch das zufaellige Zuordnen der 
+d-dimensionalen Punkte and die Neuronen.
+
+Die Kohonenkarte wird durch zufaellig gewaehlte Anlerndatenpunkte aus einer
+gegebenen Punktmenge angelernt.
+
+Quantisierung
+=============
+
+Vektorquantisierung
 -------------------
 
-Projektion
-----------
+k-Vektorquantisierung
+^^^^^^^^^^^^^^^^^^^^^
 
-Dimensionsreduktion
--------------------
+Auffinden von k Punkten, deren raeumliche Verteiliung denen der Gegebenen
+Punkte entspricht.
 
-Singularwertzerlegung
----------------------
+Exakt k Punkte/ Codewords.
 
-Beispiel
-========
+Vektorquantisierung
+^^^^^^^^^^^^^^^^^^^
+
+Auffinden von Punkten q, sodass eine disjunkte Zuordnung von maximal p raeumlich
+benachbarten Punkten aus der gegebenen Punktmenge zu jedem q existiert.
+
+Unbestimmte Anzahl von Punkten/ Codewords mit je maximal p zugeordneten Punkten.
+
+Aufteilung
+^^^^^^^^^^
+
+Eine AUfteilung kann durch Voronoi-Regionen erfolgen
+
+Hyper-Octree-Vektorquantisierung
+--------------------------------
+
+Das Bild wird in Quadranten unterteilt. Jeder Quadrant Kann in 4 weitere
+Quadranten unterteilt werden, die Kinder des Quadranten werden.
+Quadranten werden solange aufgeteilt, bis sie weniger, als p Punkte enthalten.
+
+Median-Schnitt-Vektorquantisierung
+----------------------------------
+
+Ein Baum mit maximal 2 Nachfolgern an jedem Knoten.
+Aufteilung erfolgt wie beim Hyper-Octree, **ABER** der Schnitt erfolgt im 
+Median.
+
+Durch den Median_Schnitt wird eine dichteangepasste Reduktion der gegbenen 
+Punktmenge erzielt.
+
+Clustering
+==========
+
+Clustering Verfahren sind:
+
+* Partionierende Verfahren
+    + Paramter: Anzahl k der CLuster, Distanzfunktion
+    + sucht ein flaches Clustering in k Cluster mit minimalen Kosten
+* Hierachische Verfahren
+    + Paramter: Distanzfunktion fuer Punkte und Cluster
+    + bestimmt ein Hierarchie von Clustern
+    + mischt jeweils die aehnlichsten CLuster
+* Dichtebasierte Verfahren
+    + Parameter: minimale Dichte in einem Cluster, Distanzfunktion
+    + erweitert Punkte m ohre Nachbarn, bis die Dichte gross genug ist
+* Andere
+    + Fuzzy, Graph-theoretisch, neuronale Netze
+
+k-Mittelwert-Clustering
+-----------------------
+
+Man waehlt zufaellig k Clustermittelpunkte
+
+Fortan wird 
+fuer alle Objekte:
+    + der Abstand jedes Objekts zu jedem Clustermittelpunkt berechnet
+    + Jedes Objekt seinem Clustermittelpunkt zugewiesen
+
+Bis sich keine Objektzuordnung mehr aendert, ansonsten wird das Clusterzentrum 
+neu berechnet
+
+|
+
+* Das k-Mittelwert-Clustering kann auch als Verfahren zur k-Vektirquantisierung 
+  aufgefasst werden
+* Die resultierenden Cluster koennen stark von der Wahl der initialen Centroide 
+  abhaengen
+* Anzahl von Clustern kann auch kleiner als k sein
+
+Moeglichkeiten zur Verbesserung
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* mehrere Durchlaeufe mit verschiedenen Starkonfigurationen
+* abweichende Masse zur Abstands und Centoidbestimmung
+* initiale Centroide sollten moeglichst weit voneinander entfernt sein
+
+.. TODO
+
+Hierarchisches CLustering
+-------------------------
+
+Dichtebasiertes Clustering
+--------------------------
 
 .. _C_Fragen:
 
 Moegliche Pruefungsfragen C
 ===========================
+
+
+Block D
+#######
+
+Graphentheorie
+==============
+
+Hypergraph
+----------
+
+Bei einem Hypergraph G = (V,E) ist jedes Element von E eine nicht leere
+Teilmenge von V ist.
+
+Jede Kante kann also mehrere Anfangs und Endknoten haben.
+
+Zeichenstrategien fuer Graphen
+==============================
+
+Es wurden 4 Ansaetze zum Zeichnen von Graphen vorgestellt:
+
+1. Topologie-Form-Metrik
+2. Hierarchisch
+3. Sichtbarkeit
+4. Verfeinerung
+
+Topologie-Form-Metrik
+---------------------
+
+Topologie
+^^^^^^^^^
+
+Zwei orthogonle Zeichnungen haben gleiche Topologie, wenn sie durch stetige
+Deformation ohne VErtauschen bon Facetten ineinander ueberprueft werden koennen
+
+Dazu benutzen wir Planarisierung
+* ermitteln des maximalen planaren Untergraphens
+* Verbleibende Kanten einfuegen mit moeglichst wenig ueberschneidungen
+* Dummy-Knoten an verbleibenden Uebrschneidungen einfuegen
+
+Form
+^^^^
+
+Zwei orthogonale Zeichnungen haben gleiche Form, wenn sie:
+1. gleiche Topologie haben
+2. eine Zeichnung aus der anderen nur durch Laengenaenderungen der 
+   Liniensegmente hervorgeht
+
+Dazu benutzen wir Orthogonalisierung
+* Knoten ohne Koordinaten
+* alle Kanfel sind Winkellisten, zur Festlegung ihrer Knicke
+* Das Ziel ist es die Anzahl von Knicken zu minimieren
+
+Metrik
+^^^^^^
+
+Zwei othogonale Zeichnungen haben gleiche Metrik, wenn sie:
+1. kongruent, bzw. durch Verschieben und Drehen ineinander ueberfuehrt werden
+  koennen 
+
+Dazu benutzen wir Kompaktifizierung
+* minimiert die Flaeche des Graphen und legt die Kantenknicke fest
+
+Hierachischer Ansatz
+--------------------
+
+1. Schichtungsschritt
+    * verwandelt einen DAG in einen geschichteten Digraph
+        + alle Knoten werden einer Schicht unf alle adjazenten Knoten einer
+          Folgeschicht zugeordnet
+    * Dummyknoten werden Angefuegt, damit Kanten ueber mehr als eine Schicht
+      laufen koennen
+2. Schnittreduzierung
+    * Minimieren der Anzahl von Kantenschnitten
+3. Festlegen der x-Koordinaten
+    * ersetze Dummy-Knoten durch Knicke
+
+(Di-)Graphen enthalten Zyklen, dies erschwert das algorithmische Zeichnen des
+Graphens.
+
+Wir verwenden den folgenden Ansatz:
+1. Entfernen von Zyklen
+    * die Richtung einiger Kanten wird invertiert um den Graph azyklisch zu
+      machen
+    * (greedy Algorithmus fuer minimale Rueckwaertskanten)
+2. Hierarchischer Ansatz
+3. Kanten wieder umrichten   
+
+Sichtbarkeitsansatz
+-------------------
+
+1. Planarisierung, wie bei Topologie-Form-Metrik-Ansatz
+2. Sichtbarkeitsschritt
+    * jedem Knoten wird ein horizontales Segment zugeordnet
+    * jeder Kante wird ein vertikales Segment zugeordnet
+        + Kantensegmente haben Anfang und Ende in Knotensegmenten
+        + Kantensegmente schneiden einander nicht
+3. Ersetzungsschritt
+    * ersetzt jedes horizontale Segment durch einen Punkt
+    * ersetzt jedes vertikale Segment durch eine Polylinie
+
+Verfeinerungsansatz
+-------------------
+
+1. Planarisierung, wie bei Topologie-Form-Metrik-Ansatz
+2. Verfeinerung
+    * Alle Facetten haben drei Kanten (Triangulierung)
+    * Qualitaet des Zeichnens maximaler Graphen haengt in der Regel vom 
+      Knotengrad ab
+    * Minimierung des maximalen Knotengrades
+3. Triangulierungszeichnung
+    * "Auslegen" aller Dreiecke
+    * entfernen von Dummy-Kanten/Knoten
