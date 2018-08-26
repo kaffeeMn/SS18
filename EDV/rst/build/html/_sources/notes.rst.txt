@@ -8,6 +8,11 @@ Table of Contents
 * B_Fragen_
 * C_Fragen_
 * D_Fragen_
+* E_Fragen_
+* F_Fragen_
+* G_Fragen_
+* H_Fragen_
+* I_Fragen_
 
 Block B
 #######
@@ -21,7 +26,7 @@ werden.
 Wir untescheiden ferner zwischen 2- und 3d Bilderzeugung
 
 Pipilines
----------
+=========
 
 Die Daten durchlaufen einer Pipeline. Diese ist fuer 2D und 3D Modelle
 unterschiedlich.
@@ -29,7 +34,7 @@ unterschiedlich.
 .. _2d_pipe:
 
 2D
-^^
+--
 
 1. Transformation
 2. Clipping
@@ -38,7 +43,7 @@ unterschiedlich.
 .. _3d_pipe:
 
 3D
-^^
+--
 
 1. Transformation
     + Anwendung einer affinen Abbildung auf die Szene (Szene aus Dreiecken)
@@ -54,25 +59,26 @@ unterschiedlich.
     + Umwandeln der geometrischen Repraesentation in eine Rasterdarstellung
 
 Farben
-------
+======
 
 Ein Farbsystem besteht aus drei Grundtoenen, um alle vom Menschen wahrnehmbaren
 Farben darzustellen.
 
 CIE
-^^^
+---
 
 Commission Internationale de l'Eclairage nutzt drei abstrakte primaerfarben 
 X,Y,Z. Y entspricht der Lichtstaerke.
 
 RGB
-^^^
+---
 
 Additive darstellung von Farben. Gewichtete Summe von Rot, Gruen, Blau.
 p
 
 HSV
-^^^
+---
+
 Hue Saturation Value
 
 Hue in [0,360]
@@ -80,19 +86,19 @@ Hue in [0,360]
 Saturation, Value in [0,1]
 
 CMY
-^^^
+---
 
 Subtraktives Modell von Cyan, Magenta, Yellow
 
 |
 
 2D Bilderzeugung
-----------------
+================
 
 Wir durchlaufen wie bereits bekannt die 2d_pipe_.
 
 Koordinatensysteme
-^^^^^^^^^^^^^^^^^^
+------------------
 
 Wir deferenzieren zwischen lokalen und globalen Koordinatensystemen.
 
@@ -100,7 +106,7 @@ Jedes Objekt selbst hat ein lokales koordinatenssystem, jedes Objekt befindet
 sich in einem Raum, dem globalen Koordinatensystem
 
 Transformationen
-^^^^^^^^^^^^^^^^
+----------------
 
 Wir koennen einen punkt anhand einer affinen Abbildung transformieren.
 
@@ -144,7 +150,7 @@ Scheerung:
     ( E + ((0,s_1),(s_2,0)) ) * p
 
 Transformationsmatrix
-^^^^^^^^^^^^^^^^^^^^^
+---------------------
 
 Um alle Transformationen in einer Matrix abdecken zu koennen benutzen wir eine
 Transformationsmatrix.
@@ -157,7 +163,8 @@ Transformationsmatrix.
     \end{array}
 
 Clipping
-^^^^^^^^
+--------
+
 Clipping bezeichnet das Abschneiden von Teilen einer Szene die ausserhalb des
 definierten Bildbereichs liegen.
 
@@ -186,7 +193,7 @@ Durchfuehrung von Schritt 2:
 * Veroderung muss 0000 sein, schnittpunkte dementsprechend waehlen
 
 Verrasterung
-^^^^^^^^^^^^
+------------
 
 Das Problem, mit dem sich die Verrasterung auseinander setzt ist
 
@@ -194,16 +201,16 @@ Der Algorithmus fuer die Verrasterung betrachtet jeweils die x-punkte/pixel
 und rundet die y-punkte/pixel auf den naechsten int/ganzzahligen Wert.
 
 3D-Bilderzeugung
-----------------
+================
 
 Transformation
-^^^^^^^^^^^^^^
+--------------
 
 Die Transformationsmatrix bleibt generell gleich, nur das eine weitere
 Reihe und spalte hinzugefuegt wird.
 
 Beleuchtung
-^^^^^^^^^^^
+-----------
 
 Das Beleuchtungsmodell von Phong besteht aus:
 
@@ -234,7 +241,7 @@ Es existieren verschiedene shading Modelle
 Textur wird durch eine Rastermatrix vorgegeben
 
 Projektion
-^^^^^^^^^^
+----------
 
 * Parrallelprojektion
     + eine Bildebene wird durch einen Bildursprung o und zwei koordinaten u, v 
@@ -247,7 +254,7 @@ Projektion
     + nun wird von einem Augenpunkt aus auf die Ebene Projeziert
 
 Sichtbarkeitsberechnung
-^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------
 
 * Szenenbasiert
     + Painters Algorithmus/ Binary Space Partitioning
@@ -485,6 +492,23 @@ Dichtebasiertes Clustering
 
 Moegliche Pruefungsfragen C
 ===========================
+
+* Aufbau einer Kohonenkarte?
+* Wie wird eine Kohonenkarte angelernt?
+* Warum lohnt es sich eine Kohonenkarte nicht rein randomisiert zu 
+  initialisieren
+* Worin liegt der Unterschied in der Herangehensweise von Vektorquantisierung
+  und k-Vektorquantisierung
+* Woraus bildet sich die Voronoi-Region?
+* Was ist der Unterschied zwischen Hyper-Octree und Median-Schnitt?
+    + Was ist ein Vorteil von Median-Schnitt gegenueber Hyper-Octree
+* Wie funktioniert k-Mittelwert-Clustering
+* Welche Abstandsmasse existieren im hierarchischen Clustering?
+    + wozu werdenn diese benoetigt?
+* Was ist eine :math:`\varepsilon`-Umgebung im Kontext des dichtebasierten
+  Clustering?
+* Nenne je ein Beispiel, indem dichtebasiertes Clustering besonders gut und
+  eines, in dem es besonders schlecht Funktioniert
 
 
 Block D
@@ -786,3 +810,53 @@ Moegliche Pruefungsfragen D
     + Was wurde in der VL gesagt, wo das angewendet wird?
 * Was ist der Unterschied der min-# und der min-e Variante?
 * Wie verwendet Douglas-Peucker Fehlermasse?
+
+BLock E
+#######
+
+.. _E_Fragen:
+
+Moegliche Pruefungsfragen E
+===========================
+
+* ?
+
+BLock F
+#######
+
+.. _F_Fragen:
+
+Moegliche Pruefungsfragen F
+===========================
+
+* ?
+
+BLock G
+#######
+
+.. _G_Fragen:
+
+Moegliche Pruefungsfragen G
+===========================
+
+* ?
+
+BLock H
+#######
+
+.. _H_Fragen:
+
+Moegliche Pruefungsfragen H
+===========================
+
+* ?
+
+BLock I
+#######
+
+.. _I_Fragen:
+
+Moegliche Pruefungsfragen I
+===========================
+
+* ?
