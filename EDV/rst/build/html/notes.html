@@ -121,6 +121,21 @@
 <li><a class="reference internal" href="#hierachischer-ansatz">Hierachischer Ansatz</a></li>
 <li><a class="reference internal" href="#sichtbarkeitsansatz">Sichtbarkeitsansatz</a></li>
 <li><a class="reference internal" href="#verfeinerungsansatz">Verfeinerungsansatz</a></li>
+<li><a class="reference internal" href="#allgorithmus-von-sugiyama">Allgorithmus von Sugiyama</a></li>
+<li><a class="reference internal" href="#einfacher-algorithmus-zum-zeichnen">Einfacher Algorithmus zum Zeichnen</a></li>
+<li><a class="reference internal" href="#aestetikkriterien-fuer-binaerbaeume">Aestetikkriterien fuer Binaerbaeume</a><ul>
+<li><a class="reference internal" href="#algorithmus-von-reingold-und-tilford">Algorithmus von Reingold und Tilford</a><ul>
+<li><a class="reference internal" href="#horizontal-vertikal-zeichnen">Horizontal-Vertikal Zeichnen</a></li>
+<li><a class="reference internal" href="#zeichnen-durch-rekurives-drehen">Zeichnen durch rekurives drehen</a></li>
+<li><a class="reference internal" href="#vereinfachen-von-polygonzuegen">Vereinfachen von Polygonzuegen</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#min-version">min-# Version</a></li>
+<li><a class="reference internal" href="#fehlermasse">Fehlermasse</a></li>
+<li><a class="reference internal" href="#min-e-version">min-e Version</a></li>
+<li><a class="reference internal" href="#douglas-peucker-algorithmus">Douglas Peucker Algorithmus</a></li>
 </ul>
 </li>
 </ul>
@@ -172,6 +187,7 @@
 <ul class="simple">
 <li><a class="reference internal" href="#b-fragen">B_Fragen</a></li>
 <li><a class="reference internal" href="#c-fragen">C_Fragen</a></li>
+<li><a class="reference internal" href="#d-fragen">D_Fragen</a></li>
 </ul>
 </div>
 <div class="section" id="block-b">
@@ -260,9 +276,9 @@ p</p>
 </div>
 <div class="section" id="hsv">
 <h4>HSV<a class="headerlink" href="#hsv" title="Permalink to this headline">¶</a></h4>
-<p>Hue Saturation Value
-Hue in [0,360]
-Saturation, Value in [0,1]</p>
+<p>Hue Saturation Value</p>
+<p>Hue in [0,360]</p>
+<p>Saturation, Value in [0,1]</p>
 </div>
 <div class="section" id="cmy">
 <h4>CMY<a class="headerlink" href="#cmy" title="Permalink to this headline">¶</a></h4>
@@ -593,8 +609,8 @@ minimal sein.</p>
 Schwerpunkt.</p>
 <p>g ist der quadratische Betrag des Koeffizienten Vektor.</p>
 <div class="math notranslate">
-\[\text{min} f(\ldots) = \Sigma^n_{i=1} (e * a_i - d)^2
-\text{, wobei } g(\ldots) = ||e||_2^2 = 1\]</div>
+\[\begin{split}\text{min } f(\ldots) = \Sigma^n_{i=1} (e * a_i - d)^2\\
+\text{, wobei } g(\ldots) = ||e||_2^2 = 1\end{split}\]</div>
 <p>Dieses Problem kann durch Lagrange Multiplikatoren geloesst werden</p>
 </div>
 </div>
@@ -604,12 +620,11 @@ Schwerpunkt.</p>
 muss sie durch den Schwerpunkt dieser Punkte gehen.</p>
 <p>Dadurch erhalten wir eine Vereinfacherung des Problems. So koennen wir die
 gegebenen Punkte in den Schwerpunkt verschieben</p>
-<p>Dadurch erhalten wir ein neues Verfahren:
-1. Verschieben der Punkte, sodass der Schwerpunkt im Ursprung liegt
-2. Loesen des Problem fuer den Spezialfall, das die Ausgleichsebene durch den</p>
-<blockquote>
-<div>Ursprung geht</div></blockquote>
-<ol class="arabic simple" start="3">
+<p>Dadurch erhalten wir ein neues Verfahren:</p>
+<ol class="arabic simple">
+<li>Verschieben der Punkte, sodass der Schwerpunkt im Ursprung liegt</li>
+<li>Loesen des Problem fuer den Spezialfall, das die Ausgleichsebene durch den
+Ursprung geht</li>
 <li>Verschiebe die gefundene Loesung in den Urspruenglichen Schwerpunkt</li>
 </ol>
 <p>Eine Kohonenkarte definiert eine Abbildung eines d-dimensionalen Raums auf
@@ -707,26 +722,25 @@ Punktmenge erzielt.</p>
 <div class="section" id="k-mittelwert-clustering">
 <h3>k-Mittelwert-Clustering<a class="headerlink" href="#k-mittelwert-clustering" title="Permalink to this headline">¶</a></h3>
 <p>Man waehlt zufaellig k Clustermittelpunkte</p>
-<p>Fortan wird
-fuer alle Objekte:</p>
-<blockquote>
-<div><ul class="simple">
+<p>Fortan wird  fuer alle Objekte:</p>
+<ul class="simple">
 <li>der Abstand jedes Objekts zu jedem Clustermittelpunkt berechnet</li>
 <li>Jedes Objekt seinem Clustermittelpunkt zugewiesen</li>
 </ul>
-</div></blockquote>
 <p>Bis sich keine Objektzuordnung mehr aendert, ansonsten wird das Clusterzentrum
 neu berechnet</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<ul class="simple">
-<li>Das k-Mittelwert-Clustering kann auch als Verfahren zur k-Vektirquantisierung
-aufgefasst werden</li>
-<li>Die resultierenden Cluster koennen stark von der Wahl der initialen Centroide
-abhaengen</li>
+<blockquote>
+<div><ul class="simple">
+<li>Das k-Mittelwert-Clustering kann auch als Verfahren zur
+k-Vektirquantisierung aufgefasst werden</li>
+<li>Die resultierenden Cluster koennen stark von der Wahl der initialen
+Centroide abhaengen</li>
 <li>Anzahl von Clustern kann auch kleiner als k sein</li>
 </ul>
+</div></blockquote>
 <div class="section" id="moeglichkeiten-zur-verbesserung">
 <h4>Moeglichkeiten zur Verbesserung<a class="headerlink" href="#moeglichkeiten-zur-verbesserung" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
@@ -764,31 +778,39 @@ Teilmenge von V ist.</p>
 <h4>Topologie<a class="headerlink" href="#topologie" title="Permalink to this headline">¶</a></h4>
 <p>Zwei orthogonle Zeichnungen haben gleiche Topologie, wenn sie durch stetige
 Deformation ohne VErtauschen bon Facetten ineinander ueberprueft werden koennen</p>
-<p>Dazu benutzen wir Planarisierung
-* ermitteln des maximalen planaren Untergraphens
-* Verbleibende Kanten einfuegen mit moeglichst wenig ueberschneidungen
-* Dummy-Knoten an verbleibenden Uebrschneidungen einfuegen</p>
+<p>Dazu benutzen wir Planarisierung</p>
+<ul class="simple">
+<li>ermitteln des maximalen planaren Untergraphens</li>
+<li>Verbleibende Kanten einfuegen mit moeglichst wenig ueberschneidungen</li>
+<li>Dummy-Knoten an verbleibenden Uebrschneidungen einfuegen</li>
+</ul>
 </div>
 <div class="section" id="form">
 <h4>Form<a class="headerlink" href="#form" title="Permalink to this headline">¶</a></h4>
-<p>Zwei orthogonale Zeichnungen haben gleiche Form, wenn sie:
-1. gleiche Topologie haben
-2. eine Zeichnung aus der anderen nur durch Laengenaenderungen der</p>
-<blockquote>
-<div>Liniensegmente hervorgeht</div></blockquote>
-<p>Dazu benutzen wir Orthogonalisierung
-* Knoten ohne Koordinaten
-* alle Kanfel sind Winkellisten, zur Festlegung ihrer Knicke
-* Das Ziel ist es die Anzahl von Knicken zu minimieren</p>
+<p>Zwei orthogonale Zeichnungen haben gleiche Form, wenn sie:</p>
+<ol class="arabic simple">
+<li>gleiche Topologie haben</li>
+<li>eine Zeichnung aus der anderen nur durch Laengenaenderungen der
+Liniensegmente hervorgeht</li>
+</ol>
+<p>Dazu benutzen wir Orthogonalisierung</p>
+<ul class="simple">
+<li>Knoten ohne Koordinaten</li>
+<li>alle Kanfel sind Winkellisten, zur Festlegung ihrer Knicke</li>
+<li>Das Ziel ist es die Anzahl von Knicken zu minimieren</li>
+</ul>
 </div>
 <div class="section" id="metrik">
 <h4>Metrik<a class="headerlink" href="#metrik" title="Permalink to this headline">¶</a></h4>
-<p>Zwei othogonale Zeichnungen haben gleiche Metrik, wenn sie:
-1. kongruent, bzw. durch Verschieben und Drehen ineinander ueberfuehrt werden</p>
-<blockquote>
-<div>koennen</div></blockquote>
-<p>Dazu benutzen wir Kompaktifizierung
-* minimiert die Flaeche des Graphen und legt die Kantenknicke fest</p>
+<p>Zwei othogonale Zeichnungen haben gleiche Metrik, wenn sie:</p>
+<ol class="arabic simple">
+<li>kongruent, bzw. durch Verschieben und Drehen ineinander ueberfuehrt werden
+koennen</li>
+</ol>
+<p>Dazu benutzen wir Kompaktifizierung</p>
+<ul class="simple">
+<li>minimiert die Flaeche des Graphen und legt die Kantenknicke fest</li>
+</ul>
 </div>
 </div>
 <div class="section" id="hierachischer-ansatz">
@@ -902,6 +924,301 @@ Knotengrad ab</li>
 </dl>
 </li>
 </ol>
+<p>Beim Schichtweisen Zeichnen von allgemeinen gerichteten Graphen werden Knoten
+auf Schichten angeordnet</p>
+</div>
+<div class="section" id="allgorithmus-von-sugiyama">
+<h3>Allgorithmus von Sugiyama<a class="headerlink" href="#allgorithmus-von-sugiyama" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Entfernen von Zyklen</li>
+<li><dl class="first docutils">
+<dt>Schichtzuordnung</dt>
+<dd><ul class="first last">
+<li>y-Koordinaten der Knoten</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kreuzungsreduktion</dt>
+<dd><ul class="first last">
+<li>innerhalb der Schichten werden die Knoten so umgeordnet, dass die Anzahl
+von Kreuzungen reduziert ist</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>waagerechte Koordinatenzusweisung</dt>
+<dd><ul class="first last">
+<li>x-Koordinaten der Knoten</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>Wiederherstellung der Zyklen</li>
+</ol>
+</div>
+<div class="section" id="einfacher-algorithmus-zum-zeichnen">
+<h3>Einfacher Algorithmus zum Zeichnen<a class="headerlink" href="#einfacher-algorithmus-zum-zeichnen" title="Permalink to this headline">¶</a></h3>
+<p>wir definieren die Funktionen</p>
+<div class="math notranslate">
+\[\begin{split}x : V \rightarrow \mathbb{N}\\
+x(v) = \text{Index von v im Inorder Durchlauf}\\
+y : V \rightarrow \mathbb{N}\\
+y(v) = \text{Abstand von v zur Wurzel}\\\end{split}\]</div>
+<p>Ueber diese Funktionen erhalten wir die Koordinaten der Knoten</p>
+</div>
+<div class="section" id="aestetikkriterien-fuer-binaerbaeume">
+<h3>Aestetikkriterien fuer Binaerbaeume<a class="headerlink" href="#aestetikkriterien-fuer-binaerbaeume" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>SchichtenZeichnung, die sich am Abstand zur Wurzel orientiert</li>
+<li>Linker Kindknoten links und rechter Kindknoten rechts</li>
+<li>ElternKnoten ist zntriert ueber seinen Kindern</li>
+<li>Zwei Isomorphe Unterbaeume werden gleich gezeichnet</li>
+<li>Ein Baum und sein Spiegelbild werden spiegelbildlich gezeichnet</li>
+</ol>
+<div class="section" id="algorithmus-von-reingold-und-tilford">
+<h4>Algorithmus von Reingold und Tilford<a class="headerlink" href="#algorithmus-von-reingold-und-tilford" title="Permalink to this headline">¶</a></h4>
+<p>Rekursiv:</p>
+<ul class="simple">
+<li>Wenn der Baum nur einen Knoten enthaelt wird dieser gezeichnet</li>
+<li><dl class="first docutils">
+<dt>Sonst:</dt>
+<dd><ol class="first last arabic">
+<li>Wende den Algorithmus auf den linken und den rechten Unterbaum an</li>
+<li><dl class="first docutils">
+<dt>Wenn es zwei Kinder gibt, dann:</dt>
+<dd><ul class="first last">
+<li>Platziere die beiden erhaltenen Zeichnungen der Unterbaeume
+in waagerechtem Abstand 2</li>
+<li>Platziere die Wurzel des Baums eine Stufer darueber und in der
+Mitte zwischen den Kindern</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Sonst:</dt>
+<dd><ul class="first last">
+<li>platziere die Wurzel in waagerechtem Abstand 1 vom Kind</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Erweiterung</p>
+<ul class="simple">
+<li>Wenn der Baum nur einen Knoten enthaelt wird dieser gezeichnet</li>
+<li><dl class="first docutils">
+<dt>Sonst:</dt>
+<dd><ol class="first last arabic">
+<li>Wende den Algorithmus auf den linken und den rechten Unterbaum an</li>
+<li><dl class="first docutils">
+<dt>Wenn es zwei Kinder gibt, dann:</dt>
+<dd><ul class="first last">
+<li>Platziere die beiden erhaltenen Zeichnungen der Unterbaeume
+in waagerechtem Abstand <strong>1</strong></li>
+<li>Platziere die Wurzel des Baums eine Stufer darueber und in der
+Mitte zwischen den Kindern</li>
+<li><strong>falls der Abstand ungerade ist wird der rechte Unterbaum um 1 nach
+rechts geschoben</strong></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Sonst:</dt>
+<dd><ul class="first last">
+<li>platziere die Wurzel in waagerechtem Abstand 1 vom Kind</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="section" id="horizontal-vertikal-zeichnen">
+<h5>Horizontal-Vertikal Zeichnen<a class="headerlink" href="#horizontal-vertikal-zeichnen" title="Permalink to this headline">¶</a></h5>
+<p>Rekursiv:</p>
+<ul class="simple">
+<li>Wenn der Baum nur einen Knoten hat, so wird dieser gezeichnet</li>
+<li><dl class="first docutils">
+<dt>Sonst:</dt>
+<dd><ol class="first last arabic">
+<li>Wende den Algorithmus auf den linken un rechten Unterbaum an</li>
+<li>Zeichne den Teilbaum mit der groesseren Anzahl Knoten rechts und den
+Teilbaum mit der kleineren Anzahl KNoten unterhablb der Wurzel</li>
+</ol>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Breite: O(n)</p>
+<p>Hoehe: O(log(n))</p>
+</div>
+<div class="section" id="zeichnen-durch-rekurives-drehen">
+<h5>Zeichnen durch rekurives drehen<a class="headerlink" href="#zeichnen-durch-rekurives-drehen" title="Permalink to this headline">¶</a></h5>
+<div class="math notranslate">
+\[\begin{split}n(G) = |V|\\
+l(v) = \text{linkes Kind}\\
+r(v) = \text{rechtes Kind}\\\end{split}\]</div>
+<ol class="arabic">
+<li><dl class="first docutils">
+<dt>Fuer jeden Knoten u:</dt>
+<dd><ul class="first last simple">
+<li>vertausche Kinder so, dass n(l(u)) &lt;= n(r(u))</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Finde den ersten Knoten v, auf dem an weitesten rechts verlaufenden Weg, fuer
+den gilt:</p>
+<blockquote>
+<div><ul class="simple">
+<li><span class="math notranslate">\(n(r(v)) \leq n - (n log(n))^{1/2} &lt; n(v)\)</span></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Zeichne die linken Unterbaeume auf dem Weg von der Wurzel nach v mit
+dem Algorithmus zum horizontal-vertikal Zeichnen</p>
+</li>
+<li><p class="first">Zeichne die Unterbaeume von v rekursiv</p>
+</li>
+</ol>
+</div>
+<div class="section" id="vereinfachen-von-polygonzuegen">
+<h5>Vereinfachen von Polygonzuegen<a class="headerlink" href="#vereinfachen-von-polygonzuegen" title="Permalink to this headline">¶</a></h5>
+</div>
+</div>
+</div>
+<div class="section" id="min-version">
+<h3>min-# Version<a class="headerlink" href="#min-version" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Konstruiere einen Graphen G(P,:math:<cite>varepsilon</cite>),
+der genau dann eine gerichte Kante
+<span class="math notranslate">\(p_i, p_j, i&lt;j\)</span> enthaelt, wenn die Abweichung der Strecke zwischen
+den Knoten von allen dazwischen liegenden Knoten kleiner als ein Wert
+<span class="math notranslate">\(\varepsilon\)</span> ist.</li>
+<li>berechen den kuerzesten Weg zwischen dem ersten und letzem Knoten des
+Polygonzugs und geben diesen aus</li>
+</ol>
+</div>
+<div class="section" id="fehlermasse">
+<h3>Fehlermasse<a class="headerlink" href="#fehlermasse" title="Permalink to this headline">¶</a></h3>
+<p>Messen der Abweichungen zwischen einer Strecke <span class="math notranslate">\(p_i, p_j\)</span></p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Punkt-Steckenabstand</dt>
+<dd><ul class="first last">
+<li>maximaler Abstand zwischen einer Strecke und alle dazwischen liegenden
+Punkten</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Punkt Geradenabstand</dt>
+<dd><ul class="first last">
+<li>maximale Abstande zwischen der Geraden und allen dazwischen liegenden
+Punkten</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>streckenausgerichtetes Huellenrechteck</dt>
+<dd><ul class="first last">
+<li>die Haelfte der Laenge der zur Strecke senkrechten Kanten des
+Rechtecks, das laengs der Strecke ausgrichtet ist</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>minimales Huellenrechteck</dt>
+<dd><ul class="first last">
+<li>die Haelfte der Laenge der kuerzesten Kante des Rechtecks mit kleinster
+minimaler KAntenlaenge, dass die zwischenliegenden Punkte mit enthaelt</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="min-e-version">
+<h3>min-e Version<a class="headerlink" href="#min-e-version" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Konstruiere gewichteten gerichteten Graph G(P), der alle gerichtete Kanten
+enthaelt, welche die maximalen Abweichung der dazwischen liegenden Punkte als
+gewicht haben</li>
+<li>Finde durch binaere Suche ueber alle auftretenden Gewichte ein minimales
+Gewicht e, sodass ein kuerzester Weg in G(P,e) existiert, der hoechstens
+m Knoten</li>
+</ol>
+</div>
+<div class="section" id="douglas-peucker-algorithmus">
+<h3>Douglas Peucker Algorithmus<a class="headerlink" href="#douglas-peucker-algorithmus" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Ein Poligonzug P’ besteht initial aus dem ersten und letztem Punkt des
+Polygonzugs</li>
+<li><dl class="first docutils">
+<dt>Es wird der Maximale Abstand aller Punkte zur Strecke ausgerechnet</dt>
+<dd><ul class="first last">
+<li>Ist dieser groesser als ein vordefiniertes <span class="math notranslate">\(\varepsilon\)</span>
+so wird dieser Punkt in die Strecke mit aufgenommen
+und der Algorithmus links und recht von diesem Punkt ausgefuehrt</li>
+<li>Sonst terminiert die Rekursion</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul>
+<li><p class="first">Was ist ein Hypergraph?</p>
+</li>
+<li><p class="first">wozu dient Planarisierung und in welchen Algorithmen wird Planarisierung
+benutzt?</p>
+<blockquote>
+<div><ul class="simple">
+<li>warum koennen manche Algorithmen auf Planarisierung verzichten?</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">erklaere den Algorithmus von Sugiyama</p>
+</li>
+<li><p class="first">Weclche Aestethikkriterien werden an das Zeichnen von Baeumen gestellt?</p>
+</li>
+<li><dl class="first docutils">
+<dt>Was ist anders bei der erweiterten Variante von Reingold/ Tilford?</dt>
+<dd><ul class="first last simple">
+<li>wellcher Nutzen wird daraus gewonnen?</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Nenne 2 weitere Varianten um Graphen moeglichst pltzsparend zu Zeichnen?</dt>
+<dd><ul class="first last simple">
+<li>Was wurde in der VL gesagt, wo das angewendet wird?</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Was ist der Unterschied der min-# und der min-e Variante?</p>
+</li>
+<li><p class="first">Wie verwendet Douglas-Peucker Fehlermasse?</p>
+</li>
+</ul>
 </div>
 </div>
 </div>

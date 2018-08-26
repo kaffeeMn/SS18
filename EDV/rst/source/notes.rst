@@ -7,6 +7,7 @@ Table of Contents
 
 * B_Fragen_
 * C_Fragen_
+* D_Fragen_
 
 Block B
 #######
@@ -73,7 +74,9 @@ p
 HSV
 ^^^
 Hue Saturation Value
+
 Hue in [0,360]
+
 Saturation, Value in [0,1]
 
 CMY
@@ -333,7 +336,7 @@ g ist der quadratische Betrag des Koeffizienten Vektor.
 
 .. math::
 
-    \text{min} f(\ldots) = \Sigma^n_{i=1} (e * a_i - d)^2
+    \text{min } f(\ldots) = \Sigma^n_{i=1} (e * a_i - d)^2\\
     \text{, wobei } g(\ldots) = ||e||_2^2 = 1
 
 Dieses Problem kann durch Lagrange Multiplikatoren geloesst werden
@@ -348,6 +351,7 @@ Dadurch erhalten wir eine Vereinfacherung des Problems. So koennen wir die
 gegebenen Punkte in den Schwerpunkt verschieben
 
 Dadurch erhalten wir ein neues Verfahren:
+
 1. Verschieben der Punkte, sodass der Schwerpunkt im Ursprung liegt
 2. Loesen des Problem fuer den Spezialfall, das die Ausgleichsebene durch den
    Ursprung geht
@@ -446,21 +450,21 @@ k-Mittelwert-Clustering
 
 Man waehlt zufaellig k Clustermittelpunkte
 
-Fortan wird 
-fuer alle Objekte:
-    + der Abstand jedes Objekts zu jedem Clustermittelpunkt berechnet
-    + Jedes Objekt seinem Clustermittelpunkt zugewiesen
+Fortan wird  fuer alle Objekte:
+
++ der Abstand jedes Objekts zu jedem Clustermittelpunkt berechnet
++ Jedes Objekt seinem Clustermittelpunkt zugewiesen
 
 Bis sich keine Objektzuordnung mehr aendert, ansonsten wird das Clusterzentrum 
 neu berechnet
 
 |
 
-* Das k-Mittelwert-Clustering kann auch als Verfahren zur k-Vektirquantisierung 
-  aufgefasst werden
-* Die resultierenden Cluster koennen stark von der Wahl der initialen Centroide 
-  abhaengen
-* Anzahl von Clustern kann auch kleiner als k sein
+    * Das k-Mittelwert-Clustering kann auch als Verfahren zur 
+      k-Vektirquantisierung aufgefasst werden
+    * Die resultierenden Cluster koennen stark von der Wahl der initialen 
+      Centroide abhaengen
+    * Anzahl von Clustern kann auch kleiner als k sein
 
 Moeglichkeiten zur Verbesserung
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -517,6 +521,7 @@ Zwei orthogonle Zeichnungen haben gleiche Topologie, wenn sie durch stetige
 Deformation ohne VErtauschen bon Facetten ineinander ueberprueft werden koennen
 
 Dazu benutzen wir Planarisierung
+
 * ermitteln des maximalen planaren Untergraphens
 * Verbleibende Kanten einfuegen mit moeglichst wenig ueberschneidungen
 * Dummy-Knoten an verbleibenden Uebrschneidungen einfuegen
@@ -525,11 +530,13 @@ Form
 ^^^^
 
 Zwei orthogonale Zeichnungen haben gleiche Form, wenn sie:
+
 1. gleiche Topologie haben
 2. eine Zeichnung aus der anderen nur durch Laengenaenderungen der 
    Liniensegmente hervorgeht
 
 Dazu benutzen wir Orthogonalisierung
+
 * Knoten ohne Koordinaten
 * alle Kanfel sind Winkellisten, zur Festlegung ihrer Knicke
 * Das Ziel ist es die Anzahl von Knicken zu minimieren
@@ -538,10 +545,12 @@ Metrik
 ^^^^^^
 
 Zwei othogonale Zeichnungen haben gleiche Metrik, wenn sie:
+
 1. kongruent, bzw. durch Verschieben und Drehen ineinander ueberfuehrt werden
-  koennen 
+   koennen 
 
 Dazu benutzen wir Kompaktifizierung
+
 * minimiert die Flaeche des Graphen und legt die Kantenknicke fest
 
 Hierachischer Ansatz
@@ -594,3 +603,186 @@ Verfeinerungsansatz
 3. Triangulierungszeichnung
     * "Auslegen" aller Dreiecke
     * entfernen von Dummy-Kanten/Knoten
+
+Schichtenweises Zeichnen allg. gerichteter Graphen
+==================================================
+
+Beim Schichtweisen Zeichnen von allgemeinen gerichteten Graphen werden Knoten
+auf Schichten angeordnet
+
+Allgorithmus von Sugiyama
+-------------------------
+
+1. Entfernen von Zyklen
+2. Schichtzuordnung
+    + y-Koordinaten der Knoten
+3. Kreuzungsreduktion
+    + innerhalb der Schichten werden die Knoten so umgeordnet, dass die Anzahl
+      von Kreuzungen reduziert ist
+4. waagerechte Koordinatenzusweisung
+    + x-Koordinaten der Knoten
+5. Wiederherstellung der Zyklen
+
+.. TODO wichtig!!!!!!!!!!!
+
+(Binaere) Baeume
+================
+
+Einfacher Algorithmus zum Zeichnen
+----------------------------------
+
+wir definieren die Funktionen
+
+.. math::
+    x : V \rightarrow \mathbb{N}\\
+    x(v) = \text{Index von v im Inorder Durchlauf}\\
+    y : V \rightarrow \mathbb{N}\\
+    y(v) = \text{Abstand von v zur Wurzel}\\
+
+Ueber diese Funktionen erhalten wir die Koordinaten der Knoten
+
+Aestetikkriterien fuer Binaerbaeume
+-----------------------------------
+
+1. SchichtenZeichnung, die sich am Abstand zur Wurzel orientiert
+2. Linker Kindknoten links und rechter Kindknoten rechts
+3. ElternKnoten ist zntriert ueber seinen Kindern
+4. Zwei Isomorphe Unterbaeume werden gleich gezeichnet
+5. Ein Baum und sein Spiegelbild werden spiegelbildlich gezeichnet
+
+Algorithmus von Reingold und Tilford
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Rekursiv:
+
+* Wenn der Baum nur einen Knoten enthaelt wird dieser gezeichnet
+* Sonst:
+    1. Wende den Algorithmus auf den linken und den rechten Unterbaum an
+    2. Wenn es zwei Kinder gibt, dann:
+        + Platziere die beiden erhaltenen Zeichnungen der Unterbaeume 
+          in waagerechtem Abstand 2
+        + Platziere die Wurzel des Baums eine Stufer darueber und in der 
+          Mitte zwischen den Kindern
+    3. Sonst:
+        + platziere die Wurzel in waagerechtem Abstand 1 vom Kind
+
+|
+
+Erweiterung
+
+* Wenn der Baum nur einen Knoten enthaelt wird dieser gezeichnet
+* Sonst:
+    1. Wende den Algorithmus auf den linken und den rechten Unterbaum an
+    2. Wenn es zwei Kinder gibt, dann:
+        + Platziere die beiden erhaltenen Zeichnungen der Unterbaeume 
+          in waagerechtem Abstand **1**
+        + Platziere die Wurzel des Baums eine Stufer darueber und in der 
+          Mitte zwischen den Kindern
+        + **falls der Abstand ungerade ist wird der rechte Unterbaum um 1 nach
+          rechts geschoben**
+    3. Sonst:
+        + platziere die Wurzel in waagerechtem Abstand 1 vom Kind
+
+Horizontal-Vertikal Zeichnen
+============================
+
+Rekursiv:
+
+* Wenn der Baum nur einen Knoten hat, so wird dieser gezeichnet
+* Sonst:
+    1. Wende den Algorithmus auf den linken un rechten Unterbaum an
+    2. Zeichne den Teilbaum mit der groesseren Anzahl Knoten rechts und den
+       Teilbaum mit der kleineren Anzahl KNoten unterhablb der Wurzel
+
+Breite: O(n)
+
+Hoehe: O(log(n))
+
+Zeichnen durch rekurives drehen
+===============================
+
+.. math::
+    n(G) = |V|\\
+    l(v) = \text{linkes Kind}\\
+    r(v) = \text{rechtes Kind}\\
+
+
+1. Fuer jeden Knoten u:
+    * vertausche Kinder so, dass n(l(u)) <= n(r(u))
+2. Finde den ersten Knoten v, auf dem an weitesten rechts verlaufenden Weg, fuer
+   den gilt:
+    * :math:`n(r(v)) \leq n - (n log(n))^{1/2} < n(v)`
+3. Zeichne die linken Unterbaeume auf dem Weg von der Wurzel nach v mit 
+   dem Algorithmus zum horizontal-vertikal Zeichnen
+4. Zeichne die Unterbaeume von v rekursiv
+
+Vereinfachen von Polygonzuegen
+==============================
+
+min-# Version
+-------------
+
+1. Konstruiere einen Graphen G(P,:math:`\varepsilon`), 
+   der genau dann eine gerichte Kante
+   :math:`p_i, p_j, i<j` enthaelt, wenn die Abweichung der Strecke zwischen
+   den Knoten von allen dazwischen liegenden Knoten kleiner als ein Wert
+   :math:`\varepsilon` ist.
+2. berechen den kuerzesten Weg zwischen dem ersten und letzem Knoten des
+   Polygonzugs und geben diesen aus
+
+Fehlermasse
+-----------
+
+Messen der Abweichungen zwischen einer Strecke :math:`p_i, p_j`
+
+* Punkt-Steckenabstand
+    + maximaler Abstand zwischen einer Strecke und alle dazwischen liegenden
+      Punkten
+* Punkt Geradenabstand
+    + maximale Abstande zwischen der Geraden und allen dazwischen liegenden 
+      Punkten
+* streckenausgerichtetes Huellenrechteck
+    + die Haelfte der Laenge der zur Strecke senkrechten Kanten des
+      Rechtecks, das laengs der Strecke ausgrichtet ist
+* minimales Huellenrechteck
+    + die Haelfte der Laenge der kuerzesten Kante des Rechtecks mit kleinster
+      minimaler KAntenlaenge, dass die zwischenliegenden Punkte mit enthaelt
+
+min-e Version
+-------------
+
+1. Konstruiere gewichteten gerichteten Graph G(P), der alle gerichtete Kanten 
+   enthaelt, welche die maximalen Abweichung der dazwischen liegenden Punkte als
+   gewicht haben
+2. Finde durch binaere Suche ueber alle auftretenden Gewichte ein minimales
+   Gewicht e, sodass ein kuerzester Weg in G(P,e) existiert, der hoechstens
+   m Knoten
+
+Douglas Peucker Algorithmus
+---------------------------
+
+* Ein Poligonzug P' besteht initial aus dem ersten und letztem Punkt des
+  Polygonzugs
+* Es wird der Maximale Abstand aller Punkte zur Strecke ausgerechnet
+    + Ist dieser groesser als ein vordefiniertes :math:`\varepsilon`
+      so wird dieser Punkt in die Strecke mit aufgenommen
+      und der Algorithmus links und recht von diesem Punkt ausgefuehrt
+    + Sonst terminiert die Rekursion
+
+.. _D_Fragen:
+
+Moegliche Pruefungsfragen D
+===========================
+
+* Was ist ein Hypergraph?
+* wozu dient Planarisierung und in welchen Algorithmen wird Planarisierung
+  benutzt?
+    + warum koennen manche Algorithmen auf Planarisierung verzichten?
+* erklaere den Algorithmus von Sugiyama
+* Weclche Aestethikkriterien werden an das Zeichnen von Baeumen gestellt?
+* Was ist anders bei der erweiterten Variante von Reingold/ Tilford?
+    + wellcher Nutzen wird daraus gewonnen?
+* Nenne 2 weitere Varianten um Graphen moeglichst pltzsparend zu Zeichnen?
+    + Was wurde in der VL gesagt, wo das angewendet wird?
+* Was ist der Unterschied der min-# und der min-e Variante?
+* Wie verwendet Douglas-Peucker Fehlermasse?
