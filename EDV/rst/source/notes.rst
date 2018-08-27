@@ -811,7 +811,7 @@ Moegliche Pruefungsfragen D
 * Was ist der Unterschied der min-# und der min-e Variante?
 * Wie verwendet Douglas-Peucker Fehlermasse?
 
-BLock E
+Block E
 #######
 
 .. _E_Fragen:
@@ -834,7 +834,7 @@ Moegliche Pruefungsfragen E
 * Ist die Flaechentrennunf fuer Voxelobjekte immer eindeutig?
 
 
-BLock F
+Block F
 #######
 
 .. _F_Fragen:
@@ -851,7 +851,7 @@ Moegliche Pruefungsfragen F
 * Wie Funktioniert ein Box-Whiskers-Plot?
     + Welche Variationen des Box-Whisker-Plots wurden vorgestellt?
 
-BLock G
+Block G
 #######
 
 .. _G_Fragen:
@@ -876,7 +876,7 @@ Moegliche Pruefungsfragen G
 * erklaere die COnfusionsmatrix
 * Wann war ein Netz/ Verfahren hinsichtlich der ROC kurve am besten?
 
-BLock H
+Block H
 #######
 
 .. _H_Fragen:
@@ -888,7 +888,7 @@ Moegliche Pruefungsfragen H
 * Was wird bei den :math:`2^k` Design Plaenen versucht zu erreicht?
 * Welche Ineteraktions-Arten haben wir kennen gelernt?
 
-BLock I
+Block I
 #######
 
 .. _I_Fragen:
