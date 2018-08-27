@@ -859,7 +859,22 @@ BLock G
 Moegliche Pruefungsfragen G
 ===========================
 
-* ?
+* Wie werden Informationsgewinn und das Mass fuer Unsicherheit fuer 
+  Entscheidungsbaeume berechnet?
+* Wie kann ein Entscheidungsbaum rekonstruiert werden?
+* Was ist das Grundprinzip von Support Vector Machines?
+* Was versucht man bei den Support Vector Machines minimieren?
+* Was kann durch das Kernel-Prinzip klassifiziert werden?
+* Was kann mit 1,2,3+ Layern durch ein neuronales Netz klassifiziert werdeN?
+* Wie funktioniert vorwaerts Propagation?
+* Was fuer aktivierungsfunktionen existieren?
+* Was fuer Fehlerfukntionen existieren?
+* Was fuer Ausgabefunktionen existieren?
+* Wie werden die Gewichte angepasst?
+    + Wie wichtig ist dabei die Lernrate?
+* Wie funktioniert Backpropagation?
+* erklaere die COnfusionsmatrix
+* Wann war ein Netz/ Verfahren hinsichtlich der ROC kurve am besten?
 
 BLock H
 #######
@@ -869,7 +884,9 @@ BLock H
 Moegliche Pruefungsfragen H
 ===========================
 
-* ?
+* Was sind die Grundprinzipien der Versuchsplanung?
+* Was wird bei den :math:`2^k` Design Plaenen versucht zu erreicht?
+* Welche Ineteraktions-Arten haben wir kennen gelernt?
 
 BLock I
 #######
@@ -879,4 +896,6 @@ BLock I
 Moegliche Pruefungsfragen I
 ===========================
 
-* ?
+* Was ist das Ziel von glatten Komponenten?
+    + Wird kann eine Trendgerade ermittlet werden?
+* 
