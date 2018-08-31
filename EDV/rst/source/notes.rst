@@ -5,6 +5,7 @@ Mitschriften EDV
 Table of Contents
 #################
 
+* :doc:`fragen`
 * B_Fragen_
 * C_Fragen_
 * D_Fragen_
@@ -222,6 +223,20 @@ Das Beleuchtungsmodell von Phong besteht aus:
 * Glaenzender Anteil
     + Gerichtete Reflexion
     + Abhaengig von Betrachtungspunkt
+
+.. math::
+
+    I_a = k_a * I_{amb}\\
+    I_d = k_d * \Sigma^{l}_{i=0} n * l_i * \frac{I_i}{f(d_i)}\\
+    I_g = k_g * \Sigma^{l}_{i=0} (v * r_i)^\gamma * \frac{I_i}{f(d_i)}\\
+    k_a, k_d, k_g := \text{ Konstanten}\\
+    \gamma := \text{ Objektabh"angige Konstanten}\\
+    I_{amb} := \text{ (Richtung des Ambienten Lichts)}\\
+    l := \text{ Anzahl der Lichtquellen}\\
+    I_i := \text{ Intesit"at der i-ten Lichtquelle}\\
+    f(d_i) := \text{ Abstandsfunktion auf die Entfernung zur i-ten Lichtquelle}\\
+    v := \text{ Blichwinkel}\\
+    r_i := \text{ Reflexionswinkel}\\
 
 |
 

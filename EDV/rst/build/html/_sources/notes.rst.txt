@@ -5,6 +5,7 @@ Mitschriften EDV
 Table of Contents
 #################
 
+* :doc:`fragen`
 * B_Fragen_
 * C_Fragen_
 * D_Fragen_
@@ -222,6 +223,20 @@ Das Beleuchtungsmodell von Phong besteht aus:
 * Glaenzender Anteil
     + Gerichtete Reflexion
     + Abhaengig von Betrachtungspunkt
+
+.. math::
+
+    I_a = k_a * I_{amb}\\
+    I_d = k_d * \Sigma^{l}_{i=0} n * l_i * \frac{I_i}{f(d_i)}\\
+    I_g = k_g * \Sigma^{l}_{i=0} (v * r_i)^\gamma * \frac{I_i}{f(d_i)}\\
+    k_a, k_d, k_g := \text{ Konstanten}\\
+    \gamma := \text{ Objektabh"angige Konstanten}\\
+    I_{amb} := \text{ (Richtung des Ambienten Lichts)}\\
+    l := \text{ Anzahl der Lichtquellen}\\
+    I_i := \text{ Intesit"at der i-ten Lichtquelle}\\
+    f(d_i) := \text{ Abstandsfunktion auf die Entfernung zur i-ten Lichtquelle}\\
+    v := \text{ Blichwinkel}\\
+    r_i := \text{ Reflexionswinkel}\\
 
 |
 
@@ -811,7 +826,7 @@ Moegliche Pruefungsfragen D
 * Was ist der Unterschied der min-# und der min-e Variante?
 * Wie verwendet Douglas-Peucker Fehlermasse?
 
-BLock E
+Block E
 #######
 
 .. _E_Fragen:
@@ -834,7 +849,7 @@ Moegliche Pruefungsfragen E
 * Ist die Flaechentrennunf fuer Voxelobjekte immer eindeutig?
 
 
-BLock F
+Block F
 #######
 
 .. _F_Fragen:
@@ -851,7 +866,7 @@ Moegliche Pruefungsfragen F
 * Wie Funktioniert ein Box-Whiskers-Plot?
     + Welche Variationen des Box-Whisker-Plots wurden vorgestellt?
 
-BLock G
+Block G
 #######
 
 .. _G_Fragen:
@@ -876,7 +891,7 @@ Moegliche Pruefungsfragen G
 * erklaere die COnfusionsmatrix
 * Wann war ein Netz/ Verfahren hinsichtlich der ROC kurve am besten?
 
-BLock H
+Block H
 #######
 
 .. _H_Fragen:
@@ -888,7 +903,7 @@ Moegliche Pruefungsfragen H
 * Was wird bei den :math:`2^k` Design Plaenen versucht zu erreicht?
 * Welche Ineteraktions-Arten haben wir kennen gelernt?
 
-BLock I
+Block I
 #######
 
 .. _I_Fragen:
